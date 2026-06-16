@@ -2554,15 +2554,8 @@ function toggleTheme(){
 function loadTheme(){
  let saved='';
  try{ saved=localStorage.getItem('police_v6_theme')||sessionStorage.getItem('police_v6_theme')||''; }catch(e){}
- if(!saved){
-  try{ saved=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }catch(e){ saved='light'; }
- }
+ if(saved!=='dark'&&saved!=='light') saved='light';
  applyTheme(saved);
- try{
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',e=>{
-   if(!localStorage.getItem('police_v6_theme')) applyTheme(e.matches?'dark':'light');
-  });
- }catch(e){}
 }
 
 /* ──────────── 입력 검증 ──────────── */
@@ -3524,7 +3517,7 @@ function renderShiftCal(){
  var DOW=['일','월','화','수','목','금','토'];
  var _r=_monthCalc(); var _sg=_r.sigot>=0?'+':'\u2212';
  var html='<div style="font-weight:900;font-size:17px;text-align:center;margin-bottom:2px">'+y+'년 '+(m+1)+'월 \u00b7 <span style="color:var(--accent)">'+c.team+'팀</span></div>';
- html+='<div onclick="var _o=document.getElementById(\'ot_card\');_o.open=true;_o.scrollIntoView({behavior:\'smooth\'})" style="text-align:center;font-size:13px;font-weight:800;margin-bottom:8px;cursor:pointer;background:var(--panel-2);border-radius:8px;padding:6px">이번 달 시간외 <b style="color:'+(_r.sigot>=0?'#dc2626':'#1d4ed8')+'">'+(_r.sigot>=0?'+':'\u2212')+Math.abs(_r.sigot).toFixed(0)+'h</b> <span style="color:var(--text-dim);font-weight:500">(기준초과 '+(_r.gijun>=0?'+':'\u2212')+Math.abs(_r.gijun).toFixed(0)+'h \u00b7 야간 '+_r.nightHrs+'h \u00b7 휴일주간 '+_r.holDS+'일 \u00b7 주'+_r.cntD+'\u00b7야'+_r.cntN+'\u00b7총'+_r.work.toFixed(0)+'h/기준'+_r.bs+'h)</span> <span style="color:var(--accent);font-size:11px">\u270f\ufe0f 눌러서 수정</span></div>';
+ html+='<div onclick="var _o=document.getElementById(\'ot_card\');_o.open=true;_o.scrollIntoView({behavior:\'smooth\'})" style="text-align:center;font-size:13px;font-weight:800;margin-bottom:8px;cursor:pointer;background:var(--panel-2);border-radius:8px;padding:6px">이번 달 시간외 <b style="color:'+(_r.sigot>=0?'#dc2626':'#1d4ed8')+'">'+(_r.sigot>=0?'+':'\u2212')+Math.abs(_r.sigot).toFixed(1).replace(".0","")+'h</b> <span style="color:var(--text-dim);font-weight:500">(기준초과 '+(_r.gijun>=0?'+':'\u2212')+Math.abs(_r.gijun).toFixed(1).replace(".0","")+'h \u00b7 야간 '+_r.nightHrs+'h \u00b7 휴일주간 '+_r.holDS+'일 \u00b7 주'+_r.cntD+'\u00b7야'+_r.cntN+'\u00b7총'+_r.work.toFixed(1).replace(".0","")+'h/기준'+_r.bs+'h)</span> <span style="color:var(--accent);font-size:11px">\u270f\ufe0f 눌러서 수정</span></div>';
  html+='<table style="width:100%;border-collapse:collapse;table-layout:fixed"><thead><tr>'+DOW.map(function(d,i){var col=i===0?'#dc2626':(i===6?'#1d4ed8':'var(--text-dim)');return '<th style="padding:4px;font-size:12px;color:'+col+'">'+d+'</th>';}).join('')+'</tr></thead><tbody><tr>';
  var cell=0;
  for(var i=0;i<startDow;i++){ html+='<td style="border:1px solid var(--border)"></td>'; cell++; }
@@ -3624,7 +3617,7 @@ function calcOT(){
  var r=_monthCalc(); var sg=r.sigot>=0?'+':'-'; var gg=r.gijun>=0?'+':'-';
  var html='<b>'+r.month+'월 '+r.team+'팀</b> - 주간 '+r.cntD+'일 · 야간 '+r.cntN+'일';
  if(r.holDS) html+=' · 휴일주간 '+r.holDS+'일'; if(r.dn) html+=' · 날짜기록 +'+r.dn.toFixed(1)+'h'; if(r.addw) html+=' · 추가 +'+r.addw+'h'; if(r.lv) html+=' · 연가 -'+r.lv+'h'; if(r.early) html+=' · 조퇴 -'+r.early+'h'; if(r.late) html+=' · 지각 -'+r.late+'h';
- html+='<br>시간외 <b style="color:'+(r.sigot>=0?'#dc2626':'#1d4ed8')+';font-size:15px">'+sg+Math.abs(r.sigot).toFixed(0)+'h</b> <span style="font-size:12px;color:var(--text-dim)">· 기준초과 '+gg+Math.abs(r.gijun).toFixed(0)+'h · 야간 '+r.nightHrs+'h · 휴일 '+r.holDS+'일</span>';
+ html+='<br>시간외 <b style="color:'+(r.sigot>=0?'#dc2626':'#1d4ed8')+';font-size:15px">'+sg+Math.abs(r.sigot).toFixed(1).replace(".0","")+'h</b> <span style="font-size:12px;color:var(--text-dim)">· 기준초과 '+gg+Math.abs(r.gijun).toFixed(1).replace(".0","")+'h · 야간 '+r.nightHrs+'h · 휴일 '+r.holDS+'일</span>';
  html+='<br>';
  if(r.sigot>0) html+='추정 시간외수당 ≈ <b>'+Math.round(r.ot).toLocaleString('ko-KR')+'원</b> <span style="font-size:11px;color:var(--text-dim)">(인정 '+r.paidHours.toFixed(0)+'h × '+r.rate.toLocaleString('ko-KR')+'원, 참고치)</span>';
  else html+='<span style="color:var(--text-dim)">기준시간 이하 - 시간외 없음 (휴일근무수당은 별도)</span>';
@@ -3644,6 +3637,7 @@ function calcOT(){
  if(r.addw) f+='+ 추가근무 '+clk('ot_addwork',r.addw+'h')+'<br>';
  if(r.lv) f+='- 연가 수동 '+clk('ot_leave',r.lv+'h')+'<br>'; if(r.early) f+='- 조퇴 '+clk('ot_early',r.early+'h')+'<br>'; if(r.late) f+='- 지각 '+clk('ot_late',r.late+'h')+'<br>'; if(r.lvAuto) f+='- 연가 '+(r.lvD+r.lvN)+'일 × 8h = '+r.lvAuto.toFixed(0)+'h <span style="color:var(--text-dim);font-size:11px">(연가 1일당 8h 차감)</span><br>';
  if(r.prem&&r.premH) f+='+ 야간·휴일 가산 '+r.premH+'h<br>';
+ f+='= 총 근무 <b>'+r.work.toFixed(1).replace(".0","")+'h</b><br>';
  f+='- 복무규정(기준) <b>'+r.bs.toFixed(0)+'h</b> (평일 '+r.wd+'일 × '+clk('ot_basestd',r.dayStd+'h')+')<br>';
  f+='─────<br>= 기준초과근무시간 <b>'+gg+Math.abs(r.gijun).toFixed(1)+'h</b><br>';
  if(r.holDed) f+='- 휴일주간근무 '+r.holDS+'일 × 8h = '+r.holDed.toFixed(0)+'h <span style="color:#b45309;font-size:11px">(휴일근무수당 별도지급)</span><br>';
