@@ -3549,10 +3549,10 @@ function openDayNote(key){
  var m=document.getElementById('day_note_modal');
  if(!m){ m=document.createElement('div'); m.id='day_note_modal'; m.setAttribute('style','position:fixed;inset:0;background:rgba(15,23,42,.85);z-index:9700;display:flex;align-items:center;justify-content:center;padding:16px'); document.body.appendChild(m); }
  var ck=function(id,lbl,on){ return '<label style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:14px;font-weight:700"><input type="checkbox" id="dn_'+id+'" style="width:22px;height:22px" '+(on?'checked':'')+'> '+lbl+'</label>'; };
- var tm=function(id,lbl,on,s,e){ return '<div style="display:flex;align-items:center;gap:4px;padding:3px 0;border-bottom:1px solid var(--border)"><label style="display:flex;align-items:center;gap:4px;font-size:13px;font-weight:700;white-space:nowrap;flex:0 0 98px;width:98px"><input type="checkbox" id="dn_'+id+'" style="width:18px;height:18px" '+(on?'checked':'')+'> '+lbl+'</label><input type="time" id="dn_'+id+'_s" value="'+(s||'')+'" style="font-size:11px;padding:1px 2px;width:80px;border:1px solid var(--border);border-radius:5px"><span style="font-size:11px;color:var(--text-dim)">~</span><input type="time" id="dn_'+id+'_e" value="'+(e||'')+'" style="font-size:11px;padding:1px 2px;width:80px;border:1px solid var(--border);border-radius:5px"></div>'; };
+ var tm=function(id,lbl,on,s,e){ return '<div style="display:flex;align-items:center;gap:4px;padding:3px 0;border-bottom:1px solid var(--border)"><label style="display:flex;align-items:center;gap:4px;font-size:13px;font-weight:700;white-space:nowrap;flex:0 0 98px;width:98px"><input type="checkbox" id="dn_'+id+'" style="width:18px;height:18px" '+(on?'checked':'')+'> '+lbl+'</label><input type="time" id="dn_'+id+'_s" value="'+(s||'')+'" style="font-size:11px;padding:1px 2px;width:92px;border:1px solid var(--border);border-radius:5px"><span style="font-size:11px;color:var(--text-dim)">~</span><input type="time" id="dn_'+id+'_e" value="'+(e||'')+'" style="font-size:11px;padding:1px 2px;width:92px;border:1px solid var(--border);border-radius:5px"></div>'; };
  var h='<div style="background:var(--panel);border:2px solid var(--accent);border-radius:16px;max-width:440px;width:100%;padding:18px;max-height:88vh;overflow-y:auto">';
  h+='<div style="font-size:16px;font-weight:900;color:var(--accent);margin-bottom:6px">🗓️ '+key+' 기록</div>';
- h+='<div style="font-size:11px;color:var(--text-dim);margin-bottom:8px">⏱️ 아래 5개는 <b>근무시간과 안 겹치는 시간만</b> 시간외로 자동 가산(연가일 제외).</div>';
+ h+='<div style="font-size:11px;color:var(--text-dim);margin-bottom:8px">⏱️ 물리력·사격·직장훈련·교육: <b>근무시간 밖은 +가산, 근무시간 안은 −차감</b> (동원은 가산만, 연가일 제외).</div>';
  h+=tm('phys','💪물리력',n.phys,n.phys_s,n.phys_e);
  h+=tm('shoot','🎯사격',n.shoot,n.shoot_s,n.shoot_e);
  h+=tm('train','📚직장훈련',n.train,n.train_s,n.train_e);
@@ -3589,11 +3589,11 @@ function _monthCalc(){
  var dn=0, dnB={train:0,edu:0,phys:0,shoot:0,mobil:0,dvol:0,nvol:0,rush:0};
  for(var d=1;d<=days;d++){ var dt=new Date(y,m,d); dt.setHours(0,0,0,0); var st=SHIFT_PAT[_stateIdx(dt,c.team)]; if(st==='주간')cntD++; else if(st==='야간')cntN++; var _dow=dt.getDay(); if((_dow===0||_dow===6||!!holidayName(_dkey(dt)))){ if(st==='주간')holDS++; else if(st==='야간')holNS++; } var nt=_noteFor(dt); if(!nt) continue;
   if(nt.leave){ if(st==='주간')lvD++; else if(st==='야간')lvN++; continue; }
-  var wins=WIN[st]||[]; var h;
-  if(nt.phys){ h=_outside(nt.phys_s,nt.phys_e,wins); dn+=h; dnB.phys+=h; }
-  if(nt.shoot){ h=_outside(nt.shoot_s,nt.shoot_e,wins); dn+=h; dnB.shoot+=h; }
-  if(nt.train){ h=_outside(nt.train_s,nt.train_e,wins); dn+=h; dnB.train+=h; }
-  if(nt.edu){ h=_outside(nt.edu_s,nt.edu_e,wins); dn+=h; dnB.edu+=h; }
+  var wins=WIN[st]||[]; var h,du;
+  if(nt.phys){ du=_outside(nt.phys_s,nt.phys_e,[]); h=_outside(nt.phys_s,nt.phys_e,wins); h=h-(du-h); dn+=h; dnB.phys+=h; }
+  if(nt.shoot){ du=_outside(nt.shoot_s,nt.shoot_e,[]); h=_outside(nt.shoot_s,nt.shoot_e,wins); h=h-(du-h); dn+=h; dnB.shoot+=h; }
+  if(nt.train){ du=_outside(nt.train_s,nt.train_e,[]); h=_outside(nt.train_s,nt.train_e,wins); h=h-(du-h); dn+=h; dnB.train+=h; }
+  if(nt.edu){ du=_outside(nt.edu_s,nt.edu_e,[]); h=_outside(nt.edu_s,nt.edu_e,wins); h=h-(du-h); dn+=h; dnB.edu+=h; }
   if(nt.mobil){ h=_outside(nt.mobil_s,nt.mobil_e,wins); dn+=h; dnB.mobil+=h; }
   if(nt.dvol){ dn+=9; dnB.dvol+=9; }
   if(nt.nvol){ dn+=10; dnB.nvol+=10; }
@@ -3605,7 +3605,7 @@ function _monthCalc(){
  var wd=_weekdaysInMonth(y,m); var bs=wd*dayStd; var npr=g('ot_nightpr',0),hpr=g('ot_holpr',0); var _pe=document.getElementById('ot_premium'); var prem=_pe?_pe.checked:false;
  var rateEl=document.getElementById('ot_rate'),rankEl=document.getElementById('ot_rank');
  var rate=(rateEl&&parseFloat(rateEl.value))||(rankEl&&parseFloat(rankEl.value))||0;
- var premH=prem?(cntN*npr+hpr):0; var lvAuto=lvD*dh+lvN*nh; var holDed=holDS*8;
+ var premH=prem?(cntN*npr+hpr):0; var lvAuto=(lvD+lvN)*8; var holDed=holDS*8;
  var work=cntD*dh+cntN*nh+dn+addw-lv-lvAuto-early-late+premH;
  var gijun=work-bs; var sigot=gijun-holDed; var nightHrs=cntN*8;
  var paidHours=Math.max(0,sigot); if(cap>0) paidHours=Math.min(paidHours,cap); var ot=paidHours*rate;
@@ -3626,16 +3626,16 @@ function calcOT(){
  f+='주간 '+r.cntD+'일 × '+clk('ot_dayh',r.dh+'h')+' = '+(r.cntD*r.dh).toFixed(1)+'h<br>';
  f+='야간 '+r.cntN+'일 × '+clk('ot_nighth',r.nh+'h')+' = '+(r.cntN*r.nh).toFixed(1)+'h<br>';
  var b=r.dnB;
- if(b.train) f+='+ 직장훈련(근무외) '+b.train.toFixed(1)+'h<br>';
- if(b.edu) f+='+ 교육(근무외) '+b.edu.toFixed(1)+'h<br>';
- if(b.phys) f+='+ 물리력(근무외) '+b.phys.toFixed(1)+'h<br>';
- if(b.shoot) f+='+ 사격(근무외) '+b.shoot.toFixed(1)+'h<br>';
+ if(b.train) f+=(b.train>=0?'+ ':'- ')+'직장훈련 '+Math.abs(b.train).toFixed(1)+'h<br>';
+ if(b.edu) f+=(b.edu>=0?'+ ':'- ')+'교육 '+Math.abs(b.edu).toFixed(1)+'h<br>';
+ if(b.phys) f+=(b.phys>=0?'+ ':'- ')+'물리력 '+Math.abs(b.phys).toFixed(1)+'h<br>';
+ if(b.shoot) f+=(b.shoot>=0?'+ ':'- ')+'사격 '+Math.abs(b.shoot).toFixed(1)+'h<br>';
  if(b.mobil) f+='+ 동원(근무외) '+b.mobil.toFixed(1)+'h<br>';
  if(b.dvol) f+='+ 주간자원 '+b.dvol.toFixed(0)+'h<br>';
  if(b.nvol) f+='+ 야간자원 '+b.nvol.toFixed(0)+'h<br>';
  if(b.rush) f+='+ 러쉬근무 '+b.rush.toFixed(0)+'h<br>';
  if(r.addw) f+='+ 추가근무 '+clk('ot_addwork',r.addw+'h')+'<br>';
- if(r.lv) f+='- 연가 수동 '+clk('ot_leave',r.lv+'h')+'<br>'; if(r.early) f+='- 조퇴 '+clk('ot_early',r.early+'h')+'<br>'; if(r.late) f+='- 지각 '+clk('ot_late',r.late+'h')+'<br>'; if(r.lvAuto) f+='- 연가(달력) '+(r.lvD?r.lvD+'일×'+r.dh+'h ':'')+(r.lvN?r.lvN+'일×'+r.nh+'h ':'')+'= '+r.lvAuto.toFixed(1)+'h<br>';
+ if(r.lv) f+='- 연가 수동 '+clk('ot_leave',r.lv+'h')+'<br>'; if(r.early) f+='- 조퇴 '+clk('ot_early',r.early+'h')+'<br>'; if(r.late) f+='- 지각 '+clk('ot_late',r.late+'h')+'<br>'; if(r.lvAuto) f+='- 연가 '+(r.lvD+r.lvN)+'일 × 8h = '+r.lvAuto.toFixed(0)+'h <span style="color:var(--text-dim);font-size:11px">(연가 1일당 8h 차감)</span><br>';
  if(r.prem&&r.premH) f+='+ 야간·휴일 가산 '+r.premH+'h<br>';
  f+='- 복무규정(기준) <b>'+r.bs.toFixed(0)+'h</b> (평일 '+r.wd+'일 × '+clk('ot_basestd',r.dayStd+'h')+')<br>';
  f+='─────<br>= 기준초과근무시간 <b>'+gg+Math.abs(r.gijun).toFixed(1)+'h</b><br>';
