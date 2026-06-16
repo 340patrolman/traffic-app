@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob: mediastream:; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob: mediastream:; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#002366">
@@ -12,7 +12,8 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="🚔 교통외근 통합보조">
   <meta property="og:description" content="서초경찰서 교통과 현장 보조 도구 — 사건보고·서류작성·교대근무표·시간외수당·현장SOP. 외부 전송 없이 본인 기기에서만 동작.">
-  <meta property="og:image" content="icon.png">
+  <meta property="og:image" content="https://340patrolman.github.io/icon.png">
+  <meta property="og:url" content="https://340patrolman.github.io/">
   <meta name="twitter:card" content="summary">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -3518,6 +3519,22 @@ function renderShiftCal(){
  var _r=_monthCalc(); var _sg=_r.sigot>=0?'+':'\u2212';
  var html='<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:2px"><span style="font-weight:900;font-size:17px">'+y+'년 '+(m+1)+'월 · <span style="color:var(--accent)">'+c.team+'팀</span></span><button onclick="try{loadOTInputs();renderShiftCal();calcOT();renderHolList();}catch(e){}" title="새로고침(재계산)" style="background:var(--accent);color:#fff;border:none;border-radius:8px;padding:3px 10px;font-size:13px;font-weight:800;cursor:pointer">🔄</button></div><div style="text-align:center;font-size:11px;color:var(--text-dim);margin-bottom:6px">🔄 팀·근무·기록을 바꾼 뒤 값이 다르면 누르세요 (기록 지웠으면 다시 입력)</div>';
  html+='<div onclick="var _o=document.getElementById(\'ot_card\');_o.open=true;_o.scrollIntoView({behavior:\'smooth\'})" style="text-align:center;font-size:13px;font-weight:800;margin-bottom:8px;cursor:pointer;background:var(--panel-2);border-radius:8px;padding:6px">이번 달 시간외 <b style="color:'+(_r.sigot>=0?'#dc2626':'#1d4ed8')+'">'+(_r.sigot>=0?'+':'\u2212')+Math.abs(_r.sigot).toFixed(1).replace(".0","")+'h</b> <span style="color:var(--text-dim);font-weight:500">(기준초과 '+(_r.gijun>=0?'+':'\u2212')+Math.abs(_r.gijun).toFixed(1).replace(".0","")+'h \u00b7 야간 '+_r.nightHrs+'h \u00b7 휴일주간 '+_r.holDS+'일 \u00b7 주'+_r.cntD+'\u00b7야'+_r.cntN+'\u00b7총'+_r.work.toFixed(1).replace(".0","")+'h/기준'+_r.bs+'h)</span> <span style="color:var(--accent);font-size:11px">\u270f\ufe0f 눌러서 수정</span></div>';
+ var _P=function(t){return '<span style="color:#dc2626">'+t+'</span>';};
+ var _M=function(t){return '<span style="color:#1d4ed8">'+t+'</span>';};
+ var _f1=function(x){return x.toFixed(1).replace('.0','');};
+ var _bd=[_P('주간'+_r.cntD+'일 +'+_f1(_r.cntD*_r.dh)),_P('야간'+_r.cntN+'일 +'+_f1(_r.cntN*_r.nh))];
+ var _B=_r.dnB;
+ [['train','직장훈련'],['edu','교육'],['phys','물리력'],['shoot','사격'],['mobil','동원']].forEach(function(p){var v=_B[p[0]];if(v)_bd.push((v>=0?_P:_M)(p[1]+' '+(v>=0?'+':'')+_f1(v)));});
+ if(_B.dvol)_bd.push(_P('주간자원 +'+_f1(_B.dvol)));
+ if(_B.nvol)_bd.push(_P('야간자원 +'+_f1(_B.nvol)));
+ if(_B.rush)_bd.push(_P('러쉬 +'+_f1(_B.rush)));
+ if(_r.addw)_bd.push(_P('추가근무 +'+_f1(_r.addw)));
+ if(_r.lvAuto)_bd.push(_M('연가 -'+_f1(_r.lvAuto)));
+ if(_r.early)_bd.push(_M('조퇴 -'+_f1(_r.early)));
+ if(_r.late)_bd.push(_M('지각 -'+_f1(_r.late)));
+ _bd.push(_M('복무규정 -'+_r.bs));
+ if(_r.holDed)_bd.push(_M('휴일주간 -'+_f1(_r.holDed)));
+ html+='<div style="font-size:11px;line-height:1.8;color:var(--text-dim);margin:-2px 8px 8px;text-align:center"><b>📊 내역</b> '+_bd.join(' · ')+' = <b>시간외 '+(_r.sigot>=0?'+':'-')+_f1(Math.abs(_r.sigot))+'h</b></div>';
  html+='<table style="width:100%;border-collapse:collapse;table-layout:fixed"><thead><tr>'+DOW.map(function(d,i){var col=i===0?'#dc2626':(i===6?'#1d4ed8':'var(--text-dim)');return '<th style="padding:4px;font-size:12px;color:'+col+'">'+d+'</th>';}).join('')+'</tr></thead><tbody><tr>';
  var cell=0;
  for(var i=0;i<startDow;i++){ html+='<td style="border:1px solid var(--border)"></td>'; cell++; }
@@ -3715,6 +3732,36 @@ function calcOT(){
  window.closeSearch=function(){ var m=document.getElementById('srch_modal'); if(m) m.style.display='none'; };
  window.srchGo=function(g,p){ closeSearch(); try{ if(g) showGroup(g); }catch(e){} try{ showSubPage(p); }catch(e){} };
  (function(){ var _o=window.showSubPage; if(typeof _o==='function'){ window.showSubPage=function(id){ try{ window._bumpUsage(id); }catch(e){} return _o.apply(this,arguments); }; } })();
+})();
+</script>
+<script>
+/* ══ PWA: 서비스워커 등록 + 원터치 설치 버튼 (홈아이콘 + 오프라인) ══ */
+(function(){
+  if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('sw.js').catch(function(e){ console.warn('[SW]',e); });
+    });
+  }
+  var _deferred=null;
+  window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault(); _deferred=e; _showInstallFab();
+  });
+  function _showInstallFab(){
+    if(document.getElementById('pwa_install_fab')) return;
+    if(window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone===true) return;
+    var b=document.createElement('button');
+    b.id='pwa_install_fab';
+    b.textContent='📲 앱 설치';
+    b.setAttribute('style','position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:9700;background:var(--accent);color:#fff;border:2px solid var(--accent-gold);border-radius:24px;padding:11px 18px;font-size:15px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.3);cursor:pointer');
+    b.onclick=function(){
+      if(_deferred){ _deferred.prompt(); _deferred.userChoice.then(function(){ _deferred=null; b.remove(); }); }
+      else if(typeof showPwaGuide==='function'){ showPwaGuide(); }
+    };
+    document.body.appendChild(b);
+  }
+  window.addEventListener('appinstalled',function(){
+    var b=document.getElementById('pwa_install_fab'); if(b) b.remove();
+  });
 })();
 </script>
 </body>
