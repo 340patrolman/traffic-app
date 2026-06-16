@@ -71,9 +71,9 @@ video{max-height:40vh;border-radius:8px;}
 .topbar-btns .icon-btn{flex:1 1 0;min-width:0;font-size:clamp(10px,3vw,18px)!important;padding:6px 4px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .topbar-btns #theme_btn,.topbar-btns .icon-btn[onclick*="settings"]{flex:0 0 auto;font-size:18px!important;padding:6px 9px!important;}
 
-/* 서브탭 압축 — 한 화면에 더 많이 보이도록 */
-.stab{padding:7px 8px!important;font-size:12.5px!important;}
-.sub-tabs{padding:0 6px!important;}
+/* 서브탭 — 글자 크게 유지 + 2줄 줄바꿈으로 전부 보이게 */
+.stab{padding:8px 11px!important;font-size:14.5px!important;border-bottom-width:3px!important;}
+.sub-tabs{padding:4px 8px!important;flex-wrap:wrap!important;overflow-x:visible!important;gap:2px 0!important;}
 </style>
 <style>
 /* ═══ v8.6 모바일 가독성 — 한글 가로쓰기 유지(세로 쪼개짐 방지) ═══ */
@@ -664,7 +664,7 @@ body[data-mode="vet"] .vet-only{display:block!important;}
 <details> <summary>② 브로큰 레코드 (Broken Record) — 사실 반복 전략</summary> <div class="details-content u-lh185-fs14"> <b>핵심 원리:</b> 상대방이 핑계를 바꾸거나 논쟁을 유도해도, 같은 사실을 조금씩 다른 말로 반복합니다. 논리가 아니라 사실로 응수하는 것입니다.<br><br> <b>실전 적용:</b><br>
         • "혈중알코올농도 ○○%가 측정되었고, 도로교통법에 따라 처리됩니다"<br>
         • 상대가 다른 주장을 해도 이 문장으로 돌아옵니다<br>
-        • 표현은 조금씩 달리 해도 내용은 일관되게 유지<br><br> <b>효과:</b> 논쟁이 길어지지 않습니다. 상대는 결국 논리를 바꾸는 데 지치고, 감정 소모 없이 절차를 마무리할 수 있습니다.<br><br> <b>주의:</b> 같은 말을 기계적으로 반복하면 오히려 자극이 될 수 있습니다. 표현에 작은 변화를 주면서 사실은 유지하세요.
+        • 표현은 조금씩 달리 해도 내용은 일관되게 유지<br><br> <b>효과:</b> 논쟁이 길어지지 않습니다. 상대는 결국 논리를 바꾸는 데 지치고, 감정 소모 없이 절차를 마무리할 수 있습니다.<br> <b>주의:</b> 같은 말을 기계적으로 반복하면 오히려 자극이 될 수 있습니다. 표현에 작은 변화를 주면서 사실은 유지하세요.
       </div> </details>
 <details> <summary>③ 포깅 (Fogging) — 받아넘기기 전략</summary> <div class="details-content u-lh185-fs14"> <b>핵심 원리:</b> 상대의 주장 일부를 인정하는 척 받아넘기되, 결론은 바꾸지 않는 방법입니다. 싸우지 않고 버티는 가장 우아한 방식입니다.<br><br> <b>실전 표현 예시:</b><br>
         • "힘드신 상황은 충분히 이해합니다. 그렇더라도 절차는 진행해야 합니다."<br>
@@ -892,19 +892,19 @@ body[data-mode="vet"] .vet-only{display:block!important;}
 </div> <div class="page" id="page-feedback"> <div class="card"> <div class="card-title">📮 앱 피드백 · 요구사항</div> <div class="guide-box">이 앱의 <b>수정·보완·추가 요구사항</b>을 적어 두는 칸입니다. 입력 내용은 <b>이 기기에만 저장</b>됩니다(서버 전송 없음). 모아서 전달하려면 <b>📋 전체 복사</b>로 카톡·메일에 붙여넣으세요.</div> <label>구분</label> <select id="fb_cat"><option>수정</option><option>보완</option><option>추가</option><option>버그</option><option>기타</option></select> <label>내용 🎙️</label> <div class="mic-wrap"> <textarea id="fb_text" rows="3" placeholder="예: 음주 화면에 측정기 사진 칸 추가 / 글씨 더 크게" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea> <button class="mic-btn" onclick="toggleMicFor('fb_text',this)">🎙️</button> </div> <label>작성자(선택)</label><input id="fb_author" placeholder="이름·계급"> <button class="btn btn-primary btn-full" onclick="addFeedback()">💾 저장</button> <div class="btn-group"> <button class="btn btn-sec u-flex1" onclick="copyAllFeedback()">📋 전체 복사</button> <button class="btn btn-danger u-flex1" onclick="clearAllFeedback()">🗑️ 전체 삭제</button> </div> </div> <div class="card"> <div class="card-title">📋 저장된 피드백 (<span id="fb_count">0</span>건)</div> <div id="fb_list"><p style="color:var(--text-dim);font-size:13px">저장된 피드백 없음</p></div> </div> </div>
 <div class="footer-note">🚔 교통외근 v10 (2026 정식배포판) · 2026.6 · 로컬처리 · 외부송신 없음<br>현장 의견을 반영해 세부 기능을 하나하나 보완하며 지속 업데이트하고 있습니다.</div>
 <div id="toast" class="toast"></div> <!-- ══ 최초 실행 책임 고지 모달 ══ -->
-<div id="first_run_modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9500;overflow-y:auto;padding:18px;align-items:center;justify-content:center"> <div style="background:#fff;border-radius:22px;padding:26px 22px;max-width:480px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)"> <div style="font-size:32px;text-align:center;margin-bottom:10px">🚔</div> <div style="font-size:19px;font-weight:900;color:#002366;text-align:center;margin-bottom:6px;letter-spacing:-0.5px">교통외근 통합보조 v10 (2026 정식배포판)</div> <div style="font-size:13px;color:#475569;text-align:center;margin-bottom:18px">최초 실행 — 사용 전 필독 사항</div> <!-- OS 자동 감지 안내 영역 --> <div id="env_check_box" style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:12px;padding:10px;margin-bottom:10px;font-size:12px;line-height:1.4;color:#1e1e1e"></div> <!-- 책임 고지 --> <div style="background:#fef2f2;border:2px solid #fca5a5;border-radius:14px;padding:15px;margin-bottom:12px;font-size:13.5px;line-height:1.75;color:#1e1e1e"> <b style="color:#b91c1c">⚠️ 무단 반출·공개 금지 책임 고지</b><br><br>
+<div id="first_run_modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9500;overflow-y:auto;padding:18px;align-items:center;justify-content:center"> <div style="background:#fff;border-radius:22px;padding:26px 22px;max-width:480px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)"> <div style="font-size:32px;text-align:center;margin-bottom:10px">🚔</div> <div style="font-size:19px;font-weight:900;color:#002366;text-align:center;margin-bottom:6px;letter-spacing:-0.5px">교통외근 통합보조 v10 (2026 정식배포판)</div> <div style="font-size:13px;color:#475569;text-align:center;margin-bottom:18px">최초 실행 — 사용 전 필독 사항</div> <!-- 책임 고지 --> <div style="background:#fef2f2;border:2px solid #fca5a5;border-radius:14px;padding:11px;margin-bottom:8px;font-size:13px;line-height:1.45;color:#1e1e1e"> <b style="color:#b91c1c">⚠️ 무단 반출·공개 금지 책임 고지</b><br>
       본 프로그램은 교통경찰 직무 수행을 위한 <b>업무용 보조 도구</b>입니다. 입력·생성된 모든 데이터(보고서·진술서·사건정보·관서정보)는 <b>직무상 비밀</b>에 해당할 수 있습니다.<br><br>
       본 프로그램·내보내기 파일·생성된 보고서를 <b>무단으로 외부에 반출, 제3자에게 제공·공유, 인터넷·SNS 등에 공개</b>하는 행위는 다음 법률에 따라 처벌됩니다.
-    </div> <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:12px;padding:13px;margin-bottom:12px;font-size:12.5px;line-height:1.8;color:#1e1e1e">
+    </div> <div style="background:#fffbeb;border:1.5px solid #fcd34d;border-radius:12px;padding:10px;margin-bottom:8px;font-size:12.5px;line-height:1.5;color:#1e1e1e">
       📌 <b>형법 §127</b> 공무상 비밀누설 — 2년↓ 징역·금고 또는 5년↓ 자격정지<br>
       📌 <b>개인정보보호법 §71</b> — 5년↓ 징역 또는 5천만원↓ 벌금<br>
       📌 <b>경찰공무원법 §24</b> 비밀엄수 의무 — 징계 및 형사처벌<br>
       📌 <b>민법 §750</b> 불법행위 손해배상 책임
-    </div> <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;padding:13px;margin-bottom:14px;font-size:12.5px;line-height:1.75;color:#1e1e1e">
+    </div> <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;padding:10px;margin-bottom:10px;font-size:12.5px;line-height:1.5;color:#1e1e1e">
       ✅ 본 도구는 <b>로컬 처리·외부 송신 없음</b>이 원칙입니다.<br>
       ✅ 본인 업무 목적으로만 사용하시고, 보안이 유지되는 기기에 보관하십시오.<br>
       ✅ 아래 동의 버튼 클릭 시 위 모든 책임 고지를 인지·수용한 것으로 간주되며, 이후 발생하는 모든 법적 책임은 본인에게 귀속됩니다.
-    </div> <!-- OS별 사용 가이드 (탭 방식) --> <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:12px;padding:14px;margin-bottom:14px"> <div style="font-size:13px;font-weight:800;color:#002366;margin-bottom:10px">📱 스마트폰 사용 가이드 <span style="font-size:11px;font-weight:600;color:#64748b">— 자동 감지된 본인 기종이 강조됩니다</span></div> <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px"> <button class="g-tab" data-os="ios" onclick="switchGuideTab('ios')" style="padding:10px 6px;border-radius:10px;border:1.5px solid #cbd5e1;background:#fff;font-size:12px;font-weight:800;cursor:pointer;color:#475569;transition:.2s">🍎 아이폰</button> <button class="g-tab" data-os="android" onclick="switchGuideTab('android')" style="padding:10px 6px;border-radius:10px;border:1.5px solid #cbd5e1;background:#fff;font-size:12px;font-weight:800;cursor:pointer;color:#475569;transition:.2s">📱 안드로이드</button> <button class="g-tab" data-os="pc" onclick="switchGuideTab('pc')" style="padding:10px 6px;border-radius:10px;border:1.5px solid #cbd5e1;background:#fff;font-size:12px;font-weight:800;cursor:pointer;color:#475569;transition:.2s">💻 PC</button> </div> <div style="font-size:12.5px;line-height:1.45;color:#1e1e1e;background:#fff;border-radius:10px;padding:12px;border:1px solid #e2e8f0"> <div id="guide_ios" style="display:none"> <b style="color:#002366;font-size:13.5px">🍎 아이폰·아이패드 사용자</b><br><br> <b>① 카톡으로 받은 경우</b><br>
+    </div> <!-- OS별 사용 가이드 (탭 방식) --> <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:12px;padding:14px;margin-bottom:14px"> <div style="display:flex;align-items:center;gap:5px;margin-bottom:8px;flex-wrap:wrap"><div id="env_check_box" style="flex:1 1 80px;min-width:78px;font-size:12px;font-weight:800;color:#002366"></div><button class="g-tab" data-os="ios" onclick="switchGuideTab('ios')" style="padding:7px 7px;border-radius:9px;border:1.5px solid #cbd5e1;background:#fff;font-size:11.5px;font-weight:800;cursor:pointer;color:#475569;transition:.2s;flex:0 0 auto">🍎 아이폰</button><button class="g-tab" data-os="android" onclick="switchGuideTab('android')" style="padding:7px 7px;border-radius:9px;border:1.5px solid #cbd5e1;background:#fff;font-size:11.5px;font-weight:800;cursor:pointer;color:#475569;transition:.2s;flex:0 0 auto">📱 안드로</button><button class="g-tab" data-os="pc" onclick="switchGuideTab('pc')" style="padding:7px 7px;border-radius:9px;border:1.5px solid #cbd5e1;background:#fff;font-size:11.5px;font-weight:800;cursor:pointer;color:#475569;transition:.2s;flex:0 0 auto">💻 PC</button></div><div id="env_hint" style="font-size:11.5px;line-height:1.45;color:#1e1e1e;margin-bottom:10px"></div> <div style="font-size:12.5px;line-height:1.45;color:#1e1e1e;background:#fff;border-radius:10px;padding:12px;border:1px solid #e2e8f0"> <div id="guide_ios" style="display:none"> <b style="color:#002366;font-size:13.5px">🍎 아이폰·아이패드 사용자</b><br><br> <b>① 카톡으로 받은 경우</b><br>
            &nbsp;&nbsp;파일 받기 → 우측 상단 <b>···</b> → "다른 앱으로 열기" → <b>Safari 선택</b><br><br> <b>② 홈 화면 추가 (강력 권장)</b><br>
            &nbsp;&nbsp;Safari로 열린 후 하단 <b>공유 버튼(↑)</b> → "홈 화면에 추가" → 이후 앱처럼 사용<br><br> <b>③ 권한 허용</b><br>
            &nbsp;&nbsp;첫 사용 시 마이크·카메라 권한 팝업 → 모두 "허용"<br><br> <b>④ 주의사항</b><br>
@@ -2479,7 +2479,7 @@ function renderEnvBox(env){
  } else if(env.isStandalone){
   recommend='✅ 홈 화면 앱으로 실행 중 — 최적 상태';
  }
- box.innerHTML=`<b>${osLabel} 감지됨</b> ${env.isStandalone?'<span style="background:#15803d;color:#fff;padding:1px 6px;border-radius:4px;font-size:10px;margin-left:4px">홈 앱 모드</span>':''}<br>${recommend?recommend+'<br>':''}${warns.length?'<span style="color:#b91c1c">'+warns.join('<br>')+'</span>':''}`;
+ box.innerHTML=`<b>${osIcon} ${env.osType==='ios'?'아이폰':env.osType==='android'?'안드로이드':'PC·기타'} 감지</b>${env.isStandalone?' <span style="background:#15803d;color:#fff;padding:1px 5px;border-radius:4px;font-size:10px">홈앱</span>':''}`; const _eh=document.getElementById('env_hint'); if(_eh) _eh.innerHTML=`${recommend?recommend:''}${warns.length?(recommend?'<br>':'')+'<span style="color:#b91c1c">'+warns.join('<br>')+'</span>':''}`;
  // 기본 탭으로 본인 OS 활성화
  switchGuideTab(env.osType);
 }
@@ -3515,9 +3515,9 @@ function renderShiftCal(){
  var startDow=new Date(y,m,1).getDay(), days=new Date(y,m+1,0).getDate();
  var today=new Date(); today.setHours(0,0,0,0);
  var DOW=['일','월','화','수','목','금','토'];
- var _r=_monthCalc(); var _sg=_r.totalOT>=0?'+':'\u2212';
+ var _r=_monthCalc(); var _sg=_r.sigot>=0?'+':'\u2212';
  var html='<div style="font-weight:900;font-size:17px;text-align:center;margin-bottom:2px">'+y+'년 '+(m+1)+'월 \u00b7 <span style="color:var(--accent)">'+c.team+'팀</span></div>';
- html+='<div onclick="var _o=document.getElementById(\'ot_card\');_o.open=true;_o.scrollIntoView({behavior:\'smooth\'})" style="text-align:center;font-size:13px;font-weight:800;margin-bottom:8px;cursor:pointer;background:var(--panel-2);border-radius:8px;padding:6px">이번 달 시간외 <b style="color:#dc2626">+'+_r.otReg+'h</b>'+(_r.holPay?' \u00b7 휴일 <b style="color:#b45309">+'+_r.holPay+'h</b>':'')+' <span style="color:var(--text-dim);font-weight:500">(합계 '+_r.totalOT+'h \u00b7 주'+_r.cntD+'\u00b7야'+_r.cntN+'\u00b7휴일주간'+_r.holDS+'일'+((_r.lv+_r.lvAuto)?'\u00b7연\u2212'+(_r.lv+_r.lvAuto).toFixed(0):'')+'\u00b7총'+_r.work.toFixed(0)+'h/기준'+_r.bs+'h)</span> <span style="color:var(--accent);font-size:11px">\u270f\ufe0f 눌러서 수정</span></div>';
+ html+='<div onclick="var _o=document.getElementById(\'ot_card\');_o.open=true;_o.scrollIntoView({behavior:\'smooth\'})" style="text-align:center;font-size:13px;font-weight:800;margin-bottom:8px;cursor:pointer;background:var(--panel-2);border-radius:8px;padding:6px">이번 달 시간외 <b style="color:'+(_r.sigot>=0?'#dc2626':'#1d4ed8')+'">'+(_r.sigot>=0?'+':'\u2212')+Math.abs(_r.sigot).toFixed(0)+'h</b> <span style="color:var(--text-dim);font-weight:500">(기준초과 '+(_r.gijun>=0?'+':'\u2212')+Math.abs(_r.gijun).toFixed(0)+'h \u00b7 야간 '+_r.nightHrs+'h \u00b7 휴일주간 '+_r.holDS+'일 \u00b7 주'+_r.cntD+'\u00b7야'+_r.cntN+'\u00b7총'+_r.work.toFixed(0)+'h/기준'+_r.bs+'h)</span> <span style="color:var(--accent);font-size:11px">\u270f\ufe0f 눌러서 수정</span></div>';
  html+='<table style="width:100%;border-collapse:collapse;table-layout:fixed"><thead><tr>'+DOW.map(function(d,i){var col=i===0?'#dc2626':(i===6?'#1d4ed8':'var(--text-dim)');return '<th style="padding:4px;font-size:12px;color:'+col+'">'+d+'</th>';}).join('')+'</tr></thead><tbody><tr>';
  var cell=0;
  for(var i=0;i<startDow;i++){ html+='<td style="border:1px solid var(--border)"></td>'; cell++; }
@@ -3549,7 +3549,7 @@ function openDayNote(key){
  var m=document.getElementById('day_note_modal');
  if(!m){ m=document.createElement('div'); m.id='day_note_modal'; m.setAttribute('style','position:fixed;inset:0;background:rgba(15,23,42,.85);z-index:9700;display:flex;align-items:center;justify-content:center;padding:16px'); document.body.appendChild(m); }
  var ck=function(id,lbl,on){ return '<label style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:14px;font-weight:700"><input type="checkbox" id="dn_'+id+'" style="width:22px;height:22px" '+(on?'checked':'')+'> '+lbl+'</label>'; };
- var tm=function(id,lbl,on,s,e){ return '<div style="display:flex;align-items:center;gap:4px;padding:3px 0;border-bottom:1px solid var(--border)"><label style="display:flex;align-items:center;gap:4px;font-size:13px;font-weight:700;white-space:nowrap;flex:0 0 auto"><input type="checkbox" id="dn_'+id+'" style="width:18px;height:18px" '+(on?'checked':'')+'> '+lbl+'</label><input type="time" id="dn_'+id+'_s" value="'+(s||'')+'" style="font-size:11px;padding:1px 2px;width:80px;border:1px solid var(--border);border-radius:5px"><span style="font-size:11px;color:var(--text-dim)">~</span><input type="time" id="dn_'+id+'_e" value="'+(e||'')+'" style="font-size:11px;padding:1px 2px;width:80px;border:1px solid var(--border);border-radius:5px"></div>'; };
+ var tm=function(id,lbl,on,s,e){ return '<div style="display:flex;align-items:center;gap:4px;padding:3px 0;border-bottom:1px solid var(--border)"><label style="display:flex;align-items:center;gap:4px;font-size:13px;font-weight:700;white-space:nowrap;flex:0 0 98px;width:98px"><input type="checkbox" id="dn_'+id+'" style="width:18px;height:18px" '+(on?'checked':'')+'> '+lbl+'</label><input type="time" id="dn_'+id+'_s" value="'+(s||'')+'" style="font-size:11px;padding:1px 2px;width:80px;border:1px solid var(--border);border-radius:5px"><span style="font-size:11px;color:var(--text-dim)">~</span><input type="time" id="dn_'+id+'_e" value="'+(e||'')+'" style="font-size:11px;padding:1px 2px;width:80px;border:1px solid var(--border);border-radius:5px"></div>'; };
  var h='<div style="background:var(--panel);border:2px solid var(--accent);border-radius:16px;max-width:440px;width:100%;padding:18px;max-height:88vh;overflow-y:auto">';
  h+='<div style="font-size:16px;font-weight:900;color:var(--accent);margin-bottom:6px">🗓️ '+key+' 기록</div>';
  h+='<div style="font-size:11px;color:var(--text-dim);margin-bottom:8px">⏱️ 아래 5개는 <b>근무시간과 안 겹치는 시간만</b> 시간외로 자동 가산(연가일 제외).</div>';
@@ -3606,20 +3606,21 @@ function _monthCalc(){
  var rateEl=document.getElementById('ot_rate'),rankEl=document.getElementById('ot_rank');
  var rate=(rateEl&&parseFloat(rateEl.value))||(rankEl&&parseFloat(rankEl.value))||0;
  var premH=prem?(cntN*npr+hpr):0; var lvAuto=lvD*dh+lvN*nh; var holDed=holDS*8;
- var work=cntD*dh+cntN*nh+dn+addw-lv-lvAuto-early-late+premH; var basicOT=work-bs-holDed; var otReg=Math.max(0,Math.floor(basicOT)); var holPay=holDS*8; var totalOT=otReg+holPay; var paidHours=(cap>0)?Math.min(totalOT,cap):totalOT; var ot=paidHours*rate;
- return {team:c.team,month:m+1,cntD:cntD,cntN:cntN,dh:dh,nh:nh,bs:bs,lv:lv,early:early,late:late,addw:addw,dn:dn,dnB:dnB,cap:cap,prem:prem,premH:premH,work:work,basicOT:basicOT,otReg:otReg,holPay:holPay,totalOT:totalOT,paidHours:paidHours,rate:rate,ot:ot,wd:wd,dayStd:dayStd,lvAuto:lvAuto,lvD:lvD,lvN:lvN,holDS:holDS,holNS:holNS,holDed:holDed};
+ var work=cntD*dh+cntN*nh+dn+addw-lv-lvAuto-early-late+premH;
+ var gijun=work-bs; var sigot=gijun-holDed; var nightHrs=cntN*8;
+ var paidHours=Math.max(0,sigot); if(cap>0) paidHours=Math.min(paidHours,cap); var ot=paidHours*rate;
+ return {team:c.team,month:m+1,cntD:cntD,cntN:cntN,dh:dh,nh:nh,bs:bs,lv:lv,early:early,late:late,addw:addw,dn:dn,dnB:dnB,cap:cap,prem:prem,premH:premH,work:work,gijun:gijun,sigot:sigot,nightHrs:nightHrs,paidHours:paidHours,rate:rate,ot:ot,wd:wd,dayStd:dayStd,lvAuto:lvAuto,lvD:lvD,lvN:lvN,holDS:holDS,holNS:holNS,holDed:holDed};
 }
 function focusOT(id){ var e=document.getElementById(id); if(!e) return; try{e.scrollIntoView({behavior:'smooth',block:'center'});}catch(_){} setTimeout(function(){ try{e.focus();e.select();}catch(_){} },200); }
 function calcOT(){
  var box=document.getElementById('ot_result'); if(!box) return;
- var r=_monthCalc();
- var html='<b>'+r.month+'월 '+r.team+'팀</b> — 주간 '+r.cntD+'일 · 야간 '+r.cntN+'일';
- if(r.holDS) html+=' · 휴일주간 '+r.holDS+'일'; if(r.dn) html+=' · 날짜기록 +'+r.dn.toFixed(1)+'h'; if(r.addw) html+=' · 추가 +'+r.addw+'h'; if(r.lv) html+=' · 연가 −'+r.lv+'h'; if(r.early) html+=' · 조퇴 −'+r.early+'h'; if(r.late) html+=' · 지각 −'+r.late+'h';
- html+='<br>시간외근무 <b>'+r.otReg+'h</b>'+(r.holPay?' + 휴일근무 <b>'+r.holPay+'h</b>':'')+' → 초과시간합계 <b style="color:#dc2626;font-size:15px">'+r.totalOT+'h</b>';
- if(r.cap>0 && (r.otReg+r.holPay)>r.cap) html+=' <span style="color:#b45309;font-size:11px">(한도 '+r.cap+'h 적용)</span>';
+ var r=_monthCalc(); var sg=r.sigot>=0?'+':'-'; var gg=r.gijun>=0?'+':'-';
+ var html='<b>'+r.month+'월 '+r.team+'팀</b> - 주간 '+r.cntD+'일 · 야간 '+r.cntN+'일';
+ if(r.holDS) html+=' · 휴일주간 '+r.holDS+'일'; if(r.dn) html+=' · 날짜기록 +'+r.dn.toFixed(1)+'h'; if(r.addw) html+=' · 추가 +'+r.addw+'h'; if(r.lv) html+=' · 연가 -'+r.lv+'h'; if(r.early) html+=' · 조퇴 -'+r.early+'h'; if(r.late) html+=' · 지각 -'+r.late+'h';
+ html+='<br>시간외 <b style="color:'+(r.sigot>=0?'#dc2626':'#1d4ed8')+';font-size:15px">'+sg+Math.abs(r.sigot).toFixed(0)+'h</b> <span style="font-size:12px;color:var(--text-dim)">· 기준초과 '+gg+Math.abs(r.gijun).toFixed(0)+'h · 야간 '+r.nightHrs+'h · 휴일 '+r.holDS+'일</span>';
  html+='<br>';
- if(r.totalOT>0) html+='추정 수당 ≈ <b>'+Math.round(r.ot).toLocaleString('ko-KR')+'원</b> <span style="font-size:11px;color:var(--text-dim)">(인정 '+r.paidHours+'h × '+r.rate.toLocaleString('ko-KR')+'원, 참고치)</span>';
- else html+='<span style="color:var(--text-dim)">초과 없음(참고)</span>';
+ if(r.sigot>0) html+='추정 시간외수당 ≈ <b>'+Math.round(r.ot).toLocaleString('ko-KR')+'원</b> <span style="font-size:11px;color:var(--text-dim)">(인정 '+r.paidHours.toFixed(0)+'h × '+r.rate.toLocaleString('ko-KR')+'원, 참고치)</span>';
+ else html+='<span style="color:var(--text-dim)">기준시간 이하 - 시간외 없음 (휴일근무수당은 별도)</span>';
  var clk=function(id,v){ return '<b style="color:#1d4ed8;cursor:pointer;border-bottom:1px dashed #1d4ed8" onclick="focusOT(\''+id+'\')">'+v+'</b>'; };
  var f='<details style="margin-top:8px"><summary style="cursor:pointer;font-weight:800;color:var(--accent);font-size:13px">📐 계산식 펼쳐보기 (파란 숫자를 누르면 바로 수정)</summary><div style="font-size:13px;line-height:1.9;padding:6px 2px">';
  f+='주간 '+r.cntD+'일 × '+clk('ot_dayh',r.dh+'h')+' = '+(r.cntD*r.dh).toFixed(1)+'h<br>';
@@ -3634,15 +3635,15 @@ function calcOT(){
  if(b.nvol) f+='+ 야간자원 '+b.nvol.toFixed(0)+'h<br>';
  if(b.rush) f+='+ 러쉬근무 '+b.rush.toFixed(0)+'h<br>';
  if(r.addw) f+='+ 추가근무 '+clk('ot_addwork',r.addw+'h')+'<br>';
- if(r.lv) f+='− 연가 수동 '+clk('ot_leave',r.lv+'h')+'<br>'; if(r.early) f+='− 조퇴 '+clk('ot_early',r.early+'h')+'<br>'; if(r.late) f+='− 지각 '+clk('ot_late',r.late+'h')+'<br>'; if(r.lvAuto) f+='− 연가(달력) '+(r.lvD?r.lvD+'일×'+r.dh+'h ':'')+(r.lvN?r.lvN+'일×'+r.nh+'h ':'')+'= '+r.lvAuto.toFixed(1)+'h<br>';
+ if(r.lv) f+='- 연가 수동 '+clk('ot_leave',r.lv+'h')+'<br>'; if(r.early) f+='- 조퇴 '+clk('ot_early',r.early+'h')+'<br>'; if(r.late) f+='- 지각 '+clk('ot_late',r.late+'h')+'<br>'; if(r.lvAuto) f+='- 연가(달력) '+(r.lvD?r.lvD+'일×'+r.dh+'h ':'')+(r.lvN?r.lvN+'일×'+r.nh+'h ':'')+'= '+r.lvAuto.toFixed(1)+'h<br>';
  if(r.prem&&r.premH) f+='+ 야간·휴일 가산 '+r.premH+'h<br>';
- f+='− 기준(복무규정) <b>'+r.bs.toFixed(0)+'h</b> (평일 '+r.wd+'일 × '+clk('ot_basestd',r.dayStd+'h')+')<br>';
- if(r.holDed) f+='− 휴일주간근무 '+r.holDS+'일 × 8h = '+r.holDed.toFixed(0)+'h <span style="color:#b45309;font-size:11px">(휴일수당 별도분 공제)</span><br>';
- f+='─────<br>= 기본초과 <b>'+r.basicOT.toFixed(1)+'h</b> → 시간외근무 <b>'+r.otReg+'h</b> <span style="font-size:11px;color:var(--text-dim)">(음수·소수 버림)</span><br>';
- if(r.holPay) f+='+ 휴일근무 '+r.holDS+'일 × 8h = <b>'+r.holPay+'h</b> <span style="font-size:11px;color:var(--text-dim)">(휴일수당 별도, 합계 합산)</span><br>';
- f+='= <b style="color:#dc2626">초과시간합계 '+r.totalOT+'h</b><br>';
- if(r.cap>0) f+='⛔ 한도 '+clk('ot_cap',r.cap+'h')+' → 인정 <b>'+r.paidHours+'h</b><br>';
- f+='× 단가 '+clk('ot_rate',(r.rate||0).toLocaleString('ko-KR')+'원')+' = <b style="color:#dc2626;font-size:15px">'+Math.round(r.ot).toLocaleString('ko-KR')+'원</b>';
+ f+='- 복무규정(기준) <b>'+r.bs.toFixed(0)+'h</b> (평일 '+r.wd+'일 × '+clk('ot_basestd',r.dayStd+'h')+')<br>';
+ f+='─────<br>= 기준초과근무시간 <b>'+gg+Math.abs(r.gijun).toFixed(1)+'h</b><br>';
+ if(r.holDed) f+='- 휴일주간근무 '+r.holDS+'일 × 8h = '+r.holDed.toFixed(0)+'h <span style="color:#b45309;font-size:11px">(휴일근무수당 별도지급)</span><br>';
+ f+='= <b style="color:'+(r.sigot>=0?'#dc2626':'#1d4ed8')+';font-size:15px">시간외 '+sg+Math.abs(r.sigot).toFixed(1)+'h</b><br>';
+ f+='<span style="font-size:11px;color:var(--text-dim)">· 야간시간 '+r.nightHrs+'h (야간 '+r.cntN+'일×8) · 휴일주간 '+r.holDS+'일</span><br>';
+ if(r.cap>0) f+='⛔ 한도 '+clk('ot_cap',r.cap+'h')+' → 인정 '+r.paidHours.toFixed(0)+'h<br>';
+ f+='시간외수당 ≈ 인정 '+r.paidHours.toFixed(0)+'h × '+clk('ot_rate',(r.rate||0).toLocaleString('ko-KR')+'원')+' = <b style="color:#dc2626;font-size:15px">'+Math.round(r.ot).toLocaleString('ko-KR')+'원</b>';
  f+='</div></details>';
  box.innerHTML=html+f; saveOTInputs();
 }
