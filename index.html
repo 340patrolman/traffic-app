@@ -2552,20 +2552,20 @@ function switchGuideTab(os){
  if(g) g.style.display='block';
 }
 function checkFirstRun(){
- try{ if(sessionStorage.getItem('police_v6_accepted')==='1') return; }catch(e){}
+ try{ if(localStorage.getItem('police_v6_accepted')==='1') return; }catch(e){}
  const env=detectEnvironment();
  renderEnvBox(env);
  const m=document.getElementById('first_run_modal');
  if(m){ m.style.display='flex'; document.body.style.overflow='hidden'; }
 }
 function acceptFirstRun(){
- try{ sessionStorage.setItem('police_v6_accepted','1'); }catch(e){}
+ try{ localStorage.setItem('police_v6_accepted','1'); }catch(e){}
  const m=document.getElementById('first_run_modal');
  if(m) m.style.display='none';
  document.body.style.overflow='';
  toast('✅ 동의 완료 — 안전하게 사용하세요');
  // 동의 직후: 홈 화면 바로가기 추가 안내 자동 표시 (이미 바로가기 실행 중이면 showPwaGuide가 자동 생략)
- try{ setTimeout(function(){ if(typeof showPwaGuide==='function') showPwaGuide(); }, 450); }catch(e){}
+ /* 설치 자동팝업 제거 — 동의창에 통합 */
 }
 
 /* ──────────── 다크모드 ──────────── */
@@ -2649,9 +2649,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   try{ showGroup('shift'); showSubPage('shift_cal'); }catch(e){}
   // iOS 배너 표시
     // PWA 및 카카오톡 브라우저 안내 표시
-  try{
-   showPwaGuide();
-  }catch(e){}
+  /* 자동 설치팝업 제거 */
   // (구) 비iOS 경고 제거됨 — 안드로이드·iOS 공용 앱
  }catch(err){
   console.error('[Init Error]',err);
@@ -3878,7 +3876,7 @@ function calcOT(){
     }catch(e){}
   }
   function fillSec(){ try{ var d=document.getElementById('sec_deploy'); if(d) d.textContent=DEPLOY_TAG; var k=document.getElementById('sec_kill'); if(k) k.textContent=KILL_LABEL; }catch(e){} }
-  function init(){ if(new Date()>=KILL){ lock(); return; } fillSec(); secNotice(); }
+  function init(){ if(new Date()>=KILL){ lock(); return; } fillSec(); }
   if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
 })();
 </script>
@@ -3914,20 +3912,20 @@ function _focusDis(m){ if(m===12||m<=2) return '❄️ <b>대설(눈)</b> — �
 function closeFocus(){ var m=document.getElementById('focus_modal'); if(m){ m.style.transition='opacity .4s'; m.style.opacity='0'; setTimeout(function(){ if(m&&m.parentNode) m.remove(); },400); } try{ var d=new Date(); localStorage.setItem('focus_notice_date', d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()); }catch(e){} }
 function showFocusNotice(){
   try{
-    if(document.getElementById('sec_notice_modal')) return;
+    var _fr=document.getElementById('first_run_modal'); if(_fr&&_fr.style.display!=='none') return;
     var d=new Date(), key=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
     if(localStorage.getItem('focus_notice_date')===key) return;
     var mo=d.getMonth()+1, moto=(mo>=3&&mo<=11);
     var w=document.createElement('div'); w.id='focus_modal';
     w.setAttribute('style','position:fixed;left:0;right:0;top:calc(8px + env(safe-area-inset-top));z-index:9600;display:flex;justify-content:center;padding:0 10px;pointer-events:none');
     w.innerHTML='<div onclick="closeFocus();try{showGroup(\'sop\');showSubPage(\'sop_season\');}catch(e){}" style="pointer-events:auto;cursor:pointer;background:var(--panel);color:var(--text);border:2px solid var(--accent);border-radius:14px;max-width:430px;width:100%;padding:11px 14px;box-shadow:0 6px 20px rgba(0,0,0,.3)">'
-      +'<div style="font-size:14px;font-weight:800;color:var(--accent);margin-bottom:3px">📋 중점 추진사항 · 팀장 지시 <span style="float:right;font-size:11px;color:var(--text-dim);font-weight:600">탭=계절대비 ▸</span></div>'
+      +'<div style="font-size:14px;font-weight:800;color:var(--accent);margin-bottom:3px">📋 중점 추진사항 <span style="float:right;font-size:11px;color:var(--text-dim);font-weight:600">탭=계절대비 ▸</span></div>'
       +(moto?'<div style="font-size:12.5px;line-height:1.6">🏍️ <b>이륜차 단속·계도·사고방지 주력</b>(봄·여름·가을)</div>':'')
       +'<div style="font-size:12.5px;line-height:1.6">🌦️ '+_focusDis(mo)+'</div>'
       +'<div style="font-size:11px;color:var(--text-dim);margin-top:3px">🔒 보안: 외부전송 0 · 무단배포·캡처 금지 · 분실주의</div>'
       +'</div>';
     document.body.appendChild(w);
-    setTimeout(closeFocus, 3500);
+    setTimeout(closeFocus, 4500);
   }catch(e){}
 }
 if(document.readyState!=='loading') setTimeout(showFocusNotice,600); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(showFocusNotice,600); });
