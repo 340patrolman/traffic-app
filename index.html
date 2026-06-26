@@ -305,6 +305,11 @@ hr{margin:9px 0;}
 .output-box{word-break:break-word;overflow-wrap:anywhere;}
 .card-title,details summary,.law-title{min-width:0;flex-wrap:wrap;word-break:keep-all;}
 table{table-layout:fixed;width:100%;}
+@media (max-width:640px){
+ #page-shift_cal{padding-left:0!important;padding-right:0!important;}
+ #page-shift_cal>.card{padding-left:3px!important;padding-right:3px!important;border-left:none!important;border-right:none!important;border-radius:0!important;}
+ #shift_cal_body td{font-size:11px;}
+}
 #shift_cal_body td{height:80px!important;min-height:80px;vertical-align:top;overflow:hidden;}
 img,video,canvas,svg{max-width:100%;}
 select{max-width:100%;}
@@ -1893,7 +1898,7 @@ const GROUP_PAGES = {
 function showGroup(g){
  currentGroup = g;
  document.querySelectorAll('.ntab').forEach(t=>t.classList.toggle('active',t.dataset.group===g));
- ['report','docs','shift','sop','coach','ref','expr','orgs'].forEach(k=>{
+ ['report','docs','sop','coach','ref','expr','orgs'].forEach(k=>{
   const el=document.getElementById('sub_'+k); if(el) el.style.display=k===g?'flex':'none';
  });
  showSubPage(GROUP_PAGES[g][0]);
