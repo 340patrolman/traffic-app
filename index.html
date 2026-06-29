@@ -461,6 +461,7 @@ select{max-width:100%;}
  <div class="btn-group" style="margin-top:4px;gap:5px"> <button class="btn btn-sec u-flex1" id="shift_prev" onclick="shiftMove(-1)" style="min-height:30px;height:30px;padding:2px;font-size:14px">◀</button> <button class="btn btn-primary u-flex1" id="shift_cur" onclick="shiftToday()" style="min-height:30px;height:30px;padding:2px;font-size:13px">오늘</button> <button class="btn btn-sec u-flex1" id="shift_next" onclick="shiftMove(1)" style="min-height:30px;height:30px;padding:2px;font-size:14px">▶</button> </div>
  <div id="shift_cal_body"></div>
  <div id="shift_legend" style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 4px;font-size:13px;font-weight:800;justify-content:center"></div>
+ <div id="shift_summary"></div>
  <div class="info-box" style="font-size:12px;margin-top:8px">📌 날짜를 누르면 <b>물리력교육·사격·직장훈련·메모</b>를 기록할 수 있습니다. 점(●)이 있는 날은 기록이 있는 날입니다. 데이터는 이 기기에만 저장됩니다.</div> </div>
  <details class="card cmpct" id="ot_card"> <summary class="card-title">💰 근무시간·시간외수당 계산 (참고용)</summary> <div class="warn-box" style="font-size:12px">⚠️ <b>참고 추정치</b>입니다. 단가는 매년 고시되어 바뀌고 호봉·관서 기준에 따라 다릅니다. 정확한 금액은 급여명세서로 확인하세요. (기준: 2026년 근사)</div>
  <label>계급</label> <select id="ot_rank" onchange="calcOT()"><option value="10200">순경</option><option value="10800">경장</option><option value="11300">경사</option><option value="11900" selected>경위</option><option value="13000">경감</option><option value="15100">경정 이상</option></select>
@@ -3911,8 +3912,8 @@ function renderShiftCal(){
  var today=new Date(); today.setHours(0,0,0,0);
  var DOW=['일','월','화','수','목','금','토'];
  var _r=_monthCalc(); var _sg=_r.sigot>=0?'+':'\u2212';
- var html='';
- html+='<div onclick="var _o=document.getElementById(\'ot_card\');_o.open=true;_o.scrollIntoView({behavior:\'smooth\'})" style="text-align:center;font-size:13px;font-weight:800;margin-bottom:8px;cursor:pointer;background:var(--panel-2);border-radius:8px;padding:6px">이번 달 시간외 <b style="color:'+(_r.sigot>=0?'#dc2626':'#1d4ed8')+'">'+(_r.sigot>=0?'+':'\u2212')+Math.abs(_r.sigot).toFixed(1).replace(".0","")+'h</b> <span style="color:var(--text-dim);font-weight:500">(기준초과 '+(_r.gijun>=0?'+':'\u2212')+Math.abs(_r.gijun).toFixed(1).replace(".0","")+'h \u00b7 야간 '+_r.nightHrs+'h \u00b7 휴일주간 '+_r.holDS+'일 \u00b7 주'+_r.cntD+'\u00b7야'+_r.cntN+'\u00b7총'+_r.work.toFixed(1).replace(".0","")+'h/기준'+_r.bs+'h)</span> <span style="color:var(--accent);font-size:11px">\u270f\ufe0f 눌러서 수정</span></div>';
+ var html='', _sum='';
+ _sum+='<div onclick="var _o=document.getElementById(\'ot_card\');_o.open=true;_o.scrollIntoView({behavior:\'smooth\'})" style="text-align:center;font-size:13px;font-weight:800;margin-bottom:8px;cursor:pointer;background:var(--panel-2);border-radius:8px;padding:6px">이번 달 시간외 <b style="color:'+(_r.sigot>=0?'#dc2626':'#1d4ed8')+'">'+(_r.sigot>=0?'+':'\u2212')+Math.abs(_r.sigot).toFixed(1).replace(".0","")+'h</b> <span style="color:var(--text-dim);font-weight:500">(기준초과 '+(_r.gijun>=0?'+':'\u2212')+Math.abs(_r.gijun).toFixed(1).replace(".0","")+'h \u00b7 야간 '+_r.nightHrs+'h \u00b7 휴일주간 '+_r.holDS+'일 \u00b7 주'+_r.cntD+'\u00b7야'+_r.cntN+'\u00b7총'+_r.work.toFixed(1).replace(".0","")+'h/기준'+_r.bs+'h)</span> <span style="color:var(--accent);font-size:11px">\u270f\ufe0f 눌러서 수정</span></div>';
  var _P=function(t){return '<span style="color:#dc2626">'+t+'</span>';};
  var _M=function(t){return '<span style="color:#1d4ed8">'+t+'</span>';};
  var _f1=function(x){return x.toFixed(1).replace('.0','');};
@@ -3928,7 +3929,7 @@ function renderShiftCal(){
  if(_r.late)_bd.push(_M('지각 -'+_f1(_r.late)));
  _bd.push(_M('복무규정 -'+_r.bs));
  if(_r.holDed)_bd.push(_M('휴일주간 -'+_f1(_r.holDed)));
- html+='<div style="font-size:11px;line-height:1.8;color:var(--text-dim);margin:-2px 8px 8px;text-align:center"><b>📊 내역</b> '+_bd.join(' · ')+' = <b>시간외 '+(_r.sigot>=0?'+':'-')+_f1(Math.abs(_r.sigot))+'h</b></div>';
+ _sum+='<div style="font-size:11px;line-height:1.8;color:var(--text-dim);margin:-2px 8px 8px;text-align:center"><b>📊 내역</b> '+_bd.join(' · ')+' = <b>시간외 '+(_r.sigot>=0?'+':'-')+_f1(Math.abs(_r.sigot))+'h</b></div>';
  html+='<table style="width:100%;border-collapse:collapse;table-layout:fixed"><thead><tr>'+DOW.map(function(d,i){var col=i===0?'#dc2626':(i===6?'#1d4ed8':'var(--text-dim)');return '<th style="padding:4px;font-size:12px;color:'+col+'">'+d+'</th>';}).join('')+'</tr></thead><tbody><tr>';
  var cell=0;
  for(var i=0;i<startDow;i++){ html+='<td style="border:1px solid var(--border)"></td>'; cell++; }
@@ -3952,6 +3953,7 @@ function renderShiftCal(){
  while(cell%7!==0){ html+='<td style="border:1px solid var(--border)"></td>'; cell++; }
  html+='</tr></tbody></table>';
  body.innerHTML=html;
+ var _se=document.getElementById('shift_summary'); if(_se) _se.innerHTML=_sum;
 }
 /* 날짜 기록 모달 */
 function openDayNote(key){
