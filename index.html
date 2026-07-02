@@ -1487,7 +1487,7 @@ const EXCUSES = [
   patterns:['몰랐','모르고','그런 법','규정을 몰','표지판 못','처음 들어'],
   principle:'도로교통법은 고의·과실을 불문한다 — 몰라도 위반, 알아도 위반. 더 중요한 점: 모르는 사람은 알 때까지 같은 위반을 반복한다. 그래서 처분과 함께 "무엇이 왜 위반인지"를 정확히 알려주는 것이 다음 위반·사고를 막는 핵심이다.',
   responses:{
-   cold:['"법을 몰랐다고 위반이 없던 일이 되진 않습니다. 다만 오늘 정확히 알고 가시면 다음엔 안 걸리십니다."'],
+   cold:['"법을 몰랐다고 위반이 없던 일이 되진 않습니다. 다만 오늘 정확히 알고 가시면 다음엔 안 걸리십니다."','"모르고 그러셨다면 — 아실 때까지 계속 위반하시면 곤란합니다. 그래서 지금 정확히 알려드리는 겁니다."'],
    polite:['"모르셨을 수 있습니다. 그래서 알려드리는 겁니다 — 여기서는 이게 이래서 위반입니다. 알고 나면 본인 안전에 도움이 됩니다."','"몰라서 한 번이면, 알고는 안 하시면 됩니다. 오늘이 그 기회입니다."'],
    flex:['"처분은 규정대로 진행됩니다. 대신 왜 위반인지는 확실히 설명드릴게요 — 다음에 또 겪지 않으시게."']
   }},
@@ -1495,7 +1495,7 @@ const EXCUSES = [
   patterns:['급해서','급했','바빠','시간이 없','늦어서','빨리 가'],
   principle:'시간 압박을 이유로 드는 유형. 핵심 반박: 급하다고 봐주면 그 사람은 급할 때마다 계속 위반한다. 또 급할수록 사고 한 번이면 훨씬 더 크게 늦어진다 — 안전이 가장 빠른 길임을 짚어준다.',
   responses:{
-   cold:['"급하다고 위반이 허용되면 도로에 안 급한 사람이 없습니다. 오늘은 규정대로 진행합니다."'],
+   cold:['"급하다고 위반이 허용되면 도로에 안 급한 사람이 없습니다. 오늘은 규정대로 진행합니다."','"급해서 그러셨다면 — 급할 때마다 위반하시겠습니까? 급한 사정은 위반 사유가 되지 않습니다."'],
    polite:['"급하신 건 이해합니다. 그런데 급할 때마다 이러시면 결국 사고로 훨씬 더 늦어지고 더 크게 다치십니다. 급할수록 안전하게 가는 게 가장 빠릅니다."'],
    flex:['"사정은 들었습니다. 처분은 규정대로 가고, 다음엔 5분 일찍 출발이 답입니다 — 사고 한 번이 몇 시간입니다."']
   }},
@@ -4046,7 +4046,7 @@ function _monthCalc(){
  var _outside=function(s,e,wins){ var ss=_t2m(s),ee=_t2m(e); if(ss===null||ee===null) return 0; if(ee<=ss) ee+=1440; var dur=ee-ss; if(dur<=0) return 0; var ins=0; for(var i=0;i<wins.length;i++){ var ov=Math.min(ee,wins[i][1])-Math.max(ss,wins[i][0]); if(ov>0) ins+=ov; } var o=dur-ins; return o>0?o/60:0; };
  var WIN={}; _pat().forEach(function(_p){ var _w=_shiftWins(_p); if(_w.length) WIN[_p]=_w; });
  var dn=0, dnB={train:0,edu:0,phys:0,shoot:0,mobil:0,dvol:0,nvol:0,rush:0};
- for(var d=1;d<=days;d++){ var dt=new Date(y,m,d); dt.setHours(0,0,0,0); var st=SHIFT_PAT[_stateIdx(dt,c.team)]; if(st==='주간')cntD++; else if(st==='야간')cntN++; else if(st==='심야')cntM++; var _dow=dt.getDay(); if((_dow===0||_dow===6||!!holidayName(_dkey(dt)))){ if(st==='주간')holDS++; else if(st==='야간')holNS++; } var nt=_noteFor(dt); if(!nt) continue;
+ for(var d=1;d<=days;d++){ var dt=new Date(y,m,d); dt.setHours(0,0,0,0); var st=_pat()[_stateIdx(dt,c.team)]; if(st==='주간')cntD++; else if(st==='야간')cntN++; else if(st==='심야')cntM++; var _dow=dt.getDay(); if((_dow===0||_dow===6||!!holidayName(_dkey(dt)))){ if(st==='주간')holDS++; else if(st==='야간')holNS++; } var nt=_noteFor(dt); if(!nt) continue;
   if(nt.leave){ if(st==='주간')lvD++; else if(st==='야간')lvN++; else if(st==='심야')lvM++; continue; }
   var wins=WIN[st]||[]; var h,du;
   if(nt.phys){ du=_outside(nt.phys_s,nt.phys_e,[]); h=_outside(nt.phys_s,nt.phys_e,wins); h=h-(du-h); dn+=h; dnB.phys+=h; }
