@@ -1,8 +1,10 @@
 /* 교통외근 통합보조 — 서비스워커
    목적: ①홈화면 앱 설치(아이콘 생성) 가능화  ②현장 음영지역 오프라인 작동
    전략: 네트워크 우선(network-first) → 온라인이면 항상 최신본을 받아 "수정본 자동반영" 유지,
-         오프라인일 때만 캐시 사용. 외부 전송 없음(같은 오리진 자기 파일만 캐시). */
-var CACHE = 'gtw-app-v1';
+         오프라인일 때만 캐시 사용. 외부 전송 없음(같은 오리진 자기 파일만 캐시).
+   v2: 네트워크 요청에 cache:'no-store' 적용 — 브라우저/Pages HTTP 캐시를 우회해
+       온라인이면 항상 진짜 최신본을 받도록(수정본이 즉시 반영되지 않던 문제 해결). */
+var CACHE = 'gtw-app-v2';
 var CORE = ['./', 'index.html', 'icon.png', 'robots.txt'];
 
 self.addEventListener('install', function (e) {
@@ -28,7 +30,7 @@ self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET') return;
   e.respondWith(
-    fetch(req).then(function (res) {
+    fetch(req, { cache: 'no-store' }).then(function (res) {
       // 정상 응답이면 최신본을 캐시에 갱신
       if (res && res.status === 200 && res.type === 'basic') {
         var copy = res.clone();
