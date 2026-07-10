@@ -4357,10 +4357,16 @@ function calcOT(){
   var KILL = new Date(2027,1,20,0,0,0);
   try{ console.log('%c[교통외근보조] '+DEPLOY_TAG+' | 사용기한 '+KILL_LABEL,'color:#b8924b;font-weight:800'); }catch(e){}
   function lock(){
+    /* v15.2 — 만료 시 완전 소거: 데이터·오프라인 사본 자동 삭제 */
+    try{localStorage.clear();}catch(e){}
+    try{sessionStorage.clear();}catch(e){}
+    try{if(window.indexedDB&&indexedDB.databases){indexedDB.databases().then(function(ds){(ds||[]).forEach(function(d){try{if(d&&d.name)indexedDB.deleteDatabase(d.name);}catch(e){}});});}}catch(e){}
+    try{if(navigator.serviceWorker&&navigator.serviceWorker.getRegistrations){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){try{r.unregister();}catch(e){}});});}}catch(e){}
+    try{if(window.caches&&caches.keys){caches.keys().then(function(ks){ks.forEach(function(k){try{caches.delete(k);}catch(e){}});});}}catch(e){}
     document.body.innerHTML='<div style="position:fixed;inset:0;background:#0f172a;color:#fff;z-index:2147483647;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;font-family:sans-serif">'
       +'<div style="font-size:46px;margin-bottom:14px">🔒</div>'
       +'<div style="font-size:20px;font-weight:900;margin-bottom:12px">사용 기간이 만료되었습니다</div>'
-      +'<div style="font-size:15px;line-height:1.9;color:#cbd5e1;max-width:340px">이 버전은 <b style="color:#fff">2027. 2. 20.</b>부로 사용 기한이 종료되었습니다.<br>최신 버전 재배포는 담당 부서에 문의하세요.</div>'
+      +'<div style="font-size:15px;line-height:1.9;color:#cbd5e1;max-width:340px">이 버전은 <b style="color:#fff">2027. 2. 20.</b>부로 사용 기한이 종료되었습니다.<br>저장된 업무 데이터와 오프라인 사본은 자동 삭제되었습니다.<br>홈 화면의 앱 아이콘은 길게 눌러 제거해 주세요.<br>최신 버전 재배포는 담당 부서에 문의하세요.</div>'
       +'<div style="margin-top:16px;font-size:11px;color:#64748b">'+DEPLOY_TAG+'</div></div>';
   }
   window.__closeSecNotice=function(){ var m=document.getElementById('sec_notice_modal'); if(m) m.remove(); try{localStorage.setItem('sec_notice_seen',Date.now().toString());}catch(e){} };
