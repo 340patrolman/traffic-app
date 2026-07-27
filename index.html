@@ -387,7 +387,7 @@ function h(msg){try{var n=Date.now();
 window.addEventListener('error',function(e){h(e.message||'script error');});
 window.addEventListener('unhandledrejection',function(e){h((e.reason&&e.reason.message)||'promise error');});
 window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbookBooted)h('앱 로드 미완료(boot-incomplete)');},4000);});
-})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동">🚔 T-Book<span class="ver">v19.0</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="vnavToggle()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
+})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동">🚔 T-Book<span class="ver">v19.0</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="hdMenu()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
 <!-- 📱 브라우저 및 홈화면 설치 안내 -->
 <div id="pwa_guide_modal">
  <div class="pwa-modal-content">
@@ -5599,7 +5599,7 @@ details.prec-fold[open]>summary::after{content:'접기 ▴'}
  <button class="hd-tab" data-t="acci" onclick="hdGo('acci','acc_hub')"><svg viewBox="0 0 24 24"><path d="M12 2.8 2.6 20.4h18.8z"/><path d="M12 9.6v4.4M12 17.2h.01"/></svg><span>현장</span></button>
  <button class="hd-tab" data-t="docs" onclick="hdGo('docs','doc_manual')"><svg viewBox="0 0 24 24"><path d="M4 5.2A2.2 2.2 0 0 1 6.2 3H19v18H6.2A2.2 2.2 0 0 1 4 18.8z"/><path d="M4 17.2h15"/></svg><span>매뉴얼</span></button>
  <button class="hd-tab" data-t="orgs" onclick="hdGo('orgs','expr_contact')"><svg viewBox="0 0 24 24"><path d="M21 16.4v2.6a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.2 5a1.8 1.8 0 0 1 1.8-2h2.6a1.8 1.8 0 0 1 1.8 1.6c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6A1.8 1.8 0 0 1 21 16.4z"/></svg><span>연락처</span></button>
- <button class="hd-tab" data-t="more" onclick="try{vnavToggle()}catch(e){}"><svg viewBox="0 0 24 24"><path d="M3.6 6.5h16.8M3.6 12h16.8M3.6 17.5h16.8"/></svg><span>전체</span></button>
+ <button class="hd-tab" data-t="more" onclick="hdMenu()"><svg viewBox="0 0 24 24"><path d="M3.6 6.5h16.8M3.6 12h16.8M3.6 17.5h16.8"/></svg><span>전체</span></button>
 </nav>
 
 <style id="v19css">
@@ -5698,8 +5698,25 @@ body[data-theme='dark'] .hd-tab.on{color:var(--accent-gold)}
 .hd-tab.on svg{stroke-width:2.35}
 .hd-tab:active{opacity:.6}
 body[data-home="dash"]{padding-bottom:calc(96px + env(safe-area-inset-bottom))!important}
-/* 대시보드 모드에서는 상단 그룹탭을 감춘다 — 하단 탭바와 역할이 겹친다 */
+/* 대시보드 모드에서 상단 그룹탭은 평소 감추되, ☰메뉴/전체를 누르면 반드시 펼쳐진다.
+   ⚠️ 아래 .vopen 규칙이 없으면 메뉴 버튼이 먹통이 된다 (v19.0 초판 결함) */
 body[data-home="dash"] .nav-tabs{display:none!important}
+body[data-home="dash"].vopen .nav-tabs{display:flex!important;padding-top:10px}
+body[data-home="dash"] #vnav_menu_btn{display:inline-flex!important}
+body[data-home="dash"].vopen #vnav_menu_btn{background:rgba(255,255,255,.45)!important}
+body[data-home="dash"].vopen .hd-tab[data-t="more"]{color:var(--accent)}
+body[data-theme='dark'][data-home="dash"].vopen .hd-tab[data-t="more"]{color:var(--accent-gold)}
+/* 메뉴가 열렸을 때 — 11개 그룹을 2열 격자로. 세로 나열이면 화면을 넘긴다 */
+body[data-home="dash"].vopen .nav-tabs{
+ display:grid!important;grid-template-columns:1fr 1fr;gap:8px;
+ padding:10px 10px 14px!important;overflow:visible!important;flex-direction:row!important}
+body[data-home="dash"].vopen .nav-tabs .ntab{
+ flex:none!important;width:auto!important;min-width:0;min-height:52px;
+ flex-direction:column!important;gap:2px;padding:9px 8px!important;font-size:13.5px!important;
+ white-space:normal!important;line-height:1.25}
+body[data-home="dash"].vopen .nav-tabs .ntab.active{font-size:13.5px!important}
+body[data-home="dash"].vopen .nav-tabs .ndesc{font-size:9.6px!important;opacity:.8;font-weight:700;
+ display:block!important;white-space:normal;line-height:1.2}
 body[data-home="dash"] .toast{bottom:108px!important}
 /* 하단 고정 요소들이 탭바에 가리지 않도록 위로 올림 */
 body[data-home="dash"] #more_below_hint{bottom:calc(84px + env(safe-area-inset-bottom))!important}
@@ -5845,6 +5862,16 @@ body[data-home="dash"] #sub_home{display:none!important}
   }catch(e){}
  };
 
+ /* ── 전체 메뉴 열고 닫기 (가로형·세로형 모두 동작) ── */
+ window.hdMenu=function(){
+  try{ vnavToggle(); }
+  catch(e){ document.body.classList.toggle('vopen'); }
+  try{
+   if(document.body.classList.contains('vopen')) window.scrollTo(0,0);
+  }catch(_){}
+  try{ hdSyncTab(); }catch(_){}
+ };
+
  /* ── 하단 탭 활성 표시 ── */
  window.hdSyncTab=function(){
   try{
@@ -5856,6 +5883,16 @@ body[data-home="dash"] #sub_home{display:none!important}
  };
 
  /* ── 라우팅 후킹 ── */
+ var _sg=window.showGroup;
+ if(typeof _sg==='function'){
+  window.showGroup=function(g){
+   var r=_sg.apply(this,arguments);
+   /* 메뉴에서 그룹을 고르면 닫는다 (가로형 설정이어도) */
+   try{ document.body.classList.remove('vopen'); }catch(e){}
+   try{ hdSyncTab(); }catch(e){}
+   return r;
+  };
+ }
  var _ss=window.showSubPage;
  if(typeof _ss==='function'){
   window.showSubPage=function(p){
