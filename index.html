@@ -599,7 +599,10 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
   <input type="number" id="ot_legalh" step="0.5" placeholder="예: 160" oninput="calcOT()" onchange="saveOTInputs();calcOT()"
          style="flex:1;font-size:15px;padding:4px 6px;border:2px solid var(--accent);border-radius:6px">
   <span style="font-size:12px;color:var(--text-dim)">h</span>
+  <button type="button" onclick="autoLegalH()" title="평일수 기준 추정값을 넣습니다"
+    style="flex:0 0 auto;padding:5px 9px;font-size:12px;font-weight:800;background:var(--accent);color:#fff;border:0;border-radius:6px;cursor:pointer">🧮 자동</button>
 </div>
+<div id="ot_legalh_note" style="font-size:11px;line-height:1.7;margin:2px 0 4px"></div>
 <div style="font-size:11px;color:var(--text-dim);line-height:1.6;margin-bottom:6px">
   인사포털 <b>「개인별 초과근무(현업) — 월별초과근무내역서」</b>의 <b>법정근무시간</b>을 그대로 입력. 매월 달라짐(연가·공휴일 반영).
 </div>
@@ -4862,6 +4865,34 @@ function focusOT(id){ var e=document.getElementById(id); if(!e) return;
   try{e.focus();e.select();}catch(_){}
   try{ e.style.transition='box-shadow .3s'; e.style.boxShadow='0 0 0 4px rgba(220,38,38,.35)';
    setTimeout(function(){ e.style.boxShadow=''; },2200); }catch(_){} },160); }
+/* 법정근무시간 자동계산 (v19.5) — 실측 8개월 중 7개월 일치.
+   식: (그 달 평일수 − 공휴일 중 평일) − 연가·유급휴가일수(요일 무관), × 8h
+   ⚠ 2026.05 만 8h 어긋난다(계산 120 / 실측 112). 원인 미확인.
+   따라서 이 값은 '추정'이며, 인사포털 월별초과근무내역서 값이 언제나 우선이다.
+   앱이 몰래 채우지 않고 버튼을 눌렀을 때만 넣으며, 무엇을 넣었는지 화면에 공개한다. */
+function autoLegalH(){
+ var el=document.getElementById('ot_legalh'); if(!el) return;
+ var y=_shiftView.getFullYear(), m=_shiftView.getMonth();
+ var days=new Date(y,m+1,0).getDate();
+ var wd=0, holwd=0, lvd=0;
+ for(var d=1;d<=days;d++){
+  var dt2=new Date(y,m,d); dt2.setHours(0,0,0,0);
+  var dow=dt2.getDay(), k=_dkey(dt2);
+  var nt=null; try{ nt=_noteFor(dt2); }catch(e){}
+  if(nt&&nt.leave){ lvd++; }
+  if(dow===0||dow===6) continue;
+  if(holidayName(k)) holwd++; else wd++;
+ }
+ var v=Math.max(0,(wd-lvd))*8;
+ el.value=String(v);
+ try{ saveOTInputs(); }catch(e){}
+ var note=document.getElementById('ot_legalh_note');
+ if(note) note.innerHTML='\uD83E\uDDEE 자동계산 <b style="color:var(--accent)">'+v+'h</b> = (평일 '+wd+'일 \u2212 휴가 '+lvd+'일) \u00D7 8h'
+   +' <span style="color:var(--text-dim)">· 공휴일 '+holwd+'일 제외</span><br>'
+   +'<b style="color:#b45309">\u26A0 추정값입니다. 인사포털 「법정근무시간」과 반드시 대조하세요.</b>'
+   +' <span style="color:var(--text-dim)">실측 8개월 중 7개월 일치 · 2026.05 는 8h 어긋났습니다.</span>';
+ try{ calcOT(); }catch(e){}
+}
 function calcOT(){
  var box=document.getElementById('ot_result'); if(!box) return;
  var r=_monthCalc();
