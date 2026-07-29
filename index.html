@@ -6343,10 +6343,17 @@ details.card.cl-x{padding-bottom:10px}
   document.documentElement.style.visibility='hidden';
   try{ window.top.location = window.self.location; }               /* 같은 출처면 탈출 */
   catch(e){                                                        /* 다른 출처면 내용을 감춘다 */
+   /* v19.5 수정 — body.innerHTML 을 통째로 갈아치우면 이 블록 뒤에 오는 스크립트들이
+      참조하던 DOM 이 전부 사라져 'Cannot set properties of null' 오류가 줄줄이 터진다.
+      body 는 그대로 두고 전체를 덮는 오버레이만 씌운다. 감추는 효과는 동일하다. */
    document.documentElement.style.visibility='visible';
-   document.body.innerHTML='<div style="padding:28px;font:15px/1.8 -apple-system,sans-serif;'
-    +'color:#111">이 앱은 다른 사이트 안에서 열 수 없습니다.<br>'
-    +'주소창에 직접 입력해 여십시오.</div>';
+   document.documentElement.style.overflow='hidden';
+   var _ov=document.createElement('div');
+   _ov.id='tb_frame_block';
+   _ov.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:2147483646;'
+    +'background:#fff;color:#111;padding:28px;font:15px/1.8 -apple-system,sans-serif';
+   _ov.innerHTML='이 앱은 다른 사이트 안에서 열 수 없습니다.<br>주소창에 직접 입력해 여십시오.';
+   (document.body||document.documentElement).appendChild(_ov);
   }
  }catch(e){}
 })();
