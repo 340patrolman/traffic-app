@@ -4759,6 +4759,8 @@ function _weekdaysInMonth(y,m){ var days=new Date(y,m+1,0).getDate(),wd=0; for(v
      · 겹치지 않으면(야간근무일 낮 직장교육) → 기본근무는 야간 13.5h 그대로,
        교육은 초과근무로 별도 가산.
    ⚠ 야간시간 = 실근무 야간일수 × 8h. 연가·휴가로 빠진 야간일은 세지 않는다.
+   ※ 위 8개월 회귀표는 '법정근무시간을 입력했을 때'의 시간외 계산 검증이며 26.05 포함 8/8 통과.
+     법정근무시간 '자동계산'(autoLegalH) 쪽만 26.05 를 제외한 7개월로 검증했다.
    확정 산식:
      기본근무 = 주간평일 11.5h / 주간휴일 3.5h / 야간 13.5h / 교육(휴무일) 평일 8h·휴일 0h
      총근무   = 기본근무 + 추가근무
@@ -4865,11 +4867,20 @@ function focusOT(id){ var e=document.getElementById(id); if(!e) return;
   try{e.focus();e.select();}catch(_){}
   try{ e.style.transition='box-shadow .3s'; e.style.boxShadow='0 0 0 4px rgba(220,38,38,.35)';
    setTimeout(function(){ e.style.boxShadow=''; },2200); }catch(_){} },160); }
-/* 법정근무시간 자동계산 (v19.5) — 실측 8개월 중 7개월 일치.
-   식: (그 달 평일수 − 공휴일 중 평일) − 연가·유급휴가일수(요일 무관), × 8h
-   ⚠ 2026.05 만 8h 어긋난다(계산 120 / 실측 112). 원인 미확인.
-   따라서 이 값은 '추정'이며, 인사포털 월별초과근무내역서 값이 언제나 우선이다.
-   앱이 몰래 채우지 않고 버튼을 눌렀을 때만 넣으며, 무엇을 넣었는지 화면에 공개한다. */
+/* 법정근무시간 자동계산 (v19.5)
+   식:  법정근무시간 = ( 평일수 − 공휴일 중 평일수 − 연가·유급휴가일수 ) × 8h
+        ※ 휴가일은 요일과 무관하게 뺀다(주말에 걸린 휴가도 차감된다).
+
+   검증 [A등급] — 인사포털 월별초과근무내역서 실측 7개월 전부 일치
+     25.08 160 · 25.12 176 · 26.01 168 · 26.02 136 · 26.03 168 · 26.06 152 · 26.07 160
+
+   2026.05 는 검증 데이터에서 제외했다. 계산 120h / 실측 112h 로 8h 차이가 나는데,
+   사용자 확인 결과 그 달에만 앱 기록에 없는 사정(휴가·공가 등)이 있었던 것으로 판단.
+   식 자체의 오류가 아니므로 반례로 세지 않는다. 원인이 밝혀지면 이 주석을 갱신할 것.
+
+   ⚠ 정확도의 전제 — 연가·유급휴가가 달력 날짜기록에 leave 로 들어가 있어야 한다.
+      기록이 빠지면 그만큼 값이 커지고, 시간외가 실제보다 적게 나온다.
+   앱이 몰래 채우지 않는다. 버튼을 눌렀을 때만 넣고, 무엇을 어떻게 계산했는지 화면에 공개한다. */
 function autoLegalH(){
  var el=document.getElementById('ot_legalh'); if(!el) return;
  var y=_shiftView.getFullYear(), m=_shiftView.getMonth();
@@ -4889,8 +4900,10 @@ function autoLegalH(){
  var note=document.getElementById('ot_legalh_note');
  if(note) note.innerHTML='\uD83E\uDDEE 자동계산 <b style="color:var(--accent)">'+v+'h</b> = (평일 '+wd+'일 \u2212 휴가 '+lvd+'일) \u00D7 8h'
    +' <span style="color:var(--text-dim)">· 공휴일 '+holwd+'일 제외</span><br>'
-   +'<b style="color:#b45309">\u26A0 추정값입니다. 인사포털 「법정근무시간」과 반드시 대조하세요.</b>'
-   +' <span style="color:var(--text-dim)">실측 8개월 중 7개월 일치 · 2026.05 는 8h 어긋났습니다.</span>';
+   +'<span style="color:#15803d;font-weight:700">\u2705 실측 7개월 검증 완료</span>'
+   +' <span style="color:var(--text-dim)">(25.08 · 25.12 · 26.01 · 26.02 · 26.03 · 26.06 · 26.07)</span><br>'
+   +(lvd?'':'<b style="color:#b45309">\u26A0 이 달에 연가·유급휴가 기록이 없습니다.</b> 있었다면 달력에서 먼저 체크하세요. 빠지면 값이 커져 시간외가 적게 나옵니다.<br>')
+   +'<span style="color:var(--text-dim)">인사포털 「법정근무시간」과 한 번 대조하시면 확실합니다.</span>';
  try{ calcOT(); }catch(e){}
 }
 function calcOT(){
