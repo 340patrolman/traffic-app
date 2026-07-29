@@ -596,7 +596,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
  <div class="row" id="ot_aft_row" style="gap:6px;display:none"> <div><label class="u-fs12">오후 1회(h) — 시간설정 연동</label><input id="ot_afth" type="number" step="0.5" value="8" oninput="calcOT()"></div> <div></div> </div>
 <div style="display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:2px solid var(--accent)">
   <span style="flex:0 0 110px;font-weight:800;font-size:13px">📋 법정근무시간</span>
-  <input type="number" id="ot_legalh" step="0.5" placeholder="예: 160" oninput="calcOT()" onchange="saveOTInputs();calcOT()"
+  <input type="number" id="ot_legalh" step="0.5" placeholder="비워두면 자동계산" oninput="saveLegalH();calcOT()" onchange="saveLegalH();calcOT()"
          style="flex:1;font-size:15px;padding:4px 6px;border:2px solid var(--accent);border-radius:6px">
   <span style="font-size:12px;color:var(--text-dim)">h</span>
   <button type="button" onclick="autoLegalH()" title="평일수 기준 추정값을 넣습니다"
@@ -4652,6 +4652,7 @@ function _fitShiftCal(){
 }
 function renderShiftCal(){
  var body=document.getElementById('shift_cal_body'); if(!body) return;
+ try{ loadLegalH(); }catch(e){}
  var c=_shiftCfg();
  var _sys=_shiftSys();
  var ms=document.getElementById('shift_myteam'); if(ms){ if(ms.options.length!==_sys.teams){ var _th=''; for(var _ti=1;_ti<=_sys.teams;_ti++){_th+='<option value="'+_ti+'">'+_ti+'팀</option>';} ms.innerHTML=_th; } ms.value=String(Math.min(c.team,_sys.teams)); }
@@ -4731,7 +4732,7 @@ function saveDayNote(key){
 }
 function deleteDayNote(key){ try{ localStorage.removeItem('shift_note_'+key); }catch(e){} document.getElementById('day_note_modal').style.display='none'; renderShiftCal(); calcOT(); try{toast('🗑️ 기록 삭제');}catch(e){} }
 /* 교대표 입력값 저장·복원 (계급·시간·단가 등 한 번 넣으면 유지) */
-var _OT_IDS=['ot_legalh','ot_rank','ot_dayh','ot_nighth','ot_midh','ot_afth','ot_basestd','ot_rate','ot_leave','ot_early','ot_late','ot_addwork','ot_cap','ot_nightpr','ot_holpr'];
+var _OT_IDS=['ot_rank','ot_dayh','ot_nighth','ot_midh','ot_afth','ot_basestd','ot_rate','ot_leave','ot_early','ot_late','ot_addwork','ot_cap','ot_nightpr','ot_holpr'];
 function saveOTInputs(){ _OT_IDS.forEach(function(id){ var e=document.getElementById(id); if(e){ try{localStorage.setItem('cfg_'+id,e.value);}catch(_){} } }); var pe=document.getElementById('ot_premium'); if(pe){ try{localStorage.setItem('cfg_ot_premium',pe.checked?'1':'0');}catch(_){} } }
 function loadOTInputs(){ _OT_IDS.forEach(function(id){ var e=document.getElementById(id); if(!e)return; try{ var v=localStorage.getItem('cfg_'+id); if(v!==null&&v!=='') e.value=v; }catch(_){} }); var pe=document.getElementById('ot_premium'); if(pe){ try{ pe.checked=localStorage.getItem('cfg_ot_premium')==='1'; }catch(_){} } }
 /* 월 근무시간 공통 계산 */
@@ -4796,17 +4797,19 @@ function _monthCalc(){
  var premH=prem?((cntN+cntM)*npr+hpr):0; var lvAuto=0; /* 신산식: 연가일은 baseWork 누적에서 제외되므로 사후차감 불필요 */ var holDed=holDS*8;
  baseWork = bwD*dh + bwDH*3.5 + bwN*nh + bwM*mh + bwA*ah + bwE*8;
  /* v19.5 — 입력이 없으면 자동계산값을 쓴다. 무엇을 썼는지는 화면에 공개한다(원칙 9). */
- var legalH=g('ot_legalh',0), legalAuto=false, legalInfo=null;
+ var legalH=0, legalAuto=false, legalInfo=null;
+ try{ legalH=_legalSaved(y,m); }catch(e){}
  if(!(legalH>0)){ legalInfo=_calcLegalH(y,m); legalH=legalInfo.h; legalAuto=true; }
  var totalW=baseWork+dn+addw-lv-early-late+premH;
  var sigot = legalH>0 ? Math.floor(Math.max(0,totalW-legalH)) : null;
  var gijun = legalH>0 ? Math.floor(Math.max(0,baseWork-legalH)+holDS*8) : null;
  /* 하위호환: calcOT·_otLedger·홈대시보드 참조용 */
  var work=totalW, bs=legalH, wd=0, holDed=holDS*8;
+ var shortH = legalH>0 ? Math.max(0, legalH - totalW) : 0;
  var nightHrs=(bwN+bwM)*8;
  var paidHours=Math.max(0,sigot||0); if(cap>0) paidHours=Math.min(paidHours,cap); var ot=paidHours*rate;
  var _rkEl=document.getElementById('ot_rank');var rankName=(_rkEl&&_rkEl.options[_rkEl.selectedIndex])?_rkEl.options[_rkEl.selectedIndex].text:'';var rateManual=!!(rateEl&&rateEl.value!==''&&parseFloat(rateEl.value));
- return {legalAuto:legalAuto,legalInfo:legalInfo,baseWork:baseWork,bwD:bwD,bwDH:bwDH,bwN:bwN,bwM:bwM,bwA:bwA,bwE:bwE,legalH:legalH,rankName:rankName,rateManual:rateManual,team:c.team,month:m+1,cntD:cntD,cntN:cntN,cntM:cntM,cntA:cntA,dh:dh,nh:nh,mh:mh,ah:ah,bs:bs,lv:lv,early:early,late:late,addw:addw,dn:dn,dnB:dnB,cap:cap,prem:prem,premH:premH,work:work,gijun:gijun,sigot:sigot,nightHrs:nightHrs,paidHours:paidHours,rate:rate,ot:ot,wd:wd,dayStd:dayStd,lvAuto:lvAuto,lvD:lvD,lvN:lvN,holDS:holDS,holNS:holNS,holDed:holDed};
+ return {shortH:shortH,legalAuto:legalAuto,legalInfo:legalInfo,baseWork:baseWork,bwD:bwD,bwDH:bwDH,bwN:bwN,bwM:bwM,bwA:bwA,bwE:bwE,legalH:legalH,rankName:rankName,rateManual:rateManual,team:c.team,month:m+1,cntD:cntD,cntN:cntN,cntM:cntM,cntA:cntA,dh:dh,nh:nh,mh:mh,ah:ah,bs:bs,lv:lv,early:early,late:late,addw:addw,dn:dn,dnB:dnB,cap:cap,prem:prem,premH:premH,work:work,gijun:gijun,sigot:sigot,nightHrs:nightHrs,paidHours:paidHours,rate:rate,ot:ot,wd:wd,dayStd:dayStd,lvAuto:lvAuto,lvD:lvD,lvN:lvN,holDS:holDS,holNS:holNS,holDed:holDed};
 }
 function _otLedger(r){
  var f1=function(x){ var v=Math.round(x*10)/10; return (v===Math.floor(v)?v.toFixed(0):v.toFixed(1)); };
@@ -4840,6 +4843,7 @@ function _otLedger(r){
     ? ('\uD83E\uDDEE 자동계산 (평일 '+r.legalInfo.wd+'일 \u2212 휴가 '+r.legalInfo.lvd+'일) \u00D7 8h')
     : '인사포털 내역서 기재값', '\u2212'+f1(r.bs)+'h', r.legalAuto?AMB:BLU);
   h+=row('시간외 인정','⌊총근무 − 법정근무시간⌋','+'+f1(r.sigot)+'h',RED,1);
+  if(r.shortH>0) h+=row('','법정까지 부족','\u2212'+f1(r.shortH)+'h',BLU);
   h+=row('기준초과','⌊기본근무−법정⌋ + 휴일주간 '+r.holDS+'일×8h','+'+f1(r.gijun)+'h',AMB);
  }
  if(r.cap>0&&r.sigot>r.cap) h+=row('⛔ 월 한도 '+f1(r.cap)+'h','초과분 미지급','인정 '+f1(r.paidHours)+'h',AMB);
@@ -4885,6 +4889,16 @@ function focusOT(id){ var e=document.getElementById(id); if(!e) return;
    ⚠ 정확도의 전제 — 연가·유급휴가가 달력 날짜기록에 leave 로 들어가 있어야 한다.
       기록이 빠지면 그만큼 값이 커지고, 시간외가 실제보다 적게 나온다.
    앱이 몰래 채우지 않는다. 버튼을 눌렀을 때만 넣고, 무엇을 어떻게 계산했는지 화면에 공개한다. */
+/* 법정근무시간은 달마다 다르다. 한 칸에 전역 저장하면 지난달 값이 이번 달에 그대로 쓰인다.
+   그래서 'legalh_YYYY-MM' 으로 달별 저장한다. 그 달 저장값이 없으면 자동계산을 쓴다. */
+function _legalKeyOf(y,m){ return 'legalh_'+y+'-'+('0'+(m+1)).slice(-2); }
+function _legalSaved(y,m){ try{ var v=localStorage.getItem(_legalKeyOf(y,m)); if(v!==null&&v!==''){ var f=parseFloat(v); return isNaN(f)?0:f; } }catch(e){} return 0; }
+function loadLegalH(){ var el=document.getElementById('ot_legalh'); if(!el) return;
+ var v=0; try{ v=_legalSaved(_shiftView.getFullYear(),_shiftView.getMonth()); }catch(e){}
+ el.value = v>0 ? String(v) : ''; }
+function saveLegalH(){ var el=document.getElementById('ot_legalh'); if(!el) return;
+ try{ var k=_legalKeyOf(_shiftView.getFullYear(),_shiftView.getMonth());
+  if(el.value===''||!(parseFloat(el.value)>0)) localStorage.removeItem(k); else localStorage.setItem(k,el.value); }catch(e){} }
 function _calcLegalH(y,m){
  var days=new Date(y,m+1,0).getDate();
  var wd=0, holwd=0, lvd=0;
@@ -4903,7 +4917,7 @@ function autoLegalH(){
  var _a=_calcLegalH(_shiftView.getFullYear(), _shiftView.getMonth());
  var wd=_a.wd, holwd=_a.holwd, lvd=_a.lvd, v=_a.h;
  el.value=String(v);
- try{ saveOTInputs(); }catch(e){}
+ try{ saveLegalH(); }catch(e){}
  var note=document.getElementById('ot_legalh_note');
  if(note) note.innerHTML='\uD83E\uDDEE 자동계산 <b style="color:var(--accent)">'+v+'h</b> = (평일 '+wd+'일 \u2212 휴가 '+lvd+'일) \u00D7 8h'
    +' <span style="color:var(--text-dim)">· 공휴일 '+holwd+'일 제외</span><br>'
@@ -4933,7 +4947,8 @@ function calcOT(){
  html+='<br>';
  if(r.sigot>0) html+='추정 시간외수당 ≈ <b>'+Math.round(r.ot).toLocaleString('ko-KR')+'원</b> <span style="font-size:11px;color:var(--text-dim)">(인정 '+r.paidHours.toFixed(0)+'h × '+r.rate.toLocaleString('ko-KR')+'원, 참고치)</span>';
  else if(r.sigot<0) html+='추정 시간외수당 ≈ <b style="color:#1d4ed8;font-size:15px">−'+Math.round(Math.abs(r.sigot)*r.rate).toLocaleString('ko-KR')+'원</b> <span style="font-size:11px;color:var(--text-dim)">(기준까지 <b style="color:#1d4ed8">'+Math.abs(r.sigot).toFixed(1)+'h 부족</b> × '+r.rate.toLocaleString('ko-KR')+'원 · 실지급 0원 · 휴일수당 별도)</span>';
- else html+='<span style="color:var(--text-dim)">시간외 0h — 기준시간 정확히 충족 (휴일근무수당은 별도)</span>';
+ else if(r.shortH>0) html+='<span style="font-size:12px;color:#1d4ed8">시간외 0h — 법정근무시간까지 <b>'+r.shortH.toFixed(1).replace(".0","")+'h 부족</b>'+' <span style="color:var(--text-dim)">(총근무 '+r.work.toFixed(1).replace(".0","")+'h · 법정 '+r.bs.toFixed(1).replace(".0","")+'h · 실지급 0원)</span></span>';
+ else html+='<span style="color:var(--text-dim)">시간외 0h — 법정근무시간 정확히 충족 (휴일근무수당은 별도)</span>';
  var clk=function(id,v){ return '<b style="color:#1d4ed8;cursor:pointer;border-bottom:1px dashed #1d4ed8" onclick="focusOT(\''+id+'\')">'+v+'</b>'; };
  var f='<details style="margin-top:8px"><summary style="cursor:pointer;font-weight:800;color:var(--accent);font-size:13px">📐 계산식 펼쳐보기 (파란 숫자를 누르면 바로 수정)</summary><div style="font-size:13px;line-height:1.9;padding:6px 2px">';
  f+='평일주간 '+r.bwD+'일 × '+clk('ot_dayh',r.dh+'h')+' = '+(r.bwD*r.dh).toFixed(1)+'h<br>';
