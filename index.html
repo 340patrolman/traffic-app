@@ -4699,12 +4699,14 @@ function _otLedger(r){
   h+=row('기준초과','⌊기본근무−법정⌋ + 휴일주간 '+r.holDS+'일×8h','+'+f1(r.gijun)+'h',AMB);
  }
  if(r.cap>0&&r.sigot>r.cap) h+=row('⛔ 월 한도 '+f1(r.cap)+'h','초과분 미지급','인정 '+f1(r.paidHours)+'h',AMB);
- var amt=(r.sigot>=0)?r.ot:Math.abs(r.sigot)*r.rate;
- if(r.sigot>0) h+=row('💰 추정 수당','인정 '+f1(r.paidHours)+'h × '+won(r.rate)+'원','+'+won(amt)+'원',RED,1);
+ var amt=(r.sigot===null)?0:((r.sigot>=0)?r.ot:Math.abs(r.sigot)*r.rate);
+ if(r.sigot===null){}
+ else if(r.sigot>0) h+=row('💰 추정 수당','인정 '+f1(r.paidHours)+'h × '+won(r.rate)+'원','+'+won(amt)+'원',RED,1);
  else if(r.sigot<0) h+=row('💰 추정 수당',f1(Math.abs(r.sigot))+'h 부족','−'+won(amt)+'원',BLU,1);
  else h+=row('💰 추정 수당','기준 충족','0원','',1);
- var chip=(r.sigot>0?'+':(r.sigot<0?'−':''))+f1(Math.abs(r.sigot))+'h · '+(r.sigot>0?'+'+won(amt):'0')+'원';
- var chipCol=r.sigot>0?RED:(r.sigot<0?BLU:'');
+ var chip=(r.sigot===null)?'법정근무시간 입력 필요'
+   :((r.sigot>0?'+':(r.sigot<0?'−':''))+f1(Math.abs(r.sigot))+'h · '+(r.sigot>0?'+'+won(amt):'0')+'원');
+ var chipCol=(r.sigot===null)?AMB:(r.sigot>0?RED:(r.sigot<0?BLU:''));
  var sum='<summary class="otlx-s"><b>💰 '+r.month+'월 시간외</b>'
   +'<span class="otl-sub">'+(r.rankName||'계급 미선택')+' · '+r.team+'팀</span>'
   +'<span class="otlx-chip"'+(chipCol?' style="color:'+chipCol+'"':'')+'>'+chip+'</span></summary>';
