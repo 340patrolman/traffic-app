@@ -27,7 +27,7 @@ try{var _fs0=parseFloat(localStorage.getItem("app_font_scale"));document.documen
 <meta name="format-detection" content="telephone=no">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="x-dns-prefetch-control" content="off">
-<title>T-Book v19.8.2 (2026 정식배포판)</title>
+<title>T-Book v19.8.3 (2026 정식배포판)</title>
 <script>
 (function(){
  window.__ERRS=[];
@@ -391,7 +391,7 @@ function h(msg){try{var n=Date.now();
 window.addEventListener('error',function(e){h(e.message||'script error');});
 window.addEventListener('unhandledrejection',function(e){h((e.reason&&e.reason.message)||'promise error');});
 window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbookBooted)h('앱 로드 미완료(boot-incomplete)');},4000);});
-})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동">🚔 T-Book<span class="ver">v19.8.2</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="hdMenu()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
+})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동">🚔 T-Book<span class="ver">v19.8.3</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="hdMenu()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
 <!-- 📱 브라우저 및 홈화면 설치 안내 -->
 <div id="pwa_guide_modal">
  <div class="pwa-modal-content">
@@ -1068,7 +1068,40 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
       <textarea autocorrect="off" autocapitalize="off" spellcheck="false" id="a_damage"></textarea>
       <button class="mic-btn" onclick="toggleMicFor('a_damage',this)">🎙️</button> </div> <label>현장조치</label> <select id="a_handle"> <option>119 후송 및 현장조사</option><option>현장 임의동행 후 조사</option> <option>보험처리 안내 후 종결</option><option>긴급체포</option> </select> </div> <div class="card"> <div class="card-title">📷 사고현장 사진</div> <div class="photo-grid" id="a_photos"> <div class="photo-thumb" role="button" tabindex="0" aria-label="사고 현장 사진 추가" onclick="document.getElementById('a_photo_input').click()"><span class="plus">+</span></div> </div> <input type="file" id="a_photo_input" accept="image/*,.heic,.heif" multiple style="position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);pointer-events:auto" onchange="handlePhotos(event,'a_photos')"> <input type="file" id="a_photo_camera" accept="image/*" capture="environment" style="position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);pointer-events:auto" onchange="handlePhotos(event,'a_photos')"> <div class="btn-group"> <button class="btn btn-sec u-flex1" onclick="document.getElementById('a_photo_camera').click()">📸 카메라</button> <button class="btn btn-sec u-flex1" onclick="document.getElementById('a_photo_input').click()">🖼️ 앨범</button> </div> <div class="recipient-hint" style="margin-top:8px">⚠ 사진은 화면에만 임시 보관(새로고침 시 소실). 원본은 갤러리·KICS에 저장하세요.</div> <button class="btn btn-gold btn-full" onclick="genPhotoLog('a_photos','out_a_photolog')">📋 채증 목록 생성</button> <div id="out_a_photolog" class="output-box empty u-mt10">미생성</div> <div class="btn-group"> <button class="btn btn-sec" onclick="copyOutput('out_a_photolog')">📋 복사</button> <button class="btn btn-sec" onclick="copyKakao('out_a_photolog','채증목록')">💬 카톡</button> </div> </div> <div class="card"> <div class="card-title">📋 문서 생성</div> <button class="btn btn-primary btn-full" onclick="genAllAccident()">🔧 3종 일괄 생성</button> <h4 class="u-mt14-fs14-accent">① 사건발생보고서</h4> <div id="out_acc" class="output-box empty">미생성</div> <div class="btn-group"> <button class="btn btn-sec" onclick="copyOutput('out_acc')">📋 복사</button> <button class="btn btn-sec" onclick="copyKakao('out_acc','사건발생보고')">💬 카톡</button> </div> <h4 class="u-mt14-fs14-accent">② 카톡 1차보고</h4> <div id="out_kakao_acc" class="output-box empty">미생성</div> <div class="btn-group"><button class="btn btn-sec" onclick="copyOutput('out_kakao_acc')">📋 복사</button></div> <h4 class="u-mt14-fs14-accent">③ 언론보도 예상보고</h4> <div id="out_media" class="output-box empty">미생성</div> <div class="btn-group"><button class="btn btn-sec" onclick="copyOutput('out_media')">📋 복사</button></div> </div>
 </div>
-<div class="page" id="page-police_gen">
+<div class="page pg-narrow" id="page-police_gen">
+<style>
+/* ═══ v19.8.3 — 좁은 화면 표 줄바꿈 (.pg-narrow) ═══
+   원인: 전역 `.tbl-scroll th,.tbl-scroll td{white-space:nowrap}` +
+   `.tbl-scroll>table{width:max-content}` 때문에 360px에서 표가 1,129px까지 늘어났다.
+   body{overflow-x:hidden} 이라 문서 폭만 재면 정상으로 보여 종전 검사가 못 잡았다.
+   #page-doc_manual · #page-sop_season 에 이미 있는 해제 패턴을 그대로 따른다. */
+.pg-narrow .tbl-scroll{overflow-x:visible}
+.pg-narrow .tbl-scroll>table{width:100%!important;max-width:100%!important;min-width:0!important;table-layout:fixed}
+.pg-narrow .tbl-scroll th,.pg-narrow .tbl-scroll td{white-space:normal!important;word-break:keep-all;overflow-wrap:anywhere;font-size:12px!important;line-height:1.55;padding:6px 7px!important;border:1px solid var(--border);vertical-align:top;text-align:left}
+.pg-narrow .tbl-scroll th{background:var(--panel-2);font-weight:800;text-align:center}
+.pg-narrow .mp-t{border-collapse:collapse;margin:8px 0}
+.pg-narrow .mp-t td:first-child{width:31%;text-align:center;font-weight:700;background:var(--bg)}
+.pg-narrow .tbl-more{display:none!important}
+/* ═══ v19.8.3 — 4단 뼈대 (신고 접수 → 현장 도착 → 무엇으로 갈리나 → 어디로 넘긴다) ═══ */
+.pg-f{margin:10px 0 2px}
+.pg-s{border-left:4px solid var(--border);border-radius:0 8px 8px 0;background:var(--bg);padding:7px 0 7px 10px;margin:0 0 7px;min-width:0}
+.pg-s h6{margin:0 0 3px;font-size:12.5px;font-weight:900;letter-spacing:.2px;color:var(--text-dim)}
+.pg-s div{font-size:13.5px;line-height:1.68;word-break:keep-all;overflow-wrap:anywhere;min-width:0}
+.pg-s1{border-left-color:var(--text-dim)}
+.pg-s2{border-left-color:var(--danger)}.pg-s2 h6{color:var(--danger)}
+.pg-s3{border-left-color:var(--warn)}.pg-s3 h6{color:var(--warn)}
+.pg-s4{border-left-color:var(--accent)}.pg-s4 h6{color:var(--accent)}
+.pg-no{background:rgba(220,38,38,.07);border:1px solid var(--danger);border-radius:9px;padding:7px 9px;margin:0 0 7px;font-size:12.5px;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+.pg-case{background:var(--panel-2);border-radius:9px;padding:8px 9px;margin:0 0 4px;font-size:12.5px;line-height:1.65;word-break:keep-all;overflow-wrap:anywhere}
+.pg-case b.cs{display:inline-block;background:var(--accent);color:#fff;border-radius:5px;padding:0 5px;margin-right:4px;font-size:11px;font-weight:800}
+.pg-sum{font-weight:800;font-size:13.5px;margin:12px 0 2px;padding:8px 6px;cursor:pointer;list-style:none;background:var(--panel-2);border-radius:9px;word-break:keep-all;overflow-wrap:anywhere;min-height:0}
+.pg-sum::-webkit-details-marker{display:none}
+.pg-sum::after{content:' ▼';font-size:10px;color:var(--text-dim)}
+details[open]>.pg-sum::after{content:' ▲'}
+.pg-h{font-weight:800;font-size:13.5px;margin:14px 0 2px;word-break:keep-all;overflow-wrap:anywhere}
+#page-police_gen .card{padding:13px 12px 11px}
+.pg-narrow details>div{word-break:keep-all;overflow-wrap:anywhere;min-width:0}
+</style>
  <div class="danger-box">🚨 <b>지역경찰 일반 — 교통 외 형사·여청 업무 요약</b><br>교통과 외근이라도 <b>공동대응·최초출동</b>으로 걸리는 사안들이다. 여기는 <b>「무엇을 확인하고 누구에게 넘기느냐」</b>만 적었다. 실제 처리는 해당 기능이 한다.</div>
 
  <div class="ok-box"><b>✅ 조문 검증 완료 (2026.7.30 · 국가법령정보센터 원문)</b><br>주요 조문을 원문으로 찍었다. 이 과정에서 <b>원본 매뉴얼의 오류 1건을 잡았다</b> — 공공장소 흉기소지 근거가 「형법 §116」으로 적혀 있었으나 <b>§116은 「다중불해산」</b>이라 무관하다. <b>경범죄처벌법 §3①2호(흉기의 은닉휴대)</b>가 맞다.<br><b>확정</b> — 형법 §230(공문서 등의 부정행사, 2년 이하 징역·금고 또는 500만원 이하 벌금) · §329 절도 · §347 사기 · §347의2 컴퓨터등 사용사기(<b>2025.12.23 개정으로 20년 이하 징역 또는 5천만원 이하 벌금</b>) · §360 점유이탈물횡령(1년 이하 징역, 300만원 이하 벌금·과료) · §261 특수폭행(5년/1천만) · §284 특수협박(7년/1천만) · 경범죄처벌법 §3①2호(흉기 은닉휴대) · §3①39호(무임승차·무전취식).</div>
@@ -1076,63 +1109,370 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 
 
  <div class="card" style="border:2px solid var(--accent-gold)">
-  <div class="card-title">🚦 교통 단속에서 바로 이어지는 3가지 — 여기부터 보시라</div>
-  <div class="info-box u-fs13"><b>면허증 한 장에서 다 갈린다.</b> 단속하고 신분 확인하는 순간 나오는 것들이라, 교통 업무와 제일 많이 겹친다.</div>
+  <div class="card-title">🚦 교통 단속에서 바로 이어지는 3가지</div>
+  <div class="info-box u-fs13"><b>면허증 한 장에서 다 갈린다.</b> 차 세우고 신분 확인하는 순간 나오는 것들이라 교통 업무와 제일 많이 겹친다. <b>여기 셋만 몸에 붙여도 대부분 막힌다.</b></div>
 
-  <div class="u-fs13" style="font-weight:800;margin:12px 0 6px">① 조회했더니 수배가 뜬다 — A / B / C</div>
-  <table class="mp-t">
-   <tr><th>구분</th><th>현장에서 무엇을 하나</th></tr>
-   <tr><td><b>A수배</b><br>(지명수배)</td><td><b>체포한다.</b> 미란다 고지 → 형사팀 인계. KICS <b>기소중지사건접수</b>로 접수.<br>서류: 검거보고 · 확인서 · 신체확인서 · 체포/구속통지서</td></tr>
-   <tr><td><b>B수배</b><br>(형집행장)</td><td><b>벌금 미납이다.</b> 미란다 고지 후 형집행. 검찰청 <b>징수계 웹팩스</b>로 형집행장 수령 → <b>납부하면 그 자리에서 귀가</b>.<br>미납 시: 검거보고서 · 확인서 · 구인통지서. ⚠️ <b>형집행장 교부확인서 반드시 받는다</b></td></tr>
-   <tr><td><b>C통보</b><br>(지명통보)</td><td><b>체포하지 않는다.</b> 현장에서 폴리폰으로 끝난다.<br>지명통보사실 통지서 2부 + 지명통보자발견보고 2부</td></tr>
-   <tr><td><b>겹칠 때</b></td><td>여러 건이면 <b>경찰 지명수배 1건만</b> 작성하고 그 안에 전부 기록. <b>A+B면 A서류에 B내용 포함.</b> 현행범+B면 검거보고서만</td></tr>
-  </table>
-  <div class="warn-box u-fs13">⚠️ <b>교통단속으로 세운 차에서 A·B가 뜨면 그때부터 교통 사건이 아니다.</b> 단속은 단속대로 처리하고, 신병은 별건으로 넘긴다. <b>통고처분서만 끊고 보내면 수배자를 놓친 것이 된다.</b></div>
+  <details open><summary class="pg-sum">① 조회했더니 수배가 뜬다 — A / B / C</summary>
+  <div class="pg-f">
+   <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>신고가 아니라 <b>내가 만든 상황</b>이다. 신호위반·음주·무면허로 차를 세우고 면허증을 받아 조회를 눌렀는데 <b>화면에 수배가 뜬다.</b></div></div>
+   <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>표정을 바꾸지 않는다</b> — 화면을 본 순간 티가 나면 상대가 먼저 움직인다<br>② <b>지원부터 부른다</b> — 무전으로 위치·차량번호·인원. A수배는 혼자 붙지 않는다<br>③ <b>차 열쇠와 동승자</b> — 시동 걸린 채면 도주가 제일 쉽다. 하차 유도 후 열쇠 확보<br>④ <b>고지는 지원 도착 후</b> — 미란다 고지는 신병을 잡을 수 있는 상태에서</div></div>
+   <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>화면에 뜬 <b>수배 종류 한 글자</b>로 갈린다.
+   <table class="mp-t">
+    <tr><th>구분</th><th>현장에서 무엇을 하나</th></tr>
+    <tr><td><b>A수배</b><br>지명수배</td><td><b>체포한다.</b> 미란다 고지 → 형사팀 인계</td></tr>
+    <tr><td><b>B수배</b><br>형집행장</td><td><b>벌금 미납이다.</b> 미란다 고지 후 형집행. <b>납부하면 그 자리에서 귀가</b></td></tr>
+    <tr><td><b>C통보</b><br>지명통보</td><td><b>체포하지 않는다.</b> 현장에서 폴리폰으로 끝난다</td></tr>
+    <tr><td><b>겹칠 때</b></td><td>여러 건이면 <b>경찰 지명수배 1건만</b> 작성하고 그 안에 전부 기록. <b>A+B면 A서류에 B내용 포함</b></td></tr>
+   </table></div></div>
+   <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div><b>A</b> — 형사팀. KICS <b>기소중지사건접수</b>로 접수.<br>　서류: 검거보고 · 확인서 · 신체확인서 · 체포/구속통지서<br><b>B</b> — 검찰청 <b>징수계 웹팩스</b>로 형집행장 수령. 미납이면 검거보고서 · 확인서 · 구인통지서<br>　⚠️ <b>형집행장 교부확인서를 반드시 받는다</b><br><b>C</b> — 넘기지 않는다. 지명통보사실 통지서 2부 + 지명통보자발견보고 2부<br><b>원 단속(신호·음주·무면허)은 교통에서 그대로 처리</b>한다. 두 갈래로 나가는 것이 정상이다.</div></div>
+   <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — <b>통고처분서만 끊고 보내면 수배자를 놓친 것이 된다.</b> 교통단속으로 세운 차에서 A·B가 뜨면 그때부터 교통 사건이 아니다. <b>단속은 단속대로, 신병은 별건으로.</b></div>
+   <div class="pg-case"><b class="cs">사례 1</b> 새벽 음주단속에서 걸린 40대. 수치는 훈방 수준이었는데 조회에 <b>A수배</b>가 떴다. 통고처분서만 발부하고 보냈다면 지명수배자를 그대로 놓친 것이다. — <b>조회 화면을 끝까지 읽는다.</b> 위반 결과만 보고 창을 닫지 않는다.</div>
+   <div class="pg-case"><b class="cs">사례 2</b> 신호위반으로 세운 차에서 <b>B수배(벌금 미납)</b>. 미란다 고지 후 형집행장을 받는 동안 가족이 계좌이체로 납부해 <b>그 자리에서 귀가</b>. 이때 <b>교부확인서를 안 받으면</b> 나중에 「받은 적 없다」가 된다. — <b>서명 한 줄이 서류 전체를 지킨다.</b></div>
+   <div class="pg-case"><b class="cs">사례 3</b> <b>A와 B가 같이</b> 뜬 경우. 서류를 두 벌 만들지 않는다. <b>A서류에 B내용을 포함</b>해 한 건으로 정리한다. 현행범 + B면 <b>검거보고서만</b>.</div>
+  </div>
 
-  <div class="u-fs13" style="font-weight:800;margin:14px 0 6px">② 남의 면허증을 내민다 — 무엇에 썼는지로 갈린다</div>
-  <table class="mp-t">
-   <tr><th>제시한 것</th><th>적용</th></tr>
-   <tr><td><b>타인의 실물 면허증</b></td><td><b>공문서부정행사</b>(형법 §230) — 2년 이하 징역·금고 또는 500만원 이하 벌금 <b>[A등급]</b></td></tr>
-   <tr><td><b>면허증 사진·이미지 파일</b></td><td>공문서부정행사 <b>적용 곤란</b>(문서 자체를 행사한 것이 아니다). 다른 죄명을 찾아야 한다</td></tr>
-   <tr><td><b>공식 모바일 신분증</b></td><td>도로교통법(§92·§150 계열)으로 검토 <b>[항·호 미검증]</b></td></tr>
-   <tr><td><b>가짜 모바일 화면·조작 캡처</b></td><td><b>전자기록 위·변조</b> 검토</td></tr>
-   <tr><td><b>주민등록번호만 불러줌</b></td><td>주민등록법(번호 부정사용) 검토 <b>[호 미검증]</b></td></tr>
-   <tr><td><b>면허증 빌려주기·빌려쓰기</b></td><td>면허증 양도·대여 — 도로교통법으로 <b>주는 쪽도 처벌</b></td></tr>
-  </table>
-  <div class="warn-box u-fs13">⚠️ <b>「본인 맞습니까」로 끝내지 말 것.</b> 사진 대조 + <b>생년월일을 말로 물어보는 것</b>이 현장에서 제일 빠른 확인이다. 무면허·음주 건에서 <b>남의 면허증을 내미는 경우가 실제로 나온다.</b></div>
+  </details>
+  <details><summary class="pg-sum">② 남의 면허증을 내민다 — 무엇에 썼는지로 갈린다</summary>
+  <div class="pg-f">
+   <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「면허증 좀 봅시다」 했는데 <b>사진이 본인과 다르다.</b> 또는 지갑 대신 <b>휴대폰 화면</b>을 내민다.</div></div>
+   <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>사진 대조</b> — 얼굴이 아니라 <b>귀·턱선·눈썹</b>을 본다. 사진은 오래됐어도 골격은 안 변한다<br>② <b>생년월일을 말로 물어본다</b> — 현장에서 제일 빠른 확인이다. 카드 보고 읽으면 눈이 아래로 간다<br>③ <b>주소 뒷부분</b>을 이어서 묻는다 — 앞자리는 외워도 뒷자리는 못 외운다<br>④ 말이 막히면 <b>무면허·음주를 의심</b>한다. 남의 면허증을 내미는 이유는 대개 둘 중 하나다</div></div>
+   <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>「무엇을 내밀었는가」</b>로 죄명이 완전히 갈린다.
+   <table class="mp-t">
+    <tr><th>제시한 것</th><th>적용</th></tr>
+    <tr><td>타인의 <b>실물</b> 면허증</td><td><b>공문서부정행사</b>(형법 §230) — 2년 이하 징역·금고 또는 500만원 이하 벌금 <b>[A등급]</b></td></tr>
+    <tr><td>면허증 <b>사진·이미지 파일</b></td><td>공문서부정행사 <b>적용 곤란</b> — 문서 자체를 행사한 것이 아니다. 다른 죄명을 찾아야 한다</td></tr>
+    <tr><td><b>공식 모바일</b> 신분증</td><td>도로교통법 계열로 검토 <b>[항·호 미검증]</b></td></tr>
+    <tr><td><b>가짜 모바일 화면</b>·조작 캡처</td><td><b>전자기록 위·변조</b> 검토</td></tr>
+    <tr><td><b>주민등록번호만</b> 불러줌</td><td>주민등록법(번호 부정사용) 검토 <b>[호 미검증]</b></td></tr>
+    <tr><td>면허증 <b>양도·대여</b></td><td>도로교통법 — <b>주는 쪽도 처벌</b>된다</td></tr>
+   </table></div></div>
+   <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div><b>공문서부정행사·전자기록 위변조</b> → 형사팀 발생보고<br><b>원 단속(무면허·음주)</b> → 교통에서 그대로. <b>본인 명의로 다시 특정</b>해 서류를 고쳐 쓴다<br><b>면허증을 빌려준 사람</b>도 별도 입건 대상 — 인적사항을 받아둔다<br>👉 <b>근거 사진 필수</b> — 제시된 면허증·모바일 화면을 <b>그 자리에서 촬영</b>한다. 돌려주면 끝이다</div></div>
+   <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — <b>「본인 맞습니까」로 끝내지 말 것.</b> 그리고 <b>이미지 파일에 §230을 그대로 붙이지 말 것</b> — 실물이 아니면 공문서부정행사는 적용이 곤란하다. 여기서 죄명을 잘못 적으면 뒤에서 전부 무너진다.</div>
+   <div class="pg-case"><b class="cs">사례 1</b> 무면허 상태의 동생이 <b>형의 면허증</b>을 내밀었다. 사진이 비슷해 넘어갈 뻔했으나 <b>생년월일을 물으니 막혔다.</b> → 무면허운전 + 공문서부정행사, 빌려준 형도 대여로 검토.</div>
+   <div class="pg-case"><b class="cs">사례 2</b> 「모바일 운전면허증 있습니다」 하며 화면을 보여줬는데 <b>캡처 이미지</b>였다. 공식 앱은 <b>실시간 갱신 표시·QR</b>가 있다. <b>새로고침을 시켜보면</b> 바로 갈린다. → 조작 화면이면 전자기록 위·변조 검토.</div>
+   <div class="pg-case"><b class="cs">사례 3</b> 대리운전 기사가 <b>업체 다른 기사의 면허증</b>을 소지. 본인 면허가 정지 중이었다. — <b>정지·취소 상태는 면허증 실물로는 안 보인다.</b> 반드시 조회로 확인.</div>
+  </div>
 
-  <div class="u-fs13" style="font-weight:800;margin:14px 0 6px">③ 통고처분을 거부한다 — 즉결심판</div>
-  <div class="report-step"><h5>어떤 때 가나</h5><p>PM·자전거 음주처럼 <b>범칙금으로 끝나는 사안에서 스티커를 안 받겠다</b>고 하거나, 경범죄 통고를 거부할 때.</p></div>
-  <div class="report-step"><h5>폴리폰 순서</h5><p><b>경범단속 → 인적사항 등록 → 수배정보 확인 → 하단 「즉결심판」 → 출석장소는 「추후 통보」</b> → 발부.</p></div>
-  <div class="report-step"><h5>서류</h5><p>즉결심판 청구서 · 적발보고서 · 출석통지서 · <b>112처리표</b> · 단속경위서 · 사진. 피해자 정보는 필요할 때만.</p></div>
-  <div class="ok-box u-fs13">💡 <b>인적사항이 확실하지 않거나 통고서 수령을 거부하면 통고처분 자체가 안 된다</b>는 구조는 <b>의무보험 미가입</b>도 똑같다(자배법 §51① 단서). <b>「이름·주소가 확실한가」가 모든 통고처분의 첫 관문</b>이라고 외워두면 된다. → <b>📝 서류작성 · 🛡️ 무보험 ③카드</b> 참조.</div>
+  </details>
+  <details><summary class="pg-sum">③ 통고처분을 거부한다 — 즉결심판</summary>
+  <div class="pg-f">
+   <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「스티커 안 받겠다」 「서명 못 한다」 「법정에서 다투겠다」. PM·자전거 음주나 경범죄 통고에서 제일 많이 나온다.</div></div>
+   <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>강요하지 않는다</b> — 수령을 거부할 권리 자체는 있다. 실랑이가 길어지면 그게 민원이 된다<br>② <b>거부 의사와 경위를 그 자리에서 기록</b> — 시각·발언·태도. 가능하면 <b>영상</b><br>③ <b>인적사항을 먼저 확실히 잡는다</b> — 이게 안 되면 즉결심판도 못 간다<br>④ 「즉결심판으로 넘어가고 <b>법정에서 말씀하시면 된다</b>」고 안내한다. 이 한 마디로 대부분 정리된다</div></div>
+   <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+   <table class="mp-t">
+    <tr><th>확인</th><th>안 되면</th></tr>
+    <tr><td><b>인적사항이 확실한가</b></td><td>불확실하면 <b>통고처분 자체가 불가</b> → 신원 확보가 먼저</td></tr>
+    <tr><td><b>통고서 수령을 거부하나</b></td><td>거부면 통고 불가 → <b>즉결심판</b></td></tr>
+    <tr><td><b>범칙금 대상 위반인가</b></td><td>형사입건 대상이면 즉결이 아니라 <b>발생보고</b></td></tr>
+   </table>
+   💡 이 구조는 <b>의무보험 미가입</b>과 똑같다(자배법 §51① 단서). <b>「이름·주소가 확실한가」가 모든 통고처분의 첫 관문</b>이다.</div></div>
+   <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div><b>폴리폰 순서</b> — 경범단속 → 인적사항 등록 → 수배정보 확인 → 하단 <b>「즉결심판」</b> → 출석장소는 <b>「추후 통보」</b> → 발부<br><b>서류 6종</b> — 즉결심판 청구서 · 적발보고서 · 출석통지서 · <b>112처리표</b> · 단속경위서 · 사진<br>피해자 정보는 필요할 때만. → <b>📝 서류작성 · 🛡️ 무보험 ③카드</b> 참조</div></div>
+   <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — 서명을 받아내려고 붙잡고 있지 말 것. <b>거부는 거부대로 기록하고 즉결로 넘기는 것이 정답</b>이다. 억지 서명은 나중에 전부 다툼거리가 된다.</div>
+   <div class="pg-case"><b class="cs">사례 1</b> PM 음주 20대가 「킥보드인데 무슨 음주냐」며 스티커 거부. 실랑이 대신 <b>거부 경위를 영상으로 남기고 즉결심판</b>으로 발부. 현장이 5분 만에 정리됐다.</div>
+   <div class="pg-case"><b class="cs">사례 2</b> 무전취식 신고. 상대가 신분증이 없고 진술도 오락가락 — <b>인적사항이 확실하지 않아 통고처분 자체가 불가</b>. 신원 확인이 먼저였다.</div>
+   <div class="pg-case"><b class="cs">사례 3</b> 의무보험 미가입 차량. 운전자가 통고서 수령을 거부 → <b>자배법 §51① 단서로 통고 불가</b>. 교통과 경범이 같은 구조라는 것을 알면 현장에서 헷갈리지 않는다.</div>
+  </div>
+  </details>
  </div>
  <div class="card" style="border:2px solid var(--accent-gold)">
-  <div class="card-title">⚖️ 형사 — 절도·사기·풍속</div>
-  <details><summary style="font-weight:800;padding:6px 0">👟 신발절도</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>고의</b>로 가져갔으면 <b>절도</b>, <b>실수</b>면 반환·손해배상 문제다. 지역경찰 단계에서 판단이 어려우면 <b>발생보고</b>로 넘긴다.<br>식당의 보관·관리 책임은 <b>민사</b>로 안내.<br><span style="color:var(--text-dim)">근거(A등급): 형법 §329 절도</span></div></div></details><details><summary style="font-weight:800;padding:6px 0">💳 신용카드 부정사용</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>어디서 어떻게 썼는지로 죄명이 갈린다.</b><br>· 주워서 <b>반환 안 함</b> → 점유이탈물횡령<br>· 주운 카드를 <b>가게에서 사용</b> → 가맹점주 상대 사기 + 여신전문금융업법<br>· <b>무인점포·키오스크·POS</b> → 컴퓨터등사용사기 + 여신전문금융업법<br>· <b>ATM 현금인출</b> → 절도<br>· <b>체크·현금카드</b>면 전자금융거래법 검토<br>👉 <b>근거 사진이 필수</b>다. 결제가 안 됐으면 <b>미수</b>도 검토.<br><span style="color:var(--text-dim)">근거: 형법 §347 사기 · <b>§347의2 컴퓨터등 사용사기(2025.12.23 개정 — 20년 이하 징역 또는 5천만원 이하 벌금)</b> · §360 점유이탈물횡령(1년 이하 징역, 300만원 이하 벌금·과료) <b>[A등급]</b> / 여전법 §70①3호 · 전금법 §49②3호 <b>[항·호 미검증]</b>. 지역화폐는 전금법 검토</span></div></div></details><details><summary style="font-weight:800;padding:6px 0">🪪 신분증(주민증·면허증) 부정사용</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>세 가지를 먼저 묻는다.</b> ① 주민등록번호가 <b>본인확인</b>에 쓰였나 ② 명의자 <b>본인처럼 행세</b>했나 ③ 그 결과 <b>계약·계좌·대출·가입·송금</b>이 발생했나.<br><b>[운전면허증]</b> 타인 실물 제시 → 공문서부정행사 / <b>이미지 파일</b> 제시 → 공문서부정행사 적용 곤란 / 공식 <b>모바일 신분증</b> → 도교법 / <b>가짜 모바일 화면</b> → 전자기록 위·변조 / <b>번호만</b> 사용 → 주민등록법 / 면허증 <b>양도·대여</b> → 도교법<br><b>[주민등록증]</b> 실물·공식 모바일 → 주민등록법 §37①8호 / 이미지 파일 → 8호의2 / 조작화면 → 4호의2 / 번호만 → 10호<br>👉 <b>단순 보관·전송보다 「무엇에 썼는가」가 핵심</b>이다.<br><span style="color:var(--text-dim)">근거: <b>형법 §230(공문서 등의 부정행사) — 2년 이하 징역·금고 또는 500만원 이하 벌금 [A등급]</b> / 주민등록법 §37 · 도교법 §85·§92·§150 <b>[항·호 미검증]</b></span></div></div></details><details><summary style="font-weight:800;padding:6px 0">🍚 무전취식</summary><div class="u-p8-0"><div class="u-fs14-lh17">· 결제수단·잔고 <b>없음</b> → 사기 검토<br>· <b>소액</b>·연락처 교환 가능 → 통고처분 검토<br>· <b>도주 우려·기망 정황</b> → 사기 검토<br>👉 <b>신고이력 확인이 필수.</b> 동종 이력이 있으면 사기죄를 적극 검토한다. 변제는 민사 안내.<br><span style="color:var(--text-dim)">근거(A등급): 경범죄처벌법 <b>§3①39호(무임승차 및 무전취식)</b> — 「영업용 차 또는 배 등을 타거나 다른 사람이 파는 음식을 먹고 정당한 이유 없이 제 값을 치르지 아니한 사람」 10만원 이하 벌금·구류·과료 / 형법 §347 사기</span></div></div></details><details><summary style="font-weight:800;padding:6px 0">🚕 택시비 시비</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>순서</b> — 요금 지불 재차 권유 → <b>승객 인적사항 먼저 확보</b> → 지불의사 확인 → 사기 또는 통고처분 검토 → 기사에게는 소송 안내.<br>· <b>기사가 중도 하차 요구</b> → 사유가 있으면 <b>이용한 구간 요금은 지급</b>해야 한다<br>· <b>지금 돈이 없다</b> → 연락처 교환 후 익일 처리, 안 되면 사기 발생보고<br>· <b>요금이 많이 나왔다</b> → 우선 결제 유도 후 <b>지자체 교통과 민원</b> 안내<br>· <b>구토</b> → 손해배상은 민사<br>👉 비슷한 신고 이력이 있으면 사기 발생보고.</div></div></details><details><summary style="font-weight:800;padding:6px 0">🎰 게임장(사행성)</summary><div class="u-p8-0"><div class="u-fs14-lh17">· 바다이야기·야마토·오션파라다이스·에이스경마 등 <b>사행성 게임물</b> → 게임산업법이 아니라 <b>사행행위규제법</b> 검토. 단 <b>환전행위</b>는 게임산업법<br>· 도착 시 <b>전원이 꺼져 있고 영업 입증이 어려우면</b> → <b>진열·보관행위</b>로 검토 후 발생보고<br>· <b>점수보관증·무기명 카드 발행</b> → 게임산업법 위반 검토. <b>단순 점수보관</b>은 행정처분(지자체 통보)<br>👉 게임 종류는 <b>게임물관리위원회 홈페이지 「게임찾기」</b>에서 검색.<br>⚠️ <b>미단속 보고도 누락하지 말 것.</b></div></div></details><details><summary style="font-weight:800;padding:6px 0">🎤 노래방·단란·유흥 구분</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>정의부터 갈린다.</b> 노래방 = 연주자 없이 기계 / 단란주점 = 주류 판매 + 손님 노래 / 유흥주점 = 주류 + <b>유흥종사자</b> + 노래·춤.<br><b>접수해야 하는 것</b> — 무허가·영업정지 중 영업 / <b>일반음식점에 노래방기기</b> 설치·사용 / 7080 라이브에서 손님 연주 / 단란에서 유흥 형태 / 일반식당의 단란·유흥 영업·접대부 고용 / <b>동석작배·접객행위·알선</b> / 노래방에서 접대부 발견<br><span style="color:var(--text-dim)">근거(항·호 미검증): 식품위생법 §37④·§44①③④·§97·§98 / 음악산업법 §22·§34</span></div></div></details><details><summary style="font-weight:800;padding:6px 0">🃏 홀덤펍</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>입증 포인트 2개.</b> ① 업주가 <b>입장료·참가비·주류 주문액</b>에 따라 게임 기회를 줬는가 ② 손님이 낸 돈이 <b>경품 재원</b>이 되는가.<br>· 1만원 받고 참여권·칩·주류 제공 후 우승자에게 양주 → 도박 검토<br>· 순위에 따라 <b>시드권</b> 지급 → 칩 교환·개인간 교환 → 도박 검토(<b>칩의 환금성</b>이 쟁점)<br>· <b>칩을 맥주로 교환</b> → 재산상 가치 인정 → 도박 검토<br>👉 <b>돈 내고 참가</b>하거나 <b>결과물을 재산으로 교환</b>할 수 있으면 도박개장·도박죄 발생보고 검토. <b>증거·입증이 전부다.</b></div></div></details>
+  <div class="card-title">🔎 최초출동으로 걸리는 것 — 피싱 · 변사 · 흉기</div>
+  <div class="info-box u-fs13">공동대응이 제일 많이 걸리는 순서로 놓았다. <b>돈이 나갔으면 시간, 사람이 쓰러졌으면 생명, 흉기가 있으면 거리</b>가 먼저다.</div>
+
+  <details><summary style="font-weight:800;padding:6px 0">📞 보이스피싱 — 돈이 이미 나갔다</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「검찰이라며 전화가 왔는데 계좌로 보냈다」 「아들인 줄 알고 보냈다」 「지금 사람을 만나 돈을 건네러 간다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>돈이 나간 시각과 방법을 먼저 묻는다</b> — 이체냐 현금이냐로 다음 행동이 완전히 갈린다<br>② <b>이체면 그 자리에서 지급정지</b>. 위로·설명은 그 다음이다. <b>몇 분 차이로 남고 없어진다</b><br>③ <b>휴대폰을 뺏지 않는다</b> — 통화기록·문자·앱이 전부 증거다<br>④ 피해자가 <b>아직 통화 중</b>이면 끊게 하되, 통화내역·상대 번호를 먼저 확보</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>돈이 어떻게 나갔는가</b>로 갈린다.
+    <table class="mp-t">
+     <tr><th>방법</th><th>현장 조치</th></tr>
+     <tr><td><b>계좌이체</b></td><td><b>1394</b>(통합대응단) 경유해 은행에 <b>즉시 지급정지</b> → 피해신고확인서 발급 → 피해구제신청 안내. 환급절차는 <b>1332</b>(금감원)</td></tr>
+     <tr><td><b>직접전달</b><br>특정장소 보관</td><td><b>수거책을 만날 예정이면 현장출동·검거.</b> 지역경찰·형사팀 공조. 피해자는 <b>평소처럼</b> 행동하게 한다</td></tr>
+     <tr><td><b>상품권</b></td><td>PIN을 전송했으면 <b>발행업체에 즉시 취소 가능 여부</b> 확인</td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>형사팀(수사)</b>. 수거책 검거 예정이면 <b>지역경찰·형사팀 합동</b>.<br>피해자에게는 <b>피해신고확인서 · 피해구제신청 · 1332</b> 세 가지를 반드시 안내한다.</div></div>
+    <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — 「일단 진정하시고 자세히 말씀해 보세요」로 시간을 쓰지 말 것. <b>지급정지가 먼저다.</b> 사연은 정지 걸어두고 들어도 늦지 않다.</div>
+    <div class="pg-case"><b class="cs">사례 1</b> 70대 피해자가 「검찰 수사관」에게 3천만원 이체. 신고 접수까지 40분이 걸렸지만 <b>현장에서 바로 1394로 지급정지</b>를 걸어 절반 이상이 계좌에 남아 있었다. — <b>시간이 곧 금액이다.</b></div>
+    <div class="pg-case"><b class="cs">사례 2</b> 「금감원 직원이 집으로 현금을 받으러 온다」는 신고. 피해자를 평소대로 행동하게 하고 <b>인근에 잠복해 수거책을 검거</b>. 미리 요란하게 출동했으면 놓쳤을 건이다.</div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">📵 보이스피싱·스미싱 — 아직 돈은 안 나갔다</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「이상한 문자 링크를 눌렀다」 「인증번호를 알려줬다」 「개인정보를 불러줬다」 「전화만 받았는데 불안하다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>초기화 전에 증거부터 캡처</b>한다 — 악성파일·통화녹음·문자내역. 지워버리면 아무것도 안 남는다<br>② 악성앱이 의심되면 <b>데이터·와이파이·블루투스 차단</b>이 1순위<br>③ <b>피해 없음을 확실히 말해준다</b> — 불안이 2차 피해를 만든다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>무엇을 했나</th><th>조치</th></tr>
+     <tr><td><b>통화·문자만</b></td><td>피해 없음 설명. 번호제보는 통합대응단 홈페이지. 예방은 <b>금감원 개인정보노출자 사고예방시스템 · 엠세이퍼 · PASS 명의도용방지</b></td></tr>
+     <tr><td><b>개인정보를 알려줌</b></td><td><b>118</b> 신고 + 노출자 시스템 등록</td></tr>
+     <tr><td><b>악성앱 설치</b><br>링크 클릭</td><td>통신 차단 → 증거 캡처 → 백신(V3·알약M·싹다잡아)으로 확인·삭제·<b>휴지통 비우기</b> → 신분증 이미지·메모장·다운로드 폴더 점검 → <b>초기화 검토</b></td></tr>
+     <tr><td><b>인증번호를 알려줌</b></td><td>통신사·엠세이퍼에서 <b>명의 개통 여부</b> 확인, 콜센터에서 <b>소액결제 차단</b></td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>금전 피해가 없으면 <b>안내로 종결</b>이 원칙. 명의도용·개통이 확인되면 그때 발생보고.<br>👉 <b>「지금은 피해가 없다」는 것을 명확히 말해주는 것</b>도 조치다.</div></div>
+    <div class="pg-case"><b class="cs">사례</b> 택배 사칭 문자 링크를 누른 30대. 곧바로 초기화하려던 것을 막고 <b>악성앱 목록과 문자를 먼저 캡처</b>했다. 이후 같은 번호대의 다발 신고를 묶는 자료가 됐다.</div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🕯️ 변사자 신고</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「사람이 쓰러져 있는데 안 움직인다」 「연락이 안 돼 문을 열었더니…」 「한강변에 사람이 있다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>단정하지 않는다.</b> 사망 판단은 <b>의료전문가 우선</b> — 119 합동 출동<br>② <b>생명구호가 현장보존보다 먼저다.</b> 둘이 충돌하면 사람이 먼저<br>③ 사망이 확인되면 <b>폴리스라인·현장훼손 금지</b><br>④ 노출된 장소면 <b>백색 천</b>으로 가린다 — 유족·행인 2차 충격을 막는다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>상태</th><th>처리</th></tr>
+     <tr><td><b>아직 사망하지 않음</b></td><td>119 인계·후송. 자살기도 추정이라도 <b>상태·현장을 반드시 확인</b></td></tr>
+     <tr><td><b>사망 확인</b></td><td>정밀감식 필요 여부 판단 → 현장보존 → 참고인 인적사항·사건개요 확인 → <b>체크리스트</b> 작성·보고</td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>변사 발생보고 → <b>형사팀</b>. 감식 필요 시 과학수사 요청.<br>유족에게는 <b>절차를 한 번에 다 말하지 않는다</b> — 지금 필요한 것만.</div></div>
+    <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — 「돌아가신 것 같다」고 현장에서 단정하지 말 것. 그리고 <b>현장을 정리하지 말 것</b> — 치워둔 것이 나중에 전부 문제가 된다.</div>
+    <div class="pg-case"><b class="cs">사례</b> 한강공원 순찰 중 벤치에 엎드려 있는 사람. 취객으로 보고 지나쳤다면 놓쳤을 건이었다. <b>흔들어 반응을 확인</b>하는 3초가 전부였다.</div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🔪 공공장소 흉기소지</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「칼을 들고 다니는 사람이 있다」 「가방에서 흉기가 보였다」 「지하철역에서 쇠파이프를 들고 있다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>거리부터 확보한다.</b> 붙지 않는다. 지원 도착 전 단독 접근 금지<br>② <b>흉기와 대상자를 분리</b>하는 것이 1순위. 사람을 잡기 전에 물건을 떼어놓는다<br>③ 주변 <b>일반인을 먼저 물린다</b><br>④ <b>정신질환·자·타해 위험</b>이 의심되면 보호조치·응급입원 요건을 별도로 본다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>세 가지가 모두 맞아야</b> 경범죄가 된다.
+    <table class="mp-t">
+     <tr><th>확인</th><th>내용</th></tr>
+     <tr><td><b>장소</b></td><td>불특정·다수인이 이용·통행하는 <b>공공장소</b>인가</td></tr>
+     <tr><td><b>이유</b></td><td><b>정당한 이유 없이</b> 숨겨서 지니고 다녔는가 (직업·용도가 있으면 다르다)</td></tr>
+     <tr><td><b>상태</b></td><td>주변이 <b>불안·공포</b>를 느낄 상태였는가</td></tr>
+     <tr><td><b>더 있으면</b></td><td>위해를 가할 정황이 더해지면 <b>폭력행위처벌법·특수협박</b> 등 별도 검토</td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>구성요건이 불명확하면 <b>형사기능과 협의</b> → 주거침입·특수협박 등 병행 검토 → 명백하면 <b>팀장 보고·지휘</b> 후 체포 판단.<br>조사·초기조치를 <b>구체적으로 기록</b>한다.<br><span style="color:var(--text-dim)">근거(A등급 확정): <b>경범죄처벌법 §3①2호(흉기의 은닉휴대)</b> — 「칼·쇠몽둥이·쇠톱 등 사람의 생명 또는 신체에 중대한 위해를 끼치거나 건조물에 침입하는 데에 사용될 수 있는 연장이나 기구를 <b>정당한 이유 없이 숨겨서 지니고 다니는 사람</b>」 → 10만원 이하 벌금·구류·과료</span></div></div>
+    <div class="pg-no">⚠️ <b>원본 매뉴얼의 「형법 §116」은 오류다.</b> §116은 <b>다중불해산</b>이라 흉기와 무관하다. 서류에 §116을 적으면 그대로 무너진다. — v19.8.2에서 law.go.kr 원문으로 잡았다.</div>
+    <div class="pg-case"><b class="cs">사례</b> 시장 상인이 <b>회칼을 손에 든 채</b> 도로변으로 나온 신고. 직업상 소지라 <b>「숨겨서」</b>에 해당하지 않아 경범죄 구성이 어려웠다. — <b>은닉성이 요건이다.</b> 드러내 들고 있으면 다른 죄명을 봐야 한다.</div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">📌 수배처리 — 전산·서류 심화 (현장 4단은 맨 위 🚦카드)</summary><div class="u-p8-0"><div class="u-fs14-lh17">
+   <b>[A수배]</b> KICS → 접수 → 지역경찰사건 → 우측상단 <b>기소중지사건접수</b> → 관서·사건번호 → 검색 → 목록에서 접수.<br>서류: <b>검거보고 · 확인서 · 신체확인서 · 체포/구속통지서</b>. 여러 건이면 <b>첫 건만 작성</b>하고 그 안에 전부 기록. 타기관은 <b>원본 발송·사본 보관</b>.<br>
+   <b>[B수배]</b> 미란다 고지 후 형집행. 검찰청 <b>징수계 웹팩스</b>로 형집행장 수령. 납부하면 확인 후 귀가.<br>미납 시: 검거보고서 · 확인서 · 구인통지서(유치장이면 <b>신체확인서·입감지휘서</b>). ⚠️ <b>형집행장 교부확인서를 반드시 받는다.</b> 체포통지 원본은 <b>반송불가 도장</b> 후 체송.<br>
+   <b>[C통보]</b> 현장에서 폴리폰 처리. 지명통보사실 통지서 2부 + 지명통보자발견보고 2부. 타기관은 전부 오프라인.<br>
+   <b>[겹칠 때]</b> 여러 건 → 경찰 지명수배 1건만 / 현행범+A → 기소중지접수 후 인계종결 / 현행범+B → 검거보고서만 / <b>A+B → A서류에 B내용 포함</b>.<br>
+   <span style="color:var(--text-dim)">⚠️ KICS 화면 흐름과 서류 목록은 <b>관서·시기별로 다를 수 있다</b> — 형사팀 확인 권장.</span>
+  </div></div></details>
  </div>
 
  <div class="card" style="border:2px solid var(--accent-gold)">
-  <div class="card-title">🔎 형사 — 수배·즉결·변사·흉기·피싱</div>
-  <details><summary style="font-weight:800;padding:6px 0">📌 수배처리 — A수배 / B수배 / C통보</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>[A수배]</b> KICS → 접수 → 지역경찰사건 → 우측상단 <b>기소중지사건접수</b> → 관서·사건번호 → 검색 → 목록에서 접수.<br>서류: <b>검거보고 · 확인서 · 신체확인서 · 체포/구속통지서</b>. 여러 건이면 <b>첫 건만 작성</b>하고 그 안에 전부 기록. 타기관은 <b>원본 발송·사본 보관</b>.<br><b>[B수배]</b> 미란다 고지 후 형집행. 검찰청 <b>징수계 웹팩스</b>로 형집행장 수령. 납부하면 확인 후 귀가.<br>미납 시: 검거보고서 · 확인서 · 구인통지서(유치장이면 <b>신체확인서·입감지휘서</b>). ⚠️ <b>형집행장 교부확인서를 반드시 받는다.</b> 체포통지 원본은 <b>반송불가 도장</b> 후 체송.<br><b>[C통보]</b> <b>체포하지 않는다.</b> 현장에서 폴리폰 처리. 지명통보사실 통지서 2부 + 지명통보자발견보고 2부. 타기관은 전부 오프라인.<br><b>[겹칠 때]</b> 여러 건 → 경찰 지명수배 1건만 / 현행범+A → 기소중지접수 후 인계종결 / 현행범+B → 검거보고서만 / <b>A+B → A서류에 B내용 포함</b>.</div></div></details><details><summary style="font-weight:800;padding:6px 0">⚖️ 즉결심판</summary><div class="u-p8-0"><div class="u-fs14-lh17">폴리폰 <b>경범단속 → 인적사항 등록 → 수배정보 확인 → 하단 「즉결심판」 → 출석장소는 「추후 통보」</b> → 발부.<br>서류: 즉결심판 청구서 · 적발보고서 · 출석통지서 · <b>112처리표</b> · 단속경위서 · 사진. 피해자 정보는 필요 시.</div></div></details><details><summary style="font-weight:800;padding:6px 0">🕯️ 변사자 신고</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>단정하지 말고 상태부터 본다.</b> 119 합동 출동.<br>· <b>아직 사망하지 않았으면</b> → 119 인계·후송. 자살기도 추정이라도 상태·현장 확인<br>· <b>사망 확인</b> → 정밀감식 필요 시 <b>폴리스라인·현장훼손 금지</b>. 노출 장소면 <b>백색 천</b>으로 가림. 참고인 인적사항·사건개요 확인 후 <b>체크리스트</b> 작성·보고<br>👉 <b>사망 판단은 의료전문가 우선. 현장보존과 생명구호가 충돌하면 생명구호가 먼저다.</b></div></div></details><details><summary style="font-weight:800;padding:6px 0">🔪 공공장소 흉기소지</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>3가지를 본다.</b> ① 불특정·다수인이 이용·통행하는 <b>공공장소</b>인가 ② <b>정당한 이유 없이</b> 휴대했는가 ③ 주변이 <b>불안·공포</b>를 느낄 상태였는가.<br><b>현장</b> — 안전 확보 후 <b>흉기와 대상자 분리</b> → 구성요건이 불명확하면 <b>형사기능과 협의</b> → 주거침입·특수협박 등 병행 검토 → 명백하면 <b>팀장 보고·지휘</b> 후 체포 판단 → 조사·초기조치를 <b>구체적으로 기록</b>.<br>⚠️ 정신질환·자타해 위험이 의심되면 <b>보호조치·응급입원</b> 요건을 별도로 검토.<br><span style="color:var(--text-dim)">근거(A등급 확정): <b>경범죄처벌법 §3①2호(흉기의 은닉휴대)</b> — 「칼·쇠몽둥이·쇠톱 등 사람의 생명 또는 신체에 중대한 위해를 끼치거나 건조물에 침입하는 데에 사용될 수 있는 연장이나 기구를 <b>정당한 이유 없이 숨겨서 지니고 다니는 사람</b>」 → 10만원 이하 벌금·구류·과료. ⚠️ 원본 매뉴얼의 「형법 §116」은 <b>오류</b>(§116은 다중불해산이다). 위해를 가할 정황이 더해지면 폭력행위처벌법·특수협박 등을 별도로 검토한다.</span></div></div></details><details><summary style="font-weight:800;padding:6px 0">📞 보이스피싱 — 금전 피해가 있을 때(초동)</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>돈이 나갔으면 시간이 전부다.</b><br>· <b>계좌이체</b> → <b>1394(통합대응단)</b> 경유해 은행에 <b>즉시 지급정지</b> 요청 → 피해신고확인서 발급 → 피해구제신청 안내 → 환급절차는 <b>1332(금감원)</b><br>· <b>직접전달·특정장소 보관</b> → 수거책을 만날 예정이면 <b>지역경찰·형사팀 현장출동·검거</b><br>· <b>상품권</b> → PIN 전송했으면 <b>발행업체에 즉시 취소 가능 여부</b> 확인</div></div></details><details><summary style="font-weight:800;padding:6px 0">📵 보이스피싱·스미싱 — 금전 피해가 없을 때</summary><div class="u-p8-0"><div class="u-fs14-lh17">· <b>통화·문자만</b> → 피해 없음을 설명. 번호제보는 통합대응단 홈페이지, 예방조치는 <b>금감원 개인정보노출자 사고예방시스템 · 엠세이퍼 · PASS 명의도용방지</b><br>· <b>개인정보를 알려줌</b> → <b>118</b> 신고 + 노출자 시스템 등록<br>· <b>악성앱 설치·링크 클릭</b> → <b>데이터·와이파이·블루투스 차단</b> → 악성파일·통화녹음·문자내역 <b>캡처 보관</b> → 백신(V3·알약M·싹다잡아)으로 확인·삭제·<b>휴지통 비우기</b> → 신분증 이미지·메모장·다운로드 폴더 점검 → <b>초기화 검토</b><br>· <b>인증번호를 알려줌</b> → 통신사·엠세이퍼에서 <b>명의 개통 여부</b> 확인, 콜센터에서 <b>소액결제 차단</b><br>👉 <b>초기화 전에 증거부터 캡처</b>한다.</div></div></details>
+  <div class="card-title">👨‍👩‍👧 여성청소년 — 스토킹 · 가폭 · 아동학대 · 청소년</div>
+  <div class="info-box u-fs13">여청 사안은 <b>「지금 떼어놓느냐」</b>가 전부다. 죄명은 나중에 정리되지만 <b>분리를 놓치면 되돌릴 수 없다.</b></div>
+
+  <details><summary style="font-weight:800;padding:6px 0">🏠 가정폭력 초동조치</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「옆집에서 계속 소리가 난다」 「남편이 때린다」 「아들이 아버지를 밀쳤다」. 신고자가 <b>당사자가 아닌 경우</b>가 절반이다.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>문을 열게 하는 것이 첫 관문</b> — 현장조사 방해는 <b>과태료 대상</b>임을 고지<br>② <b>가해자·피해자를 물리적으로 분리</b>한 뒤 각각 따로 듣는다. 같은 방에서 물으면 진술이 안 나온다<br>③ <b>보이는 상처·깨진 물건을 먼저 촬영</b> — 정리되면 없어진다<br>④ <b>아이가 있는지 반드시 확인</b> — 아동학대가 같이 걸리는 경우가 많다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>⚠️ <b>처벌의사와 관계없이</b> 발생보고 사안이면 <b>즉시 발생보고</b>다(가정보호사건도 적극 검토).
+    <table class="mp-t">
+     <tr><th>단계</th><th>내용</th></tr>
+     <tr><td><b>응급조치</b></td><td>제지 → <b>가해자·피해자 분리</b> → 상담소·보호시설 인도 → 치료 필요 시 의료기관 → <b>임시조치 청구 가능성 통보</b> → 피해자보호명령·신변보호 고지</td></tr>
+     <tr><td><b>긴급임시조치</b></td><td>통합판단조사표에 따라 진행. 현장은 폴리폰으로 <b>확인서·통지서</b>, <b>결정서는 사무실 KICS</b>. <b>퇴거·격리 불응 시 현행범 체포도 검토</b>(여청·팀장 상의)</td></tr>
+     <tr><td><b>임시숙소</b></td><td>폴넷 → 케어포털 → 피해자 전담경찰관 업무지원시스템 → 임시숙소. <b>동의서는 체송</b></td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>여청계</b>. 긴급임시조치 결정서는 복귀 후 KICS.<br><span style="color:var(--text-dim)">⚠️ 긴급임시조치 서류 목록은 <b>여청계 확인 권장</b>.</span></div></div>
+    <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — 「부부싸움이니 알아서 하시라」로 돌아서지 말 것. <b>처벌의사가 없어도 발생보고 사안이면 보고한다.</b> 재신고에서 사람이 죽는다.</div>
+    <div class="pg-case"><b class="cs">사례</b> 피해자가 「신고 안 했다, 그냥 가시라」며 문을 닫으려 한 건. <b>가해자가 뒤에 서 있었다.</b> 분리 후 따로 물으니 진술이 완전히 달랐다. — <b>같은 공간에서 들은 말은 진술이 아니다.</b></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🚷 스토킹</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「헤어진 사람이 집 앞에 와 있다」 「계속 전화·문자가 온다」 「직장까지 찾아온다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>제지 · 중단 통보 · 서면경고</b> — 이 셋이 응급조치다<br>② <b>APO 시스템 확인 필수</b> — 이전 이력이 있으면 판단이 완전히 달라진다<br>③ 피해자에게 <b>상담·보호소</b> 안내<br>④ <b>가해자를 현장에서 그냥 돌려보내지 않는다</b> — 서면경고 기록을 남긴다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>조치</th><th>내용</th></tr>
+     <tr><td><b>긴급응급조치</b><br>(지역경찰)</td><td><b>100m 이내 접근금지 · 전기통신 접근금지(1개월)</b>. 폴리폰으로 통보확인서 → <b>가해자 서명</b> → 수사서류 첨부 → 통보서 교부 → 상대방 통보. <b>서명을 못 받으면 문자 발송 후 기록 첨부</b>. 복귀 후 KICS로 <b>결정서</b></td></tr>
+     <tr><td><b>잠정조치</b><br>(여청)</td><td>여청이 법원에 신청 — 서면경고 · 100m 접근금지 · <b>유치장 유치</b></td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>사건발생보고 → <b>응급조치보고서(KICS)</b> → 여청계.<br>사건접수를 안 하면 <b>오프라인 서류를 여청계로 체송</b>한다.<br>👉 <b>범죄사실에는 ① 둘 사이의 관계 ② 몇 번 찾아왔는지</b>를 최대한 특정해 적는다. 횟수가 곧 죄질이다.</div></div>
+    <div class="pg-case"><b class="cs">사례</b> 「그냥 얘기하러 왔다」는 전 연인. 단발성으로 보였으나 <b>APO 조회에서 3개월간 11회</b>가 나왔다. — <b>이 신고 하나만 보면 안 된다.</b> 조회가 판단을 바꾼다.</div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🧸 아동학대</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「윗집에서 아이 우는 소리가 계속 난다」 「아이 몸에 멍이 있다」(어린이집·병원 신고). <b>다른 사건으로 갔다가 발견</b>되는 경우도 많다.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>신고이력·시간대역</b>과 <b>범죄피해자·안전조치 대상자 여부</b>를 먼저 조회<br>② 피해아동과 행위자의 <b>안전 확인</b><br>③ <b>분리된 공간</b>에서 아이가 자유롭게 말하도록 한다 — 보호자 앞에서는 아무 말도 안 나온다<br>④ 의심되면 <b>현장조사 체크리스트</b> 작성</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>⚠️ <b>다른 형사사건으로 접수됐더라도 아동학대 정황이 보이면 함께 확인한다.</b> 이것이 가장 많이 놓치는 지점이다.
+    <table class="mp-t">
+     <tr><th>확인</th><th>내용</th></tr>
+     <tr><td><b>즉시 분리</b></td><td>재학대 위험이 있으면 응급조치. <b>망설이면 늦는다</b></td></tr>
+     <tr><td><b>상흔·진술</b></td><td>보이는 상처는 촬영. 아이 진술은 <b>유도 없이</b> 그대로</td></tr>
+     <tr><td><b>양육환경</b></td><td>방임도 학대다 — 위생·식사·등원 여부</td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div><b>서류</b> — 응급조치 서류 · <b>응급조치 결과보고서 즉시 작성·교부</b>(사유를 구체적으로 진술하도록 안내) · 긴급임시조치 서류<br><b>기록</b> — <b>112 신고출동보고</b> 작성 + 112 시스템에 조치내용·피해자 정보 입력<br>→ <b>여청계</b> 인계. 지자체 아동보호전문기관 연계.</div></div>
+    <div class="pg-case"><b class="cs">사례</b> 층간소음 신고로 올라갔다가 아이 팔에 <b>오래된 멍이 여러 개</b>인 것을 봤다. 원 신고는 소음이었지만 <b>아동학대로 전환</b>해 보고했다. — <b>무슨 신고로 갔는지는 중요하지 않다.</b></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🛏️ 미성년자 혼숙</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「딸이 모텔에 있는 것 같다」(보호자 신고) 「청소년이 성인과 들어갔다」(업소·행인 신고).</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① 청소년의 <b>생년월일·현위치·안전</b> 확인<br>② 상대 남성 <b>인적사항과 연령차</b><br>③ 보호자 <b>신고 경위</b><br>④ <b>청소년 본인의 직접 진술</b> — 거부하면 <b>그 사유를 수사서류에 기재</b></div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>대상</th><th>확인할 것</th></tr>
+     <tr><td><b>숙박업소</b></td><td>예약자·결제자·<b>실제 입실자</b> / 성인과 같이 들어갔는지 / 프런트가 봤는지 / <b>신분증 확인 여부</b> / <b>CCTV 동선</b></td></tr>
+     <tr><td><b>성인 남성</b></td><td>관계 · <b>나이 인지 여부</b> · 만난 경위 · 숙박 목적 · <b>대가·술 제공·강요·협박·폭행·촬영</b> 여부</td></tr>
+     <tr><td><b>증거</b></td><td>CCTV · 객실 시트 · 수건 등 <b>전부 보존</b></td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>여청계</b>. 대가·강요 정황이 있으면 성범죄로 전환 검토.<br>업주 책임(신분증 미확인)은 별도로 정리한다.</div></div>
+    <div class="pg-no">⚠️ <b>영장 없이 객실을 수색하지 않는다.</b> 청소년이 현장에 있다고 확인될 때 <b>안전확인·진술청취 범위</b>에서만 출입을 검토하고, <b>단순 의심만으로는 안 된다.</b> 여기서 무리하면 사건 전체가 날아간다.</div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🧒 청소년 — 연령기준·보호자통지·사례</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「학생들이 술을 마신다」 「노래방에 청소년이 있다」 「킥보드를 중학생이 탄다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>나이를 먼저 확정한다</b> — 여기서 처리 자체가 갈린다<br>② <b>보호자 또는 대체 보호자에게 연락</b>. 복리상 부적당하면 제외하되 <b>사유와 처리절차를 기록</b><br>③ 아이를 <b>여러 명 앞에서 훈계하지 않는다</b></div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>구분</th><th>연령</th></tr>
+     <tr><td><b>범죄소년</b></td><td><b>14세 이상 19세 미만</b></td></tr>
+     <tr><td><b>촉법소년</b></td><td><b>10세 이상 14세 미만</b></td></tr>
+     <tr><td><b>우범소년</b></td><td><b>10세 이상 19세 미만</b> (비협조 시 채증하여 통보)</td></tr>
+    </table>
+    <b>현장 사례</b><br>· 숙박업소 음주 → <b>음주 사실만으로 업주 처벌은 곤란</b>. 혼숙 여부를 본다<br>· 유해약물 폐기 → 청소년보호법 근거<br>· <b>노래방 22시 이후 청소년실 출입 불가</b>(보호자 동반·출입동의서 등 예외 확인)<br>· <b>PM 운전 — 14세 이상은 범칙금, 그 미만은 보호자에게 과태료</b> 검토</div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>촉법·우범은 <b>여청계</b>. 범죄소년은 사안에 따라 형사팀.<br><span style="color:var(--text-dim)">근거: 소년법·청소년보호법 <b>[항·호 미검증]</b> — 서류에 번호를 인용하기 전 원문 확인</span></div></div>
+   </div>
+  </div></details>
  </div>
 
  <div class="card" style="border:2px solid var(--accent-gold)">
-  <div class="card-title">👨‍👩‍👧 여성청소년 — 스토킹·가폭·청소년·아동학대</div>
-  <details><summary style="font-weight:800;padding:6px 0">🚷 스토킹</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>[응급조치]</b> 제지 · 중단 통보 · 서면경고 → 수사 → 긴급응급조치(지역)·잠정조치(여청) 안내 → 상담·보호소 안내.<br>서류: <b>사건발생보고 → 응급조치보고서(KICS)</b>. 사건접수 안 하면 <b>오프라인 서류를 여청계로 체송</b>.<br><b>[긴급응급조치]</b> <b>100m 이내 접근금지 · 전기통신 접근금지(1개월)</b>. 폴리폰으로 통보확인서 → <b>가해자 서명</b> → 수사서류 첨부 → 통보서 교부 → 상대방에게 통보. <b>서명 못 받으면 문자 발송 후 기록 첨부.</b> 복귀 후 KICS로 <b>결정서</b> 작성.<br><b>[잠정조치]</b> 여청이 법원에 신청 — 서면경고 · 100m 접근금지 · <b>유치장 유치</b>.<br>👉 <b>범죄사실에는 ① 둘 사이의 관계 ② 몇 번 찾아왔는지를 최대한 특정</b>해 적는다. <b>APO 시스템 확인</b> 필수.</div></div></details><details><summary style="font-weight:800;padding:6px 0">🏠 가정폭력 초동조치</summary><div class="u-p8-0"><div class="u-fs14-lh17">⚠️ <b>처벌의사와 관계없이</b> 발생보고 사안이면 <b>즉시 발생보고</b>(가정보호사건도 적극 검토).<br><b>[응급조치]</b> 제지 → <b>가해자·피해자 분리</b> → 상담소·보호시설 인도 → 치료 필요 시 의료기관 → <b>임시조치 청구 가능성 통보</b> → 피해자보호명령·신변보호 고지.<br><b>[긴급임시조치]</b> 통합판단조사표에 따라 진행. 현장에서는 폴리폰으로 <b>확인서·통지서</b>, <b>결정서는 사무실 KICS</b>. <b>퇴거·격리 불응 시 현행범 체포도 검토</b>(여청·팀장 상의).<br><b>[임시숙소]</b> 폴넷 → 케어포털 → 피해자 전담경찰관 업무지원시스템 → 임시숙소. <b>동의서는 체송.</b><br>⚠️ <b>현장조사 방해는 과태료 대상.</b></div></div></details><details><summary style="font-weight:800;padding:6px 0">🧒 청소년 — 연령기준·보호자통지·사례</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>[연령]</b> 범죄소년 <b>14~19세 미만</b> / 촉법소년 <b>10~14세 미만</b> / 우범소년 <b>10~19세 미만</b>(비협조 시 채증하여 통보).<br><b>[보호자 통지]</b> 출석요구·조사 시 보호자 또는 대체 보호자에게 연락. <b>복리상 부적당하면 제외하되 사유와 처리절차를 기록.</b><br><b>[사례]</b><br>· 숙박업소 음주 → <b>음주 사실만으로 업주 처벌은 곤란</b>. 혼숙 여부를 본다<br>· 유해약물 폐기 → 청소년보호법 근거<br>· <b>노래방 22시 이후 청소년실 출입 불가</b>(보호자 동반·출입동의서 등 예외 확인)<br>· <b>PM 운전 — 14세 이상은 범칙금, 그 미만은 보호자에게 과태료</b> 검토</div></div></details><details><summary style="font-weight:800;padding:6px 0">🛏️ 미성년자 혼숙</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>[초동]</b> 청소년 <b>생년월일·현위치·안전</b> 확인 → 상대 남성 인적사항·<b>연령차</b> → 보호자 신고 경위 → <b>청소년 직접 진술</b>(거부하면 <b>그 사유를 수사서류에 기재</b>).<br><b>[숙박업소]</b> 예약자·결제자·<b>실제 입실자</b> / 성인과 같이 들어갔는지 / 프런트가 봤는지 / <b>신분증 확인 여부</b> / <b>CCTV 동선</b>.<br><b>[성인 남성]</b> 관계 · <b>나이 인지 여부</b> · 만난 경위 · 숙박 목적 · <b>대가·술 제공·강요·협박·폭행·촬영</b> 여부.<br><b>[증거]</b> CCTV · 객실 시트 · 수건 등 <b>전부 보존</b>.<br>⚠️ <b>영장 없이 객실을 수색하지 않는다.</b> 청소년이 현장에 있다고 확인될 때 <b>안전확인·진술청취 범위</b>에서만 출입을 검토하고, <b>단순 의심만으로는 안 된다.</b></div></div></details><details><summary style="font-weight:800;padding:6px 0">🧸 아동학대</summary><div class="u-p8-0"><div class="u-fs14-lh17"><b>[현장]</b> 신고이력·시간대역 및 <b>범죄피해자·안전조치 대상자 여부</b> 확인 → 피해아동과 행위자 <b>안전 확인</b> → <b>분리된 공간</b>에서 자유롭게 진술하도록 조사 → 의심되면 <b>현장조사 체크리스트</b> 작성.<br>⚠️ <b>다른 형사사건으로 접수됐더라도 아동학대 정황이 보이면 함께 확인한다.</b><br><b>[서류]</b> 응급조치 서류 · <b>응급조치 결과보고서 즉시 작성·교부</b>(사유를 구체적으로 진술하도록 안내) · 긴급임시조치 서류.<br><b>[기록]</b> <b>112 신고출동보고</b> 작성 + 112 시스템에 조치내용·피해자 정보 입력.</div></div></details>
+  <div class="card-title">⚖️ 형사 — 절도 · 사기 · 풍속</div>
+  <div class="info-box u-fs13">교통 외근이 <b>공동대응으로</b> 걸리는 사안들이다. 여기는 <b>「무엇을 확인하고 누구에게 넘기느냐」</b>만 적었다. 실제 처리는 해당 기능이 한다.</div>
+
+  <details><summary style="font-weight:800;padding:6px 0">💳 신용카드 부정사용</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「카드를 잃어버렸는데 결제 문자가 온다」 「주운 카드를 썼다」 「통장에서 돈이 빠져나갔다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>결제 문자·앱 내역을 그 자리에서 캡처</b> — 시각·가맹점·금액<br>② <b>카드사에 정지</b> 안내<br>③ 사용처가 특정되면 <b>가맹점 CCTV 보존</b> 요청 — 하루 이틀이면 덮인다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>어디서 어떻게 썼는지로 죄명이 갈린다.</b>
+    <table class="mp-t">
+     <tr><th>사용 형태</th><th>죄명</th></tr>
+     <tr><td>주워서 <b>반환 안 함</b></td><td>점유이탈물횡령</td></tr>
+     <tr><td><b>가게에서 사용</b></td><td>가맹점주 상대 <b>사기</b> + 여신전문금융업법</td></tr>
+     <tr><td><b>무인점포·키오스크·POS</b></td><td><b>컴퓨터등사용사기</b> + 여신전문금융업법</td></tr>
+     <tr><td><b>ATM 현금인출</b></td><td><b>절도</b></td></tr>
+     <tr><td><b>체크·현금카드</b></td><td>전자금융거래법 검토</td></tr>
+    </table>
+    👉 <b>근거 사진이 필수</b>다. 결제가 안 됐으면 <b>미수</b>도 검토.<br>
+    <span style="color:var(--text-dim)">근거: 형법 §347 사기 · <b>§347의2 컴퓨터등 사용사기(2025.12.23 개정 — 20년 이하 징역 또는 5천만원 이하 벌금)</b> · §360 점유이탈물횡령(1년 이하 징역, 300만원 이하 벌금·과료) <b>[A등급]</b> / 여전법·전금법 <b>[항·호 미검증]</b>. 지역화폐는 전금법 검토</span></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>형사팀</b>. 사용처가 여러 곳이면 <b>건별로 죄명이 달라진다</b>는 점을 보고서에 명시.</div></div>
+    <div class="pg-case"><b class="cs">사례</b> 주운 카드로 <b>편의점 결제 3건 + ATM 인출 1건.</b> 앞은 사기, 뒤는 절도다. 한 죄명으로 뭉뚱그려 보고하면 뒤에서 전부 다시 짜야 한다.</div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🪪 신분증(주민증·면허증) 부정사용</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「남의 신분증으로 계약이 됐다」 「내 명의로 휴대폰이 개통됐다」. 교통에서는 <b>단속 중 면허증 제시</b>로 걸린다(맨 위 🚦카드 ②).</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div><b>세 가지를 먼저 묻는다.</b><br>① 주민등록번호가 <b>본인확인</b>에 쓰였나<br>② 명의자 <b>본인처럼 행세</b>했나<br>③ 그 결과 <b>계약·계좌·대출·가입·송금</b>이 발생했나</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>👉 <b>단순 보관·전송보다 「무엇에 썼는가」가 핵심</b>이다.
+    <table class="mp-t">
+     <tr><th>제시한 것</th><th>운전면허증 / 주민등록증</th></tr>
+     <tr><td><b>실물</b></td><td>공문서부정행사 / 주민등록법</td></tr>
+     <tr><td><b>이미지 파일</b></td><td>공문서부정행사 <b>적용 곤란</b> / 주민등록법 별도 호</td></tr>
+     <tr><td><b>공식 모바일</b></td><td>도교법 / 주민등록법</td></tr>
+     <tr><td><b>조작 화면</b></td><td>전자기록 위·변조</td></tr>
+     <tr><td><b>번호만</b></td><td>주민등록법(번호 부정사용)</td></tr>
+     <tr><td><b>양도·대여</b></td><td>도교법 — <b>주는 쪽도 처벌</b></td></tr>
+    </table>
+    <span style="color:var(--text-dim)">근거: <b>형법 §230(공문서 등의 부정행사) — 2년 이하 징역·금고 또는 500만원 이하 벌금 [A등급]</b> / 주민등록법·도교법 <b>[항·호 미검증]</b></span></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>형사팀</b>. 명의도용 피해자에게는 <b>엠세이퍼·PASS 명의도용방지</b> 안내.</div></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🍚 무전취식</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「밥 먹고 돈을 안 낸다」 「술값을 안 내고 버틴다」. 심야 식당가에서 제일 많다.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>인적사항 확보가 1순위</b> — 이게 안 되면 통고도 즉결도 못 간다<br>② <b>신고이력 확인이 필수</b> — 동종 이력이 있으면 그림이 완전히 달라진다<br>③ 술에 취해 있으면 <b>보호조치 요건</b>도 같이 본다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>상황</th><th>처리</th></tr>
+     <tr><td>결제수단·잔고 <b>없음</b></td><td><b>사기</b> 검토</td></tr>
+     <tr><td><b>소액</b>·연락처 교환 가능</td><td>통고처분 검토</td></tr>
+     <tr><td><b>도주 우려·기망 정황</b></td><td><b>사기</b> 검토</td></tr>
+     <tr><td><b>동종 신고이력</b></td><td>사기죄를 <b>적극</b> 검토</td></tr>
+    </table>
+    <span style="color:var(--text-dim)">근거(A등급): 경범죄처벌법 <b>§3①39호(무임승차 및 무전취식)</b> — 「영업용 차 또는 배 등을 타거나 다른 사람이 파는 음식을 먹고 정당한 이유 없이 제 값을 치르지 아니한 사람」 10만원 이하 벌금·구류·과료 / 형법 §347 사기</span></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>통고처분이면 폴리폰 경범단속. 거부하면 <b>즉결심판</b>(맨 위 🚦카드 ③).<br>사기로 가면 발생보고 → 형사팀. <b>변제는 민사 안내</b>.</div></div>
+    <div class="pg-case"><b class="cs">사례</b> 「지갑을 두고 왔다」는 50대. 조회하니 <b>같은 상가에서만 4번째</b>였다. 한 건만 보면 통고, 이력을 보면 사기다. — <b>조회가 죄명을 바꾼다.</b></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🚕 택시비 시비</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「손님이 요금을 안 낸다」 「기사가 중간에 내리라고 한다」 「요금이 너무 많이 나왔다」 「손님이 토했다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>차를 안전한 곳으로</b> — 도로 한복판에서 시비를 정리하지 않는다<br>② <b>승객 인적사항을 먼저 확보</b>. 요금 얘기는 그 다음<br>③ 요금 지불을 <b>재차 권유</b>한다 — 대부분 여기서 끝난다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>상황</th><th>처리</th></tr>
+     <tr><td><b>기사가 중도 하차 요구</b></td><td>사유가 있으면 <b>이용한 구간 요금은 지급</b>해야 한다</td></tr>
+     <tr><td><b>지금 돈이 없다</b></td><td>연락처 교환 후 익일 처리, 안 되면 <b>사기 발생보고</b></td></tr>
+     <tr><td><b>요금이 많이 나왔다</b></td><td>우선 결제 유도 후 <b>지자체 교통과 민원</b> 안내</td></tr>
+     <tr><td><b>구토</b></td><td>손해배상은 <b>민사</b></td></tr>
+    </table>
+    👉 비슷한 신고 이력이 있으면 <b>사기 발생보고</b>.</div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>대부분 <b>현장 종결</b>. 사기 정황이면 발생보고 → 형사팀. 요금 다툼은 <b>지자체 교통과</b>, 손해배상은 <b>민사</b>.</div></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">👟 신발절도</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「식당에 벗어둔 신발이 없어졌다」 「누가 내 신발을 신고 갔다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>남아 있는 신발</b>이 있는지 확인 — 바꿔 신은 것이면 절도가 아니다<br>② <b>CCTV 유무</b>를 업주에게 먼저 묻는다</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>고의</b>로 가져갔으면 <b>절도</b>, <b>실수</b>면 반환·손해배상 문제다.<br>지역경찰 단계에서 판단이 어려우면 <b>발생보고</b>로 넘긴다.<br>식당의 보관·관리 책임은 <b>민사</b>로 안내.<br><span style="color:var(--text-dim)">근거(A등급): 형법 §329 절도</span></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>고의가 보이면 발생보고 → 형사팀. 착오면 <b>민사 안내로 종결</b>.</div></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🎰 게임장(사행성)</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「불법 게임장이 있다」 「환전을 해준다」. 첩보성 신고가 많다.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>영업 중인 상태를 먼저 채증</b> — 전원이 꺼지면 입증이 어려워진다<br>② <b>출입구를 먼저</b> 확보<br>③ 게임 종류는 <b>게임물관리위원회 홈페이지 「게임찾기」</b>에서 검색</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+    <table class="mp-t">
+     <tr><th>상황</th><th>적용</th></tr>
+     <tr><td><b>사행성 게임물</b><br>(바다이야기·야마토·오션파라다이스·에이스경마)</td><td>게임산업법이 아니라 <b>사행행위규제법</b> 검토. 단 <b>환전행위</b>는 게임산업법</td></tr>
+     <tr><td><b>전원이 꺼져 있음</b></td><td><b>진열·보관행위</b>로 검토 후 발생보고</td></tr>
+     <tr><td><b>점수보관증·무기명 카드</b></td><td>게임산업법 위반 검토. <b>단순 점수보관</b>은 행정처분(지자체 통보)</td></tr>
+    </table></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>형사팀</b>. 행정처분 사안은 <b>지자체 통보</b>.<br>⚠️ <b>미단속 보고도 누락하지 말 것.</b> 안 잡았다는 기록이 다음 단속의 근거가 된다.</div></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🎤 노래방·단란·유흥 구분</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「일반음식점에서 노래를 부른다」 「접대부가 있다」 「영업정지 중인데 문을 열었다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div><b>정의부터 갈린다.</b><br>· <b>노래방</b> = 연주자 없이 기계<br>· <b>단란주점</b> = 주류 판매 + 손님 노래<br>· <b>유흥주점</b> = 주류 + <b>유흥종사자</b> + 노래·춤<br>👉 <b>업종 허가와 실제 영업형태가 다른 것</b>이 핵심이다.</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>접수해야 하는 것</b><br>· 무허가·영업정지 중 영업<br>· <b>일반음식점에 노래방기기</b> 설치·사용<br>· 7080 라이브에서 손님 연주<br>· 단란에서 유흥 형태<br>· 일반식당의 단란·유흥 영업·접대부 고용<br>· <b>동석작배·접객행위·알선</b><br>· 노래방에서 접대부 발견<br><span style="color:var(--text-dim)">근거(항·호 미검증): 식품위생법 · 음악산업법 — 서류에 번호를 인용하기 전 원문 확인</span></div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>형사팀(생활질서)</b>. 행정처분 병행이면 <b>지자체 위생과</b> 통보.</div></div>
+   </div>
+  </div></details>
+
+  <details><summary style="font-weight:800;padding:6px 0">🃏 홀덤펍</summary><div class="u-p8-0">
+   <div class="pg-f">
+    <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「홀덤펍에서 도박을 한다」 「칩을 술로 바꿔준다」.</div></div>
+    <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div><b>입증 포인트 2개만 본다.</b><br>① 업주가 <b>입장료·참가비·주류 주문액</b>에 따라 게임 기회를 줬는가<br>② 손님이 낸 돈이 <b>경품 재원</b>이 되는가<br>👉 <b>증거·입증이 전부다.</b> 칩·정산표·안내문을 먼저 확보.</div></div>
+    <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>칩의 환금성</b>이 쟁점이다.
+    <table class="mp-t">
+     <tr><th>형태</th><th>검토</th></tr>
+     <tr><td>1만원 받고 참여권·칩·주류 제공 후 우승자에게 양주</td><td><b>도박</b> 검토</td></tr>
+     <tr><td>순위에 따라 <b>시드권</b> 지급 → 칩 교환·개인간 교환</td><td><b>도박</b> 검토</td></tr>
+     <tr><td><b>칩을 맥주로 교환</b></td><td>재산상 가치 인정 → <b>도박</b> 검토</td></tr>
+    </table>
+    👉 <b>돈 내고 참가</b>하거나 <b>결과물을 재산으로 교환</b>할 수 있으면 도박개장·도박죄 발생보고 검토.</div></div>
+    <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>발생보고 → <b>형사팀</b>.</div></div>
+   </div>
+  </div></details>
  </div>
 
  <div class="card">
-  <div class="card-title">🧩 교통인데 T-Book에 아직 없는 것 — 다음 판 후보</div>
-  <div class="info-box u-fs13">이 매뉴얼과 대조했더니 <b>교통 업무인데 앱에 탭이 없는 항목 4개</b>가 나왔다. 우선순위대로 적어둔다.</div>
-  <table class="mp-t">
-   <tr><th>항목</th><th>왜 필요한가</th></tr>
-   <tr><td><b>PM(전동킥보드) 음주·무면허</b></td><td>음주 <b>10만</b> / 측정불응 <b>13만</b> / 무면허 <b>10만</b>(도교법 §156 · 시행령 별표8). <b>형사입건이 아니라 통고처분이 원칙</b>이다. 거부하면 즉결심판, <b>사고가 나면 그때 형사</b>로 넘어간다</td></tr>
-   <tr><td><b>자전거 음주</b></td><td>음주 <b>3만</b> / 측정불응 <b>10만</b>(도교법 §156 11·12호). <b>면허 행정처분 대상이 아니다</b> → 음주스티커·조사보고서 불요, TCS에 통고 내역만</td></tr>
-   <tr><td><b>약물운전 초동조치</b></td><td><b>형사입건 사안</b>(도교법 §45). ①행동관찰(직선보행·한발서기) <b>영상 필수</b> → ②간이시약 → ③거부 시 <b>압수수색검증영장</b>으로 채혈·채뇨. 호흡측정 중심인 음주와 절차가 다르다</td></tr>
-   <tr><td><b>보복운전</b></td><td>특수협박(형법 §284 · 7년 이하 또는 1천만원 이하) · 특수폭행(§261 · 5년 이하 또는 1천만원 이하) · 특수상해(§258의2) · 특수손괴(§369) <b>[A등급]</b>. <b>단순 시비냐 고의·위험성이냐</b>를 현장에서 갈라 교통범죄수사팀 인계</td></tr>
-  </table>
-  <div class="warn-box u-fs13">⚠️ 위 금액은 <b>외부 검증을 거쳤으나 T-Book이 시행령 별표8 원문을 직접 찍지는 않았다.</b> 탭으로 만들 때 반드시 원문 대조할 것 — v19.7 자배법 「40만원」 사건과 같은 함정이 있다.</div>
+  <div class="card-title">🛴 PM · 자전거 · 약물 · 보복은 단속처리로 옮겼다</div>
+  <div class="ok-box u-fs13">교통 업무인데 절차가 일반차와 다른 <b>4가지(PM 음주·무면허 / 자전거 음주 / 약물운전 / 보복운전)</b>는 v19.8.3에서 <b>🚓 단속처리</b> 페이지에 4단 카드로 옮겼다. 교통 단속 흐름 안에서 읽는 것이 맞다.</div>
+  <div class="btn-group" style="margin-top:8px"><button class="btn btn-gold btn-full" onclick="showGroup('sop');showSubPage('enforce')">🚓 단속처리로 이동</button></div>
  </div>
 </div>
  <div class="page" id="page-doc_manual"> <style>#page-doc_manual details li{padding:2px 0!important;background:none!important;border:none!important;border-radius:0!important;margin:0 0 4px!important;display:list-item!important;list-style-position:outside}#page-doc_manual details ol{padding-left:26px!important;margin:8px 0!important}#page-doc_manual details ul{padding-left:24px!important;margin:8px 0!important}#page-doc_manual details{overflow-wrap:break-word;word-break:keep-all}#page-doc_manual details table{max-width:100%;border-collapse:collapse}#page-doc_manual details td,#page-doc_manual details th{word-break:break-all}#page-doc_manual details img{max-width:100%}</style> <div class="card" style="border:2px solid var(--accent-gold)"> <div class="card-title">📕 업무매뉴얼 (원본 전문)</div> <div class="guide-box">원본 매뉴얼 전문을 <b>주제별 한 묶음</b>으로 정리했습니다. <b>제목을 누르면 그 주제의 모든 내용(이어지는 절차·원본 자료 포함)이 한 번에 펼쳐집니다.</b></div> <div style="font-size:11.5px;color:var(--text-dim);margin:2px 0 6px">📌 법령·범칙금 기준: <b>2026.7</b> — 개정 시 최신 조문·통합조회 우선</div><details style="background:var(--panel);border:1px solid #6b5d3f;border-radius:10px;margin:0 0 10px;padding:10px 12px"><summary style="font-weight:800;font-size:15px;cursor:pointer">□ 무면허 운전</summary><div style="margin-top:10px"><div class="mp-title">□ 무면허 운전</div>
@@ -1678,6 +2018,77 @@ A수배는 체포 관련 서류와 함께 신병 인계(신병인수증 필히 �
 </div>
 </details><details><summary>🚗 ④ 음주 교통사고</summary><div class="card" style="margin-top:10px"><div class="warn-box" style="font-size:13px">음주 + <b>인적사고</b> → 종합보험·합의 무관 <b>형사</b>.</div><div class="danger-box" style="font-size:13px"><b>특가법 §5의11 위험운전치사상</b>(정상운전 곤란): 상해 1~15년/1천~3천만, 사망 무기·3년↑. 또는 <b>교특법 §3② 음주 12대 중과실</b>(기소).</div><div class="report-step"><h5>현장</h5><p>음주측정→사고 인과 정리, 채혈(필요시), 블박·CCTV 채증, 신병 확보·구호 우선 → KICS 입건.</p></div></div></details><details><summary>🛡️ ⑤ 무보험(의무보험 미가입)</summary><div class="card" style="margin-top:10px"><div class="danger-box" style="font-size:13px"><b>의무보험 미가입 운행</b> = 자배법 <b>1년↓ 징역 또는 1천만원↓ 벌금</b>(2회·사고 시 형사) + 미가입 <b>과태료</b> 별도.</div><div class="report-step"><h5>현장</h5><p>보험가입 조회 → 미가입 운행 시 입건·과태료 통보. 무보험 사고 피해자는 정부보장사업 안내.</p></div></div></details><details><summary>📋 ⑥ 무등록 운행</summary><div class="card" style="margin-top:10px"><div class="danger-box" style="font-size:13px">미등록 차량 운행 = <b>자동차관리법 §79 · 3년↓ 징역 또는 3천만원↓ 벌금</b>.</div><div class="report-step"><h5>현장</h5><p>등록 여부·임시운행허가증 확인 → 무등록이면 운행중단·입건. 위조 번호판은 별죄.</p></div></div></details><details><summary>💸 ⑦ 자동차세·과태료 체납(번호판 영치)</summary><div class="card" style="margin-top:10px"><div class="warn-box" style="font-size:13px">체납 시 <b>지방세징수법</b>에 따라 <b>번호판 영치</b> 가능(사전안내 후 현장 영치, 체납액 납부 시 반환).</div><div class="report-step"><h5>현장</h5><p>체납·영치 대상 조회 → 영치 대상 안내. 영치는 관할 지자체 단속과 공조.</p></div></div></details>
 <div class="card" style="border:1px solid var(--danger)"><div class="card-title">🇺🇸 오피서 세이프티</div><div class="u-fs13" style="line-height:1.9"><b>단속 전 3초</b><br>① <b>자만이 위험을 부른다</b> — “맨날 하던 단속”이 가장 위험 &nbsp;② <b>차로 쪽에 등 돌리지 않기</b> — 다차로·고속 구간은 <b>조수석 쪽 접근</b> 우선 고려 &nbsp;③ <b>2인이면 역할 지정</b> — 한 명은 위반자, 한 명은 <b>차량 흐름</b>(Contact &amp; Cover)<div class="btn-group" style="margin-top:8px"><button class="btn btn-danger u-flex1" onclick="goCard('sop','sop_enforce','us_safety')">🇺🇸 오피서 세이프티 전문</button></div></div></div>
+<div class="card pg-narrow" style="border:2px solid var(--warn)"><div class="card-title">🛴 PM · 자전거 · 약물 · 보복 — 일반차와 절차가 다른 4가지</div>
+<div class="info-box u-fs13">배달 이륜차·킥보드가 관내에서 제일 많다. <b>이 넷은 음주단속 절차를 그대로 쓰면 틀린다.</b> 무엇이 다른지만 적었다.</div>
+
+<div class="pg-h">① PM(전동킥보드) 음주·무면허 — 형사가 아니라 통고다</div>
+<div class="pg-f">
+ <div class="pg-s pg-s1"><h6>📞 이런 상황이다</h6><div>킥보드가 비틀거린다 / 헬멧 없이 2인 탑승 / 술 냄새가 난다. 심야 강남대로·반포 일대에서 제일 많다.</div></div>
+ <div class="pg-s pg-s2"><h6>🚗 세우고 먼저</h6><div>① <b>차도에서 인도 쪽으로 유도</b> — 킥보드는 뒤차가 못 본다<br>② 음주감지 → <b>측정</b><br>③ <b>면허(원동기 이상) 보유 여부</b> 확인 — PM은 면허가 필요하다<br>④ <b>14세 미만이면 보호자</b>를 부른다</div></div>
+ <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>사고가 났느냐 안 났느냐</b>가 제일 큰 갈림길이다.
+ <table class="mp-t">
+  <tr><th>위반</th><th>처리</th></tr>
+  <tr><td><b>음주운전</b></td><td>범칙금 <b>10만원</b> — <b>통고처분이 원칙</b></td></tr>
+  <tr><td><b>측정불응</b></td><td>범칙금 <b>13만원</b></td></tr>
+  <tr><td><b>무면허</b></td><td>범칙금 <b>10만원</b></td></tr>
+  <tr><td><b>통고 거부</b></td><td><b>즉결심판</b>으로 넘어간다</td></tr>
+  <tr><td><b>사고 발생</b></td><td>그때부터 <b>형사</b>다. 일반 음주·무면허 절차로 전환</td></tr>
+ </table>
+ <span style="color:var(--text-dim)">근거: 도로교통법 §156 · 시행령 별표8 — 외부 교차검증 완료, 별표8 원문 대조는 다음 판 과제</span></div></div>
+ <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>폴리폰 통고 → <b>TCS</b>. <b>형사입건이 아니다.</b><br>거부하면 즉결심판(📝 서류작성 · 🚨 지역경찰 참조).</div></div>
+ <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — PM 음주를 <b>일반 음주운전 절차(형사입건·음주운전 단속결과통보)로 처리하지 말 것.</b> 사고가 없으면 통고처분이 원칙이다.</div>
+ <div class="pg-case"><b class="cs">사례</b> 심야 킥보드 음주 20대가 「형사처벌 받는 거냐」며 크게 저항. <b>「범칙금 10만원이고 사고가 없으면 형사가 아니다」</b>고 먼저 설명하니 그 자리에서 정리됐다. — <b>절차를 말해주는 것이 제압보다 빠르다.</b></div>
+</div>
+
+<div class="pg-h">② 자전거 음주 — 면허 행정처분 대상이 아니다</div>
+<div class="pg-f">
+ <div class="pg-s pg-s1"><h6>📞 이런 상황이다</h6><div>한강변·양재천 자전거도로에서 음주 상태로 주행. 야간 무등화가 같이 걸린다.</div></div>
+ <div class="pg-s pg-s2"><h6>🚗 세우고 먼저</h6><div>① 안전한 곳으로 <b>내려서 끌게</b> 한다<br>② 음주감지 → 측정<br>③ <b>면허 조회는 불필요</b> — 자전거는 면허가 없다</div></div>
+ <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div>
+ <table class="mp-t">
+  <tr><th>위반</th><th>처리</th></tr>
+  <tr><td><b>음주운전</b></td><td>범칙금 <b>3만원</b></td></tr>
+  <tr><td><b>측정불응</b></td><td>범칙금 <b>10만원</b></td></tr>
+ </table>
+ 🔴 <b>면허 행정처분 대상이 아니다.</b> → <b>음주스티커·조사보고서 불요</b>, TCS에 <b>통고 내역만</b> 입력한다.<br>
+ <span style="color:var(--text-dim)">근거: 도로교통법 §156 — 외부 교차검증 완료, 별표8 원문 대조는 다음 판 과제</span></div></div>
+ <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>폴리폰 통고 → <b>TCS 통고 내역만</b>. 끝이다.</div></div>
+ <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — 자전거 음주에 <b>음주운전 단속 서류 한 벌을 다 만들지 말 것.</b> 벌점·정지가 없으니 스티커·조사보고서가 필요 없다. 서류를 더 만드는 것이 친절이 아니다.</div>
+</div>
+
+<div class="pg-h">③ 약물운전 초동조치 — 음주와 절차가 완전히 다르다</div>
+<div class="pg-f">
+ <div class="pg-s pg-s1"><h6>📞 이런 상황이다</h6><div>음주 수치는 0인데 <b>눈이 풀리고 말이 어눌하다</b>. 동공이 이상하다. 차 안에서 약병·주사기가 보인다.</div></div>
+ <div class="pg-s pg-s2"><h6>🚗 세우고 먼저</h6><div>🔴 <b>①행동관찰부터 하고 반드시 영상으로 남긴다.</b><br>· <b>직선보행</b> · <b>한발서기</b> · 눈동자 반응 · 발음<br>· <b>영상이 없으면 이 단계는 없는 것이 된다</b><br>② 다음이 <b>간이시약</b><br>③ 동승자·차량 내부에 약물이 보이면 <b>손대지 말고 촬영</b></div></div>
+ <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>호흡측정 중심인 음주와 여기서 갈린다.</b>
+ <table class="mp-t">
+  <tr><th>단계</th><th>내용</th></tr>
+  <tr><td><b>① 행동관찰</b></td><td>직선보행·한발서기 — <b>영상 필수</b></td></tr>
+  <tr><td><b>② 간이시약</b></td><td>현장 검사</td></tr>
+  <tr><td><b>③ 거부 시</b></td><td><b>압수수색검증영장</b>으로 채혈·채뇨</td></tr>
+ </table>
+ 🔴 <b>형사입건 사안이다</b>(도로교통법 §45). 통고처분이 아니다.</div></div>
+ <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div>형사입건 → <b>교통범죄수사팀</b>. 영장이 필요하면 즉시 요청 라인을 탄다.<br>👉 <b>시간이 지날수록 검출이 어려워진다</b> — 지체하지 않는다.</div></div>
+ <div class="pg-no">⚠️ <b>이것만은 하지 마라</b> — 음주 수치가 0이라고 <b>그냥 보내지 말 것.</b> 약물은 호흡측정에 안 잡힌다. <b>행동이 이상하면 영상부터 켠다.</b></div>
+</div>
+
+<div class="pg-h">④ 보복운전 — 단순 시비냐, 고의·위험성이냐</div>
+<div class="pg-f">
+ <div class="pg-s pg-s1"><h6>📞 이런 신고다</h6><div>「앞차가 급정거로 위협했다」 「차로 밀어붙였다」 「내려서 창문을 쳤다」. 블박 영상을 들고 오는 경우가 많다.</div></div>
+ <div class="pg-s pg-s2"><h6>🚗 도착해서 먼저</h6><div>① <b>두 차를 떼어놓는다</b> — 현장에서 2차 충돌이 난다<br>② <b>블박 영상을 그 자리에서 확보</b>. 「나중에 제출하겠다」는 대개 안 온다<br>③ 상해가 있으면 <b>사진·병원 안내</b><br>④ 양쪽 진술을 <b>따로</b> 듣는다</div></div>
+ <div class="pg-s pg-s3"><h6>🔍 무엇으로 갈리나</h6><div><b>「차량을 위험한 물건으로 썼는가」</b>가 갈림길이다.
+ <table class="mp-t">
+  <tr><th>행위</th><th>죄명</th></tr>
+  <tr><td><b>협박</b>(급정거·밀어붙이기)</td><td><b>특수협박</b> — 형법 §284 · 7년 이하 징역 또는 1천만원 이하 벌금 <b>[A등급]</b></td></tr>
+  <tr><td><b>폭행</b></td><td><b>특수폭행</b> — 형법 §261 · 5년 이하 징역 또는 1천만원 이하 벌금 <b>[A등급]</b></td></tr>
+  <tr><td><b>상해</b></td><td><b>특수상해</b> — 형법 §258의2</td></tr>
+  <tr><td><b>손괴</b></td><td><b>특수손괴</b> — 형법 §369</td></tr>
+  <tr><td><b>단순 시비</b></td><td>고의·위험성이 없으면 보복운전이 아니다 — 일반 사건으로</td></tr>
+ </table></div></div>
+ <div class="pg-s pg-s4"><h6>📮 어디로 넘긴다</h6><div><b>교통범죄수사팀</b> 인계. 현장에서 <b>단순 시비냐 고의·위험성이냐</b>를 갈라 보고서에 명확히 적는다.<br>👉 여기서 갈라주지 않으면 뒤에서 다시 처음부터 한다.</div></div>
+ <div class="pg-case"><b class="cs">사례</b> 「끼어들었다고 앞에서 급정거를 3번 했다」는 신고. 블박에 <b>3회 반복</b>이 남아 있어 우발적 시비가 아닌 <b>고의</b>로 정리됐다. — <b>반복성이 고의를 증명한다.</b> 몇 번인지 반드시 적는다.</div>
+</div>
+</div>
 </div> <div class="page" id="page-civil_remedy"> <div class="card" style="border:2px solid var(--accent)"> <div class="card-title">🕐 사건 발생 시 시간 순서 — 이 순서만 따라가면 됩니다</div> <div class="report-step"><h5>⓪ 현장 — 즉시</h5><p>안전 확보·동료 지원 요청(112 공조) → 현행범 체포 요건 판단 → <b>바디캠 계속 녹화</b> → 목격자 확보. <b>내가 피해자인 사건 — 조사는 동료·타 팀에 인계</b>하고 나는 피해자 신분으로 전환합니다.</p></div> <div class="report-step"><h5>① 당일</h5><p>병원 진료 + <b>진단서(폭행 경위 기재 요청)</b> → 바디캠·CCTV <b>보존 요청</b> → 피해자 진술서 작성(<span class="xlink" onclick="showSubPage('co_legal')">⚖️ 법적대응 탭 생성기</span>) → 형사 사건번호 메모.</p></div> <div class="report-step"><h5>② 주 내</h5><p><b>공상(요양급여) 신청</b> + 공무상 병가 → 필요하면 마음동행센터 1566-2288.</p></div> <div class="report-step"><h5>③ 재판 중</h5><p>공상 승인 시 <b>특별위로금 별도 신청 — 기한 6개월</b> / 상해면 배상명령(변론종결 전) / 합의서 "민·형사상 일체 이의 않음" 문구 주의.</p></div> <div class="report-step"><h5>④ 판결 후</h5><p>판결문 확보(kics.go.kr) → 전자소송 <b>지급명령/소장</b> → 안 주면 <b>급여압류</b>.</p></div> <div class="u-fs12" style="color:var(--text-dim);margin-top:6px">단계별 상세는 아래 카드에 있습니다.</div> <button class="btn btn-sec btn-full" style="margin-top:8px" onclick="copyOutput('out_timeline')">📋 타임라인 전문 복사 (카톡·메모 공유용)</button> <div id="out_timeline" style="display:none">🕐 공무집행사건 발생 시 시간 순서
 ⓪ 현장(즉시): 안전 확보·동료 지원(112 공조) → 현행범 체포 요건 판단 → 바디캠 계속 녹화 → 목격자 확보. 내가 피해자인 사건 — 조사는 동료·타 팀 인계, 나는 피해자 신분 전환
 ① 당일: 병원 진료+진단서(폭행 경위 기재) → 바디캠·CCTV 보존 요청 → 피해자 진술서 작성 → 형사 사건번호 메모
@@ -1929,10 +2340,10 @@ function tsetSyncFont(){var v=1.2;try{v=parseFloat(localStorage.getItem('app_fon
 function tsetSyncNav(){var m='h';try{m=localStorage.getItem('nav_layout')||'h';}catch(e){}var H=document.getElementById('tsetNavH'),V=document.getElementById('tsetNavV'),D=document.getElementById('tsetNavDesc');if(!H||!V)return;if(m==='v'){V.classList.add('sel');H.classList.remove('sel');if(D)D.innerHTML='<b>세로형</b>: 상단 ☰ 버튼 하나로 정리됩니다. 좁은 폰에서 깔끔합니다.';}else{H.classList.add('sel');V.classList.remove('sel');if(D)D.innerHTML='<b>가로형</b>: 상단에 탭이 나란히 놓입니다. 화면이 넓을 때 편합니다.';}}
 try{tsetSyncFont();tsetSyncNav();}catch(e){}
 </script>
-<div class="tset-acc" id="tsetA7"><button class="tset-head" onclick="tsetAcc('tsetA7');try{stationRefresh();}catch(e){}"><span class="ico">📦</span><span class="t">관서 맞춤 배포<small>편집 내용 내보내기 · 다른 기기 가져오기</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.8">전용도로·관할·연락처 화면에서 <b>✏️ 우리 관서용 편집</b>으로 고친 내용을 파일 하나로 내보내, 동료 기기에서 가져오면 <b>관서 전체가 같은 맞춤판</b>을 씁니다.</p><p class="u-fs13">현재 이 기기의 편집 화면: <b id="stationCnt">0</b>개</p><div class="btn-group"><button class="btn btn-primary u-flex1" onclick="stationExport()">⬇️ 관서 설정 내보내기</button><button class="btn btn-sec u-flex1" onclick="document.getElementById('stationFile').click()">⬆️ 가져오기</button></div><input type="file" id="stationFile" accept=".json" style="display:none" onchange="stationImportFile(this)"><p style="font-size:11.5px;color:var(--text-dim);margin-top:6px">※ 편집 내용만 담기며 근무기록·개인 데이터는 포함되지 않습니다.</p></div></div></div><div class="tset-acc" id="tsetA8"><button class="tset-head" onclick="tsetAcc('tsetA8');try{var l=JSON.parse(localStorage.getItem('tbook_errlog')||'[]');var b=document.getElementById('errlogBox');if(b)b.innerHTML=l.length?l.map(function(x){return x.t+' · '+x.m;}).join('<br>'):'없음';}catch(e){}"><span class="ico">🛡️</span><span class="t">데이터 신뢰성·점검<small>법령 기준일 · 백업 상태 · 오류 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.9">📌 법령·범칙금 데이터 기준: <b>2026.7</b> — 매월 초 국가법령정보센터·경찰청 공지로 개정 여부 점검 권장.<br>💾 마지막 백업: <b id="lastBackupInfo">기록 없음</b> <span style="color:var(--text-dim);font-size:12px">(30일 경과 시 자동 알림)</span><br>🗄️ 저장소 보호: <b id="persistInfo">확인 중…</b> <span style="color:var(--text-dim);font-size:12px">(브라우저 임의삭제 방지 요청)</span></p><div class="warn-box" style="font-size:12px">아이폰 사파리로만(홈 화면 앱 설치 없이) 쓰면 <b>7일 미사용 시 기록이 삭제</b>될 수 있습니다. <b>앱 설치</b> + 월 1회 백업을 권장합니다.</div><details style="margin-top:6px"><summary style="font-weight:800;cursor:pointer">⚠️ 오류 기록 (최근 5건)</summary><div id="errlogBox" class="u-fs12" style="font-family:var(--mono);line-height:1.7;margin-top:6px;word-break:break-all">없음</div><button class="btn btn-sec btn-full" style="margin-top:6px" onclick="try{localStorage.removeItem('tbook_errlog');document.getElementById('errlogBox').textContent='없음';toast('오류 기록 삭제됨');}catch(e){}">🗑️ 기록 지우기</button></details></div></div></div><div class="tset-acc" id="tsetA9"><button class="tset-head" onclick="tsetAcc('tsetA9')"><span class="ico">🐾</span><span class="t">발자취 — 이 앱이 걸어온 길<small>도입기부터 v19.8.2까지 · 제작 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><div class="info-box" style="font-size:13px;line-height:1.7"><b>제작 기록</b> — 이 앱은 서초경찰서 교통과 <b>제작자가 현장 30년 경험을 담아 직접 기획·작성·검수·배포</b>해 온 도구입니다. 서버·DB·외부 전송 없이 단일 HTML 파일로, 도입기부터 지금까지 수십 차례 판올림을 거치며 현장 의견을 반영해 다듬어 왔습니다.</div><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🗓️ v18 시대 — 근무표를 화면에 맞추다 (2026.7)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[v18.5]</b> 관서 공식 근무지정표 기준으로 교대주기 시딩. 6월 −17h · 7월 0h · 연가 반영 −16.5h 전수 대조 일치.<br><b>[v18.6]</b> 시간외 정산표를 한 줄 요약 + 펼침 표로 압축. "너무 길고 산만하다"는 지적에서 출발.<br><b>[v18.7]</b> 달력 → 연월·팀 지정 → 정산표 순으로 재배치. 엑셀식 격자.<br><b>[v18.8]</b> 달력이 안 커지던 진짜 원인을 찾음 — v18.2의 압축 CSS가 <b>!important</b>로 셀 높이를 못 박고 있었다.<br><b>[v18.9]</b> <b>_fitShiftCal()</b> 신설. 셀 높이를 계산이 아니라 <b>실측 수렴</b>으로 화면에 자동으로 맞춤. 7해상도 × 12개월 = 84조합 실측, 글자 넘침 0건.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚦 v19.8.2 — 지역경찰 일반 조문 검증 + 교통 연결 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">「지역경찰 일반」 탭의 주요 조문을 <b>국가법령정보센터 원문</b>으로 찍었고, 그 과정에서 <b>원본 매뉴얼의 오류 1건</b>을 잡았다 — 공공장소 흉기소지 근거가 「형법 §116」으로 적혀 있었으나 <b>§116은 다중불해산</b>이라 무관하고 <b>경범죄처벌법 §3①2호(흉기의 은닉휴대)</b>가 맞다. 컴퓨터등 사용사기(§347의2)가 <b>2025.12.23 개정으로 20년 이하 징역·5천만원 이하 벌금</b>으로 오른 것도 반영했다.<br>탭 맨 위에 <b>「🚦 교통 단속에서 바로 이어지는 3가지」</b> 카드를 새로 넣었다 — <b>①수배 A/B/C ②남의 면허증 제시 ③통고 거부 시 즉결심판</b>. 전부 <b>면허증 한 장</b>에서 갈리는 것들이라 교통 업무와 제일 많이 겹친다. 「이름·주소가 확실한가」가 모든 통고처분의 첫 관문이라는 점에서 <b>무보험 탭 ③카드와 같은 구조</b>임을 교차 링크로 연결했다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🔧 v19.8.1 — 하단 메뉴바 복구 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">v19.8에서 <b>하단 메뉴바(홈·서류·매뉴얼·찾기·전체)가 통째로 사라진</b> 것을 잡았다. 원인은 새 페이지를 넣으면서 <b>닫는 &lt;div&gt; 하나가 빠져</b> 뒤쪽 전체가 사고처리 페이지 안에 갇힌 것. 같은 검사에서 <b>v19.6부터 「무보험」 페이지가 「통행금지」 페이지 안에 중첩</b>돼 있던 것도 발견해 함께 바로잡았다. 없는 아이콘 이름(badge)도 교체했다. <b>이제 54개 페이지 전부가 body 직속이다.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚨 v19.8 — 「지역경찰 일반」 탭 신설 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">📝 서류작성 <b>맨 오른쪽</b>에 <b>「🚨 지역경찰」</b> 탭을 넣었다(v19.8.2에서 「지역경찰 일반」으로 이름 확정). 다른 경찰 매뉴얼의 31개 항목 중 <b>교통을 뺀 19개</b>(형사 14 · 여청 5)를 넣었다 — 신용카드 부정사용, 신분증 부정사용, 수배 A/B/C, 변사자, 흉기소지, 보이스피싱 초동, 스토킹, 가정폭력, 아동학대 등. 공동대응·최초출동으로 걸리는 것들이다. <b>조문은 원문 대조를 안 했으므로 「미검증」 표기를 달았다.</b> 같은 대조에서 <b>교통인데 앱에 없는 4개</b>(PM 음주·무면허, 자전거 음주, 약물운전, 보복운전)도 찾아 다음 판 후보로 적어뒀다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">⚖️ v19.7 — 자배법 조문 원문 검증 반영 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">국가법령정보센터 <b>원문</b>과 대조해 무보험 카드를 바로잡았다. 가장 큰 것은 <b>범칙금</b> — 「40만원」은 <b>비사업용 승용차</b> 한 칸이고 사업용 승합은 <b>200만원</b>, 이륜차는 <b>10만원</b>이다(시행령 별표6). 「2회 이상이면 형사」도 틀렸다. 정확히는 <b>1년 이내 재범</b>이라야 상습이다(시행령 §38①). <b>성명·주소 불확실</b>이나 <b>통고서 수령 거부</b>면 통고처분 자체가 안 되고 바로 송치된다(법 §51① 단서). 과태료 상한(60만원)과 이의제기 절차도 넣었다. 내부 지침이 운행금지 근거를 「도로교통법」으로 적어둔 것은 <b>표기 오류 — 자배법 §8</b>이 맞다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛡️ v19.6 — 의무보험 미가입 단속 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">📝 서류작성에 <b>「🛡️ 무보험」 탭</b>을 새로 넣었다. 현장 채증 5종 체크리스트, <b>차량운행사실진술서 문안 생성기</b>, 처분 갈림길표(1회 통고처분 40만원 / 2회 이상·사고 형사), 그리고 <b>교통민원실로 오는 민원 5개</b>의 답변까지 한 화면에 모았다.<br>핵심은 하나다 — <b>「가입했어요」와 「보험이 붙었어요」는 다르다.</b> 자동차보험은 원칙적으로 보험기간 첫날 24시부터 효력이라, 가입 문자만 보고 보내면 그 차는 여전히 무보험이다. <b>증권의 「개시 일시」를 눈으로 확인하고 보내는 것</b>이 최선책이고, 개시 전이면 차를 세워두게 하는 것이 차선책이다. 「조심해서 가세요」는 답이 아니다.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🧮 v19.5 — 시간외 산식 실측 교체 (2026.7.29)</summary><div class="u-p8-0"><p class="u-fs13">인사포털 <b>월별초과근무내역서의 「법정근무시간」</b>을 직접 입력받는 방식으로 바꿨다. 이 값은 연가·공휴일에 따라 매월 달라지므로 앱이 평일수로 추정하던 기존 방식은 구조적으로 맞을 수 없었다.<br><br><b>기본근무</b> = 주간 평일 11.5h · 주간 휴일 3.5h · 야간 13.5h · 교육(휴무일) 평일 8h · 연가/휴/비 0h<br><b>시간외</b> = ⌊총근무 − 법정근무시간⌋ &nbsp;|&nbsp; <b>기준초과</b> = ⌊기본근무 − 법정⌋ + 휴일주간일수×8h<br><br>2025.08~2026.07 <b>실측 8개월</b>로 검증했다. 교육 시간이 음수로 차감되던 버그(−9h)도 함께 잡았고, 2025년 공휴일 17건을 넣었으며, 초기 로딩 시 레이아웃이 한 번 흔들리던 것도 없앴다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">⚖️ v19.4 — 법령 재검증 (2026.7.28)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.9">8월 발표를 앞두고 <b>도로교통법 시행령 별표8·별표10</b>을 국가법령정보센터 원문으로 재검증했다. 현행 시행령은 <b>[시행 2026.6.9.] 대통령령 제36388호</b>이나, <b>별표8은 2025.6.2. 개정분·별표10은 2022.7.11. 개정분이 그대로</b>다 — 세 판본(2025.12.2 / 2026.3.19 / 2026.6.9)을 글자 단위로 대조해 <b>차이 0</b>을 확인했다. 앱의 범칙금액은 손댈 것이 없었다.<br>확인 과정에서 <b>이륜차 불법 주·정차에 과태료 부과기준이 없다</b>는 것을 별표6·별표7 원문으로 확인해 📋 서류매뉴얼 탭 이륜차 카드에 넣었다. 경찰청이 이 공백을 메우는 개정안을 입법예고(2026.6.19~7.29) 중이나 <b>아직 시행 전</b>이라 그렇게 표시했다. 법령DB 기준일이 2026.4로 남아 있던 것도 재확인 범위를 명시해 정리했다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🔎 v19.3 — 찾는 앱으로 (2026.7.27)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.9">내용을 더 넣지 않고, <b>있는 내용을 찾을 수 있게</b> 만든 판.<br>• <b>전문 검색</b> — 그전까지 검색은 화면 이름과 카드 제목만 찾았다. 이제 본문 29만 자를 찾는다. 「150m」·「109」·「제헌절」·「체포영장」처럼 본문에만 있던 말이 검색된다. 누르면 그 카드까지 펼쳐서 데려가고 찾은 문장을 잠깐 강조한다.<br>• <b>오프라인 동작</b> — 등록만 하고 없던 <code>sw.js</code>를 만들었다. 음영지역·지하에서도 앱이 열린다. 캐시는 이 기기 안에만 있고 외부로 나가지 않는다.<br>• <b>홈 「현장심리」 타일 버그</b> — 현장대응멘트로 넘어가던 것을 현장심리로 바로잡았다.<br>• <b>현장대응멘트</b> — 「⭐ 자주 쓰는 Top 8」을 접이식으로. 펼치면 8천 픽셀이던 것이 접으면 86px, 전체 상황이 바로 눈에 들어온다.<br>• <b>서류매뉴얼</b> — 문서 스캔 7장을 지연로딩으로. 앱을 켤 때 헛되게 펼치던 비트맵 37.8MB가 빠졌다.<br>• <b>읽어주기</b> — 이름이 없어 못 읽던 버튼 5개(✕·사진 추가)에 이름을 달았다.<br><span style="color:var(--text-dim)">계산식은 v18.5 이후 그대로다. 이 판에서도 한 줄도 바뀌지 않았다.</span></p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🏠 v19.0 — 내용에서 사용성으로 (2026.7.27)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">내용을 채우는 단계를 지나, <b>손이 닿는 자리</b>를 다듬기 시작한 판.<br>• <b>상단바 한 줄</b> — 두 줄(141px) → 한 줄(57px). 달력 셀이 14% 커졌고, 360px 소형 기기에서 넘치던 문제도 함께 풀렸다.<br>• <b>홈 대시보드</b> — 앱을 켜면 오늘 근무와 시간외가 먼저 보인다. 자주 쓰는 6개를 한 화면에.<br>• <b>하단 탭바 5개</b> — 진입점을 엄지가 닿는 아래로 내렸다.<br>• <b>클래식 유지</b> — 지금까지의 화면을 지우지 않았다. 설정에서 언제든 되돌아간다.<br>• <b>서류매뉴얼 표 잘림 수정</b> — 외국인 위반 단속 표 3개가 화면 밖(619px)으로 잘려 오른쪽을 볼 수 없던 것을 바로잡음.<br><span style="color:var(--text-dim)">계산 로직은 v18.5 이후 한 줄도 바뀌지 않았습니다. 47페이지 오류 0건 확인.</span></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">📜 전체 발전 연혁 (도입기 → v10.4)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[도입기]</b> 법령·서식·연락처를 모은 단일 화면 보조 앱으로 출발. 음성 입력 기반 사건보고·서류 자동완성.<br><b>[v8.5]</b> 현장 길잡이 마법사 신설 — 단순 양식 모음에서 <b>상황 대응형 도구</b>로 전환된 분기점.<br><b>[v8.6]</b> 모바일 가독성(한글 가로쓰기)·이미지 3단계 확대.<br><b>[v9.1]</b> 바로가기 자동 갱신·원격 회수 구조 확립, 개인 휴대폰 번호 전량 제거.<br><b>[v9.2]</b> 설정·서식 영구 저장, 고장차량 표지 법령 현행화(시행규칙 §40).<br><b>[v9.3]</b> 현장형 디자인 개편(터치 타깃 확대·아이폰 줌 방지).<br><b>[v9.4]</b> 진입 인증 + 비기너/베테랑 모드, 하루시작 루틴·계절대비 SOP, 베테랑 전수 노트.<br><b>[v9.5]</b> 업무매뉴얼 <b>AES-256-GCM 실제 암호화</b>, 유휴 자동 잠금, 강경 대응 멘트.<br><b>[v9.6~9.7]</b> 데이터 분리/재통합 실험, 시간 제한 설정.<br><b>[v9.8~9.9]</b> 🗓️ 교대 근무표·시간외수당 간이 계산·법정공휴일·날짜별 기록, 홈 화면 재구성.<br><b>[v10]</b> 정식 배포판 — 설정 정리·버전 통일·제작주체(서초경찰서 교통과) 명시.<br><b>[v10.3]</b> PWA 앱 설치 정상화·오프라인, 매뉴얼 텍스트화로 용량 6.5MB→2.3MB(−65%), 완전 초기화.<br><b>[v10.4]</b> 안전 근무 시뮬레이션(운전중/하차 상황카드)+상황별 대처 사례집.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">📦 v17 시대 (2026.7 — 정식배포 라인)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[v17.3]</b> 2026 정식배포판 기반 정리.<br><b>[v17.4]</b> ⚙️ 설정 새판 — 충돌 요소 전부 제거한 안정 구조.<br><b>[v17.5]</b> 🧹 설정 단순화(시간제한·관서정보·백업 정리), 🙏 감사의 말 수록.<br><b>[v17.6]</b> 🔧 설정 안 열림(네비게이션) 수정 시도, 💰 시간외수당 계산기 강화(지각·조퇴 차감, 기준시간 자동 산출), 🗓️ 날짜 기록 확장(교육·동원·자원근무 등 2열 배지), 🚨 현장도우미 개명, 근무시작 기본화면, 💾 백업 강화(교대표·기록·수당 포함), 🔓 매뉴얼 세션 유지.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🔧 v17.6→v17.8 연속 정비 (2026.7.19~20)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">제작자 점검으로 발견한 문제를 당일 연속 정비. (기획·지시·검수: 제작자 / 작업 보조: AI Claude)<br>• <b>설정·피드백 화면 미표시 버그 해결</b> — 태그 구조 오류로 두 화면이 숨겨진 부모에 갇혀 있던 것을 정정(읽어주기만 되고 화면이 안 보이던 원인).<br>• <b>서류매뉴얼 3개 파트 신설</b> — 🛴 개인형 이동장치(PM·전동킥보드), 🏍️ 이륜차 단속 통합, ⚖️ 즉결심판 절차(법령 검증 포함).<br>• <b>서류매뉴얼 탐색성 개선</b> — 목록 두께 축소(한 화면 4~5→8~10개), 범칙금 표 화면폭 맞춤(잘림 해소), 중복 제목·안내문 제거로 항목 즉시 시작.<br>• <b>공간 효율화</b> — 전 화면 여백 압축, 설정 중복 제목·미리보기 예문 정리.<br>• <b>현장심리·교통근무 카드 접기</b> — 제목만 훑고 눌러 펼치는 방식으로 개편(현장심리 세로 길이 74% 축소), 전체 펼치기 버튼.<br>• <b>☰ 메뉴 버튼 강조·동작 개선</b> — 테두리 글로우로 중요 버튼 표시, 누르면 화면 맨 위 메뉴로 자동 이동.<br>• <b>v17.7 판올림(같은 날 저녁)</b> — 🇺🇸 미국 경찰학 전체 모음 허브(①~⑦+보강3), NHTSA 카드 음주단속 상단 재배치·교차링크, 개인정보 안내 접힘, 검색→접힌 카드 자동 펼침, 다크모드 박스 정합(30여 곳), 하위탭 압축, 중복 제목 정리, 법령 기준일(2026.7) 표기.<br>• <b>v17.8 — 탭 구조 개편(교통관리/사고처리 분리)</b> — 🚥 교통시설(신호운영 리터러시·우회전 집행배너·무인단속 한계·개선요청 양식) 신설, 💥 각종사고 유형 총람 신설, 전부펼치기 버튼 소형화. 설치기준 근거를 시행규칙 별표8의2 원문으로 확정.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚀 v18.0 (2026.7.20 — 법령 확정·구조 완성)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>PM·자전거 음주 범칙금 원문 확정</b> — 시행령 별표8(2025.6.2. 개정) 64의2 음주(PM 10만·자전거 3만)/64의3 측정불응(13만·10만)/64의4 측정방해 — 국가법령정보센터 원문 대조.<br>• <b>우회전 집중단속 발부 기준 정위치</b> — 교통시설에 있던 단속 배너를 🚔 단속 탭으로 이동, 신호위반(6만·15점)/일시정지(6만·10점)/스쿨존 가중(12만원 별표10 원문 확인·벌점 2배) 구분 발부 기준 명기.<br>• <b>신호운영 심화</b> — 주기·현시·옵셋·TOD 카드를 실전 예시로 확장(옵셋 계산·현시별 사고조사 활용·TOD vs 고장 판별 3기준), LPI 3~7초 실증치 반영(창원: 접근속도 13.7%↓).<br>• <b>전역 디자인 정돈</b> — 네이비 유지, 카드 라운드·그림자·보더·버튼 통일(라이트/다크 검증). 레이아웃 불변.<br>• <b>연혁 총정리·v18.0 판올림</b> — 도입기부터의 제작 기록을 이 카드에 집대성.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.1 (2026.7.23 — 사용성 개선)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>연습모드 배지 제거</b> — 입력 제한 전면 해제에 따라 좌하단 연습/실무 전환 배지·주민번호 자동 마스킹 종료.<br>• <b>서브탭 버튼화</b> — 하위 탭이 글자가 아니라 <b>누르는 버튼임을 한눈에</b> 알 수 있게 알약형 배경·테두리 적용(선택 시 네이비 채움).<br>• <b>“아래 내용 더 있음 ▼” 힌트</b> — 서류매뉴얼처럼 화면 아래로 내용이 이어지는 페이지에서 하단 중앙에 안내 표시(누르면 한 화면 아래로, 스크롤하면 자동 사라짐).<br>• <b>음성진술·블박분석(베타) 재배치</b> — 서류작성 탭을 실서류 중심으로 정리하고 두 베타 기능을 🚨 보고서 그룹 서브탭으로 이동(베타 배지 표시).<br>• <b>🌧️ 풍수해 대비 교통안전관리 요령 수록</b> — 서울청 2026 하절기 지침 전문을 계절대비 탭에 구조화(통제 기준 수위표·침수 순서·예경보제·현장 사진 포함).<br>• <b>교대근무표 좌우 스와이프</b> — 달력을 밀어 전달/다음달 이동 복구.<br>• <b>표시시간 조정</b> — 중점추진 배너 4.5→약 1.6초, “아래 내용 더 있음” 힌트 1초 표시 후 자동 소멸.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.2 (2026.7.26 — 서류작성·판례 개편)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>서류작성 탭 재배열</b> — 서류매뉴얼·작성순서를 맨 앞으로(참조 자료 우선), 이후 음주단속·무면허·통행금지·사고처리.<br>• <b>작성순서 3종 체계</b> — 🍺 음주단속서류(11단계) 외에 🚫 무면허(8단계)·🚗 음주사고(9단계) 체크리스트 신설, 상단 버튼으로 전환.<br>• <b>교대근무표 월 전환 애니메이션</b> — 슬라이드·페이드로 달 바뀜이 눈에 보이게.<br>• <b>판례 전면 해설화</b> — 25건 전부에 "💡 쉽게 풀면" 상세 해설 부착, 접이식 카드로 전환(검색 시 자동 펼침).<br>• <b>✍️ 남기는 글 개고</b> — 제작자 헌사 문장 다듬기.<br>• <b>현장 사진 정위치</b> — 라바콘·불꽃신호기 사선 차단 사진(반포IC)을 2차사고 철칙 ① 라바콘 정체유발로 이동.<br></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.3 (2026.7.26 — 사고처리·근무표 정비)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>사고처리 허브 카드 접기</b> — 허브 화면의 박스를 제목만 보이는 접이식으로 전환, 필요한 항목만 펼쳐 보도록(전부펼치기 지원).<br>• <b>🪝 견인고리·견인줄 활용 사례(서초경찰서) 신설</b> — 전 순찰차 상시 비치 장비로 승용차는 물론 대형버스·평지 덤프트럭까지 견인 가능. 바퀴가 구르지 않아도 수십 미터 이동이 되므로 <b>차로에 방치하지 말고 즉시 안전지대로</b>가 원칙. 옮길 수 있는데도 그대로 세워 둔 경우는 사실상 예외 없이 <b>도로교통법 §66(고장 등의 조치)</b> 위반으로 단속.<br>• <b>교대근무표 한 화면 압축</b> — 상단 “○월 시간외 추정” 라인을 하단 요약에 병합해 중복 제거, 연월·팀·앵커(오늘 근무)·타팀근무 컨트롤을 달력 아래로 이동, 주간·야간·휴무·비번 범례 삭제, 셀·헤더 높이 축소 — 스마트폰에서 달력 전체가 스크롤 없이 한 화면에.<br>• <b>버전 정리</b> — 배포본 기준 v18.2(서류작성·판례) / v18.3(사고처리·근무표)로 이력 분리 기록.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.4 (2026.7.26 — 시간외 정산 통합)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>시간외 정산표 하나로 통합</b> — 달력 아래에 따로 있던 “○월 시간외” 요약과 “📊 내역” 줄을 <b>한 장의 정산표</b>로 합쳐 중복 제거. 위에서 아래로 <b>주간·야간(일수 × 1회 시간) → 근무 외 가산(직장훈련·교육·물리력·사격·동원·자원·러시·추가근무) → 연가·조퇴·지각 차감 → 총 근무시간 → − 복무규정 기준시간(평일수 × 8h) → = 기준초과 → − 휴일주간근무 → = 시간외 인정시간 → 💰 추정 수당</b> 순서로 계산 과정을 그대로 보여줍니다.<br>• <b>기준 명시</b> — 표 머리에 <b>계급·시간당 단가·소속 팀</b>을 항상 표시(계급을 바꾸면 즉시 반영, 단가 직접입력 시 “직접입력” 표기).<br>• <b>포함·차감·미포함 범위 명문화</b> — 무엇이 더해지고 무엇이 빠지는지 표 아래 고정 안내. 특히 <b>휴일근무수당(공무원수당 등에 관한 규정 §17)·야간근무수당(§16, 22:00~06:00)·정액급식비·특정업무경비는 이 계산에 포함되지 않고 별도 지급</b>임을 명시. 단가는 <b>시간외근무수당(§15)</b> 기준 추정치이며 확정액은 급여명세서 확인.<br>• <b>근무형태 설정 카드 통합</b> — 성격이 같은 “⏱️ 근무형태·근무시간 설정”과 “💰 시간외수당 계산” 두 카드를 <b>하나의 카드</b>로 합치고 <b>① 근무형태·근무시간 / ② 계급·수당 계산 조건</b> 두 구역으로 나눔. 근무시간 줄은 근무명 아래에 1회 근무시간(11.5h 등)을 붙여 폭 잘림 해소.<br>• <b>연동</b> — 정산표를 누르면 통합 설정 카드가 바로 열리고, 계급·시간·차감값을 고치면 달력 아래 정산표가 즉시 다시 계산됩니다.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.9 (2026.7.26 — 달력 화면 자동 맞춤)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>달력이 기기 화면에 자동으로 꽉 차게</b> — 셀 높이를 고정값으로 두지 않고, <b>쓰는 기기의 화면 높이에서 달력이 차지할 수 있는 공간을 계산해 자동으로 정합니다.</b> 5주인 달과 6주인 달, 작은 폰과 큰 폰 모두 <b>달력 + 연월·팀 지정 + 시간외 한 줄이 한 화면에</b> 들어갑니다.<br>• <b>글자도 함께 자동 조절</b> — 칸이 커지면 날짜·근무 배지 글자도 같이 커지고, 작은 화면에서는 줄어들어 잘리지 않습니다.<br>• <b>가로·세로 회전 대응</b> — 화면을 돌리거나 크기가 바뀌면 즉시 다시 맞춥니다.<br>• <b>정산표를 펼쳐도 달력 크기는 그대로</b> — 접힌 상태를 기준으로 잡아 화면이 출렁이지 않습니다.<br>• <b>계산식·수치는 일절 변경 없음.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.8 (2026.7.26 — 달력 확대)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>달력 칸·글자 확대</b> — 셀 높이 62→100px, 날짜 14→19px, 근무 배지 12.5→16.5px, 요일 머리 12.5→16px, 공휴일명·표식(연·교·동 등)·타팀 표시도 함께 키움. v18.2에서 넣었던 <b>“한 화면 압축” 강제 규칙을 해제</b>하고, <b>세로로 길어지는 대신 한 칸 한 칸이 확실히 보이도록</b> 되돌렸습니다.<br>• <b>순서는 v18.7 그대로</b> — 달력 → 연월·팀 지정 → 시간외 정산표.<br>• <b>계산식·수치는 일절 변경 없음.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.7 (2026.7.26 — 근무표 화면 순서 재배치)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>화면 순서 변경</b> — 위에서 아래로 <b>① 달력(한 화면) → ② 연월·팀·오늘근무 지정 → ③ 시간외 정산표</b> 순서로 재배치. 달력이 먼저, 설정이 그 다음, 계산이 맨 아래.<br>• <b>정산표 시트형 격자</b> — 엑셀·구글시트처럼 모든 칸에 격자선을 넣고, <b>글자가 줄바꿈되지 않도록</b> 전 칸 한 줄 고정(넘치는 설명은 말줄임 처리).<br>• <b>계산식·수치는 일절 변경 없음.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.6 (2026.7.26 — 시간외 정산표 압축)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>정산표 한 줄 요약 + 펼침</b> — 달력 아래 시간외 정산표를 평소 <b>“💰 ○월 시간외 −14.5h · 0원”</b> 한 줄로 접어 달력이 화면에 최대한 보이게 하고, 누르면 <b>엑셀식 3열 표(항목 · 계산 · 값)</b>로 전체 계산 과정이 펼쳐집니다.<br>• <b>각주 접기</b> — 포함·차감·미포함·주의 안내는 표 아래 “기준 보기”로 접어 필요할 때만 표시.<br>• <b>수정 진입 방식 변경</b> — 표를 눌러 설정으로 이동하던 방식 대신, 펼친 표 하단의 <b>✏️ 계급·근무시간·차감 수정</b> 버튼으로 이동.<br>• <b>계산식·수치는 일절 변경 없음</b> — v18.5에서 검증 완료된 산식 그대로, 표현만 바꿨습니다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.5 (2026.7.26 — 근무지정표 기준 정합)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>관서 공식 근무지정표 대조 검증</b> — 「교통안전팀 6월중 근무지정표(2026.6.1.~6.30.)」와 앱 계산을 전수 대조. <b>1팀 기준 −17시간이 정확히 재현</b>됨을 확인(주간 7일·야간 7일 = 175h, 평일 21일 × 8h = 기준 168h, 기준초과 7h, 휴일주간 3일 × 8h = 24h 차감 → 시간외 −17h). 3팀(+16h)도 지정표와 일치.<br>• <b>계산식은 변경 없음</b> — 점검 결과 시간외 산식 자체에는 오류가 없었습니다. 어긋난 원인은 <b>기준일(오늘 근무형태) 설정</b>과 <b>1회 근무시간 저장값</b>이었습니다.<br>• <b>기준일 자동 시딩</b> — 근무 위상의 출발점을 공식 지정표에 맞춰 <b>1팀 2026-06-01 = 휴무</b>로 고정(4조2교대 한정, 최초 1회). 이 값 하나로 모든 달·모든 팀의 주야휴비가 지정표와 같은 위상으로 맞춰집니다. 이후 설정에서 언제든 변경 가능.<br>• <b>1회 근무시간 공식값 복원</b> — 지정표 하단 근무시간 변경 기준에 맞춰 <b>주간 06:30~18:00(11.5h) · 야간 17:30~익일 07:00(13.5h)</b>로 되돌림(이전 저장값 9h/15h는 지정표와 불일치해 시간외가 어긋나던 원인).<br>• <b>팀 위상은 정상 확인</b> — 1→2→3→4팀이 하루씩 밀리는 구조(지정표 6/1 기준 1팀 휴·2팀 비·3팀 주·4팀 야)가 앱에 이미 올바르게 반영되어 있음을 확인. 별도 수정 없음.<br>• <b>바뀌는 내용을 반드시 알림</b> — 위 자동 조정이 일어나면 근무표 화면 정산표 위에 <b>“무엇이 무엇으로 바뀌었는지”</b>(예: 주간 09:00~18:00(9h) → 06:30~18:00(11.5h), 오늘 근무 주간 → 야간) 비교 알림이 뜨고, <b>↩️ 이전 설정으로 되돌리기</b> 버튼으로 한 번에 원복할 수 있습니다.<br>• <b>설정이 무엇을 바꾸는지 명시</b> — ① 근무형태·근무시간 칸 아래에 “이 칸을 고치면 즉시 바뀌는 것”(달력 주·야 표시 / 정산표 일수×시간 / 총근무·기준초과·시간외 / 추정 수당 / 교육·훈련 가산 판단)과 <b>현재 근무 위상 기준(기준일·오늘 근무)</b>을 항상 표시. 시간 저장 시 토스트도 “주간 11.5h · 야간 13.5h 적용 — 달력·시간외 정산 즉시 재계산”으로 구체화.<br>• <b>아무것도 입력하지 않아도 자동</b> — 설치 직후 상태에서 팀만 1팀이면 6월로 넘기는 즉시 <b>−17h</b>가 그대로 계산됩니다(오늘 7/26 = 야간 기준 역산).<br>• <b>참고</b> — 지정표의 2팀·4팀 합계란(야간시간·기준초과)은 같은 표의 일자별 칸과 산술이 맞지 않습니다(자원근무·선거일 조정분으로 추정). 자원근무·동원 등 <b>추가 근무는 날짜를 눌러 기록</b>하면 정산표에 자동 반영됩니다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🏆 종합 성과 — 숫자와 체계로 보는 T-Book</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>규모</b> — 페이지 50개 · 그룹 탭 11개 · 단일 HTML 파일(약 2.3MB) · 서버·DB·외부 전송 0 · 도입기부터 수십 차례 판올림.<br><b>보안 체계</b> — SHA-256 진입 인증(5회 오답 잠금) · 업무매뉴얼 AES-256-GCM 실암호화 · 만료 자동 소거 · 개인정보 수집 0.<br><b>콘텐츠 자산</b> — 서류매뉴얼(음주·무면허·PM·이륜차·즉결심판) · 미국 경찰학 시리즈 10편+허브 · 현장심리·악성민원·베테랑 전수 노트 · 민생 구제 5단계(이의신청 §94·행정심판·마일리지) · 신호운영 리터러시 · 각종사고 8유형 총람 · 고속도로 구간별 현장참조.<br><b>검증 원칙</b> — 판례 원문 대조·오인용 정정(2013도6285·2001도1929 등) · 법령은 별표 원문 확정(별표8·별표10·별표8의2) · 미확정치 확언 금지·기준일 배지(2026.7).<br><b>도구 체계</b> — 음성 사건보고·서류 자동완성 · 교대 근무표 달력+시간외수당 계산기 · 카드 접기+검색 정확 착지 · 우리 관서용 편집·관서 배포(내보내기/가져오기) · 백업 30일 리마인더·오류 안전망 · 신임 3단계 투어.<br><b>제작</b> — 현장 30년 경험의 제작자가 기획·지시·검수·배포 전 과정 수행(작업 보조: AI Claude). 현장 의견을 당일 반영하는 속도가 이 앱의 정체성.</p></div></details><p class="u-fs13" style="color:var(--text-dim);margin-top:8px">※ 보안·개인정보 원칙은 전 버전 일관 유지 — 수집·전송·저장 0, 기기 내 처리, 1차 초안→검토→KICS 정식 입력.</p></div></div></div><div class="card" style="border:1.5px solid var(--accent-gold);background:var(--panel)"><div class="card-title" style="border-bottom:2px solid var(--accent-gold);padding-bottom:8px">✍️ 남기는 글</div><p style="font-size:13.5px;line-height:1.85;margin:0">2026년 7월 1일.<br>서초경찰서 교통과 외근1팀 경감 <b>이동렬</b>.<br><br>서로 오려 하지 않는 부서에서, 수시로 동원되어 가족과의 시간을 미뤄 가면서도 이 앱을 한 장 한 장 만들었습니다. 낮의 단속과 밤의 사고 현장에서 몸으로 배운 것들, 서류 하나 때문에 헤매던 날들, 후배에게 미처 다 전하지 못한 요령을 여기에 담았습니다.<br><br>바라는 것은 하나입니다. <b>뒤에 오는 동료가 같은 시행착오를 되풀이하지 않고, 덜 헤매고, 더 안전하게 퇴근하는 것.</b><br><br><span style="color:var(--accent-gold);font-weight:800">사람은 자리를 떠나도, 지식은 자리에 남습니다.</span></p></div></div><div class="page" id="page-feedback"> <div class="card"> <div class="card-title">📮 앱 피드백 · 요구사항</div> <div class="guide-box">이 앱의 <b>수정·보완·추가 요구사항</b>을 적어 두는 칸입니다. 입력 내용은 <b>이 기기에만 저장</b>됩니다(서버 전송 없음). 모아서 전달하려면 <b>📋 전체 복사</b>로 카톡·메일에 붙여넣으세요.</div> <label>구분</label> <select id="fb_cat"><option>수정</option><option>보완</option><option>추가</option><option>버그</option><option>기타</option></select> <label>내용 🎙️</label> <div class="mic-wrap"> <textarea id="fb_text" rows="3" placeholder="예: 음주 화면에 측정기 사진 칸 추가 / 글씨 더 크게" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea> <button class="mic-btn" onclick="toggleMicFor('fb_text',this)">🎙️</button> </div> <label>작성자(선택)</label><input id="fb_author" placeholder="이름·계급"> <button class="btn btn-primary btn-full" onclick="addFeedback()">💾 저장</button> <div class="btn-group"> <button class="btn btn-sec u-flex1" onclick="copyAllFeedback()">📋 전체 복사</button> <button class="btn btn-danger u-flex1" onclick="clearAllFeedback()">🗑️ 전체 삭제</button> </div> </div> <div class="card"> <div class="card-title">📋 저장된 피드백 (<span id="fb_count">0</span>건)</div> <div id="fb_list"><p style="color:var(--text-dim);font-size:13px">저장된 피드백 없음</p></div> </div> </div>
-<div class="footer-note">🚔 T-Book v19.8.2 (2026 정식배포판) · 2026.7 · 로컬처리 · 외부송신 없음<br>현장 의견을 반영해 세부 기능을 하나하나 보완하며 지속 업데이트하고 있습니다.</div>
+<div class="tset-acc" id="tsetA7"><button class="tset-head" onclick="tsetAcc('tsetA7');try{stationRefresh();}catch(e){}"><span class="ico">📦</span><span class="t">관서 맞춤 배포<small>편집 내용 내보내기 · 다른 기기 가져오기</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.8">전용도로·관할·연락처 화면에서 <b>✏️ 우리 관서용 편집</b>으로 고친 내용을 파일 하나로 내보내, 동료 기기에서 가져오면 <b>관서 전체가 같은 맞춤판</b>을 씁니다.</p><p class="u-fs13">현재 이 기기의 편집 화면: <b id="stationCnt">0</b>개</p><div class="btn-group"><button class="btn btn-primary u-flex1" onclick="stationExport()">⬇️ 관서 설정 내보내기</button><button class="btn btn-sec u-flex1" onclick="document.getElementById('stationFile').click()">⬆️ 가져오기</button></div><input type="file" id="stationFile" accept=".json" style="display:none" onchange="stationImportFile(this)"><p style="font-size:11.5px;color:var(--text-dim);margin-top:6px">※ 편집 내용만 담기며 근무기록·개인 데이터는 포함되지 않습니다.</p></div></div></div><div class="tset-acc" id="tsetA8"><button class="tset-head" onclick="tsetAcc('tsetA8');try{var l=JSON.parse(localStorage.getItem('tbook_errlog')||'[]');var b=document.getElementById('errlogBox');if(b)b.innerHTML=l.length?l.map(function(x){return x.t+' · '+x.m;}).join('<br>'):'없음';}catch(e){}"><span class="ico">🛡️</span><span class="t">데이터 신뢰성·점검<small>법령 기준일 · 백업 상태 · 오류 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.9">📌 법령·범칙금 데이터 기준: <b>2026.7</b> — 매월 초 국가법령정보센터·경찰청 공지로 개정 여부 점검 권장.<br>💾 마지막 백업: <b id="lastBackupInfo">기록 없음</b> <span style="color:var(--text-dim);font-size:12px">(30일 경과 시 자동 알림)</span><br>🗄️ 저장소 보호: <b id="persistInfo">확인 중…</b> <span style="color:var(--text-dim);font-size:12px">(브라우저 임의삭제 방지 요청)</span></p><div class="warn-box" style="font-size:12px">아이폰 사파리로만(홈 화면 앱 설치 없이) 쓰면 <b>7일 미사용 시 기록이 삭제</b>될 수 있습니다. <b>앱 설치</b> + 월 1회 백업을 권장합니다.</div><details style="margin-top:6px"><summary style="font-weight:800;cursor:pointer">⚠️ 오류 기록 (최근 5건)</summary><div id="errlogBox" class="u-fs12" style="font-family:var(--mono);line-height:1.7;margin-top:6px;word-break:break-all">없음</div><button class="btn btn-sec btn-full" style="margin-top:6px" onclick="try{localStorage.removeItem('tbook_errlog');document.getElementById('errlogBox').textContent='없음';toast('오류 기록 삭제됨');}catch(e){}">🗑️ 기록 지우기</button></details></div></div></div><div class="tset-acc" id="tsetA9"><button class="tset-head" onclick="tsetAcc('tsetA9')"><span class="ico">🐾</span><span class="t">발자취 — 이 앱이 걸어온 길<small>도입기부터 v19.8.3까지 · 제작 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><div class="info-box" style="font-size:13px;line-height:1.7"><b>제작 기록</b> — 이 앱은 서초경찰서 교통과 <b>제작자가 현장 30년 경험을 담아 직접 기획·작성·검수·배포</b>해 온 도구입니다. 서버·DB·외부 전송 없이 단일 HTML 파일로, 도입기부터 지금까지 수십 차례 판올림을 거치며 현장 의견을 반영해 다듬어 왔습니다.</div><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🗓️ v18 시대 — 근무표를 화면에 맞추다 (2026.7)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[v18.5]</b> 관서 공식 근무지정표 기준으로 교대주기 시딩. 6월 −17h · 7월 0h · 연가 반영 −16.5h 전수 대조 일치.<br><b>[v18.6]</b> 시간외 정산표를 한 줄 요약 + 펼침 표로 압축. "너무 길고 산만하다"는 지적에서 출발.<br><b>[v18.7]</b> 달력 → 연월·팀 지정 → 정산표 순으로 재배치. 엑셀식 격자.<br><b>[v18.8]</b> 달력이 안 커지던 진짜 원인을 찾음 — v18.2의 압축 CSS가 <b>!important</b>로 셀 높이를 못 박고 있었다.<br><b>[v18.9]</b> <b>_fitShiftCal()</b> 신설. 셀 높이를 계산이 아니라 <b>실측 수렴</b>으로 화면에 자동으로 맞춤. 7해상도 × 12개월 = 84조합 실측, 글자 넘침 0건.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">📱 v19.8.3 — 지역경찰 4단 재작성 + 폰 폭 수정 (2026.7.31)</summary><div class="u-p8-0"><p class="u-fs13">「지역경찰」 탭이 <b>360px 화면에서 표가 1,129px까지 늘어나</b> 옆으로 잘려 나가고 있었다. 원인은 전 앱 공통의 <b>표 가로스크롤 규칙(td 줄바꿈 금지)</b>이 이 탭에만 해제돼 있지 않았던 것 — 서류매뉴얼·계절대비 탭에 이미 있던 해제 패턴을 그대로 적용해 <b>실측 넘침을 0으로</b> 만들었다. 앞선 검사가 이걸 못 잡은 이유는 <b>body에 overflow-x:hidden</b>이 걸려 있어 문서 폭만 재면 정상으로 보였기 때문이다.<br>내용도 전부 다시 썼다. 19개 항목을 <b>「📞 이런 신고다 → 🚗 도착해서 먼저 → 🔍 무엇으로 갈리나 → 📮 어디로 넘긴다」 4단</b>으로 통일하고, 급할 때 눈이 가도록 <b>「⚠️ 이것만은 하지 마라」</b>와 <b>현장 사례</b>를 붙였다. 순서도 교통 외근이 실제로 걸리는 순서(수배 → 신분증 → 즉결 → 피싱 → 변사·흉기 → 여청 → 나머지 형사)로 바꿨다.<br>교통인데 절차가 다른 <b>PM·자전거·약물·보복 4가지</b>는 <b>🚓 단속처리</b> 페이지로 옮겨 같은 4단으로 넣었다 — 탭을 늘리면 360px에서 서브탭이 한 줄 더 생기기 때문이다.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚦 v19.8.2 — 지역경찰 일반 조문 검증 + 교통 연결 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">「지역경찰 일반」 탭의 주요 조문을 <b>국가법령정보센터 원문</b>으로 찍었고, 그 과정에서 <b>원본 매뉴얼의 오류 1건</b>을 잡았다 — 공공장소 흉기소지 근거가 「형법 §116」으로 적혀 있었으나 <b>§116은 다중불해산</b>이라 무관하고 <b>경범죄처벌법 §3①2호(흉기의 은닉휴대)</b>가 맞다. 컴퓨터등 사용사기(§347의2)가 <b>2025.12.23 개정으로 20년 이하 징역·5천만원 이하 벌금</b>으로 오른 것도 반영했다.<br>탭 맨 위에 <b>「🚦 교통 단속에서 바로 이어지는 3가지」</b> 카드를 새로 넣었다 — <b>①수배 A/B/C ②남의 면허증 제시 ③통고 거부 시 즉결심판</b>. 전부 <b>면허증 한 장</b>에서 갈리는 것들이라 교통 업무와 제일 많이 겹친다. 「이름·주소가 확실한가」가 모든 통고처분의 첫 관문이라는 점에서 <b>무보험 탭 ③카드와 같은 구조</b>임을 교차 링크로 연결했다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🔧 v19.8.1 — 하단 메뉴바 복구 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">v19.8에서 <b>하단 메뉴바(홈·서류·매뉴얼·찾기·전체)가 통째로 사라진</b> 것을 잡았다. 원인은 새 페이지를 넣으면서 <b>닫는 &lt;div&gt; 하나가 빠져</b> 뒤쪽 전체가 사고처리 페이지 안에 갇힌 것. 같은 검사에서 <b>v19.6부터 「무보험」 페이지가 「통행금지」 페이지 안에 중첩</b>돼 있던 것도 발견해 함께 바로잡았다. 없는 아이콘 이름(badge)도 교체했다. <b>이제 54개 페이지 전부가 body 직속이다.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚨 v19.8 — 「지역경찰 일반」 탭 신설 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">📝 서류작성 <b>맨 오른쪽</b>에 <b>「🚨 지역경찰」</b> 탭을 넣었다(v19.8.2에서 「지역경찰 일반」으로 이름 확정). 다른 경찰 매뉴얼의 31개 항목 중 <b>교통을 뺀 19개</b>(형사 14 · 여청 5)를 넣었다 — 신용카드 부정사용, 신분증 부정사용, 수배 A/B/C, 변사자, 흉기소지, 보이스피싱 초동, 스토킹, 가정폭력, 아동학대 등. 공동대응·최초출동으로 걸리는 것들이다. <b>조문은 원문 대조를 안 했으므로 「미검증」 표기를 달았다.</b> 같은 대조에서 <b>교통인데 앱에 없는 4개</b>(PM 음주·무면허, 자전거 음주, 약물운전, 보복운전)도 찾아 다음 판 후보로 적어뒀다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">⚖️ v19.7 — 자배법 조문 원문 검증 반영 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">국가법령정보센터 <b>원문</b>과 대조해 무보험 카드를 바로잡았다. 가장 큰 것은 <b>범칙금</b> — 「40만원」은 <b>비사업용 승용차</b> 한 칸이고 사업용 승합은 <b>200만원</b>, 이륜차는 <b>10만원</b>이다(시행령 별표6). 「2회 이상이면 형사」도 틀렸다. 정확히는 <b>1년 이내 재범</b>이라야 상습이다(시행령 §38①). <b>성명·주소 불확실</b>이나 <b>통고서 수령 거부</b>면 통고처분 자체가 안 되고 바로 송치된다(법 §51① 단서). 과태료 상한(60만원)과 이의제기 절차도 넣었다. 내부 지침이 운행금지 근거를 「도로교통법」으로 적어둔 것은 <b>표기 오류 — 자배법 §8</b>이 맞다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛡️ v19.6 — 의무보험 미가입 단속 (2026.7.30)</summary><div class="u-p8-0"><p class="u-fs13">📝 서류작성에 <b>「🛡️ 무보험」 탭</b>을 새로 넣었다. 현장 채증 5종 체크리스트, <b>차량운행사실진술서 문안 생성기</b>, 처분 갈림길표(1회 통고처분 40만원 / 2회 이상·사고 형사), 그리고 <b>교통민원실로 오는 민원 5개</b>의 답변까지 한 화면에 모았다.<br>핵심은 하나다 — <b>「가입했어요」와 「보험이 붙었어요」는 다르다.</b> 자동차보험은 원칙적으로 보험기간 첫날 24시부터 효력이라, 가입 문자만 보고 보내면 그 차는 여전히 무보험이다. <b>증권의 「개시 일시」를 눈으로 확인하고 보내는 것</b>이 최선책이고, 개시 전이면 차를 세워두게 하는 것이 차선책이다. 「조심해서 가세요」는 답이 아니다.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🧮 v19.5 — 시간외 산식 실측 교체 (2026.7.29)</summary><div class="u-p8-0"><p class="u-fs13">인사포털 <b>월별초과근무내역서의 「법정근무시간」</b>을 직접 입력받는 방식으로 바꿨다. 이 값은 연가·공휴일에 따라 매월 달라지므로 앱이 평일수로 추정하던 기존 방식은 구조적으로 맞을 수 없었다.<br><br><b>기본근무</b> = 주간 평일 11.5h · 주간 휴일 3.5h · 야간 13.5h · 교육(휴무일) 평일 8h · 연가/휴/비 0h<br><b>시간외</b> = ⌊총근무 − 법정근무시간⌋ &nbsp;|&nbsp; <b>기준초과</b> = ⌊기본근무 − 법정⌋ + 휴일주간일수×8h<br><br>2025.08~2026.07 <b>실측 8개월</b>로 검증했다. 교육 시간이 음수로 차감되던 버그(−9h)도 함께 잡았고, 2025년 공휴일 17건을 넣었으며, 초기 로딩 시 레이아웃이 한 번 흔들리던 것도 없앴다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">⚖️ v19.4 — 법령 재검증 (2026.7.28)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.9">8월 발표를 앞두고 <b>도로교통법 시행령 별표8·별표10</b>을 국가법령정보센터 원문으로 재검증했다. 현행 시행령은 <b>[시행 2026.6.9.] 대통령령 제36388호</b>이나, <b>별표8은 2025.6.2. 개정분·별표10은 2022.7.11. 개정분이 그대로</b>다 — 세 판본(2025.12.2 / 2026.3.19 / 2026.6.9)을 글자 단위로 대조해 <b>차이 0</b>을 확인했다. 앱의 범칙금액은 손댈 것이 없었다.<br>확인 과정에서 <b>이륜차 불법 주·정차에 과태료 부과기준이 없다</b>는 것을 별표6·별표7 원문으로 확인해 📋 서류매뉴얼 탭 이륜차 카드에 넣었다. 경찰청이 이 공백을 메우는 개정안을 입법예고(2026.6.19~7.29) 중이나 <b>아직 시행 전</b>이라 그렇게 표시했다. 법령DB 기준일이 2026.4로 남아 있던 것도 재확인 범위를 명시해 정리했다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🔎 v19.3 — 찾는 앱으로 (2026.7.27)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.9">내용을 더 넣지 않고, <b>있는 내용을 찾을 수 있게</b> 만든 판.<br>• <b>전문 검색</b> — 그전까지 검색은 화면 이름과 카드 제목만 찾았다. 이제 본문 29만 자를 찾는다. 「150m」·「109」·「제헌절」·「체포영장」처럼 본문에만 있던 말이 검색된다. 누르면 그 카드까지 펼쳐서 데려가고 찾은 문장을 잠깐 강조한다.<br>• <b>오프라인 동작</b> — 등록만 하고 없던 <code>sw.js</code>를 만들었다. 음영지역·지하에서도 앱이 열린다. 캐시는 이 기기 안에만 있고 외부로 나가지 않는다.<br>• <b>홈 「현장심리」 타일 버그</b> — 현장대응멘트로 넘어가던 것을 현장심리로 바로잡았다.<br>• <b>현장대응멘트</b> — 「⭐ 자주 쓰는 Top 8」을 접이식으로. 펼치면 8천 픽셀이던 것이 접으면 86px, 전체 상황이 바로 눈에 들어온다.<br>• <b>서류매뉴얼</b> — 문서 스캔 7장을 지연로딩으로. 앱을 켤 때 헛되게 펼치던 비트맵 37.8MB가 빠졌다.<br>• <b>읽어주기</b> — 이름이 없어 못 읽던 버튼 5개(✕·사진 추가)에 이름을 달았다.<br><span style="color:var(--text-dim)">계산식은 v18.5 이후 그대로다. 이 판에서도 한 줄도 바뀌지 않았다.</span></p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🏠 v19.0 — 내용에서 사용성으로 (2026.7.27)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">내용을 채우는 단계를 지나, <b>손이 닿는 자리</b>를 다듬기 시작한 판.<br>• <b>상단바 한 줄</b> — 두 줄(141px) → 한 줄(57px). 달력 셀이 14% 커졌고, 360px 소형 기기에서 넘치던 문제도 함께 풀렸다.<br>• <b>홈 대시보드</b> — 앱을 켜면 오늘 근무와 시간외가 먼저 보인다. 자주 쓰는 6개를 한 화면에.<br>• <b>하단 탭바 5개</b> — 진입점을 엄지가 닿는 아래로 내렸다.<br>• <b>클래식 유지</b> — 지금까지의 화면을 지우지 않았다. 설정에서 언제든 되돌아간다.<br>• <b>서류매뉴얼 표 잘림 수정</b> — 외국인 위반 단속 표 3개가 화면 밖(619px)으로 잘려 오른쪽을 볼 수 없던 것을 바로잡음.<br><span style="color:var(--text-dim)">계산 로직은 v18.5 이후 한 줄도 바뀌지 않았습니다. 47페이지 오류 0건 확인.</span></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">📜 전체 발전 연혁 (도입기 → v10.4)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[도입기]</b> 법령·서식·연락처를 모은 단일 화면 보조 앱으로 출발. 음성 입력 기반 사건보고·서류 자동완성.<br><b>[v8.5]</b> 현장 길잡이 마법사 신설 — 단순 양식 모음에서 <b>상황 대응형 도구</b>로 전환된 분기점.<br><b>[v8.6]</b> 모바일 가독성(한글 가로쓰기)·이미지 3단계 확대.<br><b>[v9.1]</b> 바로가기 자동 갱신·원격 회수 구조 확립, 개인 휴대폰 번호 전량 제거.<br><b>[v9.2]</b> 설정·서식 영구 저장, 고장차량 표지 법령 현행화(시행규칙 §40).<br><b>[v9.3]</b> 현장형 디자인 개편(터치 타깃 확대·아이폰 줌 방지).<br><b>[v9.4]</b> 진입 인증 + 비기너/베테랑 모드, 하루시작 루틴·계절대비 SOP, 베테랑 전수 노트.<br><b>[v9.5]</b> 업무매뉴얼 <b>AES-256-GCM 실제 암호화</b>, 유휴 자동 잠금, 강경 대응 멘트.<br><b>[v9.6~9.7]</b> 데이터 분리/재통합 실험, 시간 제한 설정.<br><b>[v9.8~9.9]</b> 🗓️ 교대 근무표·시간외수당 간이 계산·법정공휴일·날짜별 기록, 홈 화면 재구성.<br><b>[v10]</b> 정식 배포판 — 설정 정리·버전 통일·제작주체(서초경찰서 교통과) 명시.<br><b>[v10.3]</b> PWA 앱 설치 정상화·오프라인, 매뉴얼 텍스트화로 용량 6.5MB→2.3MB(−65%), 완전 초기화.<br><b>[v10.4]</b> 안전 근무 시뮬레이션(운전중/하차 상황카드)+상황별 대처 사례집.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">📦 v17 시대 (2026.7 — 정식배포 라인)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[v17.3]</b> 2026 정식배포판 기반 정리.<br><b>[v17.4]</b> ⚙️ 설정 새판 — 충돌 요소 전부 제거한 안정 구조.<br><b>[v17.5]</b> 🧹 설정 단순화(시간제한·관서정보·백업 정리), 🙏 감사의 말 수록.<br><b>[v17.6]</b> 🔧 설정 안 열림(네비게이션) 수정 시도, 💰 시간외수당 계산기 강화(지각·조퇴 차감, 기준시간 자동 산출), 🗓️ 날짜 기록 확장(교육·동원·자원근무 등 2열 배지), 🚨 현장도우미 개명, 근무시작 기본화면, 💾 백업 강화(교대표·기록·수당 포함), 🔓 매뉴얼 세션 유지.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🔧 v17.6→v17.8 연속 정비 (2026.7.19~20)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">제작자 점검으로 발견한 문제를 당일 연속 정비. (기획·지시·검수: 제작자 / 작업 보조: AI Claude)<br>• <b>설정·피드백 화면 미표시 버그 해결</b> — 태그 구조 오류로 두 화면이 숨겨진 부모에 갇혀 있던 것을 정정(읽어주기만 되고 화면이 안 보이던 원인).<br>• <b>서류매뉴얼 3개 파트 신설</b> — 🛴 개인형 이동장치(PM·전동킥보드), 🏍️ 이륜차 단속 통합, ⚖️ 즉결심판 절차(법령 검증 포함).<br>• <b>서류매뉴얼 탐색성 개선</b> — 목록 두께 축소(한 화면 4~5→8~10개), 범칙금 표 화면폭 맞춤(잘림 해소), 중복 제목·안내문 제거로 항목 즉시 시작.<br>• <b>공간 효율화</b> — 전 화면 여백 압축, 설정 중복 제목·미리보기 예문 정리.<br>• <b>현장심리·교통근무 카드 접기</b> — 제목만 훑고 눌러 펼치는 방식으로 개편(현장심리 세로 길이 74% 축소), 전체 펼치기 버튼.<br>• <b>☰ 메뉴 버튼 강조·동작 개선</b> — 테두리 글로우로 중요 버튼 표시, 누르면 화면 맨 위 메뉴로 자동 이동.<br>• <b>v17.7 판올림(같은 날 저녁)</b> — 🇺🇸 미국 경찰학 전체 모음 허브(①~⑦+보강3), NHTSA 카드 음주단속 상단 재배치·교차링크, 개인정보 안내 접힘, 검색→접힌 카드 자동 펼침, 다크모드 박스 정합(30여 곳), 하위탭 압축, 중복 제목 정리, 법령 기준일(2026.7) 표기.<br>• <b>v17.8 — 탭 구조 개편(교통관리/사고처리 분리)</b> — 🚥 교통시설(신호운영 리터러시·우회전 집행배너·무인단속 한계·개선요청 양식) 신설, 💥 각종사고 유형 총람 신설, 전부펼치기 버튼 소형화. 설치기준 근거를 시행규칙 별표8의2 원문으로 확정.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚀 v18.0 (2026.7.20 — 법령 확정·구조 완성)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>PM·자전거 음주 범칙금 원문 확정</b> — 시행령 별표8(2025.6.2. 개정) 64의2 음주(PM 10만·자전거 3만)/64의3 측정불응(13만·10만)/64의4 측정방해 — 국가법령정보센터 원문 대조.<br>• <b>우회전 집중단속 발부 기준 정위치</b> — 교통시설에 있던 단속 배너를 🚔 단속 탭으로 이동, 신호위반(6만·15점)/일시정지(6만·10점)/스쿨존 가중(12만원 별표10 원문 확인·벌점 2배) 구분 발부 기준 명기.<br>• <b>신호운영 심화</b> — 주기·현시·옵셋·TOD 카드를 실전 예시로 확장(옵셋 계산·현시별 사고조사 활용·TOD vs 고장 판별 3기준), LPI 3~7초 실증치 반영(창원: 접근속도 13.7%↓).<br>• <b>전역 디자인 정돈</b> — 네이비 유지, 카드 라운드·그림자·보더·버튼 통일(라이트/다크 검증). 레이아웃 불변.<br>• <b>연혁 총정리·v18.0 판올림</b> — 도입기부터의 제작 기록을 이 카드에 집대성.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.1 (2026.7.23 — 사용성 개선)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>연습모드 배지 제거</b> — 입력 제한 전면 해제에 따라 좌하단 연습/실무 전환 배지·주민번호 자동 마스킹 종료.<br>• <b>서브탭 버튼화</b> — 하위 탭이 글자가 아니라 <b>누르는 버튼임을 한눈에</b> 알 수 있게 알약형 배경·테두리 적용(선택 시 네이비 채움).<br>• <b>“아래 내용 더 있음 ▼” 힌트</b> — 서류매뉴얼처럼 화면 아래로 내용이 이어지는 페이지에서 하단 중앙에 안내 표시(누르면 한 화면 아래로, 스크롤하면 자동 사라짐).<br>• <b>음성진술·블박분석(베타) 재배치</b> — 서류작성 탭을 실서류 중심으로 정리하고 두 베타 기능을 🚨 보고서 그룹 서브탭으로 이동(베타 배지 표시).<br>• <b>🌧️ 풍수해 대비 교통안전관리 요령 수록</b> — 서울청 2026 하절기 지침 전문을 계절대비 탭에 구조화(통제 기준 수위표·침수 순서·예경보제·현장 사진 포함).<br>• <b>교대근무표 좌우 스와이프</b> — 달력을 밀어 전달/다음달 이동 복구.<br>• <b>표시시간 조정</b> — 중점추진 배너 4.5→약 1.6초, “아래 내용 더 있음” 힌트 1초 표시 후 자동 소멸.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.2 (2026.7.26 — 서류작성·판례 개편)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>서류작성 탭 재배열</b> — 서류매뉴얼·작성순서를 맨 앞으로(참조 자료 우선), 이후 음주단속·무면허·통행금지·사고처리.<br>• <b>작성순서 3종 체계</b> — 🍺 음주단속서류(11단계) 외에 🚫 무면허(8단계)·🚗 음주사고(9단계) 체크리스트 신설, 상단 버튼으로 전환.<br>• <b>교대근무표 월 전환 애니메이션</b> — 슬라이드·페이드로 달 바뀜이 눈에 보이게.<br>• <b>판례 전면 해설화</b> — 25건 전부에 "💡 쉽게 풀면" 상세 해설 부착, 접이식 카드로 전환(검색 시 자동 펼침).<br>• <b>✍️ 남기는 글 개고</b> — 제작자 헌사 문장 다듬기.<br>• <b>현장 사진 정위치</b> — 라바콘·불꽃신호기 사선 차단 사진(반포IC)을 2차사고 철칙 ① 라바콘 정체유발로 이동.<br></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.3 (2026.7.26 — 사고처리·근무표 정비)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>사고처리 허브 카드 접기</b> — 허브 화면의 박스를 제목만 보이는 접이식으로 전환, 필요한 항목만 펼쳐 보도록(전부펼치기 지원).<br>• <b>🪝 견인고리·견인줄 활용 사례(서초경찰서) 신설</b> — 전 순찰차 상시 비치 장비로 승용차는 물론 대형버스·평지 덤프트럭까지 견인 가능. 바퀴가 구르지 않아도 수십 미터 이동이 되므로 <b>차로에 방치하지 말고 즉시 안전지대로</b>가 원칙. 옮길 수 있는데도 그대로 세워 둔 경우는 사실상 예외 없이 <b>도로교통법 §66(고장 등의 조치)</b> 위반으로 단속.<br>• <b>교대근무표 한 화면 압축</b> — 상단 “○월 시간외 추정” 라인을 하단 요약에 병합해 중복 제거, 연월·팀·앵커(오늘 근무)·타팀근무 컨트롤을 달력 아래로 이동, 주간·야간·휴무·비번 범례 삭제, 셀·헤더 높이 축소 — 스마트폰에서 달력 전체가 스크롤 없이 한 화면에.<br>• <b>버전 정리</b> — 배포본 기준 v18.2(서류작성·판례) / v18.3(사고처리·근무표)로 이력 분리 기록.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.4 (2026.7.26 — 시간외 정산 통합)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>시간외 정산표 하나로 통합</b> — 달력 아래에 따로 있던 “○월 시간외” 요약과 “📊 내역” 줄을 <b>한 장의 정산표</b>로 합쳐 중복 제거. 위에서 아래로 <b>주간·야간(일수 × 1회 시간) → 근무 외 가산(직장훈련·교육·물리력·사격·동원·자원·러시·추가근무) → 연가·조퇴·지각 차감 → 총 근무시간 → − 복무규정 기준시간(평일수 × 8h) → = 기준초과 → − 휴일주간근무 → = 시간외 인정시간 → 💰 추정 수당</b> 순서로 계산 과정을 그대로 보여줍니다.<br>• <b>기준 명시</b> — 표 머리에 <b>계급·시간당 단가·소속 팀</b>을 항상 표시(계급을 바꾸면 즉시 반영, 단가 직접입력 시 “직접입력” 표기).<br>• <b>포함·차감·미포함 범위 명문화</b> — 무엇이 더해지고 무엇이 빠지는지 표 아래 고정 안내. 특히 <b>휴일근무수당(공무원수당 등에 관한 규정 §17)·야간근무수당(§16, 22:00~06:00)·정액급식비·특정업무경비는 이 계산에 포함되지 않고 별도 지급</b>임을 명시. 단가는 <b>시간외근무수당(§15)</b> 기준 추정치이며 확정액은 급여명세서 확인.<br>• <b>근무형태 설정 카드 통합</b> — 성격이 같은 “⏱️ 근무형태·근무시간 설정”과 “💰 시간외수당 계산” 두 카드를 <b>하나의 카드</b>로 합치고 <b>① 근무형태·근무시간 / ② 계급·수당 계산 조건</b> 두 구역으로 나눔. 근무시간 줄은 근무명 아래에 1회 근무시간(11.5h 등)을 붙여 폭 잘림 해소.<br>• <b>연동</b> — 정산표를 누르면 통합 설정 카드가 바로 열리고, 계급·시간·차감값을 고치면 달력 아래 정산표가 즉시 다시 계산됩니다.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.9 (2026.7.26 — 달력 화면 자동 맞춤)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>달력이 기기 화면에 자동으로 꽉 차게</b> — 셀 높이를 고정값으로 두지 않고, <b>쓰는 기기의 화면 높이에서 달력이 차지할 수 있는 공간을 계산해 자동으로 정합니다.</b> 5주인 달과 6주인 달, 작은 폰과 큰 폰 모두 <b>달력 + 연월·팀 지정 + 시간외 한 줄이 한 화면에</b> 들어갑니다.<br>• <b>글자도 함께 자동 조절</b> — 칸이 커지면 날짜·근무 배지 글자도 같이 커지고, 작은 화면에서는 줄어들어 잘리지 않습니다.<br>• <b>가로·세로 회전 대응</b> — 화면을 돌리거나 크기가 바뀌면 즉시 다시 맞춥니다.<br>• <b>정산표를 펼쳐도 달력 크기는 그대로</b> — 접힌 상태를 기준으로 잡아 화면이 출렁이지 않습니다.<br>• <b>계산식·수치는 일절 변경 없음.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.8 (2026.7.26 — 달력 확대)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>달력 칸·글자 확대</b> — 셀 높이 62→100px, 날짜 14→19px, 근무 배지 12.5→16.5px, 요일 머리 12.5→16px, 공휴일명·표식(연·교·동 등)·타팀 표시도 함께 키움. v18.2에서 넣었던 <b>“한 화면 압축” 강제 규칙을 해제</b>하고, <b>세로로 길어지는 대신 한 칸 한 칸이 확실히 보이도록</b> 되돌렸습니다.<br>• <b>순서는 v18.7 그대로</b> — 달력 → 연월·팀 지정 → 시간외 정산표.<br>• <b>계산식·수치는 일절 변경 없음.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.7 (2026.7.26 — 근무표 화면 순서 재배치)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>화면 순서 변경</b> — 위에서 아래로 <b>① 달력(한 화면) → ② 연월·팀·오늘근무 지정 → ③ 시간외 정산표</b> 순서로 재배치. 달력이 먼저, 설정이 그 다음, 계산이 맨 아래.<br>• <b>정산표 시트형 격자</b> — 엑셀·구글시트처럼 모든 칸에 격자선을 넣고, <b>글자가 줄바꿈되지 않도록</b> 전 칸 한 줄 고정(넘치는 설명은 말줄임 처리).<br>• <b>계산식·수치는 일절 변경 없음.</b></p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.6 (2026.7.26 — 시간외 정산표 압축)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>정산표 한 줄 요약 + 펼침</b> — 달력 아래 시간외 정산표를 평소 <b>“💰 ○월 시간외 −14.5h · 0원”</b> 한 줄로 접어 달력이 화면에 최대한 보이게 하고, 누르면 <b>엑셀식 3열 표(항목 · 계산 · 값)</b>로 전체 계산 과정이 펼쳐집니다.<br>• <b>각주 접기</b> — 포함·차감·미포함·주의 안내는 표 아래 “기준 보기”로 접어 필요할 때만 표시.<br>• <b>수정 진입 방식 변경</b> — 표를 눌러 설정으로 이동하던 방식 대신, 펼친 표 하단의 <b>✏️ 계급·근무시간·차감 수정</b> 버튼으로 이동.<br>• <b>계산식·수치는 일절 변경 없음</b> — v18.5에서 검증 완료된 산식 그대로, 표현만 바꿨습니다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🛠️ v18.5 (2026.7.26 — 근무지정표 기준 정합)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">• <b>관서 공식 근무지정표 대조 검증</b> — 「교통안전팀 6월중 근무지정표(2026.6.1.~6.30.)」와 앱 계산을 전수 대조. <b>1팀 기준 −17시간이 정확히 재현</b>됨을 확인(주간 7일·야간 7일 = 175h, 평일 21일 × 8h = 기준 168h, 기준초과 7h, 휴일주간 3일 × 8h = 24h 차감 → 시간외 −17h). 3팀(+16h)도 지정표와 일치.<br>• <b>계산식은 변경 없음</b> — 점검 결과 시간외 산식 자체에는 오류가 없었습니다. 어긋난 원인은 <b>기준일(오늘 근무형태) 설정</b>과 <b>1회 근무시간 저장값</b>이었습니다.<br>• <b>기준일 자동 시딩</b> — 근무 위상의 출발점을 공식 지정표에 맞춰 <b>1팀 2026-06-01 = 휴무</b>로 고정(4조2교대 한정, 최초 1회). 이 값 하나로 모든 달·모든 팀의 주야휴비가 지정표와 같은 위상으로 맞춰집니다. 이후 설정에서 언제든 변경 가능.<br>• <b>1회 근무시간 공식값 복원</b> — 지정표 하단 근무시간 변경 기준에 맞춰 <b>주간 06:30~18:00(11.5h) · 야간 17:30~익일 07:00(13.5h)</b>로 되돌림(이전 저장값 9h/15h는 지정표와 불일치해 시간외가 어긋나던 원인).<br>• <b>팀 위상은 정상 확인</b> — 1→2→3→4팀이 하루씩 밀리는 구조(지정표 6/1 기준 1팀 휴·2팀 비·3팀 주·4팀 야)가 앱에 이미 올바르게 반영되어 있음을 확인. 별도 수정 없음.<br>• <b>바뀌는 내용을 반드시 알림</b> — 위 자동 조정이 일어나면 근무표 화면 정산표 위에 <b>“무엇이 무엇으로 바뀌었는지”</b>(예: 주간 09:00~18:00(9h) → 06:30~18:00(11.5h), 오늘 근무 주간 → 야간) 비교 알림이 뜨고, <b>↩️ 이전 설정으로 되돌리기</b> 버튼으로 한 번에 원복할 수 있습니다.<br>• <b>설정이 무엇을 바꾸는지 명시</b> — ① 근무형태·근무시간 칸 아래에 “이 칸을 고치면 즉시 바뀌는 것”(달력 주·야 표시 / 정산표 일수×시간 / 총근무·기준초과·시간외 / 추정 수당 / 교육·훈련 가산 판단)과 <b>현재 근무 위상 기준(기준일·오늘 근무)</b>을 항상 표시. 시간 저장 시 토스트도 “주간 11.5h · 야간 13.5h 적용 — 달력·시간외 정산 즉시 재계산”으로 구체화.<br>• <b>아무것도 입력하지 않아도 자동</b> — 설치 직후 상태에서 팀만 1팀이면 6월로 넘기는 즉시 <b>−17h</b>가 그대로 계산됩니다(오늘 7/26 = 야간 기준 역산).<br>• <b>참고</b> — 지정표의 2팀·4팀 합계란(야간시간·기준초과)은 같은 표의 일자별 칸과 산술이 맞지 않습니다(자원근무·선거일 조정분으로 추정). 자원근무·동원 등 <b>추가 근무는 날짜를 눌러 기록</b>하면 정산표에 자동 반영됩니다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🏆 종합 성과 — 숫자와 체계로 보는 T-Book</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>규모</b> — 페이지 50개 · 그룹 탭 11개 · 단일 HTML 파일(약 2.3MB) · 서버·DB·외부 전송 0 · 도입기부터 수십 차례 판올림.<br><b>보안 체계</b> — SHA-256 진입 인증(5회 오답 잠금) · 업무매뉴얼 AES-256-GCM 실암호화 · 만료 자동 소거 · 개인정보 수집 0.<br><b>콘텐츠 자산</b> — 서류매뉴얼(음주·무면허·PM·이륜차·즉결심판) · 미국 경찰학 시리즈 10편+허브 · 현장심리·악성민원·베테랑 전수 노트 · 민생 구제 5단계(이의신청 §94·행정심판·마일리지) · 신호운영 리터러시 · 각종사고 8유형 총람 · 고속도로 구간별 현장참조.<br><b>검증 원칙</b> — 판례 원문 대조·오인용 정정(2013도6285·2001도1929 등) · 법령은 별표 원문 확정(별표8·별표10·별표8의2) · 미확정치 확언 금지·기준일 배지(2026.7).<br><b>도구 체계</b> — 음성 사건보고·서류 자동완성 · 교대 근무표 달력+시간외수당 계산기 · 카드 접기+검색 정확 착지 · 우리 관서용 편집·관서 배포(내보내기/가져오기) · 백업 30일 리마인더·오류 안전망 · 신임 3단계 투어.<br><b>제작</b> — 현장 30년 경험의 제작자가 기획·지시·검수·배포 전 과정 수행(작업 보조: AI Claude). 현장 의견을 당일 반영하는 속도가 이 앱의 정체성.</p></div></details><p class="u-fs13" style="color:var(--text-dim);margin-top:8px">※ 보안·개인정보 원칙은 전 버전 일관 유지 — 수집·전송·저장 0, 기기 내 처리, 1차 초안→검토→KICS 정식 입력.</p></div></div></div><div class="card" style="border:1.5px solid var(--accent-gold);background:var(--panel)"><div class="card-title" style="border-bottom:2px solid var(--accent-gold);padding-bottom:8px">✍️ 남기는 글</div><p style="font-size:13.5px;line-height:1.85;margin:0">2026년 7월 1일.<br>서초경찰서 교통과 외근1팀 경감 <b>이동렬</b>.<br><br>서로 오려 하지 않는 부서에서, 수시로 동원되어 가족과의 시간을 미뤄 가면서도 이 앱을 한 장 한 장 만들었습니다. 낮의 단속과 밤의 사고 현장에서 몸으로 배운 것들, 서류 하나 때문에 헤매던 날들, 후배에게 미처 다 전하지 못한 요령을 여기에 담았습니다.<br><br>바라는 것은 하나입니다. <b>뒤에 오는 동료가 같은 시행착오를 되풀이하지 않고, 덜 헤매고, 더 안전하게 퇴근하는 것.</b><br><br><span style="color:var(--accent-gold);font-weight:800">사람은 자리를 떠나도, 지식은 자리에 남습니다.</span></p></div></div><div class="page" id="page-feedback"> <div class="card"> <div class="card-title">📮 앱 피드백 · 요구사항</div> <div class="guide-box">이 앱의 <b>수정·보완·추가 요구사항</b>을 적어 두는 칸입니다. 입력 내용은 <b>이 기기에만 저장</b>됩니다(서버 전송 없음). 모아서 전달하려면 <b>📋 전체 복사</b>로 카톡·메일에 붙여넣으세요.</div> <label>구분</label> <select id="fb_cat"><option>수정</option><option>보완</option><option>추가</option><option>버그</option><option>기타</option></select> <label>내용 🎙️</label> <div class="mic-wrap"> <textarea id="fb_text" rows="3" placeholder="예: 음주 화면에 측정기 사진 칸 추가 / 글씨 더 크게" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea> <button class="mic-btn" onclick="toggleMicFor('fb_text',this)">🎙️</button> </div> <label>작성자(선택)</label><input id="fb_author" placeholder="이름·계급"> <button class="btn btn-primary btn-full" onclick="addFeedback()">💾 저장</button> <div class="btn-group"> <button class="btn btn-sec u-flex1" onclick="copyAllFeedback()">📋 전체 복사</button> <button class="btn btn-danger u-flex1" onclick="clearAllFeedback()">🗑️ 전체 삭제</button> </div> </div> <div class="card"> <div class="card-title">📋 저장된 피드백 (<span id="fb_count">0</span>건)</div> <div id="fb_list"><p style="color:var(--text-dim);font-size:13px">저장된 피드백 없음</p></div> </div> </div>
+<div class="footer-note">🚔 T-Book v19.8.3 (2026 정식배포판) · 2026.7 · 로컬처리 · 외부송신 없음<br>현장 의견을 반영해 세부 기능을 하나하나 보완하며 지속 업데이트하고 있습니다.</div>
 <div id="toast" class="toast"></div> <!-- ══ 최초 실행 책임 고지 모달 ══ -->
-<div id="first_run_modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9500;overflow-y:auto;padding:18px;align-items:center;justify-content:center"> <div style="background:#fff;border-radius:22px;padding:26px 22px;max-width:480px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)"> <div style="font-size:32px;text-align:center;margin-bottom:10px">🚔</div> <div style="font-size:19px;font-weight:900;color:#002366;text-align:center;margin-bottom:6px;letter-spacing:-0.5px">T-Book v19.8.2 (2026 정식배포판)</div> <div style="font-size:13px;color:#475569;text-align:center;margin-bottom:18px">최초 실행 — 사용 전 필독 사항</div> <div style="font-size:13px;color:#475569;text-align:center;margin:0 0 14px;line-height:1.6">📕 <b>T-Book = Traffic Police Book(교통경찰 핸드북)</b><br>외우지 말고, 필요할 때 펼쳐 보는 책입니다.</div> <div style="background:#fef2f2;border:2px solid #fca5a5;border-radius:14px;padding:12px;margin-bottom:10px;font-size:13px;line-height:1.6;color:#1e1e1e"><b style="color:#b91c1c">⚠️ 핵심 고지</b><br>본 도구와 모든 산출물(보고서·사건정보)은 <b>직무상 비밀</b>입니다. 무단 반출·제3자 공유·인터넷 공개 금지 — <b>형법 §127 · 개인정보보호법 §71 · 국가공무원법 §60 · 민법 §750</b> 적용.<br>모든 데이터는 <b>이 기기 안에서만 처리</b>(외부 전송 0)되며, 본인 업무 목적으로만 사용합니다. 동의 시 위 책임을 인지한 것으로 간주됩니다.</div>
+<div id="first_run_modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9500;overflow-y:auto;padding:18px;align-items:center;justify-content:center"> <div style="background:#fff;border-radius:22px;padding:26px 22px;max-width:480px;margin:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)"> <div style="font-size:32px;text-align:center;margin-bottom:10px">🚔</div> <div style="font-size:19px;font-weight:900;color:#002366;text-align:center;margin-bottom:6px;letter-spacing:-0.5px">T-Book v19.8.3 (2026 정식배포판)</div> <div style="font-size:13px;color:#475569;text-align:center;margin-bottom:18px">최초 실행 — 사용 전 필독 사항</div> <div style="font-size:13px;color:#475569;text-align:center;margin:0 0 14px;line-height:1.6">📕 <b>T-Book = Traffic Police Book(교통경찰 핸드북)</b><br>외우지 말고, 필요할 때 펼쳐 보는 책입니다.</div> <div style="background:#fef2f2;border:2px solid #fca5a5;border-radius:14px;padding:12px;margin-bottom:10px;font-size:13px;line-height:1.6;color:#1e1e1e"><b style="color:#b91c1c">⚠️ 핵심 고지</b><br>본 도구와 모든 산출물(보고서·사건정보)은 <b>직무상 비밀</b>입니다. 무단 반출·제3자 공유·인터넷 공개 금지 — <b>형법 §127 · 개인정보보호법 §71 · 국가공무원법 §60 · 민법 §750</b> 적용.<br>모든 데이터는 <b>이 기기 안에서만 처리</b>(외부 전송 0)되며, 본인 업무 목적으로만 사용합니다. 동의 시 위 책임을 인지한 것으로 간주됩니다.</div>
 <div style="background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:12px;padding:10px;margin-bottom:10px;font-size:12.5px;line-height:1.6;color:#334155">📜 규칙 전문 · 아이폰/안드로이드 설치법 · 홈 아이콘 관리는 <b>⚙️ 설정 &gt; 「이용 규칙·설치 안내」</b>에 있습니다.</div>
 <div style="font-size:12.5px;line-height:1.55;color:#3730a3;background:#eef2ff;border-radius:12px;padding:10px;margin-bottom:12px"><b>🤝 신뢰의 약속</b> — 선배의 경험과 후배의 안전이 맞물리는 약속입니다. 무탈을 바라며.</div>
 <button onclick="acceptFirstRun()" style="width:100%;padding:16px;border-radius:14px;border:none;background:#002366;color:#fff;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 4px 12px rgba(0,35,102,0.3)">✅ 위 사항을 모두 인지하였으며 동의합니다</button>  </div>
