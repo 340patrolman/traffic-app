@@ -1081,7 +1081,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 .pg-narrow .tbl-scroll th{background:var(--panel-2);font-weight:800;text-align:center}
 .pg-narrow .mp-t{border-collapse:collapse;margin:8px 0}
 .pg-narrow .mp-t td:first-child{width:31%;text-align:center;font-weight:700;background:var(--bg)}
-.pg-narrow .tbl-more{display:none!important}
+.pg-narrow .tbl-more{display:none!important} /* v19.8.10 — card_taas10 표 첫 열 고정 25% (실측 49.8% → 25%) */ #card_taas10 .mp-t{table-layout:fixed} #card_taas10 .mp-t th:first-child,#card_taas10 .mp-t td:first-child{width:25%;word-break:keep-all;overflow-wrap:anywhere} #card_taas10 .mp-t th:last-child,#card_taas10 .mp-t td:last-child{width:75%;text-align:left}
 /* ═══ v19.8.3 — 4단 뼈대 (신고 접수 → 현장 도착 → 무엇으로 갈리나 → 어디로 넘긴다) ═══ */
 .pg-f{margin:10px 0 2px}
 .pg-s{border-left:4px solid var(--border);border-radius:0 8px 8px 0;background:var(--bg);padding:7px 0 7px 10px;margin:0 0 7px;min-width:0}
