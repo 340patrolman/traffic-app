@@ -1,5 +1,0 @@
- <div class="card">
-  <div class="card-title">🛴 PM · 자전거 · 약물 · 보복은 단속처리로 옮겼다</div>
-  <div class="ok-box u-fs13">교통 업무인데 절차가 일반차와 다른 <b>4가지(PM 음주·무면허 / 자전거 음주 / 약물운전 / 보복운전)</b>는 v19.8.3에서 <b>🚓 단속처리</b> 페이지에 4단 카드로 옮겼다. 교통 단속 흐름 안에서 읽는 것이 맞다.</div>
-  <div class="btn-group" style="margin-top:8px"><button class="btn btn-gold btn-full" onclick="showGroup('sop');showSubPage('enforce')">🚓 단속처리로 이동</button></div>
- </div>
