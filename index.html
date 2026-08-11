@@ -27,7 +27,7 @@ try{var _fs0=parseFloat(localStorage.getItem("app_font_scale"));document.documen
 <meta name="format-detection" content="telephone=no">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="x-dns-prefetch-control" content="off">
-<title>T-Book v19.9 (2026 정식배포판)</title>
+<title>T-Book v19.11 (2026 정식배포판)</title>
 <script>
 (function(){
  window.__ERRS=[];
@@ -391,7 +391,7 @@ function h(msg){try{var n=Date.now();
 window.addEventListener('error',function(e){h(e.message||'script error');});
 window.addEventListener('unhandledrejection',function(e){h((e.reason&&e.reason.message)||'promise error');});
 window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbookBooted)h('앱 로드 미완료(boot-incomplete)');},4000);});
-})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동">🚔 T-Book<span class="ver">v19.9</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="hdMenu()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
+})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동">🚔 T-Book<span class="ver">v19.11</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="hdMenu()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
 <!-- 📱 브라우저 및 홈화면 설치 안내 -->
 <div id="pwa_guide_modal">
  <div class="pwa-modal-content">
@@ -589,7 +589,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
  <div id="shift_hdr" style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:6px"> <span id="shift_ym_label" style="font-weight:900;font-size:16px;color:var(--text);white-space:nowrap"></span> <span style="position:relative;display:inline-block"><select id="shift_myteam" onchange="setShiftCfg('shift_myteam',this.value)" style="appearance:none;-webkit-appearance:none;min-height:40px;height:40px;font-size:14px;font-weight:900;color:var(--accent);padding:2px 23px 2px 9px;width:auto;background:var(--panel-2);border:1.5px solid var(--accent);border-radius:8px;cursor:pointer"><option value="1">1팀</option><option value="2">2팀</option><option value="3">3팀</option><option value="4">4팀</option></select><span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:10px;color:var(--accent)">▼</span></span> <span style="position:relative;display:inline-block"><select id="shift_anchor_idx" onchange="setShiftAnchorToday(this.value)" style="appearance:none;-webkit-appearance:none;min-height:40px;height:40px;font-size:14px;font-weight:900;color:var(--text);padding:2px 23px 2px 9px;width:auto;background:var(--panel-2);border:1.5px solid var(--border);border-radius:8px;cursor:pointer"><option value="0">오늘 주간</option><option value="1">오늘 야간</option><option value="2">오늘 휴무</option><option value="3">오늘 비번</option></select><span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:10px;color:var(--text)">▼</span></span> <button id="shift_team_toggle" onclick="toggleShiftTeams()" title="타팀 표시" style="background:var(--panel-2);border:1.5px solid var(--border);border-radius:8px;padding:3px 8px;min-height:40px;font-size:14px;cursor:pointer;opacity:.45;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15">👥<span style="font-size:9px;font-weight:700">타팀근무</span></button> </div>
  <div id="shift_summary" style="margin-top:8px"></div>
  <div class="info-box" style="font-size:12px;margin-top:8px">📌 날짜를 누르면 <b>물리력교육·사격·직장훈련·메모</b>를 기록할 수 있습니다. 점(●)이 있는 날은 기록이 있는 날입니다. 데이터는 이 기기에만 저장됩니다.</div> </div>
- <details class="card cmpct" id="ot_card"> <summary class="card-title">⏱️ 근무형태·근무시간 설정 · 시간외수당 계산</summary><div class="ot-sec">① 근무형태 · 근무시간</div><div style="display:flex;align-items:center;gap:10px;margin:8px 0"><label style="font-weight:800;font-size:14px;white-space:nowrap">근무형태</label><span style="position:relative;display:inline-block"><select id="shift_system_sel" onchange="setShiftSystem(this.value)" style="appearance:none;-webkit-appearance:none;min-height:40px;height:40px;font-size:13px;font-weight:900;color:var(--text);padding:2px 23px 2px 9px;width:auto;background:var(--panel-2);border:1.5px solid var(--border);border-radius:8px;cursor:pointer"><option value="4x2">4조2교대</option><option value="5x3">5조3교대</option><option value="4x3">4조3교대(시범)</option><option value="5x3s">5조3교대·반포변형</option></select><span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:10px;color:var(--text)">▼</span></span></div> <div class="info-box u-fs12">각 근무의 시작·종료 시간은 아래에서 조정합니다. 형태를 바꾸면 <b>내 팀·오늘상태를 다시 지정</b>하세요. 시간은 근무형태별로 따로 저장됩니다.</div> <div class="warn-box u-fs12">⚠️ <b>반포 변형(5조3교대·20일)은 선제 준비용 추정판입니다</b> — 현재 반포지구대에서만 시행 중이며 교통과 근무와는 무관합니다. 팀 오프셋(4일)·오후 15~23·심야 23~07 시간은 실측 전 추정(오후·심야 시간은 경찰청 3교대 시범 보도와 일치 확인). 실제 순번표 확보 시 확정합니다.</div> <div id="shift_time_cfg"></div><div class="ot-sec">② 계급 · 수당 계산 조건 <span style="font-weight:600;color:var(--text-dim);font-size:11px">(참고용 추정)</span></div> <div class="warn-box u-fs12"><b>참고 추정치</b>입니다. 단가는 매년 고시되어 바뀌고 호봉·관서 기준에 따라 다릅니다. 정확한 금액은 급여명세서로 확인하세요. (2026년 기준 추정 · +3.5% 반영, 계급별 정확단가는 급여명세서)</div>
+ <details class="card cmpct" id="ot_card"> <summary class="card-title">⏱️ 근무형태·근무시간 설정 · 시간외수당 계산</summary><div class="ot-sec">① 근무형태 · 근무시간</div><div style="display:flex;align-items:center;gap:10px;margin:8px 0"><label style="font-weight:800;font-size:14px;white-space:nowrap">근무형태</label><span style="position:relative;display:inline-block"><select id="shift_system_sel" onchange="setShiftSystem(this.value)" style="appearance:none;-webkit-appearance:none;min-height:40px;height:40px;font-size:13px;font-weight:900;color:var(--text);padding:2px 23px 2px 9px;width:auto;background:var(--panel-2);border:1.5px solid var(--border);border-radius:8px;cursor:pointer"><option value="4x2">4조2교대</option><option value="3x2">3조2교대</option><option value="5x3">5조3교대</option><option value="4x3">4조3교대(시범)</option><option value="5x3s">5조3교대·반포변형</option><option value="fixed">상시주간(내근형)</option></select><span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:10px;color:var(--text)">▼</span></span></div> <div class="info-box u-fs12">각 근무의 시작·종료 시간은 아래에서 조정합니다. 형태를 바꾸면 <b>내 팀·오늘상태를 다시 지정</b>하세요. 시간은 근무형태별로 따로 저장됩니다.</div> <div class="warn-box u-fs12">⚠️ <b>반포 변형(5조3교대·20일)은 선제 준비용 추정판입니다</b> — 현재 반포지구대에서만 시행 중이며 교통과 근무와는 무관합니다. 팀 오프셋(4일)·오후 15~23·심야 23~07 시간은 실측 전 추정(오후·심야 시간은 경찰청 3교대 시범 보도와 일치 확인). 실제 순번표 확보 시 확정합니다.</div> <div id="shift_time_cfg"></div><div class="ot-sec">② 계급 · 수당 계산 조건 <span style="font-weight:600;color:var(--text-dim);font-size:11px">(참고용 추정)</span></div> <div class="warn-box u-fs12"><b>참고 추정치</b>입니다. 단가는 매년 고시되어 바뀌고 호봉·관서 기준에 따라 다릅니다. 정확한 금액은 급여명세서로 확인하세요. (2026년 기준 추정 · +3.5% 반영, 계급별 정확단가는 급여명세서)</div>
  <label>계급</label> <select id="ot_rank" onchange="calcOT()"><option value="10600">순경</option><option value="11200">경장</option><option value="11700">경사</option><option value="12300" selected>경위</option><option value="13500">경감</option><option value="15600">경정 이상</option></select>
  <div class="row" style="gap:6px"> <div><label class="u-fs12">주간 1회(h) — 시간설정 연동</label><input id="ot_dayh" type="number" step="0.5" value="11.5" oninput="calcOT()"></div> <div><label class="u-fs12">야간 1회(h) — 시간설정 연동</label><input id="ot_nighth" type="number" step="0.5" value="13.5" oninput="calcOT()"></div> </div>
  <div class="row" id="ot_mid_row" style="gap:6px;display:none"> <div><label class="u-fs12">심야 1회(h) — 시간설정 연동</label><input id="ot_midh" type="number" step="0.5" value="8" oninput="calcOT()"></div> <div></div> </div>
@@ -4757,7 +4757,7 @@ const DEFAULT_TEMPLATES = {
 보고자: {OFFICER} / {STATION} {DEPT}`
 };
 
-const APP_VERSION='v17.8-2026';
+const APP_VERSION='v19.11';
 let state = {
  templates: {...DEFAULT_TEMPLATES},
  settings: {station:'', dept:'', phone:''}
@@ -6691,7 +6691,14 @@ var SHIFT_SYS={
 '4x2':{name:'4조2교대',teams:4,off:1,pat:['주간','야간','휴무','비번'],work:{'주간':['06:30','18:00'],'야간':['17:30','07:00']}},
 '5x3':{name:'5조3교대',teams:5,off:1,pat:['주간','야간','심야','비번','휴무'],work:{'주간':['07:00','15:00'],'야간':['15:00','23:00'],'심야':['23:00','07:00']}},
 '4x3':{name:'4조3교대(시범·8일)',teams:4,off:2,pat:['주간','주간','오후','오후','야간','야간','휴무','휴무'],work:{'주간':['07:00','15:00'],'오후':['15:00','23:00'],'야간':['23:00','07:00']}},
-'5x3s':{name:'5조3교대(반포 변형·20일)',teams:5,off:4,pat:['주간','야간','심야','비번','휴무','주간','야간','비번','비번','휴무','주간','야간','오후','비번','휴무','주간','야간','비번','비번','휴무'],work:{'주간':['06:30','18:00'],'야간':['17:30','07:00'],'심야':['23:00','07:00'],'오후':['15:00','23:00']}}
+'5x3s':{name:'5조3교대(반포 변형·20일)',teams:5,off:4,pat:['주간','야간','심야','비번','휴무','주간','야간','비번','비번','휴무','주간','야간','오후','비번','휴무','주간','야간','비번','비번','휴무'],work:{'주간':['06:30','18:00'],'야간':['17:30','07:00'],'심야':['23:00','07:00'],'오후':['15:00','23:00']}},
+/* v19.10 — 지방관서 대응. 3조2교대: 주주주야비야비야비 9일 주기, 팀 간격 3일.
+   매일 주간1·야간1·비번1이 정확히 성립. 출퇴근 시각은 관서별로 다르므로
+   아래 값은 초기값일 뿐이며 설정에서 직접 수정 가능. */
+'3x2':{name:'3조2교대',teams:3,off:3,pat:['주간','주간','주간','야간','비번','야간','비번','야간','비번'],work:{'주간':['09:00','18:00'],'야간':['18:00','09:00']}},
+/* 상시주간(내근형) — 교대 순환 없음. 월~금 주간, 토·일 휴무.
+   7일 패턴 index 0 = 일요일. 선택 시 오늘 요일로 자동 정렬된다. */
+'fixed':{name:'상시주간(내근형)',teams:1,off:0,pat:['휴무','주간','주간','주간','주간','주간','휴무'],work:{'주간':['09:00','18:00']}}
 };
 function _shiftSysId(){ try{ return localStorage.getItem('shift_system')||'4x2'; }catch(e){ return '4x2'; } }
 function _shiftSys(){ return SHIFT_SYS[_shiftSysId()]||SHIFT_SYS['4x2']; }
@@ -6702,13 +6709,13 @@ function _shiftDur(st){ var t=_shiftTimes()[st]; if(!t) return 0; var s=_hm2m(t[
 function _shiftWins(st){ var t=_shiftTimes()[st]; if(!t) return []; var s=_hm2m(t[0]),e=_hm2m(t[1]); if(e>s) return [[s,e]]; return [[s,1440],[0,e]]; }
 function _showTeams(){ try{ return localStorage.getItem('shift_showteams')==='1'; }catch(e){ return false; } }
 function toggleShiftTeams(){ try{ localStorage.setItem('shift_showteams',_showTeams()?'0':'1'); }catch(e){} renderShiftCal(); }
-function setShiftSystem(v){ if(!SHIFT_SYS[v]) v='4x2'; try{ localStorage.setItem('shift_system',v); var t=parseInt(localStorage.getItem('shift_myteam')||'1',10); if(t>SHIFT_SYS[v].teams) localStorage.setItem('shift_myteam','1'); localStorage.setItem('shift_anchor_date',_dkey(new Date())); localStorage.setItem('shift_anchor_idx','0'); }catch(e){} _syncOTHours(); renderShiftTimeCfg(); renderShiftCal(); calcOT(); try{toast('🔁 '+SHIFT_SYS[v].name+' 적용 — 내 팀·오늘상태를 다시 지정하세요');}catch(e){} }
+function setShiftSystem(v){ if(!SHIFT_SYS[v]) v='4x2'; try{ localStorage.setItem('shift_system',v); var t=parseInt(localStorage.getItem('shift_myteam')||'1',10); if(t>SHIFT_SYS[v].teams) localStorage.setItem('shift_myteam','1'); localStorage.setItem('shift_anchor_date',_dkey(new Date())); localStorage.setItem('shift_anchor_idx',v==='fixed'?String(new Date().getDay()):'0'); }catch(e){} _syncOTHours(); renderShiftTimeCfg(); renderShiftCal(); calcOT(); try{toast('🔁 '+SHIFT_SYS[v].name+' 적용 — 내 팀·오늘상태를 다시 지정하세요');}catch(e){} }
 function _syncOTHours(){ var map={'주간':'ot_dayh','야간':'ot_nighth','심야':'ot_midh','오후':'ot_afth'}; Object.keys(map).forEach(function(k){ var e=document.getElementById(map[k]); var d=_shiftDur(k); if(e&&d) e.value=d; }); try{saveOTInputs();}catch(e){} }
-function renderShiftTimeCfg(){ var box=document.getElementById('shift_time_cfg'); if(!box) return; var s=_shiftSys(),tm=_shiftTimes(),h=''; var sel=document.getElementById('shift_system_sel'); if(sel) sel.value=_shiftSysId(); var mr=document.getElementById('ot_mid_row'); if(mr) mr.style.display=s.work['심야']?'':'none'; var ar=document.getElementById('ot_aft_row'); if(ar) ar.style.display=s.work['오후']?'':'none'; s.pat.forEach(function(k){ if(!s.work[k]) return; var t=tm[k]; h+='<div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="flex:0 0 62px;font-weight:800;font-size:13px;color:'+SHIFT_COLOR[k]+';line-height:1.2">'+SHIFT_EMOJI[k]+k+'<br><span style="font-size:11px;color:var(--text-dim);font-weight:700">'+_shiftDur(k).toFixed(1).replace('.0','')+'h</span></span><input type="time" id="stc_'+k+'_s" value="'+t[0]+'" onchange="saveShiftTimes()" style="font-size:13px;padding:2px 4px;width:104px;border:1px solid var(--border);border-radius:6px"><span style="color:var(--text-dim)">~</span><input type="time" id="stc_'+k+'_e" value="'+t[1]+'" onchange="saveShiftTimes()" style="font-size:13px;padding:2px 4px;width:104px;border:1px solid var(--border);border-radius:6px"></div>'; }); h+='<div style="font-size:11px;color:var(--text-dim);margin-top:6px;line-height:1.7"><b style="color:var(--accent)">이 칸을 고치면 즉시 바뀌는 것</b> — ① 달력의 주·야 표시 ② 정산표의 「주간 N일 × □h」 ③ 총 근무시간·기준초과·시간외 인정시간 ④ 추정 수당 ⑤ 근무시간 중 교육·훈련의 가산 여부 판단. 저장과 동시에 자동 재계산됩니다(근무형태별로 따로 저장).<br>종료가 시작보다 빠르면 <b>익일 종료</b>로 계산합니다.</div>';
+function renderShiftTimeCfg(){ var box=document.getElementById('shift_time_cfg'); if(!box) return; var s=_shiftSys(),tm=_shiftTimes(),h=''; var sel=document.getElementById('shift_system_sel'); if(sel) sel.value=_shiftSysId(); /* v19.10 — 팀 수·패턴이 시스템마다 다르므로 셀렉트를 동적으로 재구성한다. 종전에는 4조2교대 기준 고정값이라 다른 시스템에서 '오늘 상태'가 어긋났다. */ try{ var _mt=document.getElementById('shift_myteam'); if(_mt){ var _mh=''; for(var _i=1;_i<=s.teams;_i++) _mh+='<option value="'+_i+'">'+_i+'팀</option>'; _mt.innerHTML=_mh; var _tv=parseInt(localStorage.getItem('shift_myteam')||'1',10); if(!(_tv>=1&&_tv<=s.teams)) _tv=1; _mt.value=String(_tv); _mt.parentNode.style.display=(s.teams>1?'':'none'); } var _ai=document.getElementById('shift_anchor_idx'); if(_ai){ var _tot={},_cnt={},_ah=''; s.pat.forEach(function(k){ _tot[k]=(_tot[k]||0)+1; }); s.pat.forEach(function(k,i){ _cnt[k]=(_cnt[k]||0)+1; _ah+='<option value="'+i+'">오늘 '+k+(_tot[k]>1?' ('+_cnt[k]+')':'')+'</option>'; }); _ai.innerHTML=_ah; var _td=new Date(); _td.setHours(0,0,0,0); _ai.value=String(_stateIdx(_td,_shiftCfg().team)); } }catch(e){} var mr=document.getElementById('ot_mid_row'); if(mr) mr.style.display=s.work['심야']?'':'none'; var ar=document.getElementById('ot_aft_row'); if(ar) ar.style.display=s.work['오후']?'':'none'; var _seenK={}; s.pat.forEach(function(k){ if(!s.work[k]||_seenK[k]) return; _seenK[k]=1; var t=tm[k]; h+='<div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="flex:0 0 62px;font-weight:800;font-size:13px;color:'+SHIFT_COLOR[k]+';line-height:1.2">'+SHIFT_EMOJI[k]+k+'<br><span style="font-size:11px;color:var(--text-dim);font-weight:700">'+_shiftDur(k).toFixed(1).replace('.0','')+'h</span></span><input type="time" id="stc_'+k+'_s" value="'+t[0]+'" onchange="saveShiftTimes()" style="font-size:13px;padding:2px 4px;width:104px;border:1px solid var(--border);border-radius:6px"><span style="color:var(--text-dim)">~</span><input type="time" id="stc_'+k+'_e" value="'+t[1]+'" onchange="saveShiftTimes()" style="font-size:13px;padding:2px 4px;width:104px;border:1px solid var(--border);border-radius:6px"></div>'; }); h+='<div style="font-size:11px;color:var(--text-dim);margin-top:6px;line-height:1.7"><b style="color:var(--accent)">이 칸을 고치면 즉시 바뀌는 것</b> — ① 달력의 주·야 표시 ② 정산표의 「주간 N일 × □h」 ③ 총 근무시간·기준초과·시간외 인정시간 ④ 추정 수당 ⑤ 근무시간 중 교육·훈련의 가산 여부 판단. 저장과 동시에 자동 재계산됩니다(근무형태별로 따로 저장).<br>종료가 시작보다 빠르면 <b>익일 종료</b>로 계산합니다.</div>';
  try{ var _c=_shiftCfg(), _P=_pat(), _td=new Date(); _td.setHours(0,0,0,0);
-  h+='<div style="font-size:11px;color:var(--text-dim);margin-top:5px;padding-top:5px;border-top:1px dashed var(--border);line-height:1.7"><b style="color:var(--accent)">현재 근무 위상 기준</b> — 기준일 <b>'+_c.anchorDate+'</b> = '+_c.team+'팀 <b>'+_P[((0+_c.anchorIdx+(_c.team-1)*(_shiftSys().off||1))%_P.length+_P.length)%_P.length]+'</b> · 오늘('+_dkey(_td).slice(5)+') = <b style="color:'+(SHIFT_COLOR[_P[_stateIdx(_td,_c.team)]]||'var(--text)')+'">'+_P[_stateIdx(_td,_c.team)]+'</b>. 위 달력의 <b>팀·오늘 근무</b> 선택으로 바꿉니다.</div>';
+  h+='<div style="font-size:11px;color:var(--text-dim);margin-top:5px;padding-top:5px;border-top:1px dashed var(--border);line-height:1.7"><b style="color:var(--accent)">현재 근무 위상 기준</b> — 기준일 <b>'+_c.anchorDate+'</b> = '+_c.team+'팀 <b>'+_P[((0+_c.anchorIdx+(_c.team-1)*(_shiftSys().off||1))%_P.length+_P.length)%_P.length]+'</b> · 오늘('+_dkey(_td).slice(5)+') = <b style="color:'+(SHIFT_COLOR[_stateOf(_td,_c.team)]||'var(--text)')+'">'+_stateOf(_td,_c.team)+'</b>. 위 달력의 <b>팀·오늘 근무</b> 선택으로 바꿉니다.</div>';
  }catch(e){}
- box.innerHTML=h; }
+ box.innerHTML=h+_offDayUI(); }
 function saveShiftTimes(){ var s=_shiftSys(),o={}; Object.keys(s.work).forEach(function(k){ var a=document.getElementById('stc_'+k+'_s'),b=document.getElementById('stc_'+k+'_e'); if(a&&b&&a.value&&b.value) o[k]=[a.value,b.value]; }); try{ localStorage.setItem('shift_times_'+_shiftSysId(),JSON.stringify(o)); }catch(e){} _syncOTHours(); renderShiftTimeCfg(); renderShiftCal(); calcOT(); try{ var _m=[]; Object.keys(o).forEach(function(k){_m.push(k+' '+_shiftDur(k).toFixed(1).replace('.0','')+'h');}); toast('⏱️ '+_m.join(' · ')+' 적용 — 달력·시간외 정산 즉시 재계산'); }catch(e){} }
 var HOLIDAYS_BASE={'2025-01-01':'신정','2025-01-28':'설날연휴','2025-01-29':'설날','2025-01-30':'설날연휴','2025-03-01':'삼일절','2025-03-03':'대체공휴일','2025-05-05':'어린이날·부처님오신날','2025-05-06':'대체공휴일','2025-06-06':'현충일','2025-08-15':'광복절','2025-10-03':'개천절','2025-10-05':'추석연휴','2025-10-06':'추석','2025-10-07':'추석연휴','2025-10-08':'대체공휴일','2025-10-09':'한글날','2025-12-25':'성탄절','2026-01-01':'신정','2026-02-16':'설날연휴','2026-02-17':'설날','2026-02-18':'설날연휴','2026-03-01':'삼일절','2026-03-02':'대체공휴일','2026-05-05':'어린이날','2026-05-24':'부처님오신날','2026-05-25':'대체공휴일','2026-06-03':'지방선거일','2026-06-06':'현충일','2026-07-17':'제헌절','2026-08-15':'광복절','2026-08-17':'대체공휴일','2026-09-24':'추석연휴','2026-09-25':'추석','2026-09-26':'추석연휴','2026-10-03':'개천절','2026-10-05':'대체공휴일','2026-10-09':'한글날','2026-12-25':'성탄절',"2027-01-01":"신정","2027-02-06":"설날연휴","2027-02-07":"설날","2027-02-08":"설날연휴","2027-02-09":"대체공휴일","2027-03-01":"삼일절","2027-05-01":"노동절","2027-05-03":"대체공휴일","2027-05-05":"어린이날","2027-05-13":"부처님오신날","2027-06-06":"현충일","2027-07-17":"제헌절","2027-07-19":"대체공휴일","2027-08-15":"광복절","2027-08-16":"대체공휴일","2027-09-14":"추석연휴","2027-09-15":"추석","2027-09-16":"추석연휴","2027-10-03":"개천절","2027-10-04":"대체공휴일","2027-10-09":"한글날","2027-10-11":"대체공휴일","2027-12-25":"성탄절","2027-12-27":"대체공휴일","2028-01-01":"신정","2028-01-26":"설날연휴","2028-01-27":"설날","2028-01-28":"설날연휴","2028-03-01":"삼일절","2028-05-01":"노동절","2028-05-02":"부처님오신날","2028-05-05":"어린이날","2028-06-06":"현충일","2028-07-17":"제헌절","2028-08-15":"광복절","2028-10-02":"추석연휴","2028-10-03":"추석·개천절","2028-10-04":"추석연휴","2028-10-05":"대체공휴일","2028-10-06":"대체공휴일","2028-10-09":"한글날","2028-12-25":"성탄절","2029-01-01":"신정","2029-02-12":"설날연휴","2029-02-13":"설날","2029-02-14":"설날연휴","2029-03-01":"삼일절","2029-05-01":"노동절","2029-05-05":"어린이날","2029-05-07":"대체공휴일","2029-05-20":"부처님오신날","2029-05-21":"대체공휴일","2029-06-06":"현충일","2029-07-17":"제헌절","2029-08-15":"광복절","2029-09-21":"추석연휴","2029-09-22":"추석","2029-09-23":"추석연휴","2029-09-24":"대체공휴일","2029-10-03":"개천절","2029-10-09":"한글날","2029-12-25":"성탄절","2030-01-01":"신정","2030-02-02":"설날연휴","2030-02-03":"설날","2030-02-04":"설날연휴","2030-02-05":"대체공휴일","2030-03-01":"삼일절","2030-05-01":"노동절","2030-05-05":"어린이날","2030-05-06":"대체공휴일","2030-05-09":"부처님오신날","2030-06-06":"현충일","2030-07-17":"제헌절","2030-08-15":"광복절","2030-09-11":"추석연휴","2030-09-12":"추석","2030-09-13":"추석연휴","2030-10-03":"개천절","2030-10-09":"한글날","2030-12-25":"성탄절"};
 function _customHol(){ try{ return JSON.parse(localStorage.getItem('custom_holidays')||'{}'); }catch(e){ return {}; } }
@@ -6727,6 +6734,59 @@ function setShiftCfg(k,v){ try{localStorage.setItem(k,v);}catch(e){} renderShift
 function setShiftAnchorToday(idxStr){ var c=_shiftCfg(); var idxMy=parseInt(idxStr,10)||0; var L=_pat().length; var _o=(_shiftSys().off||1); var anchor1=((idxMy-(c.team-1)*_o)%L+L)%L; try{ localStorage.setItem('shift_anchor_date',_dkey(new Date())); localStorage.setItem('shift_anchor_idx',String(anchor1)); }catch(e){} renderShiftCal(); calcOT(); }
 function _stateIdx(dateObj,team){ var c=_shiftCfg(); var a=new Date(c.anchorDate+'T00:00:00'); var diff=Math.round((dateObj-a)/86400000); var L=_pat().length; var _o=(_shiftSys().off||1); return ((diff+c.anchorIdx+(team-1)*_o)%L+L)%L; }
 function _dkey(dt){ return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
+/* v19.11 — 지정휴무일. 교대 순환과 별개로 본인에게 지정된 휴무일을 날짜 단위로 등록한다.
+   3조2교대처럼 관서가 휴무를 따로 지정하는 근무형태를 위한 기능.
+   저장은 근무형태별로 분리(shift_off_<sysid>)되며 로컬에만 남고 외부 전송 없음.
+   ※ 본인 팀에만 적용된다. 다른 팀 표시는 순환표 원본을 그대로 보여준다. */
+function _offKey(){ return 'shift_off_'+_shiftSysId(); }
+function _offDays(){ try{ var o=JSON.parse(localStorage.getItem(_offKey())||'[]'); return Array.isArray(o)?o:[]; }catch(e){ return []; } }
+function _isOffDay(dt){ return _offDays().indexOf(_dkey(dt))>=0; }
+function _stateOf(dt,team){
+  try{ if(team===_shiftCfg().team && _isOffDay(dt)) return '휴무'; }catch(e){}
+  return _pat()[_stateIdx(dt,team)];
+}
+function addOffDay(){
+  var el=document.getElementById('shift_off_in'); if(!el||!el.value) { try{toast('날짜를 먼저 선택하세요');}catch(e){} return; }
+  var k=el.value, a=_offDays();
+  if(a.indexOf(k)<0){ a.push(k); a.sort(); try{ localStorage.setItem(_offKey(),JSON.stringify(a)); }catch(e){} try{toast('🏖️ '+k+' 지정휴무 등록');}catch(e){} }
+  else { try{toast('이미 등록된 날짜입니다');}catch(e){} }
+  el.value=''; renderShiftTimeCfg(); renderShiftCal(); calcOT();
+}
+function delOffDay(k){
+  var a=_offDays().filter(function(x){ return x!==k; });
+  try{ localStorage.setItem(_offKey(),JSON.stringify(a)); }catch(e){}
+  try{toast('지정휴무 해제 — '+k);}catch(e){}
+  renderShiftTimeCfg(); renderShiftCal(); calcOT();
+}
+function clearOffDays(){
+  if(!confirm('등록된 지정휴무일을 모두 삭제할까요?')) return;
+  try{ localStorage.removeItem(_offKey()); }catch(e){}
+  renderShiftTimeCfg(); renderShiftCal(); calcOT();
+}
+function _offDayUI(){
+  if(_shiftSysId()==='fixed') return '';
+  var a=_offDays(), chips='';
+  a.forEach(function(k){
+    chips+='<span style="display:inline-flex;align-items:center;gap:4px;background:rgba(21,128,61,.13);'
+      +'border:1px solid #15803d;color:#15803d;font-weight:800;font-size:12px;'
+      +'border-radius:7px;padding:3px 6px;margin:3px 4px 0 0">🏖️'+k.slice(5)
+      +'<b style="cursor:pointer;font-size:14px;line-height:1" onclick="delOffDay(\''+k+'\')">×</b></span>';
+  });
+  return '<div style="margin-top:10px;padding-top:8px;border-top:1px dashed var(--border)">'
+    +'<div style="font-weight:800;font-size:13px;margin-bottom:5px">🏖️ 지정휴무일'
+    +'<span style="font-size:11px;color:var(--text-dim);font-weight:600"> — 순환표보다 우선 적용 (내 팀만)</span></div>'
+    +'<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">'
+    +'<input type="date" id="shift_off_in" style="min-height:36px;font-size:13px;font-weight:700;'
+    +'color:var(--text);background:var(--panel-2);border:1.5px solid var(--border);border-radius:8px;padding:2px 8px">'
+    +'<button onclick="addOffDay()" style="min-height:36px;font-size:13px;font-weight:800;cursor:pointer;'
+    +'background:var(--panel-2);color:var(--accent);border:1.5px solid var(--accent);border-radius:8px;padding:2px 12px">+ 추가</button>'
+    +(a.length?'<button onclick="clearOffDays()" style="min-height:36px;font-size:12px;font-weight:700;cursor:pointer;'
+      +'background:transparent;color:var(--text-dim);border:1px solid var(--border);border-radius:8px;padding:2px 9px">전체삭제</button>':'')
+    +'</div>'
+    +(a.length?'<div style="margin-top:2px">'+chips+'</div>'
+      :'<div style="font-size:11px;color:var(--text-dim);margin-top:5px">등록된 지정휴무일이 없습니다.</div>')
+    +'</div>';
+}
 /* v18.5 — 관서 공식 근무지정표(교통안전팀 2026.6.1~6.30) 기준 1회성 시딩.
    1팀 2026-06-01 = 휴무(패턴 index 2) / 주간 06:30~18:00(11.5h) · 야간 17:30~익일07:00(13.5h).
    외부 전송 없음. 이후에는 사용자가 설정에서 언제든 변경 가능(플래그로 1회만 실행). */
@@ -6971,7 +7031,7 @@ function _monthCalc(){
  var g=function(id,def){ var e=document.getElementById(id); return e?(parseFloat(e.value)||def):def; };
  var dh=g('ot_dayh',_shiftDur('주간')||11.5),nh=g('ot_nighth',_shiftDur('야간')||13.5),mh=g('ot_midh',_shiftDur('심야')||8),ah=g('ot_afth',_shiftDur('오후')||8),dayStd=g('ot_basestd',8),lv=g('ot_leave',0),early=g('ot_early',0),late=g('ot_late',0),cap=g('ot_cap',0),addw=g('ot_addwork',0);
  var baseWork=0, bwD=0, bwDH=0, bwN=0, bwM=0, bwA=0, bwE=0;
- for(var d=1;d<=days;d++){ var dt=new Date(y,m,d); dt.setHours(0,0,0,0); var st=_pat()[_stateIdx(dt,c.team)]; if(st==='주간')cntD++; else if(st==='야간')cntN++; else if(st==='심야')cntM++; else if(st==='오후')cntA++; var _dow=dt.getDay(); var _isHol=(_dow===0||_dow===6||!!holidayName(_dkey(dt))); if(_isHol){ if(st==='주간')holDS++; else if(st==='야간')holNS++; } var nt=_noteFor(dt); var _wins0=WIN[st]||[]; var _eduBase=false; if(nt&&nt.edu){ if(!_wins0.length) _eduBase=true;  else if(_outside(nt.edu_s,nt.edu_e,[])-_outside(nt.edu_s,nt.edu_e,_wins0) > 0) _eduBase=true; } if(!(nt&&nt.leave)){ if(_eduBase){ if(!_isHol) bwE++; } else if(st==='주간'){ if(_isHol) bwDH++; else bwD++; } else if(st==='야간') bwN++; else if(st==='심야') bwM++; else if(st==='오후') bwA++; } if(!nt) continue;
+ for(var d=1;d<=days;d++){ var dt=new Date(y,m,d); dt.setHours(0,0,0,0); var st=_stateOf(dt,c.team); if(st==='주간')cntD++; else if(st==='야간')cntN++; else if(st==='심야')cntM++; else if(st==='오후')cntA++; var _dow=dt.getDay(); var _isHol=(_dow===0||_dow===6||!!holidayName(_dkey(dt))); if(_isHol){ if(st==='주간')holDS++; else if(st==='야간')holNS++; } var nt=_noteFor(dt); var _wins0=WIN[st]||[]; var _eduBase=false; if(nt&&nt.edu){ if(!_wins0.length) _eduBase=true;  else if(_outside(nt.edu_s,nt.edu_e,[])-_outside(nt.edu_s,nt.edu_e,_wins0) > 0) _eduBase=true; } if(!(nt&&nt.leave)){ if(_eduBase){ if(!_isHol) bwE++; } else if(st==='주간'){ if(_isHol) bwDH++; else bwD++; } else if(st==='야간') bwN++; else if(st==='심야') bwM++; else if(st==='오후') bwA++; } if(!nt) continue;
   if(nt.leave){ if(st==='주간')lvD++; else if(st==='야간')lvN++; else if(st==='심야')lvM++; else if(st==='오후')lvA++; continue; }
   var wins=WIN[st]||[]; var h,du;
   if(nt.phys){ du=_outside(nt.phys_s,nt.phys_e,[]); h=_outside(nt.phys_s,nt.phys_e,wins); h=Math.max(0,h); dn+=h; dnB.phys+=h; }
