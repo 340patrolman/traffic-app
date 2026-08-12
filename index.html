@@ -4134,7 +4134,7 @@ AI는 아는 척을 잘한다.<br>
 <div class="tset-sub">항목을 눌러 펼치세요. 변경은 즉시 앱에 반영됩니다.</div>
 
 <div style="margin:0 0 12px">
-<button onclick="pdOpen(0)" style="width:100%;padding:15px 14px;border:none;border-radius:14px;background:linear-gradient(135deg,#002366,#1d4ed8);color:#fff;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(0,35,102,.28);text-align:left;line-height:1.5">🎤 발표 모드 — 이 앱으로 발표하기<br><span style="font-size:11.5px;font-weight:700;opacity:.85">12장 · 화면을 좌우로 넘기며 설명 · 시연 화면 바로 열기</span></button>
+<button onclick="pdOpen(0)" style="width:100%;padding:15px 14px;border:none;border-radius:14px;background:linear-gradient(135deg,#002366,#1d4ed8);color:#fff;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 6px 16px rgba(0,35,102,.28);text-align:left;line-height:1.5">🎤 발표 모드 — 이 앱으로 발표하기<br><span style="font-size:11.5px;font-weight:700;opacity:.85">9장 · 화면을 좌우로 넘기며 설명 · 시연 화면 바로 열기</span></button>
 </div>
 <div class="tset-acc" id="tsetA0"><button class="tset-head" onclick="tsetAcc('tsetA0');try{orgPaint();}catch(e){}"><span class="ico">🏛️</span><span class="t">우리 관서 설정<small>관서명 지정 · 전국 어느 관서든 씁니다</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner">
 <div class="info-box u-fs13" style="line-height:1.75"><b>T-Book은 특정 관서 전용 앱이 아닙니다.</b><br>법령·판례·서식·처리절차는 <b>전국 공통</b>이고, 관할·연락처·관내 데이터만 관서별로 다릅니다.</div>
@@ -7883,7 +7883,7 @@ function showFocusNotice(){
     setTimeout(closeFocus, 1575); /* v18.1: 표시시간 단축(4500→1575ms) */
   }catch(e){}
 }
-if(document.readyState!=='loading') setTimeout(showFocusNotice,600); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(showFocusNotice,600); });
+/* v20.0-b — 「📋 중점 추진사항」 상단 배너 비활성화. 전국 공용판에서 특정 관서 중점추진사항 표시는 부적합. 함수 정의는 보존(복구 시 이 줄만 되살리면 됨). */
 </script>
 <script>
 function _ccWOCL(h){ if(h>=2&&h<6) return 'strong'; if(h>=14&&h<16) return 'weak'; return 'none'; }
@@ -8388,30 +8388,6 @@ window.__tbookBooted=true;
     '<div class="pdquote">가장 경험이 적은 사람이,<br><b>가장 중요한 기록</b>을 남깁니다.</div>'+
     '<div class="pdnote">그 구조를 바꾸긴 어렵습니다. 대신 <b>그 사람 손에 절차를 쥐여줄 수는 있습니다.</b></div>',
   n:'조직 논리로 올라가는 장. 개인 편의 도구가 아니라 기관 리스크 관리라는 프레임을 여기서 세웁니다.'},
-
- {t:'감지와 측정 사이',
-  b:'<div class="pdquote">상승기로 보인다는 사정만으로<br>언제나 증명이 불가능하다고<br>볼 수는 없다.</div>'+
-    '<div class="pdsub">— 대법원 2025. 12. 11. 선고 <b>2025도8137</b></div>'+
-    '<div class="pdbox"><b>종합 판단 5요소</b><br>① 운전~측정 시간 간격<br>② 수치와 기준치의 차이<br>③ 음주 지속시간·양<br><b style="color:#f0b429">④ 단속·측정 당시 행동 양상</b><br>⑤ 사고 경위·정황</div>'+
-    '<div class="pdnote"><b>갭이 있어도 기록이 있으면 방어됩니다.</b><br>그리고 ④는 <b>그 자리에서만</b> 남길 수 있습니다.</div>',
-  n:'"감지와 측정은 현장에서 즉시 이어져야 합니다. 왜 그런지를 대법원이 작년 12월에 정리했습니다." — 관서 사례는 언급하지 마십시오.'},
-
- {t:'시연 ① 5요소를 버튼 다섯 개로',
-  b:'<div class="pdbig">판례의 5요소를<br><b>탭 다섯 번</b>으로 바꿨습니다.</div>'+
-    '<ul class="pdul"><li>감지·측정 시각 탭 → <b>갭 자동 계산</b></li>'+
-    '<li>수치 입력 → <b>0.03% 대비 차이</b> 자동 표시</li>'+
-    '<li>행동 양상 <b>7개 체크</b> — 관찰만, 결론은 안 씁니다</li>'+
-    '<li>누르면 <b>문안 자동 생성</b> → 복사</li></ul>'+
-    '<div class="pdnote">인적사항·차량번호는 <b>받지 않습니다.</b> 저장도 하지 않습니다.</div>',
-  n:'실제로 감지→측정 두 번 누르십시오. ②번 수치 입력할 때 10초만: "오늘 실습에서 마신 직후 0.075, 27분 뒤 0.049였습니다. 언제 재느냐로 이만큼 달라집니다." — 그리고 바로 넘어가십시오.',
-  j:{l:'\uD83C\uDF7A 음주 5요소 카드 열어보기',g:'docs',p:'drunk'}},
-
- {t:'시연 ② 0.000인데 이상할 때',
-  b:'<div class="pdbox"><b>STEP 0 · 의학적 응급 배제 — 1분 안에</b><br>안면 비대칭 / 한쪽 힘 빠짐 / 발음 불명료 → <b>즉시 119</b><br><span style="color:#fca5a5">저혈당·뇌졸중·케톤산증은 주취와 구별이 어렵습니다.<br>주취로 오인해 방치하면 사람이 죽습니다.</span></div>'+
-    '<div class="pdsub">STEP 1 약물(§45) → STEP 2 객관적·합리적 사정 기록 → STEP 3 채혈(자발적 동의)</div>'+
-    '<div class="pdnote"><b>거부해도 측정거부죄는 성립하지 않습니다.</b></div>',
-  n:'"약물보다 응급이 먼저입니다. 헛소리하는 사람을 주취로 보고 재웠는데 뇌졸중이면, 그건 사건이 아니라 사고입니다."',
-  j:{l:'\uD83D\uDEA8 0.000 대응 카드 열어보기',g:'docs',p:'drunk'}},
 
  {t:'교통을 넘어',
   b:'<div class="pdbig">교통업무만이 아닙니다.<br><b>지역경찰 업무와 서류까지</b> 담았습니다.</div>'+
