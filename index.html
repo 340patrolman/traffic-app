@@ -411,7 +411,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 <!-- ══ 그룹 탭 ══ -->
  <div id="vnav_bar" onclick="vnavToggle()" style="display:none;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:900;cursor:pointer;margin-bottom:6px"><span style="font-size:18px">☰</span><span style="font-size:12px;opacity:.85;white-space:nowrap">전체 메뉴</span><span id="vnav_cur" style="flex:1;text-align:center">🚨 보고서</span><span style="font-size:12px;opacity:.85">▾</span></div> <div class="nav-tabs"> <div class="ntab" data-group="quick" onclick="showGroup('quick')">⚡ 빠른찾기<span class="ndesc">상황·키워드로 한 번에</span></div> <div class="ntab active" data-group="report" onclick="showGroup('report')">🚨 보고서<span class="ndesc">최초·발생·언론·실시간CCTV</span></div> <div class="ntab" data-group="docs"   onclick="showGroup('docs')">📝 서류작성<span class="ndesc">서류·순서·빠른찾기·지역경찰</span></div> <div class="ntab" data-group="shift"  onclick="showGroup('shift')">🗓️ 교대근무표<span class="ndesc">달력·시간외수당</span></div> <div class="ntab" data-group="sop"    onclick="showGroup('sop')">🚦 교통관리<span class="ndesc">단속·신호·시설 SOP</span></div> <div class="ntab" data-group="acci"   onclick="showGroup('acci')">💥 사고처리<span class="ndesc">허브·철칙·유형별·각종사고</span></div> <div class="ntab" data-group="coach"  onclick="showGroup('coach')">🛡️ 현장심리<span class="ndesc">대응멘트·심리방어</span></div> <div class="ntab" data-group="ref"    onclick="showGroup('ref')">📚 법령·자료<span class="ndesc">법적대응·배상청구·법령</span></div> <div class="ntab" data-group="expr"   onclick="showGroup('expr')">🛣️ 전용도로·관할<span class="ndesc">경부·올림픽·관할판정</span></div> <div class="ntab" data-group="orgs" onclick="showGroup('orgs')">📞 연락처<span class="ndesc">기관·부서 전화번호</span></div> <div class="ntab" data-group="life" onclick="showGroup('life')">💚 민생·복지<span class="ndesc">위기대응·생계·체납 지원</span></div> <div class="ntab" data-group="setg" onclick="showGroup('setg')">⚙️ 설정<span class="ndesc">글자크기·백업·사용설명서·보안</span></div>    
 </div> <!-- ══ 서브탭 ══ -->
-<div id="sub_home" class="sub-tabs" style="display:none"></div> <div id="sub_report" class="sub-tabs"> <div class="stab active" data-sub="rep1" onclick="showSubPage('rep1')">최초보고</div> <div class="stab" data-sub="rep2" onclick="showSubPage('rep2')">발생보고</div> <div class="stab" data-sub="rep3" onclick="showSubPage('rep3')">언론예상</div> <div class="stab" data-sub="cctv" onclick="showSubPage('cctv')">📹 실시간CCTV</div> <div class="stab" data-sub="rep_manual" onclick="showSubPage('rep_manual')">📡 보고체계</div> <div class="stab" data-sub="voice" onclick="showSubPage('voice')">🎙️ 음성진술<span class="beta-tag">베타</span></div> <div class="stab" data-sub="video" onclick="showSubPage('video')">📹 블박분석<span class="beta-tag">베타</span></div>
+<div id="sub_home" class="sub-tabs" style="display:none"></div> <div id="sub_report" class="sub-tabs"> <div class="stab active" data-sub="rep1" onclick="showSubPage('rep1')">최초보고</div> <div class="stab" data-sub="rep2" onclick="showSubPage('rep2')">발생보고</div> <div class="stab" data-sub="rep3" onclick="showSubPage('rep3')">언론예상</div> <div class="stab" data-sub="cctv" onclick="showSubPage('cctv')">📹 실시간CCTV</div> <div class="stab" data-sub="rep_manual" onclick="showSubPage('rep_manual')">📡 보고체계</div> <div class="stab" data-sub="voice" onclick="showSubPage('voice')">🧪 음성 · 블박<span class="beta-tag">베타</span></div>
 </div>
 <div id="sub_docs" class="sub-tabs" style="display:none"> <div class="stab" data-sub="doc_manual" onclick="showSubPage('doc_manual')">📕 서류</div> <div class="stab" data-sub="checklist" onclick="showSubPage('checklist')">📋 순서</div> <div class="stab" data-sub="doc_quick" onclick="showSubPage('doc_quick')">⚡ 빠른찾기</div> <div class="stab" data-sub="police_gen" onclick="showSubPage('police_gen')">🚨 지역경찰</div> <div class="stab" data-sub="doc_needed" onclick="showSubPage('doc_needed')">📄 필요서류</div>
 </div>
@@ -11665,9 +11665,10 @@ window.tbGoMine=function(v){
   if(p[0]==='sido'){ tbCctvSheet(p[1]); return; }
   go(x);
  };
- window.tbCctvSheetClose=function(){ var m=document.getElementById('cc_sheet'); if(m) m.remove(); };
+ window.tbCctvSheetClose=function(){ var m=document.getElementById('cc_sheet'); if(m) m.remove(); window.__ccSheet=''; };
  window.tbCctvSheet=function(sd){
   var x=item('sido',sd); if(!x) return;
+  window.__ccSheet=sd;
   var list=citiesOf(sd);
   var w=document.createElement('div'); w.id='cc_sheet';
   w.setAttribute('style','position:fixed;inset:0;z-index:9788;background:rgba(0,0,0,.72);'+
@@ -11694,7 +11695,8 @@ window.tbGoMine=function(v){
   var a=favs(), i=a.indexOf(id);
   if(i>=0) a.splice(i,1); else { if(a.length>=8){ alert('자주 보는 곳은 8개까지입니다.'); return; } a.push(id); }
   favSet(a); paintAll();
-  try{ toast(i>=0?'자주 보기에서 뺐습니다':'⭐ 자주 보는 곳에 넣었습니다'); }catch(e){}
+  try{ if(window.__ccSheet && document.getElementById('cc_sheet')){ var sd=window.__ccSheet; tbCctvSheetClose(); tbCctvSheet(sd); } }catch(e){}
+  try{ toast(i>=0?'자주 보기에서 뺐습니다':'⭐ 자주 보는 곳에 넣었습니다 — 맨 위로 올라갑니다'); }catch(e){}
  };
  window.tbCctvEdit=function(id){
   var x=byId(id); if(!x) return;
@@ -11746,12 +11748,58 @@ window.tbGoMine=function(v){
  /* 최초보고 화면의 「실시간CCTV」 단추 — 자주 보는 곳이 하나면 바로 열고, 아니면 화면으로 */
  window.tbCctvJump=function(){
   var a=favs();
-  if(a.length===1){ tbCctvOpen(a[0]); return; }
+  if(a.length){ go(byId(a[0])); return; }   /* ⭐ 자주 보는 곳 1순위를 바로 연다 */
   try{ showGroup('report'); }catch(e){}
   try{ showSubPage('cctv'); }catch(e){}
  };
  if(document.readyState!=='loading') setTimeout(paintAll,300);
  else document.addEventListener('DOMContentLoaded',function(){ setTimeout(paintAll,300); });
+})();
+</script>
+
+
+<style>
+.bt-sw{display:flex;gap:7px;margin:0 0 10px}
+.bt-sw button{flex:1;background:var(--panel-2);color:var(--text);border:1px solid var(--border);
+ border-radius:11px;padding:12px 0;font-size:13.5px;font-weight:900;cursor:pointer;min-height:46px}
+.bt-sw button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+<script>
+/* ═══ v20.2 — 베타 2종(음성진술·블박분석)을 한 탭으로 ═══ */
+(function(){
+ var P=[['voice','🎙️ 음성진술'],['video','📹 블박분석']];
+ function bar(cur){
+  return '<div class="bt-sw">'+P.map(function(x){
+   return '<button type="button" class="'+(x[0]===cur?'on':'')+'" onclick="showSubPage(\''+x[0]+'\')">'+x[1]+'</button>';
+  }).join('')+'</div>';
+ }
+ function inject(){
+  P.forEach(function(x){
+   var pg=document.getElementById('page-'+x[0]); if(!pg) return;
+   var old=pg.querySelector(':scope > .bt-sw'); if(old) old.remove();
+   var d=document.createElement('div'); d.innerHTML=bar(x[0]);
+   pg.insertBefore(d.firstChild, pg.firstChild);
+  });
+ }
+ function markTab(){
+  try{
+   var cur=(document.querySelector('.page.active')||{}).id||'';
+   if(cur==='page-video'){
+    var t=document.querySelector('#sub_report .stab[data-sub="voice"]');
+    if(t) t.classList.add('active');
+   }
+  }catch(e){}
+ }
+ function hook(){
+  var o=window.showSubPage;
+  if(typeof o!=='function'||o.__btSw) return;
+  var w=function(id){ var r=o.apply(this,arguments); setTimeout(markTab,30); return r; };
+  w.__btSw=1; window.showSubPage=w;
+ }
+ function boot(){ inject(); hook(); markTab(); }
+ if(document.readyState!=='loading') setTimeout(boot,700);
+ else document.addEventListener('DOMContentLoaded',function(){ setTimeout(boot,700); });
+ setTimeout(boot,2200);
 })();
 </script>
 
