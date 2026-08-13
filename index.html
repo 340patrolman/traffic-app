@@ -915,7 +915,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 </div> <!-- ══════════════════════════════════
      사건보고 그룹
 ══════════════════════════════════ -->
-<div class="page active" id="page-rep1"> <div class="card" style="padding:12px;border:2px solid var(--accent)"> <div class="card-title" style="font-size:14px;margin-bottom:8px">🌤️ 날씨 · 📹 실시간 CCTV</div><div class="btn-group btn-group5"><button class="btn btn-sec u-flex1 tile-btn" onclick="openExt('https://weather.com/ko-KR','https://weather.com/ko-KR')"><span class="tb-ico">🌧️</span><span class="tb-txt">웨더닷컴</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://topis.seoul.go.kr/map/openCctvMap.do','https://m.topis.seoul.go.kr/')"><span class="tb-ico">🗼</span><span class="tb-txt">서울교통정보</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://map.naver.com','https://m.map.naver.com')"><span class="tb-ico">🗺️</span><span class="tb-txt">네이버지도</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://d.kbs.co.kr','https://d.kbs.co.kr')"><span class="tb-ico">📺</span><span class="tb-txt">KBS재난</span></button></div><div style="font-size:11px;color:var(--text-dim);margin-top:6px">기기 자동 감지(모바일↔PC) · 외부통신 0(바로가기). 기상청·레이더는 유관단체﹥교통정보 탭에 있습니다.</div> </div> <details style="border-color:var(--accent-gold);margin-bottom:12px"><summary>💡 스마트폰 키보드 마이크(🎤) 버튼 찾는 방법</summary><div class="u-p8-0"><p class="u-fs14-lh17">키보드의 <b>마이크 버튼</b>을 누르면 가장 빠르고 정확하게 받아쓰기됩니다. 받아쓴 내용은 그대로 입력칸에 들어갑니다.</p><div class="report-step" style="margin-top:8px"><h5>🍎 아이폰 (Apple)</h5><p>키보드 <b>오른쪽 아래</b>(스페이스바 옆 또는 🌐 지구본 아이콘 옆)의 <b>마이크(🎤)</b>를 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 갤럭시 (삼성 키보드)</h5><p>입력칸을 터치한 뒤, 키보드 <b>상단 툴바</b>의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 구글 키보드 (Gboard)</h5><p>키보드 <b>우측 상단</b> 툴바의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div></div></details> <details class="card cmpct" style="border:2px solid var(--accent)"> <summary class="card-title" style="cursor:pointer">🎙️ 음성 텍스트로 변환 (보조 입력)</summary> <div class="info-box" style="font-weight:800;font-size:14px">🎤 <b>권장: 기기 내장 음성인식(키보드 마이크)</b> — 안드로이드·아이폰 모두 입력칸을 누른 뒤 키보드의 마이크로 받아쓰는 것이 가장 빠르고 정확합니다. 아래 [음성 텍스트로 인식] 버튼은 보조 수단(아이폰 Safari·PC)입니다</div> <div class="guide-box"><b>받아쓰기 → [📥 칸에 자동 채우기] 버튼.</b> 항목명을 붙여 말한 뒤 버튼을 누르면 해당 칸에 들어갑니다.<br>인식 항목명: <b>장소(위치)</b> · <b>피해</b> · <b>가해자(피의자)</b> · <b>경위</b> · <b>조치</b><br>예: "<b>장소</b> ○○대로 사거리, <b>피해</b> 경상 1명, <b>가해자</b> 김○○ 아반떼, <b>경위</b> 적색신호 무시 직진, <b>조치</b> 2개차로 통제"<br>※ <b>사망·중대·뺑소니·음주·유명인</b> 단어가 있으면 사고유형도 자동 선택됩니다. 항목 순서대로 말해야 정확합니다(마지막 항목 뒤 내용은 그 칸에 포함).</div> <div class="voice-panel"> <div class="voice-status"><span class="voice-dot" id="qv_dot"></span><span id="qv_status">대기중</span></div> <textarea class="voice-text" id="qv_final" placeholder="여기를 눌러 키보드 🎤로 받아쓰거나 직접 입력하세요" style="width:100%;min-height:70px"></textarea> <div class="voice-text interim" id="qv_interim" style="margin-top:4px"></div> </div> <button class="btn btn-rec btn-full" id="qv_toggle" onclick="toggleQuickMic()">🎙️ 음성 텍스트로 인식(아이폰 및 PC용)</button> <div class="btn-group"> <button class="btn btn-primary u-flex1" onclick="quickFillReport()">📥 칸에 자동 채우기</button> <button class="btn btn-sec" onclick="clearQuickVoice()">🗑️ 지우기</button> </div> <div id="qv_report" class="recipient-hint" style="display:none;margin-top:8px"></div> </details> <div class="guide-box"><b>💡 원스톱 보고:</b> 한 번 입력 → 1차(카톡 최초전파) · 2차(KICS 발생보고) · 3차(언론대응)가 동시에 생성됩니다.</div>
+<div class="page active" id="page-rep1"> <div class="card" style="padding:12px;border:2px solid var(--accent)"> <div class="card-title" style="font-size:14px;margin-bottom:8px">🌤️ 날씨 · 📹 실시간 CCTV</div><div class="btn-group btn-group5"><button class="btn btn-sec u-flex1 tile-btn" onclick="openExt('https://weather.com/ko-KR','https://weather.com/ko-KR')"><span class="tb-ico">🌧️</span><span class="tb-txt">웨더닷컴</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="tbCctvJump()"><span class="tb-ico">📹</span><span class="tb-txt">실시간CCTV</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://map.naver.com','https://m.map.naver.com')"><span class="tb-ico">🗺️</span><span class="tb-txt">네이버지도</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://d.kbs.co.kr','https://d.kbs.co.kr')"><span class="tb-ico">📺</span><span class="tb-txt">KBS재난</span></button></div><div style="font-size:11px;color:var(--text-dim);margin-top:6px">기기 자동 감지(모바일↔PC) · 외부통신 0(바로가기). 기상청·레이더는 유관단체﹥교통정보 탭에 있습니다.</div> </div> <details style="border-color:var(--accent-gold);margin-bottom:12px"><summary>💡 스마트폰 키보드 마이크(🎤) 버튼 찾는 방법</summary><div class="u-p8-0"><p class="u-fs14-lh17">키보드의 <b>마이크 버튼</b>을 누르면 가장 빠르고 정확하게 받아쓰기됩니다. 받아쓴 내용은 그대로 입력칸에 들어갑니다.</p><div class="report-step" style="margin-top:8px"><h5>🍎 아이폰 (Apple)</h5><p>키보드 <b>오른쪽 아래</b>(스페이스바 옆 또는 🌐 지구본 아이콘 옆)의 <b>마이크(🎤)</b>를 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 갤럭시 (삼성 키보드)</h5><p>입력칸을 터치한 뒤, 키보드 <b>상단 툴바</b>의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 구글 키보드 (Gboard)</h5><p>키보드 <b>우측 상단</b> 툴바의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div></div></details> <details class="card cmpct" style="border:2px solid var(--accent)"> <summary class="card-title" style="cursor:pointer">🎙️ 음성 텍스트로 변환 (보조 입력)</summary> <div class="info-box" style="font-weight:800;font-size:14px">🎤 <b>권장: 기기 내장 음성인식(키보드 마이크)</b> — 안드로이드·아이폰 모두 입력칸을 누른 뒤 키보드의 마이크로 받아쓰는 것이 가장 빠르고 정확합니다. 아래 [음성 텍스트로 인식] 버튼은 보조 수단(아이폰 Safari·PC)입니다</div> <div class="guide-box"><b>받아쓰기 → [📥 칸에 자동 채우기] 버튼.</b> 항목명을 붙여 말한 뒤 버튼을 누르면 해당 칸에 들어갑니다.<br>인식 항목명: <b>장소(위치)</b> · <b>피해</b> · <b>가해자(피의자)</b> · <b>경위</b> · <b>조치</b><br>예: "<b>장소</b> ○○대로 사거리, <b>피해</b> 경상 1명, <b>가해자</b> 김○○ 아반떼, <b>경위</b> 적색신호 무시 직진, <b>조치</b> 2개차로 통제"<br>※ <b>사망·중대·뺑소니·음주·유명인</b> 단어가 있으면 사고유형도 자동 선택됩니다. 항목 순서대로 말해야 정확합니다(마지막 항목 뒤 내용은 그 칸에 포함).</div> <div class="voice-panel"> <div class="voice-status"><span class="voice-dot" id="qv_dot"></span><span id="qv_status">대기중</span></div> <textarea class="voice-text" id="qv_final" placeholder="여기를 눌러 키보드 🎤로 받아쓰거나 직접 입력하세요" style="width:100%;min-height:70px"></textarea> <div class="voice-text interim" id="qv_interim" style="margin-top:4px"></div> </div> <button class="btn btn-rec btn-full" id="qv_toggle" onclick="toggleQuickMic()">🎙️ 음성 텍스트로 인식(아이폰 및 PC용)</button> <div class="btn-group"> <button class="btn btn-primary u-flex1" onclick="quickFillReport()">📥 칸에 자동 채우기</button> <button class="btn btn-sec" onclick="clearQuickVoice()">🗑️ 지우기</button> </div> <div id="qv_report" class="recipient-hint" style="display:none;margin-top:8px"></div> </details> <div class="guide-box"><b>💡 원스톱 보고:</b> 한 번 입력 → 1차(카톡 최초전파) · 2차(KICS 발생보고) · 3차(언론대응)가 동시에 생성됩니다.</div>
 <!-- 원스톱 통합 카드 --> <div class="card"> <div class="card-title">🚀 원스톱 통합 입력</div>
 <label>사고 유형</label> <select id="ros_type" onchange="rosCheckMedia()"> <option value="일반사고">일반 교통사고</option> <option value="사망사고">⚠️ 사망사고 (즉시전파)</option> <option value="중대사고">⚠️ 중대 인명피해</option> <option value="연예인_유명인">⚠️ 연예인·공직자 등 유명인</option> <option value="뺑소니">사고 후 미조치 (뺑소니)</option> <option value="음주사고">음주운전 사고</option> </select> <div id="ros_media_alert" style="display:none;margin-top:10px" class="recipient-hint">📢 <b>[3차 언론보고 자동 활성]</b> 사망·중대·유명인 사고 — 언론대응 보고서가 함께 생성됩니다.</div>
 <div class="row u-mt12"> <div><label>발생 장소</label><input id="ros_place" placeholder="○○대로 ○○사거리"></div> <div><label>피해 정도</label><input id="ros_dmg" placeholder="경상 1명, 차량 반파"></div> </div>
@@ -939,22 +939,14 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
  <div class="card" data-cl="1" style="border:2px solid var(--accent)">
   <div class="card-title">📹 실시간 교통 CCTV</div>
   <div class="info-box u-fs13">누르면 <b>새 창</b>으로 열립니다. 앱이 영상을 받아오지 않습니다 — <b>외부 통신 0건</b>은 그대로입니다.</div>
-  <div id="cc_home"></div>
+  <div class="cc-lb">⭐ 자주 보는 곳 <small>— ☆를 누르면 여기로 올라옵니다 (8개까지)</small></div>
+  <div id="cc_fav"></div>
   <div class="cc-lb">국가가 운영 — 고속도로 · 국도 · 전국 도시부</div>
-  <div class="cc-grid">
-   <button type="button" class="cc-t" onclick="openExt('https://its.go.kr/map/cctv','https://its.go.kr/map/cctv')">
-    <span class="cc-i">🛣️</span><span class="cc-x"><b>국가교통정보센터 (ITS)</b><i>고속도로 71개 노선 · 국도 — 국토교통부</i></span></button>
-   <button type="button" class="cc-t" onclick="openExt('https://www.utic.go.kr/map/map.do?menu=cctv','https://www.utic.go.kr/map/map.do?menu=cctv')">
-    <span class="cc-i">🏙️</span><span class="cc-x"><b>도시교통정보센터 (UTIC)</b><i>전국 시·군 도심 CCTV 통합 — 국토교통부</i></span></button>
-  </div>
-  <div class="cc-lb">지자체가 운영 — 시 · 도 17곳 <small>— 누르면 바로 열립니다. ✎로 주소를 바꿀 수 있습니다</small></div>
+  <div id="cc_nat" class="cc-grid"></div>
+  <div class="cc-lb">지자체 — 시 · 도 17곳 <small>— 누르면 그 안에서 시·군을 고릅니다</small></div>
   <div id="cc_sido" class="cc-sg"></div>
-  <div class="cc-lb">시 · 군 · 구 · 구간 <small>— 자주 보는 곳을 따로 넣습니다</small></div>
-  <div id="cc_mine" class="cc-grid"></div>
-  <button type="button" class="cc-add" onclick="tbCctvAdd()">＋ CCTV 주소 넣기</button>
   <div class="cc-note"><b>국가</b>는 고속도로·국도, <b>지자체</b>는 시내 도로를 각각 운영합니다 — 찾는 지점에 따라 골라 여십시오.<br>
-   시·도 17곳 주소는 <b>2026-08-13에 하나씩 열어 확인</b>했습니다. <b>강원 · 충남 · 전남</b>은 도 단위 통합센터가 없어 <b>UTIC</b>으로 이어 뒀습니다.<br>
-   안 열리거나 더 좋은 곳을 아시면 <b>✎</b>로 바꾸십시오. 바꾼 주소는 이 기기에만 저장됩니다.</div>
+   전국 <b>17개 시·도 + 시·군 17곳</b>을 2026-08-13에 하나씩 열어 확인했습니다. <b>강원</b>은 도·시 단위 센터가 확인되지 않아 <b>UTIC 전국지도</b>로 이어 뒀습니다.</div>
  </div>
 </div>
 <div class="page" id="page-rep2"> <div class="card"> <div class="card-title">📄 사건 발생 보고 (정식)</div> <div class="guide-box"><b>💡 정형사고:</b> 신호위반·중앙선침범 등 전형 위반 확인.<br><b>💡 비정형사고:</b> 급발진 주장·특수차량 등 법리 검토 필요.</div> <label>발생 경위 (육하원칙)</label> <div class="mic-wrap">
@@ -2370,7 +2362,22 @@ A수배는 체포 관련 서류와 함께 신병 인계(신병인수증 필히 �
 </ul> <button class="btn btn-sec btn-full" onclick="resetSeqFor('seqListA')">↺ 초기화</button> <div style="font-size:11.5px;color:var(--text-dim);margin-top:6px">※ 상세 절차·결격기준은 📕 서류매뉴얼 &gt; 음주사고 참조</div> </div> </div>
 </div> <div class="page" id="page-precedent"> <div class="card"> <div class="card-title">⚖️ 주요 판례</div> <div class="info-box">현장에서 자주 다투는 쟁점 순 — 🍺 음주(상승기·위드마크) → 🚦 신호·인과 → 🚓 절차 → 기타. 제목을 누르면 요지·<b>💡 쉽게 풀면</b> 해설이 펼쳐집니다. 최종 인용 전 국가법령정보센터 원문 대조 필수 (기준: 2026.7)</div> <input id="prec_q" placeholder="🔍 판례 키워드" oninput="renderPrecedents()"> <div id="prec_list" class="u-mt10"></div> </div>
 <details class="card cmpct" id="us_court"><summary class="card-title">🇺🇸 법정 증언 3원칙</summary><div class="details-content u-lh185-fs14"><div class="info-box u-fs12">개념만 수입 — 증인신문 절차는 한국 형사소송법 기준. 원칙은 <span class="xlink" onclick="goCard('coach','co_psych','us_pj')">🇺🇸 시리즈 ① 카드(수입 원칙)</span> 참조.</div><b>왜 판례 탭에 있나</b> — 음주·사고 사건은 증인 출석으로 끝난다. 판례를 아는 것과 법정에서 살아남는 것은 다른 기술이다.<br><br><b>3원칙</b><br>① <b>물은 것만 답한다</b> — "예", "아니오", "약 3m였습니다"로 끝. 덧붙인 한 문장이 반대신문 소재가 된다. 침묵이 어색해도 채우지 않는다 — 어색함은 변호인의 도구다.<br>② <b>모르면 "기억나지 않습니다"가 정답이다</b> — 추측으로 메운 답은 보고서와의 불일치를 만들고, 불일치 하나가 증언 전체의 신빙성을 무너뜨린다. "기억나지 않습니다"는 패배가 아니라 방어다.<br>③ <b>추측 요구엔 응하지 않는다</b> — "~였을 가능성도 있죠?"에는 "추측은 드릴 수 없습니다. 제가 본 것은 ~입니다."로 관찰로 복귀.<br><br><b>반대신문 함정 3패턴</b><br>• <b>복합 질문</b> — "정차시키고 바로 측정 요구하셨죠?"(2개 질문) → "두 가지를 나눠 답하겠습니다."<br>• <b>절대어 유도</b> — "항상 그렇게 하십니까?" → "항상"에 동의하는 순간 예외 하나로 무너진다. "그 사건에서는 ~했습니다."<br>• <b>페이스 올리기</b> — 빠른 연속 질문으로 실수 유도 → 질문 후 <b>1초 쉬고</b> 답한다. 그 1초는 검사의 이의 제기 시간이기도 하다.<br><br><b>준비 수칙</b> — 출석 전 내 보고서·진술서 재독은 필수(증언은 기록과의 일치 싸움) · 법정에서 변호인이 아니라 <b>판사를 보고</b> 답한다 · 복장·태도 자체가 신빙성 판단 요소다.<br><br><b>보고서와의 연결</b> — 서류작성 탭의 '관찰·결론 분리 5원칙'으로 쓴 보고서일수록 증언이 쉽다. 결론 없는 보고서는 공격 표면이 없다.</div></details>
-</div> <div class="page pg-narrow" id="page-enforce">
+</div> <div class="page pg-narrow" id="page-enforce"><div class="card" data-cl="1" style="border:2px solid var(--accent)">
+<div class="card-title">🌏 외국인 신원확인 — 무엇을 보면 되나</div>
+<div class="info-box u-fs13"><b>90일 이하 단기체류 → 여권</b> · <b>90일 초과 장기체류 → 외국인등록증</b>(신용카드 크기)<br>
+영주자는 <b>영주증</b>(유효기간 10년) · <b>모바일외국인등록증</b>은 <b>실물과 같은 효력</b>이다 — 휴대폰 화면 제시도 인정된다(출입국관리법 §33⑥).</div>
+<div class="u-fs13" style="line-height:1.95;margin-top:8px"><b>반드시 확인할 4가지</b><br>
+① <b>외국인등록번호 13자리</b> ② <b>영문 성명</b> — 여권과 철자가 같은지 ③ <b>체류자격</b>(E-9 · F-2 · F-5 …) ④ <b>체류기간 만료일</b></div>
+<div class="guide-box u-fs13" style="margin-top:8px">우리말이 서툴러 이름을 부정확하게 말하는 경우가 많다. <b>증(證)에 적힌 영문 철자를 그대로 옮겨 적는 것</b>이 가장 확실하다.</div>
+<div class="u-fs13" style="line-height:1.95;margin-top:8px"><b>아무것도 지니지 않았다면</b><br>
+· 출입국관리법 <b>§27</b>(여권등의 휴대·제시) 위반 → <b>§98 제1호 · 100만원 이하의 벌금</b><br>
+· <b>과태료가 아니라 형벌</b>이다. 그리고 <b>정액 100만원이 아니라 상한</b>이다<br>
+· 조문은 <b>여권 · 선원신분증명서 · 외국인입국허가서 · 외국인등록증 · 모바일외국인등록증 · 상륙허가서</b> 중 <b>어느 하나</b>를 지니면 충족이다 — 장기체류자가 여권을 지녔다면 위반이 아니다<br>
+· <b>17세 미만은 휴대 의무 자체가 없다</b>(§27① 단서)<br>
+· 제시 요구는 <b>직무수행과 관련</b>되어야 한다(§27②)</div>
+<div class="u-fs13" style="color:var(--text-dim);margin-top:8px;line-height:1.7">근거 — 출입국관리법 §27 · §31 · §33 · §98 (공포 제20992호 · 조문시행 2026-01-23) 국가법령정보센터 원문 확인</div>
+</div>
+
 <div class="info-box">🚓 <b>단속유형별 현장 처리절차</b> · 처리 흐름 <b>폴리폰 → TCS → KICS</b> 기준 · 서식·기재문구는 일선 서 운영기준 예시 반영. 최종 집행 시 국가법령정보센터·최신 지침 재확인 필수.</div>
 <button class="btn btn-gold btn-full" onclick="showGroup('docs');showSubPage('doc_manual')" style="margin:0 0 14px">📄 매뉴얼 전문 보기</button><div class="card" style="border:2px solid var(--accent)"><div class="card-title">🚩 현장 도착 — 단계별 진행</div><div class="report-step"><h5>1. 안전 확보 (목표 = 안전 확인)</h5><p><b>안전을 확보·확인하는 것이 목적</b>. 안전한 장소 유도·경광등·후방 경계·2인 1조는 <b>가능하면</b> 하라는 권장이지, 반드시 다 해야 하는 고정 체크리스트가 아니다.</p></div><div class="report-step"><h5>2. 신분 표명·고지 (눈맞춤 거수경례)</h5><p><b>왜 눈을 마주치며 인사하나 — 지금부터 단속을 개시한다는 신호</b>이자 상대 스타일 파악. 이어 위반내용·법규를 <b>적절히 설명</b> → 면허증 제시 요구.<br><span style="color:var(--text-dim);font-size:12px">※ 형식보다 <b>적절한 설명</b>이 핵심. <b>관등성명(소속·계급·성명) 구두 고지와 정모(모자) 착용은 단속(통고처분)의 적법요건이 아니다</b> — 미이행해도 단속은 유효. 관등성명은 <b>단속용지(통고서)에 기재·교부</b>되어 신분이 특정되므로, “관등성명 대봐·모자 왜 안 썼냐”는 단속 효력과 무관한 악의적 트집일 뿐(정모도 근무 상황별 착용). 형식 미이행=잘못 아님, “안 했다” 역민원 대비 <b>채증</b>. <b>1인 근무</b>는 현장상황에 맞춰 유연.</span></p></div><div class="report-step"><h5>3. 신원·위반 확인</h5><p>면허·신원 조회(폴리폰), 위반유형 판별 · 외국인은 여권·IDP·입국일 확인</p></div><div class="report-step"><h5>4. 채증</h5><p>영상·사진(번호판·위반 상황·측정 과정)</p></div><div class="report-step"><h5>5. 유형별 처리</h5><p>아래 ①무면허 ②음주 ③채혈 ④… 절차대로 (폴리폰→TCS→KICS)</p></div><div class="report-step"><h5>6. 처분·종결</h5><p>통고처분 또는 입건. 형사사안은 KICS, 외국인은 출입국 연계</p></div></div>
 
@@ -11555,6 +11562,21 @@ window.tbGoMine=function(v){
 .cc-s.on{color:var(--text);border-color:var(--accent);background:var(--panel)}
 .cc-s.mine{border-width:2px;border-color:var(--accent-gold,#b8924b)}
 .cc-s .ed{position:absolute;top:1px;right:3px;font-size:12px;opacity:.7;padding:3px 4px;line-height:1}
+.cc-s .cc-st{position:absolute;top:0;left:1px;font-size:14px;padding:3px 5px;line-height:1;opacity:.55;cursor:pointer}
+.cc-s .cc-st.on{opacity:1;color:var(--accent-gold,#b8924b)}
+.cc-t .cc-st{margin-left:auto;font-size:19px;padding:6px 4px;opacity:.45;cursor:pointer;flex:0 0 auto}
+.cc-t .cc-st.on{opacity:1;color:var(--accent-gold,#b8924b)}
+.cc-hm .cc-st{margin-left:auto;font-size:19px;color:#fff;padding:6px 2px;cursor:pointer;flex:0 0 auto}
+.cc-hm{margin-bottom:8px}
+.cc-hm i{white-space:normal}
+.cc-box{background:var(--panel);border:2px solid var(--accent);border-top-left-radius:18px;
+ border-top-right-radius:18px;width:100%;max-width:560px;padding:14px 13px 16px;max-height:88vh;
+ display:flex;flex-direction:column;box-shadow:0 -8px 30px rgba(0,0,0,.35)}
+.cc-bh{position:relative;font-size:15px;font-weight:900;color:var(--text);padding:0 34px 11px 2px;line-height:1.4}
+.cc-bx{position:absolute;top:-4px;right:-2px;background:none;border:none;color:var(--text-dim);
+ font-size:21px;font-weight:900;cursor:pointer;padding:2px 7px;line-height:1}
+.cc-bc{width:100%;margin-top:10px;background:var(--panel-2);color:var(--text);border:1px solid var(--border);
+ border-radius:12px;padding:13px 0;font-size:14px;font-weight:900;cursor:pointer;min-height:48px}
 .cc-hm{display:flex;align-items:center;gap:10px;width:100%;background:var(--accent);color:#fff;border:none;
  border-radius:13px;padding:15px 13px;min-height:64px;cursor:pointer;text-align:left;margin-bottom:2px}
 .cc-hm b{display:block;font-size:15.5px;font-weight:900;line-height:1.3}
@@ -11564,131 +11586,172 @@ window.tbGoMine=function(v){
 @media(max-width:340px){.cc-grid{grid-template-columns:1fr}}
 </style>
 <script>
-/* ═══ v20.2 — 실시간 CCTV 직접 넣기 ═══
-   주소만 localStorage 에 넣는다. 앱은 여전히 아무 것도 받아오지 않는다. */
+/* ═══ v20.2 — 실시간 교통 CCTV ═══
+   국가(고속도로·국도) / 지자체(시·도·시군) 두 갈래.
+   주소는 2026-08-13 브라우저로 하나씩 열어 확인한 것. 앱은 아무 것도 받아오지 않는다(새 창으로 넘길 뿐). */
 (function(){
- var K='tbook_cctv_v1';
- function rd(){ try{ return JSON.parse(localStorage.getItem(K)||'[]'); }catch(e){ return []; } }
- function wr(a){ try{ localStorage.setItem(K, JSON.stringify(a)); return true; }catch(e){ return false; } }
- function esc(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
- function okUrl(u){ return /^https?:\/\//i.test((u||'').trim()); }
-
- function paint(){
-  var box=document.getElementById('cc_mine'); if(!box) return;
-  var a=rd();
-  if(!a.length){ box.innerHTML='<div class="cc-0">아직 없습니다. 아래 <b>＋ CCTV 주소 넣기</b>로 우리 지역 CCTV를 넣으십시오.</div>'; return; }
-  box.innerHTML=a.map(function(x,i){
-   return '<div class="cc-t" role="button" tabindex="0" onclick="tbCctvGo('+i+')">'+
-    '<span class="cc-i">📹</span><span class="cc-x"><b>'+esc(x.n)+'</b><i>'+esc((x.d||'내가 넣은 곳'))+'</i></span>'+
-    '<span class="cc-x-del" role="button" aria-label="빼기" onclick="event.stopPropagation();tbCctvDel('+i+')">✕</span></div>';
-  }).join('');
- }
- window.tbCctvPaint=paint;
- window.tbCctvGo=function(i){ var x=rd()[i]; if(!x) return;
-  try{ openExt(x.u, x.m||x.u); }catch(e){} };
- window.tbCctvDel=function(i){
-  var a=rd(); if(!a[i]) return;
-  if(!confirm('「'+a[i].n+'」를 목록에서 뺍니다.')) return;
-  a.splice(i,1); wr(a); paint(); try{ toast('뺐습니다'); }catch(e){}
- };
- window.tbCctvAdd=function(){
-  var n=null; try{ n=window.prompt('이름 — 예: 경기 교통정보센터',''); }catch(e){}
-  if(n===null) return;
-  n=(n||'').trim().slice(0,24); if(!n){ try{toast('이름을 적으십시오');}catch(e){} return; }
-  var u=null; try{ u=window.prompt('주소(URL) — https:// 로 시작합니다\n브라우저 주소창을 복사해 붙여 넣으십시오.','https://'); }catch(e){}
-  if(u===null) return;
-  u=(u||'').trim();
-  if(!okUrl(u)){ alert('주소가 http:// 또는 https:// 로 시작해야 합니다.'); return; }
-  var d=null; try{ d=window.prompt('설명 (선택) — 예: 경부고속 서울방향',''); }catch(e){}
-  var a=rd();
-  if(a.length>=30){ alert('30개까지만 넣을 수 있습니다.'); return; }
-  a.push({n:n, u:u, d:(d||'').trim().slice(0,30)});
-  if(wr(a)){ paint(); try{ toast('📹 넣었습니다 — '+n); }catch(e){} }
- };
-
- /* ── 시·도 17곳 ─────────────────────────────────── */
- var SK='tbook_cctv_sido', HK='tbook_cctv_home';
- var SIDO=['서울','부산','대구','인천','광주','대전','울산','세종',
-           '경기','강원','충북','충남','전북','전남','경북','경남','제주'];
+ var FK='tbook_cctv_fav', OK='tbook_cctv_over', HK='tbook_cctv_home';
  var UTIC='https://www.utic.go.kr/map/map.do?menu=cctv';
- /* 2026-08-13 실측 — 브라우저로 직접 열어 확인한 주소 */
- var BUILTIN={
-  '서울':{u:'https://topis.seoul.go.kr/map/openCctvMap.do', m:'https://m.topis.seoul.go.kr/', t:'서울 TOPIS'},
-  '부산':{u:'https://its.busan.go.kr/',                      t:'부산 교통정보서비스센터'},
-  '대구':{u:'https://car.daegu.go.kr/',                      t:'대구교통종합정보'},
-  '인천':{u:'https://www.fitic.go.kr/',                      t:'인천교통정보센터'},
-  '광주':{u:'https://its.gjcity.go.kr/trafficPara.view?menuType=trmenu2', t:'광주시교통정보센터 CCTV'},
-  '대전':{u:'https://traffic.daejeon.go.kr/',                t:'대전교통정보센터'},
-  '울산':{u:'https://its.ulsan.kr/',                         t:'울산교통관리센터'},
-  '세종':{u:'https://bis.sejong.go.kr/web/atms/atms_map.view?type=1', t:'세종 소통정보'},
-  '경기':{u:'https://gits.gg.go.kr/web/trafficInfo/webMapInfo.do?opt=3', t:'경기도교통정보센터 CCTV'},
-  '강원':{u:UTIC, t:'도 단위 센터 없음 — 전국 도시부(UTIC)'},
-  '충북':{u:'http://www.cjits.go.kr/',                       t:'청주통합교통정보센터'},
-  '충남':{u:UTIC, t:'도 단위 센터 없음 — 전국 도시부(UTIC)'},
-  '전북':{u:'https://its.jeonju.go.kr/its/traffic2.view',    t:'전주시 교통정보센터 CCTV'},
-  '전남':{u:UTIC, t:'도 단위 센터 없음 — 전국 도시부(UTIC)'},
-  '경북':{u:'https://utis.pohang.go.kr/trafficMap/cctvMap',  t:'포항시 교통정보센터 CCTV'},
-  '경남':{u:'https://utis.changwon.go.kr/video/cctv',        t:'창원시 교통정보센터 CCTV'},
-  '제주':{u:'https://www.jejuits.go.kr/jido/mainView.do?DEVICE_KIND=CCTV', t:'제주 교통정보센터'}
- };
- function sd(){ var o={}; try{ o=JSON.parse(localStorage.getItem(SK)||'{}')||{}; }catch(e){}
-  SIDO.forEach(function(n){ if(!(o[n]&&o[n].u)&&BUILTIN[n]) o[n]=BUILTIN[n]; }); return o; }
- function sdSet(o){ try{ localStorage.setItem(SK, JSON.stringify(o)); }catch(e){} }
- function home(){ try{ return localStorage.getItem(HK)||''; }catch(e){ return ''; } }
- function homeSet(v){ try{ v?localStorage.setItem(HK,v):localStorage.removeItem(HK); }catch(e){} }
 
- function paintSido(){
-  var box=document.getElementById('cc_sido'); if(!box) return;
-  var o=sd(), hm=home();
-  box.innerHTML=SIDO.map(function(n){
-   var has=!!(o[n]&&o[n].u);
-   var sub=has?((o[n].t||'내가 넣은 주소').replace(/^.*—\s*/,'').replace(/\s*CCTV$/,'')
-     .replace('전국 도시부(UTIC)','UTIC 전국지도').replace(/센터$/,'센터')):'＋ 주소 넣기';
-   if(sub.length>10) sub=sub.slice(0,10)+'…';
-   return '<div class="cc-s'+(has?' on':'')+(hm===n?' mine':'')+'" role="button" tabindex="0" '+
-    'onclick="tbCctvSido(\''+n+'\')"><span class="nm">'+(hm===n?'⭐ ':'')+n+'</span>'+
-    '<span class="sb">'+sub+'</span>'+
-    '<span class="ed" onclick="event.stopPropagation();tbCctvSidoEdit(\''+n+'\')">✎</span></div>';
-  }).join('');
-  var h=document.getElementById('cc_home'); if(!h) return;
-  if(hm && o[hm] && o[hm].u){
-   h.innerHTML='<button type="button" class="cc-hm" onclick="tbCctvSido(\''+hm+'\')">'+
-     '<span style="font-size:26px">⭐</span><span><b>'+hm+' 교통 CCTV</b>'+
-     '<i>'+((o[hm].t)||'내 지역')+' — 누르면 바로 열립니다</i></span></button>';
-  } else {
-   h.innerHTML='<div class="cc-hm0">아래 <b>시 · 도</b>에서 우리 지역을 한 번 넣어 두시면, '+
-     '<b>⭐ 내 지역</b>으로 이 자리에 크게 올라옵니다.</div>';
-  }
+ var NAT=[
+  {k:'its',  n:'국가교통정보센터 (ITS)', t:'고속도로 71개 노선 · 국도 — 국토교통부', u:'https://its.go.kr/map/cctv', ic:'🛣️'},
+  {k:'utic', n:'도시교통정보센터 (UTIC)', t:'전국 시·군 도심 CCTV 통합 — 국토교통부', u:UTIC, ic:'🏙️'}
+ ];
+ var SIDO=[
+  {n:'서울', t:'서울 TOPIS', u:'https://topis.seoul.go.kr/map/openCctvMap.do', m:'https://m.topis.seoul.go.kr/'},
+  {n:'부산', t:'부산 교통정보서비스센터', u:'https://its.busan.go.kr/'},
+  {n:'대구', t:'대구교통종합정보', u:'https://car.daegu.go.kr/'},
+  {n:'인천', t:'인천교통정보센터', u:'https://www.fitic.go.kr/'},
+  {n:'광주', t:'광주시교통정보센터', u:'https://its.gjcity.go.kr/trafficPara.view?menuType=trmenu2'},
+  {n:'대전', t:'대전교통정보센터', u:'https://traffic.daejeon.go.kr/'},
+  {n:'울산', t:'울산교통관리센터', u:'https://its.ulsan.kr/'},
+  {n:'세종', t:'세종 소통정보', u:'https://bis.sejong.go.kr/web/atms/atms_map.view?type=1'},
+  {n:'경기', t:'경기도교통정보센터', u:'https://gits.gg.go.kr/web/trafficInfo/webMapInfo.do?opt=3'},
+  {n:'강원', t:'도 단위 센터 없음 — UTIC', u:UTIC},
+  {n:'충북', t:'도 단위 센터 없음 — UTIC', u:UTIC},
+  {n:'충남', t:'도 단위 센터 없음 — UTIC', u:UTIC},
+  {n:'전북', t:'도 단위 센터 없음 — UTIC', u:UTIC},
+  {n:'전남', t:'도 단위 센터 없음 — UTIC', u:UTIC},
+  {n:'경북', t:'도 단위 센터 없음 — UTIC', u:UTIC},
+  {n:'경남', t:'도 단위 센터 없음 — UTIC', u:UTIC},
+  {n:'제주', t:'제주 교통정보센터', u:'https://www.jejuits.go.kr/jido/mainView.do?DEVICE_KIND=CCTV'}
+ ];
+ var CITY=[
+  {n:'수원', sd:'경기', t:'수원교통정보', u:'http://its.suwon.go.kr/'},
+  {n:'용인', sd:'경기', t:'용인시 첨단교통센터', u:'https://its.yongin.go.kr/'},
+  {n:'고양', sd:'경기', t:'고양특례시 교통정보시스템', u:'https://its.goyang.go.kr/cctv-info'},
+  {n:'평택', sd:'경기', t:'평택시 교통정보센터', u:'https://its.pyeongtaek.go.kr/traffic/cctv.do'},
+  {n:'이천', sd:'경기', t:'이천교통정보센터', u:'https://its.icheon.go.kr/cctv.view'},
+  {n:'청주', sd:'충북', t:'청주통합교통정보센터', u:'http://www.cjits.go.kr/'},
+  {n:'충주', sd:'충북', t:'충주교통정보센터', u:'https://its.chungju.go.kr/traffic/cctv.do'},
+  {n:'천안', sd:'충남', t:'천안교통정보', u:'https://its.cheonan.go.kr/'},
+  {n:'아산', sd:'충남', t:'아산시교통정보센터', u:'http://its.asan.go.kr/traffic/cctv.do'},
+  {n:'전주', sd:'전북', t:'전주시 교통정보센터', u:'https://its.jeonju.go.kr/its/traffic2.view'},
+  {n:'목포', sd:'전남', t:'목포시 교통정보센터', u:'https://its.mokpo.go.kr/'},
+  {n:'순천', sd:'전남', t:'순천시 교통관제센터', u:'https://its.suncheon.go.kr/'},
+  {n:'포항', sd:'경북', t:'포항시 교통정보센터', u:'https://utis.pohang.go.kr/trafficMap/cctvMap'},
+  {n:'구미', sd:'경북', t:'구미시 교통정보센터', u:'https://its.gumi.go.kr/traffic/cctv.do'},
+  {n:'경주', sd:'경북', t:'경주시교통정보센터', u:'https://its.gyeongju.go.kr/'},
+  {n:'창원', sd:'경남', t:'창원시 교통정보센터', u:'https://utis.changwon.go.kr/video/cctv'},
+  {n:'김해', sd:'경남', t:'김해시 교통정보센터', u:'https://its.gimhae.go.kr/'}
+ ];
+ function citiesOf(sd){ return CITY.filter(function(x){ return x.sd===sd; }); }
+
+ function esc(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+ function jr(k,d){ try{ var v=JSON.parse(localStorage.getItem(k)); return v||d; }catch(e){ return d; } }
+ function jw(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); return true; }catch(e){ return false; } }
+ function favs(){ var a=jr(FK,null);
+  if(a) return a;
+  var h=''; try{ h=localStorage.getItem(HK)||''; }catch(e){}      /* 예전 「내 지역」 승계 */
+  return h?['sido:'+h]:[]; }
+ function favSet(a){ jw(FK,a); }
+ function over(){ return jr(OK,{}); }                              /* 형님이 고친 주소 */
+
+ function item(kind,n){
+  var src = kind==='nat'?NAT : (kind==='sido'?SIDO:CITY);
+  for(var i=0;i<src.length;i++){ var x=src[i]; if((x.k||x.n)===n){
+   var o=over()[kind+':'+n]||{};
+   return {kind:kind, id:kind+':'+n, n:(kind==='nat'?x.n:n), t:(o.t||x.t), u:(o.u||x.u), m:(o.u?'':x.m), ic:x.ic||'📹'};
+  } }
+  return null;
  }
- window.tbCctvSidoPaint=paintSido;
+ function byId(id){ var p=id.split(':'); return item(p[0],p[1]); }
 
- window.tbCctvSido=function(n){
-  var o=sd(), x=o[n];
-  if(x&&x.u){ try{ openExt(x.u, x.m||x.u); }catch(e){}
-   if(home()!==n){ try{ if(confirm('「'+n+'」을(를) ⭐ 내 지역으로 정할까요?\n\n정해 두면 이 화면 맨 위에서 바로 열립니다.')){ homeSet(n); paintSido(); } }catch(e){} }
-   return; }
-  tbCctvSidoEdit(n);
+ function go(x){ if(!x||!x.u) return; try{ openExt(x.u, x.m||x.u); }catch(e){} }
+ window.tbCctvGoNow=function(id){ go(byId(id)); tbCctvSheetClose(); };
+ window.tbCctvOpen=function(id){
+  var x=byId(id); if(!x) return;
+  var p=id.split(':');
+  if(p[0]==='sido'){ tbCctvSheet(p[1]); return; }
+  go(x);
  };
- window.tbCctvSidoEdit=function(n){
-  var o=sd(), cur=(o[n]&&o[n].u)||'https://';
+ window.tbCctvSheetClose=function(){ var m=document.getElementById('cc_sheet'); if(m) m.remove(); };
+ window.tbCctvSheet=function(sd){
+  var x=item('sido',sd); if(!x) return;
+  var list=citiesOf(sd);
+  var w=document.createElement('div'); w.id='cc_sheet';
+  w.setAttribute('style','position:fixed;inset:0;z-index:9788;background:rgba(0,0,0,.72);'+
+    'display:flex;align-items:flex-end;justify-content:center');
+  function row(it,tag){
+   return '<div class="cc-t" role="button" tabindex="0" onclick="tbCctvGoNow(\''+it.id+'\')">'+
+    '<span class="cc-i">📹</span><span class="cc-x"><b>'+esc(it.n)+(tag?' <small style="font-weight:800;opacity:.7">'+tag+'</small>':'')+
+    '</b><i>'+esc(it.t)+'</i></span>'+star(it.id)+'</div>';
+  }
+  var h='<div class="cc-box"><div class="cc-bh">📹 '+esc(sd)+' — 어디를 보시겠습니까'+
+   '<button type="button" class="cc-bx" onclick="tbCctvSheetClose()">✕</button></div>'+
+   '<div class="cc-grid" style="max-height:52vh;overflow-y:auto">'+row(x,'전역')+
+   list.map(function(c){ return row(item('city',c.n),''); }).join('')+
+   (list.length?'':'<div class="cc-note" style="margin:2px 2px 6px">이 도(道)에는 시·군 자체 교통정보센터가 확인되지 않았습니다. 위 <b>UTIC 전국지도</b>에서 지역을 찾으십시오.</div>')+
+   '</div>'+
+   '<div class="cc-note" style="margin:9px 2px 0">☆를 누르면 <b>자주 보는 곳</b> 맨 위로 올라옵니다.</div>'+
+   '<button type="button" class="cc-bc" onclick="tbCctvSheetClose()">닫기</button></div>';
+  w.innerHTML=h;
+  w.addEventListener('click',function(e){ if(e.target===w) tbCctvSheetClose(); });
+  document.body.appendChild(w);
+ };
+
+ window.tbCctvFav=function(id){
+  var a=favs(), i=a.indexOf(id);
+  if(i>=0) a.splice(i,1); else { if(a.length>=8){ alert('자주 보는 곳은 8개까지입니다.'); return; } a.push(id); }
+  favSet(a); paintAll();
+  try{ toast(i>=0?'자주 보기에서 뺐습니다':'⭐ 자주 보는 곳에 넣었습니다'); }catch(e){}
+ };
+ window.tbCctvEdit=function(id){
+  var x=byId(id); if(!x) return;
   var u=null;
-  try{ u=window.prompt('「'+n+'」 교통정보 CCTV 주소\n\n· 그 지역 교통정보센터를 브라우저에서 연 뒤 주소창을 복사해 붙여 넣으십시오.\n· 비우고 확인을 누르면 지웁니다.', cur); }catch(e){}
+  try{ u=window.prompt('「'+x.n+'」 주소\n\n· 안 열리거나 더 좋은 주소를 아시면 여기서 바꾸십시오.\n· 비우고 확인하면 원래 주소로 되돌립니다.', x.u); }catch(e){}
   if(u===null) return;
   u=(u||'').trim();
-  if(!u || u==='https://'){
-   if(o[n]&&o[n].fixed){ alert('기본 제공 지역은 지울 수 없습니다.'); return; }
-   delete o[n]; sdSet(o); if(home()===n) homeSet(''); paintSido();
-   try{ toast('「'+n+'」 주소를 지웠습니다'); }catch(e){} return;
-  }
+  var o=over();
+  if(!u){ delete o[id]; jw(OK,o); paintAll(); try{ toast('원래 주소로 되돌렸습니다'); }catch(e){} return; }
   if(!/^https?:\/\//i.test(u)){ alert('주소가 http:// 또는 https:// 로 시작해야 합니다.'); return; }
-  o[n]={u:u, m:(o[n]&&o[n].m)||''};
-  sdSet(o); paintSido();
-  try{ toast('📹 '+n+' 주소를 넣었습니다'); }catch(e){} 
-  try{ if(!home() && confirm('「'+n+'」을(를) ⭐ 내 지역으로 정할까요?')){ homeSet(n); paintSido(); } }catch(e){}
+  o[id]={u:u, t:'내가 고친 주소'}; jw(OK,o); paintAll();
+  try{ toast('주소를 바꿨습니다'); }catch(e){}
  };
 
- function boot(){ paint(); paintSido(); }
- if(document.readyState!=='loading') setTimeout(boot,300); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(boot,300); });
+ function star(id){ var on=favs().indexOf(id)>=0;
+  return '<span class="cc-st'+(on?' on':'')+'" role="button" aria-label="자주 보기" '+
+   'onclick="event.stopPropagation();tbCctvFav(\''+id+'\')">'+(on?'★':'☆')+'</span>'; }
+
+ function rowHTML(x){
+  return '<div class="cc-t" role="button" tabindex="0" onclick="tbCctvOpen(\''+x.id+'\')">'+
+   '<span class="cc-i">'+x.ic+'</span><span class="cc-x"><b>'+esc(x.n)+'</b><i>'+esc(x.t)+'</i></span>'+
+   star(x.id)+'</div>';
+ }
+ function chipHTML(x){
+  var sub=(x.t||'').replace(/\s*CCTV$/,'');
+  if(x.id.indexOf('sido:')===0){ var c=citiesOf(x.id.slice(5)).length; sub=c?('시·군 '+c+'곳 ▾'):'UTIC 지도 ▾'; }
+  if(sub.length>10) sub=sub.slice(0,10)+'…';
+  return '<div class="cc-s on" role="button" tabindex="0" onclick="tbCctvOpen(\''+x.id+'\')">'+
+   '<span class="nm">'+esc(x.n)+'</span><span class="sb">'+esc(sub)+'</span>'+
+   star(x.id)+'</div>';
+ }
+
+ function paintAll(){
+  var f=document.getElementById('cc_fav');
+  if(f){
+   var a=favs().map(byId).filter(Boolean);
+   f.innerHTML = a.length
+    ? a.map(function(x){ return '<div class="cc-hm" role="button" tabindex="0" onclick="tbCctvOpen(\''+x.id+'\')">'+
+        '<span style="font-size:24px">⭐</span><span><b>'+esc(x.n)+'</b><i>'+esc(x.t)+'</i></span>'+
+        '<span class="cc-st on" role="button" onclick="event.stopPropagation();tbCctvFav(\''+x.id+'\')">★</span></div>'; }).join('')
+    : '<div class="cc-hm0">아래 타일의 <b>☆</b>를 누르면 여기 <b>맨 위</b>로 올라옵니다. 자주 보는 곳을 3~4개 정해 두십시오.</div>';
+  }
+  var nb=document.getElementById('cc_nat');
+  if(nb) nb.innerHTML=NAT.map(function(x){ return rowHTML(item('nat',x.k)); }).join('');
+  var sb=document.getElementById('cc_sido');
+  if(sb) sb.innerHTML=SIDO.map(function(x){ return chipHTML(item('sido',x.n)); }).join('');
+ }
+ window.tbCctvPaint=paintAll;
+ /* 최초보고 화면의 「실시간CCTV」 단추 — 자주 보는 곳이 하나면 바로 열고, 아니면 화면으로 */
+ window.tbCctvJump=function(){
+  var a=favs();
+  if(a.length===1){ tbCctvOpen(a[0]); return; }
+  try{ showGroup('report'); }catch(e){}
+  try{ showSubPage('cctv'); }catch(e){}
+ };
+ if(document.readyState!=='loading') setTimeout(paintAll,300);
+ else document.addEventListener('DOMContentLoaded',function(){ setTimeout(paintAll,300); });
 })();
 </script>
 
