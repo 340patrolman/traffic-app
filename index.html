@@ -409,7 +409,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
  <button aria-label="안내 배너 닫기" onclick="document.getElementById('pwa_guide_banner').style.display='none';try{localStorage.setItem('pwa_modal_closed_time',Date.now().toString());}catch(e){}" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.25);border:none;color:#fff;width:32px;height:32px;border-radius:16px;font-size:18px;cursor:pointer;">✕</button>
 </div>
 <!-- ══ 그룹 탭 ══ -->
- <div id="vnav_bar" onclick="vnavToggle()" style="display:none;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:900;cursor:pointer;margin-bottom:6px"><span style="font-size:18px">☰</span><span style="font-size:12px;opacity:.85;white-space:nowrap">전체 메뉴</span><span id="vnav_cur" style="flex:1;text-align:center">🚨 보고서</span><span style="font-size:12px;opacity:.85">▾</span></div> <div class="nav-tabs"> <div class="ntab" data-group="quick" onclick="showGroup('quick')">⚡ 빠른찾기<span class="ndesc">상황·키워드로 한 번에</span></div> <div class="ntab active" data-group="report" onclick="showGroup('report')">🚨 보고서<span class="ndesc">최초·발생·언론·음성진술</span></div> <div class="ntab" data-group="docs"   onclick="showGroup('docs')">📝 서류작성<span class="ndesc">서류·순서·빠른찾기·지역경찰</span></div> <div class="ntab" data-group="shift"  onclick="showGroup('shift')">🗓️ 교대근무표<span class="ndesc">달력·시간외수당</span></div> <div class="ntab" data-group="sop"    onclick="showGroup('sop')">🚦 교통관리<span class="ndesc">단속·신호·시설 SOP</span></div> <div class="ntab" data-group="acci"   onclick="showGroup('acci')">💥 사고처리<span class="ndesc">허브·철칙·유형별·각종사고</span></div> <div class="ntab" data-group="coach"  onclick="showGroup('coach')">🛡️ 현장심리<span class="ndesc">대응멘트·심리방어</span></div> <div class="ntab" data-group="ref"    onclick="showGroup('ref')">📚 법령·자료<span class="ndesc">법적대응·배상청구·법령</span></div> <div class="ntab" data-group="expr"   onclick="showGroup('expr')">🛣️ 전용도로·관할<span class="ndesc">경부·올림픽·관할판정</span></div> <div class="ntab" data-group="orgs" onclick="showGroup('orgs')">📞 연락처<span class="ndesc">기관·부서 전화번호</span></div> <div class="ntab" data-group="life" onclick="showGroup('life')">💚 민생·복지<span class="ndesc">위기대응·생계·체납 지원</span></div> <div class="ntab" data-group="setg" onclick="showGroup('setg')">⚙️ 설정<span class="ndesc">글자크기·백업·사용설명서·보안</span></div>    
+ <div id="vnav_bar" onclick="vnavToggle()" style="display:none;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:900;cursor:pointer;margin-bottom:6px"><span style="font-size:18px">☰</span><span style="font-size:12px;opacity:.85;white-space:nowrap">전체 메뉴</span><span id="vnav_cur" style="flex:1;text-align:center">🚨 보고서</span><span style="font-size:12px;opacity:.85">▾</span></div> <div class="nav-tabs"> <div class="ntab" data-group="quick" onclick="showGroup('quick')">⚡ 빠른찾기<span class="ndesc">상황·키워드로 한 번에</span></div> <div class="ntab active" data-group="report" onclick="showGroup('report')">🚨 보고서<span class="ndesc">최초·발생·언론·실시간CCTV</span></div> <div class="ntab" data-group="docs"   onclick="showGroup('docs')">📝 서류작성<span class="ndesc">서류·순서·빠른찾기·지역경찰</span></div> <div class="ntab" data-group="shift"  onclick="showGroup('shift')">🗓️ 교대근무표<span class="ndesc">달력·시간외수당</span></div> <div class="ntab" data-group="sop"    onclick="showGroup('sop')">🚦 교통관리<span class="ndesc">단속·신호·시설 SOP</span></div> <div class="ntab" data-group="acci"   onclick="showGroup('acci')">💥 사고처리<span class="ndesc">허브·철칙·유형별·각종사고</span></div> <div class="ntab" data-group="coach"  onclick="showGroup('coach')">🛡️ 현장심리<span class="ndesc">대응멘트·심리방어</span></div> <div class="ntab" data-group="ref"    onclick="showGroup('ref')">📚 법령·자료<span class="ndesc">법적대응·배상청구·법령</span></div> <div class="ntab" data-group="expr"   onclick="showGroup('expr')">🛣️ 전용도로·관할<span class="ndesc">경부·올림픽·관할판정</span></div> <div class="ntab" data-group="orgs" onclick="showGroup('orgs')">📞 연락처<span class="ndesc">기관·부서 전화번호</span></div> <div class="ntab" data-group="life" onclick="showGroup('life')">💚 민생·복지<span class="ndesc">위기대응·생계·체납 지원</span></div> <div class="ntab" data-group="setg" onclick="showGroup('setg')">⚙️ 설정<span class="ndesc">글자크기·백업·사용설명서·보안</span></div>    
 </div> <!-- ══ 서브탭 ══ -->
 <div id="sub_home" class="sub-tabs" style="display:none"></div> <div id="sub_report" class="sub-tabs"> <div class="stab active" data-sub="rep1" onclick="showSubPage('rep1')">최초보고</div> <div class="stab" data-sub="rep2" onclick="showSubPage('rep2')">발생보고</div> <div class="stab" data-sub="rep3" onclick="showSubPage('rep3')">언론예상</div> <div class="stab" data-sub="cctv" onclick="showSubPage('cctv')">📹 실시간CCTV</div> <div class="stab" data-sub="rep_manual" onclick="showSubPage('rep_manual')">📡 보고체계</div> <div class="stab" data-sub="voice" onclick="showSubPage('voice')">🎙️ 음성진술<span class="beta-tag">베타</span></div> <div class="stab" data-sub="video" onclick="showSubPage('video')">📹 블박분석<span class="beta-tag">베타</span></div>
 </div>
@@ -458,7 +458,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
     <span class="hd-tx"><b>사고처리</b><i>허브 · 2차사고</i></span></button>
    <button class="hd-tile" style="--c:var(--hd-slate);--cbg:var(--hd-slatebg)" onclick="hdGo('report','rep1')">
     <span class="hd-ic"><svg viewBox="0 0 24 24"><rect x="5.2" y="3.8" width="13.6" height="17" rx="2.2"/><path d="M9.2 3.8V2.6h5.6v1.2"/><path d="M8.8 9.8h6.4M8.8 13.2h6.4M8.8 16.6h3.6"/></svg></span>
-    <span class="hd-tx"><b>보고서</b><i>최초 · 발생 · 언론</i></span></button>
+    <span class="hd-tx"><b>보고서</b><i>최초 · 발생 · 언론 · 실시간CCTV</i></span></button>
   
    <button class="hd-tile" style="--c:var(--hd-gold);--cbg:var(--hd-goldbg)" onclick="tbGoMine('shelf')">
     <span class="hd-ic"><svg viewBox="0 0 24 24"><rect x="3.6" y="4.4" width="16.8" height="15.2" rx="2.2"/><path d="M3.6 15.4l4.6-4.4 3.4 3.2 3-2.8 5.8 5.2"/><circle cx="8.6" cy="9" r="1.5"/></svg></span>
@@ -939,17 +939,22 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
  <div class="card" data-cl="1" style="border:2px solid var(--accent)">
   <div class="card-title">📹 실시간 교통 CCTV</div>
   <div class="info-box u-fs13">누르면 <b>새 창</b>으로 열립니다. 앱이 영상을 받아오지 않습니다 — <b>외부 통신 0건</b>은 그대로입니다.</div>
-  <div class="cc-lb">전국 — 고속도로 · 국도</div>
+  <div id="cc_home"></div>
+  <div class="cc-lb">국가가 운영 — 고속도로 · 국도 · 전국 도시부</div>
   <div class="cc-grid">
-   <button type="button" class="cc-t" onclick="openExt('https://its.go.kr/map/cctv','http://m.its.go.kr/mltm/cctv?type=its')">
-    <span class="cc-i">🛣️</span><span class="cc-x"><b>국가교통정보센터</b><i>고속도로 · 국도 · 전국</i></span></button>
-   <button type="button" class="cc-t" onclick="openExt('https://topis.seoul.go.kr/map/openCctvMap.do','https://m.topis.seoul.go.kr/')">
-    <span class="cc-i">🗼</span><span class="cc-x"><b>서울 TOPIS</b><i>서울 시내 도로</i></span></button>
+   <button type="button" class="cc-t" onclick="openExt('https://its.go.kr/map/cctv','https://its.go.kr/map/cctv')">
+    <span class="cc-i">🛣️</span><span class="cc-x"><b>국가교통정보센터 (ITS)</b><i>고속도로 71개 노선 · 국도 — 국토교통부</i></span></button>
+   <button type="button" class="cc-t" onclick="openExt('https://www.utic.go.kr/map/map.do?menu=cctv','https://www.utic.go.kr/map/map.do?menu=cctv')">
+    <span class="cc-i">🏙️</span><span class="cc-x"><b>도시교통정보센터 (UTIC)</b><i>전국 시·군 도심 CCTV 통합 — 국토교통부</i></span></button>
   </div>
-  <div class="cc-lb">내가 넣은 곳 <small>— 우리 지역 CCTV를 직접 넣습니다</small></div>
+  <div class="cc-lb">지자체가 운영 — 시 · 도 17곳 <small>— 누르면 바로 열립니다. ✎로 주소를 바꿀 수 있습니다</small></div>
+  <div id="cc_sido" class="cc-sg"></div>
+  <div class="cc-lb">시 · 군 · 구 · 구간 <small>— 자주 보는 곳을 따로 넣습니다</small></div>
   <div id="cc_mine" class="cc-grid"></div>
   <button type="button" class="cc-add" onclick="tbCctvAdd()">＋ CCTV 주소 넣기</button>
-  <div class="cc-note">주소를 모르시면 <b>국가교통정보센터</b>를 열어 우리 지역을 찾은 뒤, 그 화면 주소를 복사해 넣으십시오. 넣은 주소는 이 기기에만 저장됩니다.</div>
+  <div class="cc-note"><b>국가</b>는 고속도로·국도, <b>지자체</b>는 시내 도로를 각각 운영합니다 — 찾는 지점에 따라 골라 여십시오.<br>
+   시·도 17곳 주소는 <b>2026-08-13에 하나씩 열어 확인</b>했습니다. <b>강원 · 충남 · 전남</b>은 도 단위 통합센터가 없어 <b>UTIC</b>으로 이어 뒀습니다.<br>
+   안 열리거나 더 좋은 곳을 아시면 <b>✎</b>로 바꾸십시오. 바꾼 주소는 이 기기에만 저장됩니다.</div>
  </div>
 </div>
 <div class="page" id="page-rep2"> <div class="card"> <div class="card-title">📄 사건 발생 보고 (정식)</div> <div class="guide-box"><b>💡 정형사고:</b> 신호위반·중앙선침범 등 전형 위반 확인.<br><b>💡 비정형사고:</b> 급발진 주장·특수차량 등 법리 검토 필요.</div> <label>발생 경위 (육하원칙)</label> <div class="mic-wrap">
@@ -11525,12 +11530,12 @@ window.tbGoMine=function(v){
 /* v20.2 — 실시간 CCTV */
 .cc-lb{font-size:12px;font-weight:900;color:var(--text-dim);letter-spacing:.4px;margin:14px 2px 7px}
 .cc-lb small{font-weight:700;font-size:11px}
-.cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cc-grid{display:grid;grid-template-columns:1fr;gap:8px}
 .cc-t{position:relative;display:flex;align-items:center;gap:9px;text-align:left;background:var(--panel-2);
  color:var(--text);border:1px solid var(--border);border-radius:12px;padding:12px 10px;min-height:70px;cursor:pointer}
 .cc-i{font-size:23px;line-height:1;flex:0 0 auto}
 .cc-x{min-width:0}
-.cc-x b{display:block;font-size:13.5px;font-weight:900;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc-x b{display:block;font-size:13.5px;font-weight:900;line-height:1.35;word-break:keep-all}
 .cc-x i{display:block;font-style:normal;font-size:11px;font-weight:700;color:var(--text-dim);margin-top:3px;line-height:1.35}
 .cc-x-del{position:absolute;top:-7px;right:-7px;width:26px;height:26px;border-radius:13px;border:none;
  background:#ef4444;color:#fff;font-size:13px;font-weight:900;cursor:pointer;line-height:26px;text-align:center}
@@ -11539,6 +11544,23 @@ window.tbGoMine=function(v){
  padding:14px 0;font-size:14px;font-weight:900;cursor:pointer;min-height:50px}
 .cc-note{font-size:11.5px;color:var(--text-dim);font-weight:700;line-height:1.7;margin-top:9px}
 .cc-0{grid-column:1/-1;font-size:12.5px;color:var(--text-dim);font-weight:700;padding:9px 2px;line-height:1.6}
+.cc-sg{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.cc-s{position:relative;background:var(--panel-2);color:var(--text-dim);border:1px solid var(--border);
+ border-radius:11px;padding:9px 3px 8px;cursor:pointer;min-height:56px;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.cc-s .nm{font-size:13.5px;font-weight:900;line-height:1.2}
+.cc-s .sb{font-size:9.5px;font-weight:800;opacity:.72;line-height:1.25;text-align:center;word-break:keep-all;
+ padding:0 2px;max-width:100%}
+.cc-s.on .sb{opacity:.62}
+.cc-s.on{color:var(--text);border-color:var(--accent);background:var(--panel)}
+.cc-s.mine{border-width:2px;border-color:var(--accent-gold,#b8924b)}
+.cc-s .ed{position:absolute;top:1px;right:3px;font-size:12px;opacity:.7;padding:3px 4px;line-height:1}
+.cc-hm{display:flex;align-items:center;gap:10px;width:100%;background:var(--accent);color:#fff;border:none;
+ border-radius:13px;padding:15px 13px;min-height:64px;cursor:pointer;text-align:left;margin-bottom:2px}
+.cc-hm b{display:block;font-size:15.5px;font-weight:900;line-height:1.3}
+.cc-hm i{display:block;font-style:normal;font-size:11.5px;font-weight:700;opacity:.9;margin-top:3px}
+.cc-hm0{font-size:12.5px;color:var(--text-dim);font-weight:700;line-height:1.7;background:var(--panel-2);
+ border:1px dashed var(--border);border-radius:11px;padding:11px 12px}
 @media(max-width:340px){.cc-grid{grid-template-columns:1fr}}
 </style>
 <script>
@@ -11583,7 +11605,89 @@ window.tbGoMine=function(v){
   a.push({n:n, u:u, d:(d||'').trim().slice(0,30)});
   if(wr(a)){ paint(); try{ toast('📹 넣었습니다 — '+n); }catch(e){} }
  };
- function boot(){ paint(); }
+
+ /* ── 시·도 17곳 ─────────────────────────────────── */
+ var SK='tbook_cctv_sido', HK='tbook_cctv_home';
+ var SIDO=['서울','부산','대구','인천','광주','대전','울산','세종',
+           '경기','강원','충북','충남','전북','전남','경북','경남','제주'];
+ var UTIC='https://www.utic.go.kr/map/map.do?menu=cctv';
+ /* 2026-08-13 실측 — 브라우저로 직접 열어 확인한 주소 */
+ var BUILTIN={
+  '서울':{u:'https://topis.seoul.go.kr/map/openCctvMap.do', m:'https://m.topis.seoul.go.kr/', t:'서울 TOPIS'},
+  '부산':{u:'https://its.busan.go.kr/',                      t:'부산 교통정보서비스센터'},
+  '대구':{u:'https://car.daegu.go.kr/',                      t:'대구교통종합정보'},
+  '인천':{u:'https://www.fitic.go.kr/',                      t:'인천교통정보센터'},
+  '광주':{u:'https://its.gjcity.go.kr/trafficPara.view?menuType=trmenu2', t:'광주시교통정보센터 CCTV'},
+  '대전':{u:'https://traffic.daejeon.go.kr/',                t:'대전교통정보센터'},
+  '울산':{u:'https://its.ulsan.kr/',                         t:'울산교통관리센터'},
+  '세종':{u:'https://bis.sejong.go.kr/web/atms/atms_map.view?type=1', t:'세종 소통정보'},
+  '경기':{u:'https://gits.gg.go.kr/web/trafficInfo/webMapInfo.do?opt=3', t:'경기도교통정보센터 CCTV'},
+  '강원':{u:UTIC, t:'도 단위 센터 없음 — 전국 도시부(UTIC)'},
+  '충북':{u:'http://www.cjits.go.kr/',                       t:'청주통합교통정보센터'},
+  '충남':{u:UTIC, t:'도 단위 센터 없음 — 전국 도시부(UTIC)'},
+  '전북':{u:'https://its.jeonju.go.kr/its/traffic2.view',    t:'전주시 교통정보센터 CCTV'},
+  '전남':{u:UTIC, t:'도 단위 센터 없음 — 전국 도시부(UTIC)'},
+  '경북':{u:'https://utis.pohang.go.kr/trafficMap/cctvMap',  t:'포항시 교통정보센터 CCTV'},
+  '경남':{u:'https://utis.changwon.go.kr/video/cctv',        t:'창원시 교통정보센터 CCTV'},
+  '제주':{u:'https://www.jejuits.go.kr/jido/mainView.do?DEVICE_KIND=CCTV', t:'제주 교통정보센터'}
+ };
+ function sd(){ var o={}; try{ o=JSON.parse(localStorage.getItem(SK)||'{}')||{}; }catch(e){}
+  SIDO.forEach(function(n){ if(!(o[n]&&o[n].u)&&BUILTIN[n]) o[n]=BUILTIN[n]; }); return o; }
+ function sdSet(o){ try{ localStorage.setItem(SK, JSON.stringify(o)); }catch(e){} }
+ function home(){ try{ return localStorage.getItem(HK)||''; }catch(e){ return ''; } }
+ function homeSet(v){ try{ v?localStorage.setItem(HK,v):localStorage.removeItem(HK); }catch(e){} }
+
+ function paintSido(){
+  var box=document.getElementById('cc_sido'); if(!box) return;
+  var o=sd(), hm=home();
+  box.innerHTML=SIDO.map(function(n){
+   var has=!!(o[n]&&o[n].u);
+   var sub=has?((o[n].t||'내가 넣은 주소').replace(/^.*—\s*/,'').replace(/\s*CCTV$/,'')
+     .replace('전국 도시부(UTIC)','UTIC 전국지도').replace(/센터$/,'센터')):'＋ 주소 넣기';
+   if(sub.length>10) sub=sub.slice(0,10)+'…';
+   return '<div class="cc-s'+(has?' on':'')+(hm===n?' mine':'')+'" role="button" tabindex="0" '+
+    'onclick="tbCctvSido(\''+n+'\')"><span class="nm">'+(hm===n?'⭐ ':'')+n+'</span>'+
+    '<span class="sb">'+sub+'</span>'+
+    '<span class="ed" onclick="event.stopPropagation();tbCctvSidoEdit(\''+n+'\')">✎</span></div>';
+  }).join('');
+  var h=document.getElementById('cc_home'); if(!h) return;
+  if(hm && o[hm] && o[hm].u){
+   h.innerHTML='<button type="button" class="cc-hm" onclick="tbCctvSido(\''+hm+'\')">'+
+     '<span style="font-size:26px">⭐</span><span><b>'+hm+' 교통 CCTV</b>'+
+     '<i>'+((o[hm].t)||'내 지역')+' — 누르면 바로 열립니다</i></span></button>';
+  } else {
+   h.innerHTML='<div class="cc-hm0">아래 <b>시 · 도</b>에서 우리 지역을 한 번 넣어 두시면, '+
+     '<b>⭐ 내 지역</b>으로 이 자리에 크게 올라옵니다.</div>';
+  }
+ }
+ window.tbCctvSidoPaint=paintSido;
+
+ window.tbCctvSido=function(n){
+  var o=sd(), x=o[n];
+  if(x&&x.u){ try{ openExt(x.u, x.m||x.u); }catch(e){}
+   if(home()!==n){ try{ if(confirm('「'+n+'」을(를) ⭐ 내 지역으로 정할까요?\n\n정해 두면 이 화면 맨 위에서 바로 열립니다.')){ homeSet(n); paintSido(); } }catch(e){} }
+   return; }
+  tbCctvSidoEdit(n);
+ };
+ window.tbCctvSidoEdit=function(n){
+  var o=sd(), cur=(o[n]&&o[n].u)||'https://';
+  var u=null;
+  try{ u=window.prompt('「'+n+'」 교통정보 CCTV 주소\n\n· 그 지역 교통정보센터를 브라우저에서 연 뒤 주소창을 복사해 붙여 넣으십시오.\n· 비우고 확인을 누르면 지웁니다.', cur); }catch(e){}
+  if(u===null) return;
+  u=(u||'').trim();
+  if(!u || u==='https://'){
+   if(o[n]&&o[n].fixed){ alert('기본 제공 지역은 지울 수 없습니다.'); return; }
+   delete o[n]; sdSet(o); if(home()===n) homeSet(''); paintSido();
+   try{ toast('「'+n+'」 주소를 지웠습니다'); }catch(e){} return;
+  }
+  if(!/^https?:\/\//i.test(u)){ alert('주소가 http:// 또는 https:// 로 시작해야 합니다.'); return; }
+  o[n]={u:u, m:(o[n]&&o[n].m)||''};
+  sdSet(o); paintSido();
+  try{ toast('📹 '+n+' 주소를 넣었습니다'); }catch(e){} 
+  try{ if(!home() && confirm('「'+n+'」을(를) ⭐ 내 지역으로 정할까요?')){ homeSet(n); paintSido(); } }catch(e){}
+ };
+
+ function boot(){ paint(); paintSido(); }
  if(document.readyState!=='loading') setTimeout(boot,300); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(boot,300); });
 })();
 </script>
