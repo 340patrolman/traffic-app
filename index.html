@@ -462,6 +462,13 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
    <button class="hd-tile" style="--c:var(--hd-slate);--cbg:var(--hd-slatebg)" onclick="hdGo('report','rep1')">
     <span class="hd-ic"><svg viewBox="0 0 24 24"><rect x="5.2" y="3.8" width="13.6" height="17" rx="2.2"/><path d="M9.2 3.8V2.6h5.6v1.2"/><path d="M8.8 9.8h6.4M8.8 13.2h6.4M8.8 16.6h3.6"/></svg></span>
     <span class="hd-tx"><b>보고서</b><i>최초 · 발생 · 언론</i></span></button>
+  
+   <button class="hd-tile" style="--c:var(--hd-gold);--cbg:var(--hd-goldbg)" onclick="tbGoMine('shelf')">
+    <span class="hd-ic"><svg viewBox="0 0 24 24"><rect x="3.6" y="4.4" width="16.8" height="15.2" rx="2.2"/><path d="M3.6 15.4l4.6-4.4 3.4 3.2 3-2.8 5.8 5.2"/><circle cx="8.6" cy="9" r="1.5"/></svg></span>
+    <span class="hd-tx"><b>서식 입력</b><i>우리 서 서식 · 공문</i></span></button>
+   <button class="hd-tile" style="--c:var(--hd-green);--cbg:var(--hd-greenbg)" onclick="tbGoMine('memo')">
+    <span class="hd-ic"><svg viewBox="0 0 24 24"><path d="M5 3.6h9.4l4.6 4.6v11.8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4.6a1 1 0 0 1 1-1z"/><path d="M14.2 3.6v4.8h4.8"/><path d="M7.8 12.4h8M7.8 15.8h5.4"/></svg></span>
+    <span class="hd-tx"><b>메모</b><i>사건 경과 · 참고</i></span></button>
   </div>
 
   <div id="hd_recent_wrap" style="display:none">
@@ -4091,7 +4098,9 @@ AI는 아는 척을 잘한다.<br>
 <div class="report-step"><h5>왜 중요한가 — 방치가 곧 위험</h5><p>사고·고장 차량을 차로에 계속 두는 것 자체가 2차사고를 부른다. 견인차 도착을 기다리며 본선에 세워 두는 것보다, <b>가능한 경우 순찰차로 즉시 안전한 곳까지 끌어내는 것이 원칙</b>이다.</p></div>
 <div class="report-step"><h5>어디까지 가능한가</h5><p><b>바퀴가 굴러가지 않는 상태라도 몇십 미터는 이동</b>시킬 수 있다. 본선에서 갓길·안전지대까지의 그 몇십 미터가 사람을 살린다.</p></div>
 <div class="warn-box" style="font-size:13px;line-height:1.8"><b>⚖️ §66 단속 기준</b> — 이동이 가능한데도 차로에 가만히 서 있는 차량을 발견하면 <b>거의 무조건 도교법 §66(고장 등의 조치, 고속도로·자동차전용도로) 위반으로 단속</b>한다. "견인차를 기다리는 중"이라는 말은 차로 방치의 사유가 되지 않는다.</div>
-<div style="margin-top:8px"><span class="xlink" onclick="showGroup('acci');showSubPage('sop_dogma')">🛡️ 2차사고 철칙 (§66 적발 원칙)</span><span class="xlink" onclick="showGroup('ref');showSubPage('laws')">📚 법령 §66 원문</span></div></div><div class="card" style="border:1px solid var(--danger)"><div class="card-title">🇺🇸 오피서 세이프티</div><div class="u-fs13" style="line-height:1.9">미국에서 <b>“차 밖에서 치이는 사고”로 잃은 동료가 2024년 113% 급증</b>(8→17명). 우리 <b>2차사고와 같은 항목</b>이다. 사고 현장은 <b>내가 두 번째 사고의 피해자가 되는 자리</b>다.<br><b>도착 즉시</b> — 라바콘 후방 3중 → 순찰차 쉴드 → 본선 체류 최소화 → 반사조끼.<div class="btn-group" style="margin-top:8px"><button class="btn btn-danger u-flex1" onclick="goCard('sop','sop_enforce','us_safety')">🇺🇸 오피서 세이프티</button><button class="btn btn-warn u-flex1" onclick="showGroup('sop');showSubPage('sop_dogma')">🚧 2차사고 철칙</button></div></div></div></div><div class="page pg-narrow" id="page-thanks"><div class="card" data-cl="1" style="border:2px solid var(--accent-gold)"><div class="card-title">🙏 이 앱을 함께 만든 분들</div><div class="u-fs13" style="line-height:1.85"><b>혼자 만든 앱이 아닙니다.</b> 현장에서 「이건 이렇게 해야 맞다」고 말해 준 사람들이 없었으면 지금 모양이 되지 못했습니다.</div><div style="margin-top:12px"><div class="th-i"><b>서초경찰서 교통외근 1팀</b><span>처음부터 같이 봐 주고, 틀린 것을 그때그때 잡아 준 사람들. 이 앱의 출발점입니다.</span></div><div class="th-i"><b>동탄경찰서 김욱 경사</b><span>다른 관서의 눈으로 봐 주었습니다. 「서초에서만 되는 것」과 「어디서나 되는 것」이 여기서 갈렸습니다.</span></div><div class="th-i"><b>경찰인재개발원 교통외근 심화과정 여러분</b><span>2026년 8월, 전국에서 모인 분들의 피드백으로 「서초 전용」이 <b>전국 공용판</b>이 됐습니다.</span></div><div class="th-i"><b>포항북부경찰서 권도정 님</b><span>「내가 처리한 사건과 우리 서 공문을 넣어 <b>내 앱</b>으로 쓸 수 있게 해 달라」— 이 한마디가 v20.1의 <b>⭐ 즐겨찾기 · 📝 내 메모</b>를 만들었습니다. 덕분에 더 좋아지는 기회가 됐습니다.</span></div></div></div><div class="card" data-cl="1" style="border:2px solid var(--accent)"><div class="card-title">📖 왜 만들었나 — 짧은 이야기</div><div class="u-fs13" style="line-height:1.9"><b>인사이동은 잦고, 업무는 어렵습니다.</b> 자리가 바뀔 때마다 인수인계에 긴 시간이 들었고, 전수는 옆에서 보고 배우는 <b>도제식</b>인데 <b>가르칠 사람도 바뀌었습니다.</b><br><br>상황별·사건별로 <b>안전하게, 신속하게, 정확하게</b> 남겨야 할 것이 많은데 전달되는 데는 한계가 있었습니다. 그래서 <b>찾는 시간을 줄이는 것</b> 하나만 보고 시작했습니다.<br><br>서초에서 만들고, 다른 관서의 눈으로 다듬고, 전국에서 모인 분들의 피드백으로 넓혔습니다. 이제 <b>각자의 관서에 맞게 고쳐 쓸 수 있는 자리</b>까지 왔습니다.<br><br><b>이 앱은 업무보조 자료입니다.</b> 최종 판단은 담당 경찰관과 법원의 몫입니다. 그리고 <b>AI로 만든 앱이지, AI가 작동하는 앱이 아닙니다.</b></div></div><div class="card" style="border:2px dashed var(--border)"><div class="u-fs13" style="line-height:1.8;color:var(--text-dim)">고쳐야 할 것이 보이면 알려 주십시오. <b>여기 적힌 분들처럼, 말해 주신 것이 다음 판에 들어갑니다.</b><br>— <b>⚙️ 설정 › 📮 피드백</b></div></div></div><div class="page pg-narrow" id="page-mynote"><div class="card" data-cl="1" style="border:2px solid var(--accent)"><div class="card-title">⭐ 내 즐겨찾기</div><div class="tq-hint">어느 화면이든 <b>맨 위 ☆ 즐겨찾기</b>를 누르면 여기 모입니다</div><div id="mine_fav"></div></div><div class="card" data-cl="1" style="border:2px solid var(--accent)"><div class="card-title">📝 내 메모 <span style="float:right;font-size:11.5px;color:var(--text-dim);font-weight:700" id="mine_cnt">0 / 200개</span></div><div class="tq-hint">처리한 사건 경과 · 공문 요지 · 다음에 참고할 것</div><button type="button" onclick="tbMemoEdit(null)" style="width:100%;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:13px 0;font-size:14.5px;font-weight:900;cursor:pointer;margin-bottom:10px">＋ 새 메모 쓰기</button><div id="mine_memo"></div></div><div class="card" data-cl="1" style="border:2px solid var(--accent)"><div class="card-title">📄 내 서식·공문함 <span style="float:right;font-size:11.5px;color:var(--text-dim);font-weight:700" id="shelf_cnt">0장 · 0.0MB</span></div><div class="tq-hint">우리 서 <b>서식·양식·절차 공문</b>을 찍어 두십시오. 넣는 즉시 자동으로 줄여 저장합니다</div><div id="mine_shelf"></div><button type="button" onclick="tbShelfWipe()" style="width:100%;background:none;color:var(--danger);border:1px solid var(--danger);border-radius:11px;padding:10px 0;font-size:12.5px;font-weight:800;cursor:pointer;margin-top:10px">🗑️ 서식함 전부 지우기</button></div><div class="card" style="border:2px solid var(--warn)"><div class="card-title">🔒 이 기능의 한계 — 반드시 읽으십시오</div><div class="u-fs13" style="line-height:1.8"><b>① 이 기기 안에만 저장됩니다.</b> 외부로 나가지 않고, 다른 사람에게 전파되지 않습니다. 앱의 외부 통신 0건 원칙은 그대로입니다.<br><b>② 그래서 폰을 잃어버리면 이 내용도 함께 잃습니다.</b> 남에게 넘어가기도 합니다 — 진입 암호가 있지만 절대적이지 않습니다.<br><b>③ 브라우저 데이터를 지우면 전부 사라집니다.</b> 「캐시 삭제」 한 번이면 끝입니다. <b>⚙️설정 › 내보내기</b>로 정기 백업하십시오. 즐겨찾기·메모도 함께 담깁니다.<br><b>④ 주민등록번호는 저장되지 않습니다.</b> 감지되면 저장을 거부합니다. 차량번호·전화번호는 경고만 하니 <b>꼭 필요한지 스스로 판단</b>하십시오.<br><b>⑤ 사진은 「서식·양식·절차 공문」만.</b> 사람 정보(성명·주민번호·차량번호)가 찍힌 사건 자료는 넣지 마십시오. 글자 속 주민번호는 앱이 걸러낼 수 없습니다. 이 앱은 <b>업무보조 자료</b>이지 사건기록 저장소가 아닙니다.<br><b>⑤-1 사진은 「내보내기」 백업에 담기지 않습니다.</b> 별도 저장소(IndexedDB)에 있기 때문입니다 — 중요한 것은 갤러리에도 남겨 두십시오.<br><b>⑥ 이 앱은 2027-02-20에 만료됩니다.</b> 그 전에 필요한 내용은 옮겨 두십시오.</div></div><div class="page" id="page-settings">
+<div style="margin-top:8px"><span class="xlink" onclick="showGroup('acci');showSubPage('sop_dogma')">🛡️ 2차사고 철칙 (§66 적발 원칙)</span><span class="xlink" onclick="showGroup('ref');showSubPage('laws')">📚 법령 §66 원문</span></div></div><div class="card" style="border:1px solid var(--danger)"><div class="card-title">🇺🇸 오피서 세이프티</div><div class="u-fs13" style="line-height:1.9">미국에서 <b>“차 밖에서 치이는 사고”로 잃은 동료가 2024년 113% 급증</b>(8→17명). 우리 <b>2차사고와 같은 항목</b>이다. 사고 현장은 <b>내가 두 번째 사고의 피해자가 되는 자리</b>다.<br><b>도착 즉시</b> — 라바콘 후방 3중 → 순찰차 쉴드 → 본선 체류 최소화 → 반사조끼.<div class="btn-group" style="margin-top:8px"><button class="btn btn-danger u-flex1" onclick="goCard('sop','sop_enforce','us_safety')">🇺🇸 오피서 세이프티</button><button class="btn btn-warn u-flex1" onclick="showGroup('sop');showSubPage('sop_dogma')">🚧 2차사고 철칙</button></div></div></div></div><div class="page pg-narrow" id="page-thanks"><div class="card" data-cl="1" style="border:2px solid var(--accent-gold)"><div class="card-title">🙏 이 앱을 함께 만든 분들</div><div class="u-fs13" style="line-height:1.85"><b>혼자 만든 앱이 아닙니다.</b> 현장에서 「이건 이렇게 해야 맞다」고 말해 준 사람들이 없었으면 지금 모양이 되지 못했습니다.</div><div style="margin-top:12px"><div class="th-i"><b>서초경찰서 교통외근 1팀</b><span>처음부터 같이 봐 주고, 틀린 것을 그때그때 잡아 준 사람들. 이 앱의 출발점입니다.</span></div><div class="th-i"><b>동탄경찰서 김욱 경사</b><span>다른 관서의 눈으로 봐 주었습니다. 「서초에서만 되는 것」과 「어디서나 되는 것」이 여기서 갈렸습니다.</span></div><div class="th-i"><b>경찰인재개발원 교통외근 심화과정 여러분</b><span>2026년 8월, 전국에서 모인 분들의 피드백으로 「서초 전용」이 <b>전국 공용판</b>이 됐습니다.</span></div><div class="th-i"><b>포항북부경찰서 권도정 님</b><span>「내가 처리한 사건과 우리 서 공문을 넣어 <b>내 앱</b>으로 쓸 수 있게 해 달라」— 이 한마디가 v20.1의 <b>⭐ 즐겨찾기 · 📝 내 메모</b>를 만들었습니다. 덕분에 더 좋아지는 기회가 됐습니다.</span></div></div></div><div class="card" data-cl="1" style="border:2px solid var(--accent)"><div class="card-title">📖 왜 만들었나 — 짧은 이야기</div><div class="u-fs13" style="line-height:1.9"><b>인사이동은 잦고, 업무는 어렵습니다.</b> 자리가 바뀔 때마다 인수인계에 긴 시간이 들었고, 전수는 옆에서 보고 배우는 <b>도제식</b>인데 <b>가르칠 사람도 바뀌었습니다.</b><br><br>상황별·사건별로 <b>안전하게, 신속하게, 정확하게</b> 남겨야 할 것이 많은데 전달되는 데는 한계가 있었습니다. 그래서 <b>찾는 시간을 줄이는 것</b> 하나만 보고 시작했습니다.<br><br>서초에서 만들고, 다른 관서의 눈으로 다듬고, 전국에서 모인 분들의 피드백으로 넓혔습니다. 이제 <b>각자의 관서에 맞게 고쳐 쓸 수 있는 자리</b>까지 왔습니다.<br><br><b>이 앱은 업무보조 자료입니다.</b> 최종 판단은 담당 경찰관과 법원의 몫입니다. 그리고 <b>AI로 만든 앱이지, AI가 작동하는 앱이 아닙니다.</b></div></div><div class="card" style="border:2px dashed var(--border)"><div class="u-fs13" style="line-height:1.8;color:var(--text-dim)">고쳐야 할 것이 보이면 알려 주십시오. <b>여기 적힌 분들처럼, 말해 주신 것이 다음 판에 들어갑니다.</b><br>— <b>⚙️ 설정 › 📮 피드백</b></div></div></div><div class="page pg-narrow" id="page-mynote"><div class="mv-tabs"><button type="button" class="mv-t on" data-mv="all" onclick="tbMineView('all')">전체</button><button type="button" class="mv-t" data-mv="memo" onclick="tbMineView('memo')">📝 메모만</button><button type="button" class="mv-t" data-mv="shelf" onclick="tbMineView('shelf')">📄 서식만</button><button type="button" class="mv-t" data-mv="link" onclick="tbMineView('link')">📌 항목별</button></div><div id="mine_bylink" style="display:none"></div><div class="card" data-cl="1" id="cd_fav" style="border:2px solid var(--accent)"><div class="card-title">⭐ 내 즐겨찾기</div><div class="tq-hint">어느 화면이든 <b>맨 위 ☆ 즐겨찾기</b>를 누르면 여기 모입니다</div><div id="mine_fav"></div><button type="button" onclick="tbFavBarToggle()" id="favbar_btn" style="width:100%;background:none;color:var(--text-dim);border:1px solid var(--border);border-radius:11px;padding:9px 0;font-size:11.5px;font-weight:800;cursor:pointer;margin-top:9px">화면마다 뜨는 ☆ 표시 끄기</button></div><div class="card" data-cl="1" id="cd_memo" style="border:2px solid var(--accent)"><div class="card-title">📝 내 메모 <span style="float:right;font-size:11.5px;color:var(--text-dim);font-weight:700" id="mine_cnt">0 / 200개</span></div><div class="tq-hint">처리한 사건 경과 · 공문 요지 · 다음에 참고할 것</div><button type="button" onclick="tbMemoEdit(null)" style="width:100%;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:13px 0;font-size:14.5px;font-weight:900;cursor:pointer;margin-bottom:10px">＋ 새 메모 쓰기</button><div id="mine_memo"></div></div><div class="card" data-cl="1" id="cd_shelf" style="border:2px solid var(--accent)"><div class="card-title">📄 내 서식·공문함 <span style="float:right;font-size:11.5px;color:var(--text-dim);font-weight:700" id="shelf_cnt">0장 · 0.0MB</span></div><div class="tq-hint">우리 서 <b>서식·양식·절차 공문</b>을 찍어 두십시오. 넣는 즉시 자동으로 줄여 저장합니다</div><div id="mine_shelf"></div><button type="button" onclick="tbShelfWipe()" style="width:100%;background:none;color:var(--danger);border:1px solid var(--danger);border-radius:11px;padding:10px 0;font-size:12.5px;font-weight:800;cursor:pointer;margin-top:10px">🗑️ 서식함 전부 지우기</button></div><div class="card" style="border:2px solid var(--warn)"><div class="card-title">🔒 이 기능의 한계 — 반드시 읽으십시오</div><div class="u-fs13" style="line-height:1.8"><b>① 이 기기 안에만 저장됩니다.</b> 외부로 나가지 않고, 다른 사람에게 전파되지 않습니다. 앱의 외부 통신 0건 원칙은 그대로입니다.<br><b>② 그래서 폰을 잃어버리면 이 내용도 함께 잃습니다.</b> 남에게 넘어가기도 합니다 — 진입 암호가 있지만 절대적이지 않습니다.<br><b>③ 브라우저 데이터를 지우면 전부 사라집니다.</b> 「캐시 삭제」 한 번이면 끝입니다. <b>⚙️설정 › 내보내기</b>로 정기 백업하십시오. 즐겨찾기·메모도 함께 담깁니다.<br><b>④ 주민등록번호는 저장되지 않습니다.</b> 감지되면 저장을 거부합니다. 차량번호·전화번호는 경고만 하니 <b>꼭 필요한지 스스로 판단</b>하십시오.<br><b>⑤ 사진은 「서식·양식·절차 공문」만.</b> 사람 정보(성명·주민번호·차량번호)가 찍힌 사건 자료는 넣지 마십시오. 글자 속 주민번호는 앱이 걸러낼 수 없습니다. 이 앱은 <b>업무보조 자료</b>이지 사건기록 저장소가 아닙니다.<br><b>⑤-1 사진은 「내보내기」 백업에 담기지 않습니다.</b> 별도 저장소(IndexedDB)에 있기 때문입니다 — 중요한 것은 갤러리에도 남겨 두십시오.<br><b>⑥ 이 앱은 2027-02-20에 만료됩니다.</b> 그 전에 필요한 내용은 옮겨 두십시오.</div></div>
+</div>
+<div class="page" id="page-settings">
 <style>
 #page-settings .tset-h1{font-size:20px;font-weight:900;color:#002366;margin:8px 2px 4px}
 #page-settings .tset-sub{font-size:13px;color:#475569;margin:0 2px 14px;line-height:1.5}
@@ -10458,7 +10467,8 @@ else boot();
  function paintStars(){
   document.querySelectorAll('.tb-fav-b').forEach(function(b){
    var on=isFav(b.getAttribute('data-pid'));
-   b.textContent = on ? '⭐ 즐겨찾기됨' : '☆ 즐겨찾기';
+   b.textContent = on ? '★' : '☆';
+   b.title = on ? '즐겨찾기에서 빼기' : '즐겨찾기에 넣기';
    b.classList.toggle('on',on);
   });
  }
@@ -10468,7 +10478,7 @@ else boot();
    var pid=pg.id.replace('page-','');
    if(!pid || pid==='mynote' || pg.querySelector(':scope > .tb-fav-bar')) return;
    var bar=document.createElement('div'); bar.className='tb-fav-bar';
-   bar.innerHTML='<button type="button" class="tb-fav-b" data-pid="'+pid+'" onclick="tbFavToggle(\''+pid+'\')">☆ 즐겨찾기</button>';
+   bar.innerHTML='<button type="button" class="tb-fav-b" data-pid="'+pid+'" title="즐겨찾기에 넣기" onclick="tbFavToggle(\''+pid+'\')">☆</button>';
    pg.insertBefore(bar, pg.firstChild);
   });
   paintStars();
@@ -10500,6 +10510,10 @@ else boot();
    '<input id="memo_t" class="mn-in" type="text" maxlength="60" placeholder="제목 — 예: 2026-08-12 음주 단속 처리" value="'+esc(m?m.t:'')+'">'+
    '<textarea id="memo_b" class="mn-ta" maxlength="'+MAX_LEN+'" placeholder="처리 경과 · 공문 요지 · 다음에 참고할 것을 적어 두십시오.&#10;&#10;· 주민등록번호는 저장되지 않습니다&#10;· 문서 파일은 넣을 수 없습니다 — 필요한 부분만 옮겨 적으십시오">'+esc(m?m.b:'')+'</textarea>'+
    '<div class="mn-cnt"><span id="memo_n">0</span> / '+MAX_LEN+'자</div>'+
+   '<div class="mn-lb">찾을 말 <small>— 나중에 이 말로 찾습니다. 띄어쓰기로 여러 개</small></div>'+
+   '<input id="memo_kw" class="mn-in" type="text" maxlength="80" placeholder="예: 음주 조사보고서 우리서" value="'+esc(m?(m.kw||''):'')+'">'+
+   '<div class="mn-lb">붙일 곳 <small>— 그 항목 옆에 단추가 생깁니다</small></div>'+
+   '<select id="memo_lk" class="mn-in">'+(window.tbLinkOptions?tbLinkOptions(m?(m.lk||''):''):'')+'</select>'+
    '<div class="mn-warn" id="memo_w"></div>'+
    '<div class="mn-btns">'+
      (m?'<button type="button" class="mn-del" onclick="tbMemoDel(\''+m.id+'\')">삭제</button>':'')+
@@ -10523,18 +10537,22 @@ else boot();
   if(!t && !b){ try{toast('내용이 비어 있습니다');}catch(e){} return; }
   var s=screen(t+' '+b);
   if(s.block){ alert(s.msg); return; }
+  var kwEl=document.getElementById('memo_kw'), lkEl=document.getElementById('memo_lk');
+  var kw=kwEl?(kwEl.value||'').trim():'', lk=lkEl?lkEl.value:'';
   var list=memos();
-  if(id){ list.forEach(function(x){ if(x.id===id){ x.t=t||'(제목 없음)'; x.b=b; x.u=now(); } }); }
+  if(id){ list.forEach(function(x){ if(x.id===id){ x.t=t||'(제목 없음)'; x.b=b; x.kw=kw; x.lk=lk; x.u=now(); } }); }
   else{
    if(list.length>=MAX_MEMO){ alert('메모는 '+MAX_MEMO+'개까지입니다. 오래된 것을 지워 주십시오.'); return; }
-   list.unshift({id:'m'+Date.now(), t:t||'(제목 없음)', b:b, c:now(), u:now()});
+   list.unshift({id:'m'+Date.now(), t:t||'(제목 없음)', b:b, kw:kw, lk:lk, c:now(), u:now()});
   }
-  if(wr(MK,list)){ tbMemoClose(); renderMine(); try{toast('📝 저장했습니다 — 이 기기 안에만');}catch(e){} }
+  if(wr(MK,list)){ tbMemoClose(); renderMine();
+   try{ tbPaintChips(); }catch(e){}
+   try{toast('📝 저장했습니다'+(kw?(' — 「'+kw.split(/\s+/)[0]+'」로 찾힙니다'):''));}catch(e){} }
  };
  window.tbMemoDel=function(id){
   if(!confirm('이 메모를 지웁니다. 되돌릴 수 없습니다.')) return;
   wr(MK, memos().filter(function(x){return x.id!==id;}));
-  tbMemoClose(); renderMine(); try{toast('지웠습니다');}catch(e){}
+  tbMemoClose(); renderMine(); try{ tbPaintChips(); }catch(e){} try{toast('지웠습니다');}catch(e){}
  };
  window.tbMemoOpen=function(id){
   var m=memos().filter(function(x){return x.id===id;})[0]; if(!m) return;
@@ -10570,7 +10588,9 @@ else boot();
    var l=memos();
    mb.innerHTML = l.length
     ? l.map(function(m){ return '<button type="button" class="mn-row" onclick="tbMemoOpen(\''+m.id+'\')">'+
-        '<span class="mn-tx"><b>'+esc(m.t)+'</b><small>'+esc(m.u)+' · '+(m.b.length)+'자</small></span>'+
+        '<span class="mn-tx"><b>'+esc(m.t)+'</b><small>'+esc(m.u)+' · '+(m.b.length)+'자'+
+        (m.lk?(' · 📌 '+esc(window.tbLinkLabel?tbLinkLabel(m.lk):m.lk)):'')+
+        (m.kw?(' · 🔎 '+esc(m.kw)):'')+'</small></span>'+
         '<span class="mn-ar">›</span></button>'; }).join('')
     : '<div class="mn-empty">아직 없습니다. 처리한 사건 경과나 공문 요지를 적어 두십시오.</div>';
    var c=document.getElementById('mine_cnt');
@@ -10580,6 +10600,7 @@ else boot();
  window.tbRenderMine=renderMine;
 
  function boot(){
+  try{ if(localStorage.getItem('tbook_nofav')==='1') document.body.classList.add('nofav'); }catch(e){}
   injectStars(); renderMine();
   var _o=window.showSubPage;
   if(typeof _o==='function' && !_o.__tbMine){
@@ -10593,10 +10614,11 @@ else boot();
 })();
 </script>
 <style>
-.tb-fav-bar{display:flex;justify-content:flex-end;margin:0 0 6px}
-.tb-fav-b{background:none;border:1px solid var(--border);color:var(--text-dim);
- border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:800;cursor:pointer;min-height:32px}
-.tb-fav-b.on{border-color:var(--accent);color:var(--accent);background:var(--panel-2)}
+.tb-fav-bar{display:flex;justify-content:flex-end;margin:0 0 2px}
+.tb-fav-b{background:none;border:none;color:var(--text-dim);opacity:.5;
+ border-radius:999px;padding:2px 6px;font-size:15px;font-weight:800;cursor:pointer;min-height:28px}
+body.nofav .tb-fav-bar{display:none}
+.tb-fav-b.on{color:var(--accent);opacity:1}
 #memo_modal .mn-box{background:var(--panel);color:var(--text);width:100%;max-width:460px;
  border-radius:18px 18px 0 0;padding:14px 13px calc(16px + env(safe-area-inset-bottom));
  max-height:92vh;overflow-y:auto;box-shadow:0 -10px 34px rgba(0,0,0,.5)}
@@ -10610,6 +10632,8 @@ else boot();
  border:1px solid var(--border);border-radius:10px;padding:11px;font-size:13.5px;line-height:1.7;
  min-height:190px;resize:vertical;font-family:inherit}
 #memo_modal .mn-cnt{font-size:11px;color:var(--text-dim);text-align:right;margin-top:4px;font-weight:700}
+#memo_modal .mn-lb{font-size:12px;font-weight:800;color:var(--text);margin:9px 2px 4px}
+#memo_modal .mn-lb small{font-weight:700;color:var(--text-dim)}
 #memo_modal .mn-warn{font-size:11.5px;font-weight:700;line-height:1.5;margin:5px 0 0;color:var(--text)}
 #memo_modal .mn-when{font-size:11.5px;color:var(--text-dim);font-weight:700;margin-bottom:8px}
 #memo_modal .mn-body{font-size:13.5px;line-height:1.75;background:var(--panel-2);border:1px solid var(--border);
@@ -10725,6 +10749,32 @@ else boot();
     out.push({g:g, p:p, label:t, sub:true}); }); });
   IDX=out; return IDX;
  }
+ /* 내가 올린 서식 — 이름·찾을말은 localStorage 에 있어 바로 읽는다 */
+ function shelfHits(q){
+  var n=N(q); if(!n) return [];
+  var r=resolve(q), n2=N(r.term), out=[];
+  function ok(hay){ hay=N(hay); return hay.indexOf(n)>=0 || (n2&&hay.indexOf(n2)>=0); }
+  try{ ((window.tbShelfMeta?window.tbShelfMeta():[])||[]).forEach(function(x){
+   if(out.length<10 && ok((x.name||'')+' '+(x.kw||'')))
+    out.push({kind:'서식', id:x.id, name:x.name, kw:x.kw, lk:x.lk}); }); }catch(e){}
+  try{ (JSON.parse(localStorage.getItem('tbook_memo_v1')||'[]')||[]).forEach(function(m){
+   if(out.length<10 && ok((m.t||'')+' '+(m.kw||'')+' '+(m.b||'')))
+    out.push({kind:'메모', id:m.id, name:m.t, kw:m.kw, lk:m.lk}); }); }catch(e){}
+  return out;
+ }
+ function shelfHTML(hits,q){
+  return '<div class="tb-sx">⭐ <b>내 자료</b>에서 '+hits.length+'건 — 「'+q+'」</div>'+
+   hits.map(function(x){
+    return '<button type="button" data-go="1" onclick="closeSearch();'+
+     (x.kind==='메모'?'tbMemoOpen':'tbShelfOpen')+'(\''+x.id+'\')" '+
+     'style="display:block;width:100%;text-align:left;background:var(--panel-2);color:var(--text);'+
+     'border:1px solid var(--accent);border-radius:10px;padding:11px;margin-bottom:6px;font-size:13.5px;'+
+     'font-weight:800;cursor:pointer;min-height:46px;line-height:1.45">'+
+     (x.kind==='메모'?'📝 ':'📄 ')+(x.name||'')+
+     ((x.kw||x.lk)?('<br><span style="font-size:11px;color:var(--text-dim);font-weight:700">'+
+       (x.kw?('🔎 '+x.kw+' '):'')+(x.lk?('📌 '+(window.tbLinkLabel?tbLinkLabel(x.lk):x.lk)):'')+'</span>'):'')+
+     '</button>'; }).join('');
+ }
 
  function rowHTML(it){
   return '<button type="button" data-go="1" onclick="srchGo(\''+it.g+'\',\''+it.p+'\')" '+
@@ -10753,6 +10803,8 @@ else boot();
  function render(q){
   var box=document.getElementById('srch_res'); if(!box) return;
   var r=resolve(q), h='', res=[];
+  var sh=shelfHits(q);
+  if(sh.length) h+=shelfHTML(sh,q);
   if(r.via){
    res=search(r.term);
    if(res.length) h+='<div class="tb-sx">「'+q+'」 → <b>「'+r.term+'」</b>로 찾았습니다'+
@@ -10779,7 +10831,12 @@ else boot();
   box.__tbObs=1;
   new MutationObserver(function(){
    if(box.__tb) return;
-   if(/결과 없음/.test(box.textContent||'')) render(inp.value||'');
+   var q=inp.value||'';
+   if(/결과 없음/.test(box.textContent||'')){ render(q); return; }
+   if(!N(q)) return;
+   var hits=shelfHits(q);
+   if(hits.length){ box.__tb=1; box.insertAdjacentHTML('afterbegin', shelfHTML(hits,q));
+     setTimeout(function(){ box.__tb=0; },0); }
   }).observe(box,{childList:true,subtree:false});
  }
  var _os=window.openSearch;
@@ -10836,6 +10893,14 @@ else boot();
   });
  }
 
+/* ═══ v20.1 — 서식 업로드 : 이름 · 키워드 · 올리기 전 확인 ═══ */
+ var MK='tbook_shelf_meta';                 /* 이름·키워드만 여기(localStorage) — 「찾기」가 바로 읽는다 */
+ function meta(){ try{ return JSON.parse(localStorage.getItem(MK)||'[]'); }catch(e){ return []; } }
+ function metaSet(a){ try{ localStorage.setItem(MK, JSON.stringify(a)); }catch(e){} }
+ window.tbShelfMeta=meta;
+
+ function esc2(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
  window.tbShelfPick=function(){
   try{
    if(!localStorage.getItem('tbook_shelf_ok')){
@@ -10849,40 +10914,97 @@ else boot();
   }catch(e){}
   var inp=document.createElement('input');
   inp.type='file'; inp.accept='image/*'; inp.multiple=true;
-  inp.addEventListener('change',function(){ tbShelfAdd(inp.files); });
+  inp.addEventListener('change',function(){ tbShelfStage(inp.files); });
   inp.click();
  };
 
- window.tbShelfAdd=function(files){
+ /* ── 올리기 전 확인 화면 ───────────────────────────────── */
+ var STAGE=[];
+ window.tbShelfStage=function(files){
   if(!files||!files.length) return;
+  STAGE=[].slice.call(files).filter(function(f){ return /^image\//.test(f.type); });
+  if(!STAGE.length){ try{ toast('사진만 넣을 수 있습니다'); }catch(e){} return; }
+  var w=document.createElement('div'); w.id='up_modal';
+  w.setAttribute('style','position:fixed;inset:0;z-index:9770;background:rgba(0,0,0,.7);display:flex;'+
+    'align-items:flex-end;justify-content:center');
+  var thumbs=STAGE.map(function(f,i){
+   return '<div class="up-th"><img id="up_im'+i+'"><span>'+esc2((f.name||'').replace(/\.[^.]+$/,'').slice(0,18))+'</span></div>';
+  }).join('');
+  var base=(STAGE[0].name||'서식').replace(/\.[^.]+$/,'').slice(0,40);
+  w.innerHTML='<div class="up-box">'+
+   '<div class="up-hd">📄 서식 올리기 — '+STAGE.length+'장'+
+     '<button type="button" class="up-x" onclick="tbUpClose()">✕</button></div>'+
+   '<div class="up-grid">'+thumbs+'</div>'+
+   '<div class="up-lb">이름'+(STAGE.length>1?' <small>— 뒤에 번호가 붙습니다</small>':'')+'</div>'+
+   '<input id="up_name" class="up-in" type="text" maxlength="40" placeholder="예: 우리 서 음주 조사보고서" value="'+esc2(base)+'">'+
+   '<div class="up-lb">찾을 말 <small>— 나중에 이 말로 찾습니다. 띄어쓰기로 여러 개</small></div>'+
+   '<input id="up_kw" class="up-in" type="text" maxlength="80" placeholder="예: 음주 조사보고서 서초 양식">'+
+   '<div class="up-chips">'+
+    ['음주','무면허','무보험','약물','사고','통고','즉결','번호판','이륜차','지역경찰','여청','공문','서식']
+     .map(function(k){ return '<button type="button" class="up-chip" onclick="tbUpChip(\''+k+'\')">＋'+k+'</button>'; }).join('')+
+   '</div>'+
+   '<div class="up-lb">붙일 곳 <small>— 그 항목 옆에 단추가 생깁니다</small></div>'+
+   '<select id="up_lk" class="up-in">'+(window.tbLinkOptions?tbLinkOptions(''):'')+'</select>'+
+   '<div class="up-cf" id="up_cf"></div>'+
+   '<div class="up-btns"><button type="button" class="up-c" onclick="tbUpClose()">취소</button>'+
+   '<button type="button" class="up-go" onclick="tbShelfCommit()">확인하고 올리기</button></div>'+
+   '<div class="up-note">이 기기 안에만 저장됩니다 · 외부로 나가지 않습니다</div></div>';
+  document.body.appendChild(w);
+  STAGE.forEach(function(f,i){
+   var u=URL.createObjectURL(f); var im=document.getElementById('up_im'+i);
+   if(im){ im.src=u; im.onload=function(){ setTimeout(function(){ URL.revokeObjectURL(u); },1000); }; }
+  });
+  function refresh(){
+   var n=(document.getElementById('up_name').value||'').trim()||'서식';
+   var k=(document.getElementById('up_kw').value||'').trim();
+   document.getElementById('up_cf').innerHTML=
+    '<b>이렇게 올립니다</b><br>📄 <b>'+esc2(n)+'</b>'+(STAGE.length>1?(' <span>1~'+STAGE.length+'</span>'):'')+
+    '<br>🔎 찾을 말: '+(k?('<b>'+esc2(k)+'</b>'):'<span>없음 — 이름으로만 찾힙니다</span>')+
+    (function(){ var el=document.getElementById('up_lk'); var v=el?el.value:'';
+      return v?('<br>📌 붙일 곳: <b>'+(window.tbLinkLabel?tbLinkLabel(v):v)+'</b>'):''; })();
+  }
+  document.getElementById('up_name').addEventListener('input',refresh);
+  document.getElementById('up_kw').addEventListener('input',refresh);
+  var _lk=document.getElementById('up_lk'); if(_lk) _lk.addEventListener('change',refresh);
+  window.tbUpRefresh=refresh; refresh();
+ };
+ window.tbUpChip=function(k){
+  var el=document.getElementById('up_kw'); if(!el) return;
+  var v=(el.value||'').trim();
+  if((' '+v+' ').indexOf(' '+k+' ')<0) el.value=(v?v+' ':'')+k;
+  try{ tbUpRefresh(); }catch(e){}
+ };
+ window.tbUpClose=function(){ var m=document.getElementById('up_modal'); if(m) m.remove(); STAGE=[]; };
+
+ window.tbShelfCommit=function(){
+  var nm=(document.getElementById('up_name').value||'').trim()||'서식';
+  var kw=(document.getElementById('up_kw').value||'').trim();
+  var _e=document.getElementById('up_lk'); var lk=_e?_e.value:'';
+  var files=STAGE.slice(); tbUpClose();
+  if(!files.length) return;
   all().then(function(list){
    if(list.length>=MAXN){ alert('사진은 '+MAXN+'장까지입니다. 오래된 것을 지워 주십시오.'); return; }
    var used=list.reduce(function(a,x){ return a+(x.size||0); },0);
-   var arr=[].slice.call(files).slice(0, MAXN-list.length);
-   var chain=Promise.resolve(), added=0;
-   arr.forEach(function(f){
+   var arr=files.slice(0, MAXN-list.length), chain=Promise.resolve(), added=0, M=meta();
+   arr.forEach(function(f,i){
     chain=chain.then(function(){
-     if(!/^image\//.test(f.type)) return;
-     if(used > MAXMB*1048576){ return; }
+     if(used > MAXMB*1048576) return;
      return shrink(f).then(function(o){
       used+=o.blob.size; added++;
-      var nm=(f.name||'사진').replace(/\.[^.]+$/,'').slice(0,40);
-      if(arr.length===1){ var t=null;
-        try{ t=window.prompt('이 서식의 이름을 적으십시오\n(예: 우리 서 음주 조사보고서 · 통고처분 서식)', nm); }catch(e){}
-        if(t===null) return;            /* 취소하면 넣지 않는다 */
-        nm=(t||'').trim().slice(0,40)||nm; }
+      var id='s'+Date.now()+'_'+i;
+      var name=nm+(arr.length>1?(' '+(i+1)):'');
+      M.push({id:id, name:name, kw:kw, lk:lk});
       return tx('readwrite',function(st){
-       st.put({id:'s'+Date.now()+'_'+added, name:nm, blob:o.blob, size:o.blob.size,
-               w:o.w, h:o.h, at:new Date().toISOString().slice(0,16).replace('T',' ')}); });
+       st.put({id:id, name:name, kw:kw, lk:lk, blob:o.blob, size:o.blob.size, w:o.w, h:o.h,
+               at:new Date().toISOString().slice(0,16).replace('T',' ')}); });
      });
     });
    });
-   chain.then(function(){ renderShelf();
-     try{ toast('📄 '+added+'장 넣었습니다 — 이 기기 안에만'); }catch(e){} })
+   chain.then(function(){ metaSet(M); renderShelf(); try{ tbPaintChips(); }catch(e){}
+     try{ toast('📄 '+added+'장 올렸습니다'+(kw?(' — 「'+kw.split(/\s+/)[0]+'」로 찾힙니다'):'')); }catch(e){} })
         .catch(function(){ try{ toast('사진을 넣지 못했습니다'); }catch(e){} });
   });
  };
-
  window.tbShelfOpen=function(id){
   tx('readonly',function(st){ return st.get(id); }).then(function(it){
    if(!it) return;
@@ -10913,6 +11035,7 @@ else boot();
  window.tbShelfDel=function(id){
   if(!confirm('이 사진을 지웁니다. 되돌릴 수 없습니다.')) return;
   tx('readwrite',function(st){ st.delete(id); }).then(function(){
+   metaSet(meta().filter(function(x){ return x.id!==id; }));
    tbShelfClose(); renderShelf(); try{ toast('지웠습니다'); }catch(e){} });
  };
  window.tbShelfRename=function(id){
@@ -10920,15 +11043,18 @@ else boot();
    if(!it) return;
    var t=null; try{ t=window.prompt('이름을 적으십시오', it.name||''); }catch(e){}
    if(t===null) return;
+   var k=null; try{ k=window.prompt('찾을 말 (띄어쓰기로 여러 개)', it.kw||''); }catch(e){}
    it.name=(t||'').trim().slice(0,40)||it.name;
+   if(k!==null) it.kw=(k||'').trim().slice(0,80);
    tx('readwrite',function(st){ st.put(it); }).then(function(){
-    tbShelfClose(); renderShelf(); try{ toast('이름을 고쳤습니다'); }catch(e){} });
+    metaSet(meta().map(function(x){ return x.id===id?{id:id,name:it.name,kw:it.kw}:x; }));
+    tbShelfClose(); renderShelf(); try{ toast('고쳤습니다'); }catch(e){} });
   });
  };
  window.tbShelfWipe=function(){
   if(!confirm('서식·공문함의 사진을 전부 지웁니다.\n되돌릴 수 없습니다. 계속하시겠습니까?')) return;
   tx('readwrite',function(st){ st.clear(); }).then(function(){
-   renderShelf(); try{ toast('전부 지웠습니다'); }catch(e){} });
+   metaSet([]); renderShelf(); try{ toast('전부 지웠습니다'); }catch(e){} });
  };
 
  function renderShelf(){
@@ -10975,5 +11101,248 @@ else boot();
  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 
+<style>
+#up_modal .up-box{background:var(--panel);color:var(--text);width:100%;max-width:460px;
+ border-radius:18px 18px 0 0;padding:14px 13px calc(16px + env(safe-area-inset-bottom));
+ max-height:92vh;overflow-y:auto;box-shadow:0 -10px 34px rgba(0,0,0,.5)}
+#up_modal .up-hd{font-size:16px;font-weight:900;color:var(--accent);display:flex;align-items:center;margin-bottom:10px}
+#up_modal .up-x{margin-left:auto;background:none;border:none;color:var(--text-dim);font-size:19px;font-weight:900;cursor:pointer;padding:2px 6px}
+#up_modal .up-grid{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px}
+#up_modal .up-th{flex:0 0 74px}
+#up_modal .up-th img{width:74px;height:98px;object-fit:cover;border-radius:8px;background:#fff;border:1px solid var(--border)}
+#up_modal .up-th span{display:block;font-size:10px;color:var(--text-dim);font-weight:700;margin-top:3px;
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#up_modal .up-lb{font-size:12px;font-weight:800;color:var(--text);margin:8px 2px 4px}
+#up_modal .up-lb small{font-weight:700;color:var(--text-dim)}
+#up_modal .up-in{width:100%;box-sizing:border-box;background:var(--panel-2);color:var(--text);
+ border:1px solid var(--border);border-radius:10px;padding:11px;font-size:14px;font-weight:700}
+#up_modal .up-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+#up_modal .up-chip{background:var(--panel-2);color:var(--text-dim);border:1px solid var(--border);
+ border-radius:999px;padding:6px 10px;font-size:11.5px;font-weight:800;cursor:pointer;min-height:32px}
+#up_modal .up-cf{background:var(--panel-2);border:1px dashed var(--accent);border-radius:11px;
+ padding:10px 11px;margin-top:11px;font-size:12.5px;line-height:1.7;word-break:keep-all}
+#up_modal .up-cf b{color:var(--accent)}
+#up_modal .up-cf span{color:var(--text-dim)}
+#up_modal .up-btns{display:flex;gap:8px;margin-top:11px}
+#up_modal .up-c{flex:0 0 92px;background:var(--panel-2);color:var(--text);border:1px solid var(--border);
+ border-radius:12px;padding:13px 0;font-size:14px;font-weight:900;cursor:pointer}
+#up_modal .up-go{flex:1;background:var(--accent);color:#fff;border:none;border-radius:12px;
+ padding:13px 0;font-size:14.5px;font-weight:900;cursor:pointer}
+#up_modal .up-note{font-size:11px;color:var(--text-dim);font-weight:700;text-align:center;margin-top:9px}
+</style>
+<script>
+/* ═══ v20.1 — 내 서식·메모를 「항목」에 붙인다 ═══
+   붙여 두면 그 항목 제목 옆에 칩이 뜨고, 눌러서 바로 꺼내 본다.
+   메모도 서식과 똑같이 「찾을 말」로 찾힌다. */
+(function(){
+ /* 붙일 수 있는 자리 — 앱에 실제로 있는 항목 제목이다 */
+ var LINKS=[
+  {v:'', t:'(붙이지 않음)'},
+  {v:'단순 음주',            p:'doc_manual', t:'음주 — 단순 음주'},
+  {v:'측정거부',             p:'doc_manual', t:'음주 — 측정거부'},
+  {v:'음주사고',             p:'doc_manual', t:'음주 — 음주사고'},
+  {v:'음주운전 동승자',       p:'doc_manual', t:'음주 — 동승자 조사'},
+  {v:'음주서류 작성순서',      p:'checklist',  t:'음주 — 서류 작성순서'},
+  {v:'음주사고 처리 순서',     p:'checklist',  t:'음주 — 사고 처리순서'},
+  {v:'무면허 운전',           p:'doc_manual', t:'무면허'},
+  {v:'무면허 서류 작성순서',   p:'checklist',  t:'무면허 — 서류 작성순서'},
+  {v:'의무보험 미가입',       p:'doc_manual', t:'무보험'},
+  {v:'번호판 미부착',         p:'doc_manual', t:'번호판 미부착'},
+  {v:'오손 처리 절차',        p:'doc_manual', t:'번호판 오손'},
+  {v:'약물운전',             p:'enforce',    t:'약물운전'},
+  {v:'개인형 이동장치',       p:'doc_manual', t:'PM(킥보드)'},
+  {v:'이륜차(오토바이) 단속',  p:'doc_manual', t:'이륜차'},
+  {v:'외국인 위반 단속',      p:'doc_manual', t:'외국인'},
+  {v:'수배자 처리 절차',      p:'doc_manual', t:'수배자 처리'},
+  {v:'즉결심판(즉심) 청구',    p:'doc_manual', t:'즉결심판'},
+  {v:'신병을 어떻게 했나',     p:'police_gen', t:'발생보고 · 신병(임의동행·현행범·긴급체포)'},
+  {v:'즉결 · 통고',          p:'police_gen', t:'즉결 · 통고 · 훈방 · 풍속'},
+  {v:'여청 3종',             p:'police_gen', t:'여청 3종(가폭·아동·스토킹)'},
+  {v:'확인서에 무엇을 채우나',  p:'police_gen', t:'문 부순 뒤 확인서'},
+  {v:'변사자 신고',           p:'police_gen', t:'변사'},
+  {v:'가정폭력 초동조치',      p:'police_gen', t:'가정폭력'},
+  {v:'조회했더니 수배가 뜬다',  p:'police_gen', t:'조회에 수배가 뜬다'}
+ ];
+ window.tbLinkOptions=function(sel){
+  return LINKS.map(function(x){
+   return '<option value="'+x.v.replace(/"/g,'&quot;')+'"'+(x.v===(sel||'')?' selected':'')+'>'+x.t+'</option>';
+  }).join('');
+ };
+ function linkLabel(v){
+  for(var i=0;i<LINKS.length;i++) if(LINKS[i].v===v) return LINKS[i].t;
+  return v;
+ }
+ window.tbLinkLabel=linkLabel;
+
+ function shelfMeta(){ try{ return (window.tbShelfMeta?window.tbShelfMeta():[])||[]; }catch(e){ return []; } }
+ function memoAll(){ try{ return JSON.parse(localStorage.getItem('tbook_memo_v1')||'[]'); }catch(e){ return []; } }
+
+ /* 어떤 항목에 무엇이 붙어 있나 */
+ function forLink(v){
+  var out=[];
+  shelfMeta().forEach(function(x){ if(x.lk===v) out.push({kind:'서식', id:x.id, t:x.name||'서식'}); });
+  memoAll().forEach(function(m){ if(m.lk===v) out.push({kind:'메모', id:m.id, t:m.t||'메모'}); });
+  return out;
+ }
+
+ window.tbLinkSheet=function(v){
+  var items=forLink(v);
+  var w=document.createElement('div'); w.id='lk_modal';
+  w.setAttribute('style','position:fixed;inset:0;z-index:9755;background:rgba(0,0,0,.66);display:flex;'+
+   'align-items:flex-end;justify-content:center');
+  var rows=items.map(function(it){
+   return '<button type="button" class="lk-row" onclick="tbLinkGo(\''+it.kind+'\',\''+it.id+'\')">'+
+    '<span class="lk-k">'+(it.kind==='서식'?'📄':'📝')+'</span>'+
+    '<span class="lk-t">'+it.t+'<small>'+it.kind+'</small></span><span class="lk-a">›</span></button>';
+  }).join('');
+  w.innerHTML='<div class="lk-box"><div class="lk-hd">'+linkLabel(v)+
+   '<button type="button" class="lk-x" onclick="tbLinkClose()">✕</button></div>'+
+   '<div class="lk-sub">여기 붙여 둔 내 자료 '+items.length+'건</div>'+rows+
+   '<div class="lk-ft">⭐ 내 앱에서 더 넣을 수 있습니다</div></div>';
+  w.addEventListener('click',function(e){ if(e.target===w) tbLinkClose(); });
+  document.body.appendChild(w);
+ };
+ window.tbLinkClose=function(){ var m=document.getElementById('lk_modal'); if(m) m.remove(); };
+ window.tbLinkGo=function(kind,id){
+  tbLinkClose();
+  if(kind==='서식'){ try{ tbShelfOpen(id); }catch(e){} }
+  else { try{ tbMemoOpen(id); }catch(e){} }
+ };
+
+ /* 항목 제목 옆에 칩을 얹는다 — 앱 마크업은 건드리지 않는다 */
+ function paintChips(){
+  document.querySelectorAll('.lk-chip').forEach(function(c){ c.remove(); });
+  var byLink={};
+  shelfMeta().forEach(function(x){ if(x.lk) byLink[x.lk]=(byLink[x.lk]||0)+1; });
+  memoAll().forEach(function(m){ if(m.lk) byLink[m.lk]=(byLink[m.lk]||0)+1; });
+  Object.keys(byLink).forEach(function(v){
+   var done=false;
+   document.querySelectorAll('details > summary').forEach(function(sm){
+    if(done || (sm.textContent||'').indexOf(v)<0) return;
+    done=true;
+    var b=document.createElement('button');
+    b.type='button'; b.className='lk-chip';
+    b.textContent='📄 내 자료 '+byLink[v];
+    b.setAttribute('onclick','event.stopPropagation();event.preventDefault();tbLinkSheet("'+
+      v.replace(/"/g,'&quot;')+'")');
+    sm.appendChild(b);
+   });
+   if(!done){
+    document.querySelectorAll('[data-anchor]').forEach(function(el){
+     if(done || el.getAttribute('data-anchor')!==v) return;
+     done=true;
+     var b=document.createElement('button');
+     b.type='button'; b.className='lk-chip';
+     b.textContent='📄 내 자료 '+byLink[v];
+     b.setAttribute('onclick','tbLinkSheet("'+v.replace(/"/g,'&quot;')+'")');
+     el.appendChild(b);
+    });
+   }
+  });
+ }
+ window.tbPaintChips=paintChips;
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(paintChips,900); });
+ else setTimeout(paintChips,900);
+})();
+</script>
+<style>
+.lk-chip{margin-left:7px;background:var(--panel-2);color:var(--accent);border:1px solid var(--accent);
+ border-radius:999px;padding:3px 9px;font-size:10.5px;font-weight:800;cursor:pointer;
+ vertical-align:middle;white-space:nowrap;min-height:26px}
+#lk_modal .lk-box{background:var(--panel);color:var(--text);width:100%;max-width:460px;
+ border-radius:18px 18px 0 0;padding:14px 13px calc(16px + env(safe-area-inset-bottom));
+ max-height:86vh;overflow-y:auto;box-shadow:0 -10px 34px rgba(0,0,0,.5)}
+#lk_modal .lk-hd{font-size:15.5px;font-weight:900;color:var(--accent);display:flex;align-items:center;
+ gap:8px;line-height:1.35;word-break:keep-all}
+#lk_modal .lk-x{margin-left:auto;background:none;border:none;color:var(--text-dim);font-size:19px;
+ font-weight:900;cursor:pointer;padding:2px 6px}
+#lk_modal .lk-sub{font-size:11.5px;color:var(--text-dim);font-weight:700;margin:3px 0 10px}
+#lk_modal .lk-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+ background:var(--panel-2);color:var(--text);border:1px solid var(--border);border-radius:12px;
+ padding:11px;margin-bottom:7px;cursor:pointer;min-height:52px}
+#lk_modal .lk-k{flex:0 0 auto;font-size:17px}
+#lk_modal .lk-t{flex:1 1 auto;min-width:0;font-size:13.5px;font-weight:800;line-height:1.4;word-break:keep-all}
+#lk_modal .lk-t small{display:block;font-size:11px;color:var(--text-dim);font-weight:700;margin-top:2px}
+#lk_modal .lk-a{color:var(--text-dim);font-size:17px;font-weight:900}
+#lk_modal .lk-ft{font-size:11px;color:var(--text-dim);font-weight:700;text-align:center;margin-top:9px}
+</style>
+
+<script>
+/* v20.1 — 내 앱 보기 전환 : 전체 / 메모만 / 서식만 / 항목별 */
+(function(){
+ window.tbMineView=function(v){
+  document.querySelectorAll('.mv-t').forEach(function(b){
+   b.classList.toggle('on', b.getAttribute('data-mv')===v); });
+  var fav=document.getElementById('cd_fav'), me=document.getElementById('cd_memo'),
+      sh=document.getElementById('cd_shelf'), bl=document.getElementById('mine_bylink');
+  function show(el,on){ if(el) el.style.display=on?'':'none'; }
+  show(fav, v==='all'); show(me, v==='all'||v==='memo');
+  show(sh, v==='all'||v==='shelf'); show(bl, v==='link');
+  if(v==='link') paintByLink();
+ };
+ function memos(){ try{ return JSON.parse(localStorage.getItem('tbook_memo_v1')||'[]'); }catch(e){ return []; } }
+ function shelf(){ try{ return (window.tbShelfMeta?window.tbShelfMeta():[])||[]; }catch(e){ return []; } }
+ function esc(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+ function paintByLink(){
+  var box=document.getElementById('mine_bylink'); if(!box) return;
+  var G={}, none=[];
+  shelf().forEach(function(x){ var k=x.lk||''; (k?(G[k]=G[k]||[]):none).push?0:0;
+    if(k){ G[k]=G[k]||[]; G[k].push({kind:'서식',id:x.id,t:x.name}); } else none.push({kind:'서식',id:x.id,t:x.name}); });
+  memos().forEach(function(m){ var k=m.lk||'';
+    if(k){ G[k]=G[k]||[]; G[k].push({kind:'메모',id:m.id,t:m.t}); } else none.push({kind:'메모',id:m.id,t:m.t}); });
+  var keys=Object.keys(G);
+  if(!keys.length && !none.length){
+   box.innerHTML='<div class="card" data-cl="1" style="border:2px dashed var(--border)">'+
+    '<div class="mn-empty">아직 없습니다. 메모나 서식을 만들 때 <b>「붙일 곳」</b>을 고르면 '+
+    '사건 종류별로 여기 모이고, 그 항목 옆에도 단추가 생깁니다.</div></div>'; return; }
+  var h='';
+  function grp(title,items){
+   h+='<div class="card" data-cl="1" style="border:2px solid var(--accent)">'+
+      '<div class="card-title">📌 '+esc(title)+' <span style="float:right;font-size:11.5px;'+
+      'color:var(--text-dim);font-weight:700">'+items.length+'건</span></div>';
+   items.forEach(function(it){
+    h+='<button type="button" class="mn-row" onclick="'+(it.kind==='메모'?'tbMemoOpen':'tbShelfOpen')+
+       '(\''+it.id+'\')"><span class="mn-tx"><b>'+(it.kind==='메모'?'📝 ':'📄 ')+esc(it.t||'')+
+       '</b><small>'+it.kind+'</small></span><span class="mn-ar">›</span></button>'; });
+   h+='</div>';
+  }
+  keys.sort().forEach(function(k){ grp(window.tbLinkLabel?tbLinkLabel(k):k, G[k]); });
+  if(none.length) grp('붙이지 않음', none);
+  box.innerHTML=h;
+ }
+ window.tbPaintByLink=paintByLink;
+})();
+</script>
+<style>
+.mv-tabs{display:flex;gap:6px;margin:0 0 11px;overflow-x:auto;padding-bottom:2px}
+.mv-t{flex:0 0 auto;background:var(--panel-2);color:var(--text-dim);border:1px solid var(--border);
+ border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:800;cursor:pointer;min-height:38px}
+.mv-t.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+<script>
+(function(){
+ function sync(){ var b=document.getElementById('favbar_btn'); if(!b) return;
+  var off=false; try{ off=localStorage.getItem('tbook_nofav')==='1'; }catch(e){}
+  document.body.classList.toggle('nofav',off);
+  b.textContent = off ? '화면마다 뜨는 ☆ 표시 켜기' : '화면마다 뜨는 ☆ 표시 끄기'; }
+ window.tbFavBarToggle=function(){
+  try{ var off=localStorage.getItem('tbook_nofav')==='1';
+   localStorage.setItem('tbook_nofav', off?'0':'1'); }catch(e){}
+  sync(); try{ toast(document.body.classList.contains('nofav')?'☆ 표시를 껐습니다':'☆ 표시를 켰습니다'); }catch(e){}
+ };
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(sync,700); });
+ else setTimeout(sync,700);
+})();
+</script>
+<script>
+/* v20.1 — 홈 「바로 실행」에서 내 앱의 서식/메모로 바로 */
+window.tbGoMine=function(v){
+ try{ if(typeof showGroup==='function') showGroup('setg'); }catch(e){}
+ try{ showSubPage('mynote'); }catch(e){}
+ setTimeout(function(){ try{ tbMineView(v); }catch(e){}
+   try{ var el=document.getElementById(v==='memo'?'cd_memo':'cd_shelf');
+     if(el) el.scrollIntoView({block:'start',behavior:'smooth'}); }catch(e){} },320);
+};
+</script>
 </body>
 </html>
