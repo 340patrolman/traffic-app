@@ -1176,6 +1176,12 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 </div>
 
 <div class="page pg-narrow" id="page-doc_needed">
+ <div class="card" data-cl="1" style="border:2px solid var(--accent)">
+  <div class="card-title">📁 우리 서 서식은 여기에 <span style="float:right;font-size:11.5px;color:var(--text-dim);font-weight:700" id="dn_shelf_cnt"></span></div>
+  <div class="tq-hint">관서마다 서식과 방식이 조금씩 다릅니다. <b>우리 서 것을 찍어 두고</b> 여기서 바로 꺼내 보십시오</div>
+  <div id="dn_shelf"></div>
+  <button type="button" onclick="showSubPage('mynote')" style="width:100%;background:var(--panel-2);color:var(--text);border:1px solid var(--border);border-radius:11px;padding:11px 0;font-size:12.5px;font-weight:800;cursor:pointer;margin-top:8px">⭐ 내 앱에서 관리하기 →</button>
+ </div>
  <div class="card" data-cl="1" style="border:2px solid var(--accent-gold)">
   <div class="card-title">📄 필요서류 — 무엇을 했으면 무엇을 쓰나</div>
   <div class="tq-hint">지금 한 조치를 <b>그대로 누르십시오</b></div>
@@ -10926,16 +10932,20 @@ else boot();
  };
 
  function renderShelf(){
-  var box=document.getElementById('mine_shelf'); if(!box) return;
+  paintInto('mine_shelf','shelf_cnt',true);
+  paintInto('dn_shelf','dn_shelf_cnt',false);
+ }
+ function paintInto(boxId,cntId,full){
+  var box=document.getElementById(boxId); if(!box) return;
   all().then(function(list){
    list.sort(function(a,b){ return a.at<b.at?1:-1; });
    var used=list.reduce(function(a,x){ return a+(x.size||0); },0);
-   var c=document.getElementById('shelf_cnt');
+   var c=document.getElementById(cntId);
    if(c) c.textContent=list.length+'장 · '+(used/1048576).toFixed(1)+'MB';
    if(!list.length){ box.innerHTML='<div class="sh-grid"><button type="button" class="sh-c sh-add" '+
      'onclick="tbShelfPick()"><span class="sh-p">＋</span><span class="sh-l">서식 넣기</span></button></div>'+
-     '<div class="mn-empty" style="margin-top:8px"><b>우리 서 서식·절차 공문</b>을 찍어 두면 '+
-     '현장에서 바로 꺼내 볼 수 있습니다. 넣을 때 <b>이름을 직접</b> 적습니다.</div>'; return; }
+     (full?('<div class="mn-empty" style="margin-top:8px"><b>우리 서 서식·절차 공문</b>을 찍어 두면 '+
+     '현장에서 바로 꺼내 볼 수 있습니다. 넣을 때 <b>이름을 직접</b> 적습니다.</div>'):''); return; }
    var h='<div class="sh-grid"><button type="button" class="sh-c sh-add" onclick="tbShelfPick()">'+
      '<span class="sh-p">＋</span><span class="sh-l">서식 넣기</span></button>';
    list.forEach(function(it){
