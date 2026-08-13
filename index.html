@@ -434,13 +434,10 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 
 <div class="page" id="page-home_dash">
  <div class="hd-wrap">
-  <div class="hd-lbl hd-lbl-row"><span>오늘</span>
-   <button class="hd-gear" onclick="hdGo('setg','settings')" aria-label="설정" title="설정">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 15a2 2 0 1 1 0-4 1.6 1.6 0 0 0 1.5-2.6l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 4.6V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg></button>
-  </div>
+  
   <div class="hd-duty" id="hd_duty" onclick="hdGo('shift','shift_cal')" role="button" tabindex="0" aria-label="교대근무표 열기"></div>
 
-  <div class="hd-lbl hd-mt">바로 실행</div>
+  <div class="hd-lbl hd-mt hd-lbl-row"><span>바로 실행</span><button class="hd-gear" onclick="hdGo('setg','settings')" aria-label="설정" title="설정"> <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.8-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 15a2 2 0 1 1 0-4 1.6 1.6 0 0 0 1.5-2.6l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 4.6V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg></button></div>
   <div class="hd-g1">
    <button class="hd-tile hd-big" style="--c:var(--hd-gold);--cbg:var(--hd-goldbg)" onclick="hdGo('shift','shift_cal')">
     <span class="hd-ic"><svg viewBox="0 0 24 24"><rect x="3.4" y="4.6" width="17.2" height="16" rx="2.4"/><path d="M3.4 9.6h17.2M8.4 2.6v4M15.6 2.6v4"/><path d="M7.6 13.4h2.2M14.2 13.4h2.2M7.6 17h2.2M14.2 17h2.2"/></svg></span>
@@ -8928,6 +8925,7 @@ body[data-home="dash"][data-page="home_dash"].vopen .nav-tabs{
 .hd-gear svg{width:17px;height:17px;stroke:var(--hd-ink2);fill:none;stroke-width:1.9;
  stroke-linecap:round;stroke-linejoin:round}
 .hd-gear:active{opacity:.6}
+.hd-td{display:inline-block;font-size:10px;font-weight:900;letter-spacing:.4px;color:var(--hd-ink2);border:1px solid var(--hd-line);border-radius:6px;padding:0 5px;margin-right:6px;transform:translateY(-1px)}
 
 /* ── 화면을 가리는 떠 있는 버튼들을 반투명으로 (대시보드 모드만) ── */
 body[data-home="dash"] #fabAll,
@@ -9074,7 +9072,7 @@ body[data-home="dash"] #sub_home{display:none!important}
   box.innerHTML=
    '<div class="hd-dt">'
    +'<div class="hd-chip" style="background:'+col+'"><b>'+shortK+'</b>'+(tl?'<i>'+tl+'</i>':'')+'</div>'
-   +'<div class="hd-dx"><div class="hd-d1">'+(now.getMonth()+1)+'월 '+now.getDate()+'일 '+W[now.getDay()]+team+'</div>'
+   +'<div class="hd-dx"><div class="hd-d1"><span class="hd-td">오늘</span>'+(now.getMonth()+1)+'월 '+now.getDate()+'일 '+W[now.getDay()]+team+'</div>'
    +'<div class="hd-d2">'+kind+nxTxt+'</div></div>'
    +'<div class="hd-dn"><div class="n">'+n+'</div><div class="u">'+u+'</div></div></div>'
    +'<div class="hd-bar"><i style="width:'+pct.toFixed(0)+'%"></i></div>'
@@ -10476,7 +10474,7 @@ else boot();
  function injectStars(){
   document.querySelectorAll('.page').forEach(function(pg){
    var pid=pg.id.replace('page-','');
-   if(!pid || pid==='mynote' || pg.querySelector(':scope > .tb-fav-bar')) return;
+   if(!pid || pid==='mynote' || pid==='home_dash' || pg.querySelector(':scope > .tb-fav-bar')) return;
    var bar=document.createElement('div'); bar.className='tb-fav-bar';
    bar.innerHTML='<button type="button" class="tb-fav-b" data-pid="'+pid+'" title="즐겨찾기에 넣기" onclick="tbFavToggle(\''+pid+'\')">☆</button>';
    pg.insertBefore(bar, pg.firstChild);
