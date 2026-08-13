@@ -411,7 +411,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 <!-- ══ 그룹 탭 ══ -->
  <div id="vnav_bar" onclick="vnavToggle()" style="display:none;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:900;cursor:pointer;margin-bottom:6px"><span style="font-size:18px">☰</span><span style="font-size:12px;opacity:.85;white-space:nowrap">전체 메뉴</span><span id="vnav_cur" style="flex:1;text-align:center">🚨 보고서</span><span style="font-size:12px;opacity:.85">▾</span></div> <div class="nav-tabs"> <div class="ntab" data-group="quick" onclick="showGroup('quick')">⚡ 빠른찾기<span class="ndesc">상황·키워드로 한 번에</span></div> <div class="ntab active" data-group="report" onclick="showGroup('report')">🚨 보고서<span class="ndesc">최초·발생·언론·음성진술</span></div> <div class="ntab" data-group="docs"   onclick="showGroup('docs')">📝 서류작성<span class="ndesc">서류·순서·빠른찾기·지역경찰</span></div> <div class="ntab" data-group="shift"  onclick="showGroup('shift')">🗓️ 교대근무표<span class="ndesc">달력·시간외수당</span></div> <div class="ntab" data-group="sop"    onclick="showGroup('sop')">🚦 교통관리<span class="ndesc">단속·신호·시설 SOP</span></div> <div class="ntab" data-group="acci"   onclick="showGroup('acci')">💥 사고처리<span class="ndesc">허브·철칙·유형별·각종사고</span></div> <div class="ntab" data-group="coach"  onclick="showGroup('coach')">🛡️ 현장심리<span class="ndesc">대응멘트·심리방어</span></div> <div class="ntab" data-group="ref"    onclick="showGroup('ref')">📚 법령·자료<span class="ndesc">법적대응·배상청구·법령</span></div> <div class="ntab" data-group="expr"   onclick="showGroup('expr')">🛣️ 전용도로·관할<span class="ndesc">경부·올림픽·관할판정</span></div> <div class="ntab" data-group="orgs" onclick="showGroup('orgs')">📞 연락처<span class="ndesc">기관·부서 전화번호</span></div> <div class="ntab" data-group="life" onclick="showGroup('life')">💚 민생·복지<span class="ndesc">위기대응·생계·체납 지원</span></div> <div class="ntab" data-group="setg" onclick="showGroup('setg')">⚙️ 설정<span class="ndesc">글자크기·백업·사용설명서·보안</span></div>    
 </div> <!-- ══ 서브탭 ══ -->
-<div id="sub_home" class="sub-tabs" style="display:none"></div> <div id="sub_report" class="sub-tabs"> <div class="stab active" data-sub="rep1" onclick="showSubPage('rep1')">최초보고</div> <div class="stab" data-sub="rep2" onclick="showSubPage('rep2')">발생보고</div> <div class="stab" data-sub="rep3" onclick="showSubPage('rep3')">언론예상</div> <div class="stab" data-sub="rep_manual" onclick="showSubPage('rep_manual')">📡 보고체계</div> <div class="stab" data-sub="voice" onclick="showSubPage('voice')">🎙️ 음성진술<span class="beta-tag">베타</span></div> <div class="stab" data-sub="video" onclick="showSubPage('video')">📹 블박분석<span class="beta-tag">베타</span></div>
+<div id="sub_home" class="sub-tabs" style="display:none"></div> <div id="sub_report" class="sub-tabs"> <div class="stab active" data-sub="rep1" onclick="showSubPage('rep1')">최초보고</div> <div class="stab" data-sub="rep2" onclick="showSubPage('rep2')">발생보고</div> <div class="stab" data-sub="rep3" onclick="showSubPage('rep3')">언론예상</div> <div class="stab" data-sub="cctv" onclick="showSubPage('cctv')">📹 실시간CCTV</div> <div class="stab" data-sub="rep_manual" onclick="showSubPage('rep_manual')">📡 보고체계</div> <div class="stab" data-sub="voice" onclick="showSubPage('voice')">🎙️ 음성진술<span class="beta-tag">베타</span></div> <div class="stab" data-sub="video" onclick="showSubPage('video')">📹 블박분석<span class="beta-tag">베타</span></div>
 </div>
 <div id="sub_docs" class="sub-tabs" style="display:none"> <div class="stab" data-sub="doc_manual" onclick="showSubPage('doc_manual')">📕 서류</div> <div class="stab" data-sub="checklist" onclick="showSubPage('checklist')">📋 순서</div> <div class="stab" data-sub="doc_quick" onclick="showSubPage('doc_quick')">⚡ 빠른찾기</div> <div class="stab" data-sub="police_gen" onclick="showSubPage('police_gen')">🚨 지역경찰</div> <div class="stab" data-sub="doc_needed" onclick="showSubPage('doc_needed')">📄 필요서류</div>
 </div>
@@ -915,7 +915,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 </div> <!-- ══════════════════════════════════
      사건보고 그룹
 ══════════════════════════════════ -->
-<div class="page active" id="page-rep1"> <div class="card" style="padding:12px;border:2px solid var(--accent)"> <div class="card-title" style="font-size:14px;margin-bottom:8px">🌤️ 날씨 · 📹 실시간 CCTV</div><div class="btn-group btn-group5"><button class="btn btn-sec u-flex1 tile-btn" onclick="openExt('https://weather.naver.com','https://m.weather.naver.com')"><span class="tb-ico">🌡️</span><span class="tb-txt">네이버날씨</span></button><button class="btn btn-sec u-flex1 tile-btn" onclick="openExt('https://weather.com/ko-KR','https://weather.com/ko-KR')"><span class="tb-ico">🌧️</span><span class="tb-txt">웨더닷컴</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://topis.seoul.go.kr/map/openCctvMap.do','https://m.topis.seoul.go.kr/')"><span class="tb-ico">🗼</span><span class="tb-txt">서울교통정보</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://map.naver.com','https://m.map.naver.com')"><span class="tb-ico">🗺️</span><span class="tb-txt">네이버지도</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://d.kbs.co.kr','https://d.kbs.co.kr')"><span class="tb-ico">📺</span><span class="tb-txt">KBS재난</span></button></div><div style="font-size:11px;color:var(--text-dim);margin-top:6px">기기 자동 감지(모바일↔PC) · 외부통신 0(바로가기). 기상청·레이더는 유관단체﹥교통정보 탭에 있습니다.</div> </div> <details style="border-color:var(--accent-gold);margin-bottom:12px"><summary>💡 스마트폰 키보드 마이크(🎤) 버튼 찾는 방법</summary><div class="u-p8-0"><p class="u-fs14-lh17">키보드의 <b>마이크 버튼</b>을 누르면 가장 빠르고 정확하게 받아쓰기됩니다. 받아쓴 내용은 그대로 입력칸에 들어갑니다.</p><div class="report-step" style="margin-top:8px"><h5>🍎 아이폰 (Apple)</h5><p>키보드 <b>오른쪽 아래</b>(스페이스바 옆 또는 🌐 지구본 아이콘 옆)의 <b>마이크(🎤)</b>를 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 갤럭시 (삼성 키보드)</h5><p>입력칸을 터치한 뒤, 키보드 <b>상단 툴바</b>의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 구글 키보드 (Gboard)</h5><p>키보드 <b>우측 상단</b> 툴바의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div></div></details> <details class="card cmpct" style="border:2px solid var(--accent)"> <summary class="card-title" style="cursor:pointer">🎙️ 음성 텍스트로 변환 (보조 입력)</summary> <div class="info-box" style="font-weight:800;font-size:14px">🎤 <b>권장: 기기 내장 음성인식(키보드 마이크)</b> — 안드로이드·아이폰 모두 입력칸을 누른 뒤 키보드의 마이크로 받아쓰는 것이 가장 빠르고 정확합니다. 아래 [음성 텍스트로 인식] 버튼은 보조 수단(아이폰 Safari·PC)입니다</div> <div class="guide-box"><b>받아쓰기 → [📥 칸에 자동 채우기] 버튼.</b> 항목명을 붙여 말한 뒤 버튼을 누르면 해당 칸에 들어갑니다.<br>인식 항목명: <b>장소(위치)</b> · <b>피해</b> · <b>가해자(피의자)</b> · <b>경위</b> · <b>조치</b><br>예: "<b>장소</b> ○○대로 사거리, <b>피해</b> 경상 1명, <b>가해자</b> 김○○ 아반떼, <b>경위</b> 적색신호 무시 직진, <b>조치</b> 2개차로 통제"<br>※ <b>사망·중대·뺑소니·음주·유명인</b> 단어가 있으면 사고유형도 자동 선택됩니다. 항목 순서대로 말해야 정확합니다(마지막 항목 뒤 내용은 그 칸에 포함).</div> <div class="voice-panel"> <div class="voice-status"><span class="voice-dot" id="qv_dot"></span><span id="qv_status">대기중</span></div> <textarea class="voice-text" id="qv_final" placeholder="여기를 눌러 키보드 🎤로 받아쓰거나 직접 입력하세요" style="width:100%;min-height:70px"></textarea> <div class="voice-text interim" id="qv_interim" style="margin-top:4px"></div> </div> <button class="btn btn-rec btn-full" id="qv_toggle" onclick="toggleQuickMic()">🎙️ 음성 텍스트로 인식(아이폰 및 PC용)</button> <div class="btn-group"> <button class="btn btn-primary u-flex1" onclick="quickFillReport()">📥 칸에 자동 채우기</button> <button class="btn btn-sec" onclick="clearQuickVoice()">🗑️ 지우기</button> </div> <div id="qv_report" class="recipient-hint" style="display:none;margin-top:8px"></div> </details> <div class="guide-box"><b>💡 원스톱 보고:</b> 한 번 입력 → 1차(카톡 최초전파) · 2차(KICS 발생보고) · 3차(언론대응)가 동시에 생성됩니다.</div>
+<div class="page active" id="page-rep1"> <div class="card" style="padding:12px;border:2px solid var(--accent)"> <div class="card-title" style="font-size:14px;margin-bottom:8px">🌤️ 날씨 · 📹 실시간 CCTV</div><div class="btn-group btn-group5"><button class="btn btn-sec u-flex1 tile-btn" onclick="openExt('https://weather.com/ko-KR','https://weather.com/ko-KR')"><span class="tb-ico">🌧️</span><span class="tb-txt">웨더닷컴</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://topis.seoul.go.kr/map/openCctvMap.do','https://m.topis.seoul.go.kr/')"><span class="tb-ico">🗼</span><span class="tb-txt">서울교통정보</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://map.naver.com','https://m.map.naver.com')"><span class="tb-ico">🗺️</span><span class="tb-txt">네이버지도</span></button><button class="btn btn-primary u-flex1 tile-btn" onclick="openExt('https://d.kbs.co.kr','https://d.kbs.co.kr')"><span class="tb-ico">📺</span><span class="tb-txt">KBS재난</span></button></div><div style="font-size:11px;color:var(--text-dim);margin-top:6px">기기 자동 감지(모바일↔PC) · 외부통신 0(바로가기). 기상청·레이더는 유관단체﹥교통정보 탭에 있습니다.</div> </div> <details style="border-color:var(--accent-gold);margin-bottom:12px"><summary>💡 스마트폰 키보드 마이크(🎤) 버튼 찾는 방법</summary><div class="u-p8-0"><p class="u-fs14-lh17">키보드의 <b>마이크 버튼</b>을 누르면 가장 빠르고 정확하게 받아쓰기됩니다. 받아쓴 내용은 그대로 입력칸에 들어갑니다.</p><div class="report-step" style="margin-top:8px"><h5>🍎 아이폰 (Apple)</h5><p>키보드 <b>오른쪽 아래</b>(스페이스바 옆 또는 🌐 지구본 아이콘 옆)의 <b>마이크(🎤)</b>를 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 갤럭시 (삼성 키보드)</h5><p>입력칸을 터치한 뒤, 키보드 <b>상단 툴바</b>의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div><div class="report-step" style="margin-top:6px"><h5>🤖 구글 키보드 (Gboard)</h5><p>키보드 <b>우측 상단</b> 툴바의 <b>마이크(🎙️)</b> 버튼을 터치하세요.</p></div></div></details> <details class="card cmpct" style="border:2px solid var(--accent)"> <summary class="card-title" style="cursor:pointer">🎙️ 음성 텍스트로 변환 (보조 입력)</summary> <div class="info-box" style="font-weight:800;font-size:14px">🎤 <b>권장: 기기 내장 음성인식(키보드 마이크)</b> — 안드로이드·아이폰 모두 입력칸을 누른 뒤 키보드의 마이크로 받아쓰는 것이 가장 빠르고 정확합니다. 아래 [음성 텍스트로 인식] 버튼은 보조 수단(아이폰 Safari·PC)입니다</div> <div class="guide-box"><b>받아쓰기 → [📥 칸에 자동 채우기] 버튼.</b> 항목명을 붙여 말한 뒤 버튼을 누르면 해당 칸에 들어갑니다.<br>인식 항목명: <b>장소(위치)</b> · <b>피해</b> · <b>가해자(피의자)</b> · <b>경위</b> · <b>조치</b><br>예: "<b>장소</b> ○○대로 사거리, <b>피해</b> 경상 1명, <b>가해자</b> 김○○ 아반떼, <b>경위</b> 적색신호 무시 직진, <b>조치</b> 2개차로 통제"<br>※ <b>사망·중대·뺑소니·음주·유명인</b> 단어가 있으면 사고유형도 자동 선택됩니다. 항목 순서대로 말해야 정확합니다(마지막 항목 뒤 내용은 그 칸에 포함).</div> <div class="voice-panel"> <div class="voice-status"><span class="voice-dot" id="qv_dot"></span><span id="qv_status">대기중</span></div> <textarea class="voice-text" id="qv_final" placeholder="여기를 눌러 키보드 🎤로 받아쓰거나 직접 입력하세요" style="width:100%;min-height:70px"></textarea> <div class="voice-text interim" id="qv_interim" style="margin-top:4px"></div> </div> <button class="btn btn-rec btn-full" id="qv_toggle" onclick="toggleQuickMic()">🎙️ 음성 텍스트로 인식(아이폰 및 PC용)</button> <div class="btn-group"> <button class="btn btn-primary u-flex1" onclick="quickFillReport()">📥 칸에 자동 채우기</button> <button class="btn btn-sec" onclick="clearQuickVoice()">🗑️ 지우기</button> </div> <div id="qv_report" class="recipient-hint" style="display:none;margin-top:8px"></div> </details> <div class="guide-box"><b>💡 원스톱 보고:</b> 한 번 입력 → 1차(카톡 최초전파) · 2차(KICS 발생보고) · 3차(언론대응)가 동시에 생성됩니다.</div>
 <!-- 원스톱 통합 카드 --> <div class="card"> <div class="card-title">🚀 원스톱 통합 입력</div>
 <label>사고 유형</label> <select id="ros_type" onchange="rosCheckMedia()"> <option value="일반사고">일반 교통사고</option> <option value="사망사고">⚠️ 사망사고 (즉시전파)</option> <option value="중대사고">⚠️ 중대 인명피해</option> <option value="연예인_유명인">⚠️ 연예인·공직자 등 유명인</option> <option value="뺑소니">사고 후 미조치 (뺑소니)</option> <option value="음주사고">음주운전 사고</option> </select> <div id="ros_media_alert" style="display:none;margin-top:10px" class="recipient-hint">📢 <b>[3차 언론보고 자동 활성]</b> 사망·중대·유명인 사고 — 언론대응 보고서가 함께 생성됩니다.</div>
 <div class="row u-mt12"> <div><label>발생 장소</label><input id="ros_place" placeholder="○○대로 ○○사거리"></div> <div><label>피해 정도</label><input id="ros_dmg" placeholder="경상 1명, 차량 반파"></div> </div>
@@ -935,7 +935,24 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 <details style="margin-top:14px"> <summary>📝 단계별 개별 입력 (구버전 방식)</summary> <div style="padding:12px 0"> <div class="card" style="margin-top:0"> <div class="card-title">🚨 1단계 — 최초 상황 입력</div> <label>사고 유형</label> <select id="r1_type" onchange="checkMediaTrigger()"> <option value="일반사고">일반 교통사고</option> <option value="사망사고">⚠️ 사망사고 (즉시전파)</option> <option value="중대사고">⚠️ 중대 인명피해</option> <option value="연예인_유명인">⚠️ 연예인/유명인 사고</option> <option value="뺑소니">사고 후 미조치(뺑소니)</option> </select> <div id="media_alert" style="display:none;margin-top:10px" class="recipient-hint">📢 <b>[권고]</b> 사망/중대/유명인 사고 — 3단계 '언론보도 예상보고' 필히 준비.</div> <div class="row u-mt12"> <div><label>장소</label><input id="r1_place" placeholder="○○대로 ○○앞"></div> <div><label>피해</label><input id="r1_dmg" placeholder="경상 1명, 반파"></div> </div> <label>현재 상황</label>
         <textarea autocorrect="off" autocapitalize="off" spellcheck="false" id="r1_status" rows="2" placeholder="예: 2개차로 통제 중, 119 인계 완료"></textarea>
         <button class="btn btn-primary btn-full" onclick="genRep('step1')">📱 최초보고서 생성</button> </div> <div id="result_rep1" class="result-area"></div> </div> </details>
-</div> <div class="page" id="page-rep2"> <div class="card"> <div class="card-title">📄 사건 발생 보고 (정식)</div> <div class="guide-box"><b>💡 정형사고:</b> 신호위반·중앙선침범 등 전형 위반 확인.<br><b>💡 비정형사고:</b> 급발진 주장·특수차량 등 법리 검토 필요.</div> <label>발생 경위 (육하원칙)</label> <div class="mic-wrap">
+</div> <div class="page" id="page-cctv" data-cl="1">
+ <div class="card" data-cl="1" style="border:2px solid var(--accent)">
+  <div class="card-title">📹 실시간 교통 CCTV</div>
+  <div class="info-box u-fs13">누르면 <b>새 창</b>으로 열립니다. 앱이 영상을 받아오지 않습니다 — <b>외부 통신 0건</b>은 그대로입니다.</div>
+  <div class="cc-lb">전국 — 고속도로 · 국도</div>
+  <div class="cc-grid">
+   <button type="button" class="cc-t" onclick="openExt('https://its.go.kr/map/cctv','http://m.its.go.kr/mltm/cctv?type=its')">
+    <span class="cc-i">🛣️</span><span class="cc-x"><b>국가교통정보센터</b><i>고속도로 · 국도 · 전국</i></span></button>
+   <button type="button" class="cc-t" onclick="openExt('https://topis.seoul.go.kr/map/openCctvMap.do','https://m.topis.seoul.go.kr/')">
+    <span class="cc-i">🗼</span><span class="cc-x"><b>서울 TOPIS</b><i>서울 시내 도로</i></span></button>
+  </div>
+  <div class="cc-lb">내가 넣은 곳 <small>— 우리 지역 CCTV를 직접 넣습니다</small></div>
+  <div id="cc_mine" class="cc-grid"></div>
+  <button type="button" class="cc-add" onclick="tbCctvAdd()">＋ CCTV 주소 넣기</button>
+  <div class="cc-note">주소를 모르시면 <b>국가교통정보센터</b>를 열어 우리 지역을 찾은 뒤, 그 화면 주소를 복사해 넣으십시오. 넣은 주소는 이 기기에만 저장됩니다.</div>
+ </div>
+</div>
+<div class="page" id="page-rep2"> <div class="card"> <div class="card-title">📄 사건 발생 보고 (정식)</div> <div class="guide-box"><b>💡 정형사고:</b> 신호위반·중앙선침범 등 전형 위반 확인.<br><b>💡 비정형사고:</b> 급발진 주장·특수차량 등 법리 검토 필요.</div> <label>발생 경위 (육하원칙)</label> <div class="mic-wrap">
       <textarea autocorrect="off" autocapitalize="off" spellcheck="false" id="r2_detail" rows="4" placeholder="가해차량이 ○○방면에서 △△방면으로 신호위반 직진 중..."></textarea>
       <button class="mic-btn" onclick="toggleMicFor('r2_detail',this)">🎙️</button> </div> <button class="btn btn-primary btn-full" onclick="genRep('step2')">📄 발생보고서 생성</button> </div> <div id="result_rep2" class="result-area"></div>
 </div> <div class="page" id="page-rep3"> <div class="card"> <div class="card-title">📰 언론보도 예상보고</div> <label>언론 관심도</label> <select id="r3_interest"> <option value="높음">높음 (전국 단위 보도 예상)</option> <option value="중간">중간 (지역 언론·SNS 유포)</option> <option value="낮음">낮음</option> </select> <label>기자 대응 방안</label>
@@ -5204,7 +5221,7 @@ function loadRuntime(){
 const GROUP_PAGES = {
  home:['home_dash'],
  quick:['quick_all'],
- report:['rep1','rep2','rep3','rep_manual','voice','video'],
+ report:['rep1','rep2','rep3','cctv','rep_manual','voice','video'],
  docs:['doc_manual','checklist','doc_quick','police_gen','doc_needed'],
  shift:['shift_cal'],
  sop:['sop_daily','sop_seongmo','enforce','sop_enforce','sop_season','traffic_fac','sop_taas','sop_faq','sop_safety'],
@@ -11500,6 +11517,74 @@ window.tbGoMine=function(v){
   w.__tbLast=1; window.openSearch=w;
  }
  hook(); setTimeout(hook,2200); setTimeout(hook,4000);
+})();
+</script>
+
+
+<style>
+/* v20.2 — 실시간 CCTV */
+.cc-lb{font-size:12px;font-weight:900;color:var(--text-dim);letter-spacing:.4px;margin:14px 2px 7px}
+.cc-lb small{font-weight:700;font-size:11px}
+.cc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cc-t{position:relative;display:flex;align-items:center;gap:9px;text-align:left;background:var(--panel-2);
+ color:var(--text);border:1px solid var(--border);border-radius:12px;padding:12px 10px;min-height:70px;cursor:pointer}
+.cc-i{font-size:23px;line-height:1;flex:0 0 auto}
+.cc-x{min-width:0}
+.cc-x b{display:block;font-size:13.5px;font-weight:900;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc-x i{display:block;font-style:normal;font-size:11px;font-weight:700;color:var(--text-dim);margin-top:3px;line-height:1.35}
+.cc-x-del{position:absolute;top:-7px;right:-7px;width:26px;height:26px;border-radius:13px;border:none;
+ background:#ef4444;color:#fff;font-size:13px;font-weight:900;cursor:pointer;line-height:26px;text-align:center}
+.cc-grid{overflow:visible}
+.cc-add{display:block;width:100%;margin-top:9px;background:var(--accent);color:#fff;border:none;border-radius:12px;
+ padding:14px 0;font-size:14px;font-weight:900;cursor:pointer;min-height:50px}
+.cc-note{font-size:11.5px;color:var(--text-dim);font-weight:700;line-height:1.7;margin-top:9px}
+.cc-0{grid-column:1/-1;font-size:12.5px;color:var(--text-dim);font-weight:700;padding:9px 2px;line-height:1.6}
+@media(max-width:340px){.cc-grid{grid-template-columns:1fr}}
+</style>
+<script>
+/* ═══ v20.2 — 실시간 CCTV 직접 넣기 ═══
+   주소만 localStorage 에 넣는다. 앱은 여전히 아무 것도 받아오지 않는다. */
+(function(){
+ var K='tbook_cctv_v1';
+ function rd(){ try{ return JSON.parse(localStorage.getItem(K)||'[]'); }catch(e){ return []; } }
+ function wr(a){ try{ localStorage.setItem(K, JSON.stringify(a)); return true; }catch(e){ return false; } }
+ function esc(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+ function okUrl(u){ return /^https?:\/\//i.test((u||'').trim()); }
+
+ function paint(){
+  var box=document.getElementById('cc_mine'); if(!box) return;
+  var a=rd();
+  if(!a.length){ box.innerHTML='<div class="cc-0">아직 없습니다. 아래 <b>＋ CCTV 주소 넣기</b>로 우리 지역 CCTV를 넣으십시오.</div>'; return; }
+  box.innerHTML=a.map(function(x,i){
+   return '<div class="cc-t" role="button" tabindex="0" onclick="tbCctvGo('+i+')">'+
+    '<span class="cc-i">📹</span><span class="cc-x"><b>'+esc(x.n)+'</b><i>'+esc((x.d||'내가 넣은 곳'))+'</i></span>'+
+    '<span class="cc-x-del" role="button" aria-label="빼기" onclick="event.stopPropagation();tbCctvDel('+i+')">✕</span></div>';
+  }).join('');
+ }
+ window.tbCctvPaint=paint;
+ window.tbCctvGo=function(i){ var x=rd()[i]; if(!x) return;
+  try{ openExt(x.u, x.m||x.u); }catch(e){} };
+ window.tbCctvDel=function(i){
+  var a=rd(); if(!a[i]) return;
+  if(!confirm('「'+a[i].n+'」를 목록에서 뺍니다.')) return;
+  a.splice(i,1); wr(a); paint(); try{ toast('뺐습니다'); }catch(e){}
+ };
+ window.tbCctvAdd=function(){
+  var n=null; try{ n=window.prompt('이름 — 예: 경기 교통정보센터',''); }catch(e){}
+  if(n===null) return;
+  n=(n||'').trim().slice(0,24); if(!n){ try{toast('이름을 적으십시오');}catch(e){} return; }
+  var u=null; try{ u=window.prompt('주소(URL) — https:// 로 시작합니다\n브라우저 주소창을 복사해 붙여 넣으십시오.','https://'); }catch(e){}
+  if(u===null) return;
+  u=(u||'').trim();
+  if(!okUrl(u)){ alert('주소가 http:// 또는 https:// 로 시작해야 합니다.'); return; }
+  var d=null; try{ d=window.prompt('설명 (선택) — 예: 경부고속 서울방향',''); }catch(e){}
+  var a=rd();
+  if(a.length>=30){ alert('30개까지만 넣을 수 있습니다.'); return; }
+  a.push({n:n, u:u, d:(d||'').trim().slice(0,30)});
+  if(wr(a)){ paint(); try{ toast('📹 넣었습니다 — '+n); }catch(e){} }
+ };
+ function boot(){ paint(); }
+ if(document.readyState!=='loading') setTimeout(boot,300); else document.addEventListener('DOMContentLoaded',function(){ setTimeout(boot,300); });
 })();
 </script>
 
