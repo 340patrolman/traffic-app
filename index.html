@@ -4384,7 +4384,7 @@ try{tsetSyncFont();tsetSyncNav();}catch(e){}
 <span style="color:var(--text-dim)">그래서 이 앱은 <b>틀린 것도 지우지 않고 남겨 둡니다</b>(「발자취」 참조). 그것이 검증되는 방식이기 때문입니다.</span></p></details>
 
 </div></div></div>
-<div class="tset-acc" id="tsetA7"><button class="tset-head" onclick="tsetAcc('tsetA7');try{stationRefresh();}catch(e){}"><span class="ico">📦</span><span class="t">관서 맞춤 배포<small>편집 내용 내보내기 · 다른 기기 가져오기</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.8"><b>T-Book은 특정 관서 전용 앱이 아닙니다.</b> 법령·판례·서식·절차는 전국 공통이고, 관할·연락처·관내 데이터만 관서별로 다릅니다.<br>전용도로·관할·연락처 화면에서 <b>✏️ 우리 관서용 편집</b>으로 고친 내용을 파일 하나로 내보내, 동료 기기에서 가져오면 <b>관서 전체가 같은 맞춤판</b>을 씁니다.</p><p class="u-fs13">현재 이 기기의 편집 화면: <b id="stationCnt">0</b>개</p><div class="btn-group"><button class="btn btn-primary u-flex1" onclick="stationExport()">⬇️ 관서 설정 내보내기</button><button class="btn btn-sec u-flex1" onclick="document.getElementById('stationFile').click()">⬆️ 가져오기</button></div><input type="file" id="stationFile" accept=".json" style="display:none" onchange="stationImportFile(this)"><p style="font-size:11.5px;color:var(--text-dim);margin-top:6px">※ 편집 내용만 담기며 근무기록·개인 데이터는 포함되지 않습니다.</p></div></div></div><div class="tset-acc" id="tsetA8"><button class="tset-head" onclick="tsetAcc('tsetA8');try{var l=JSON.parse(localStorage.getItem('tbook_errlog')||'[]');var b=document.getElementById('errlogBox');if(b)b.innerHTML=l.length?l.map(function(x){return x.t+' · '+x.m;}).join('<br>'):'없음';}catch(e){}"><span class="ico">🛡️</span><span class="t">데이터 신뢰성·점검<small>법령 기준일 · 백업 상태 · 오류 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.9">📌 법령·범칙금 데이터 기준: <b>2026.7</b> — 매월 초 국가법령정보센터·경찰청 공지로 개정 여부 점검 권장.<br>💾 마지막 백업: <b id="lastBackupInfo">기록 없음</b> <span style="color:var(--text-dim);font-size:12px">(30일 경과 시 자동 알림)</span><br>🗄️ 저장소 보호: <b id="persistInfo">확인 중…</b> <span style="color:var(--text-dim);font-size:12px">(브라우저 임의삭제 방지 요청)</span></p><div class="warn-box" style="font-size:12px">아이폰 사파리로만(홈 화면 앱 설치 없이) 쓰면 <b>7일 미사용 시 기록이 삭제</b>될 수 있습니다. <b>앱 설치</b> + 월 1회 백업을 권장합니다.</div><details style="margin-top:6px"><summary style="font-weight:800;cursor:pointer">⚠️ 오류 기록 (최근 5건)</summary><div id="errlogBox" class="u-fs12" style="font-family:var(--mono);line-height:1.7;margin-top:6px;word-break:break-all">없음</div><button class="btn btn-sec btn-full" style="margin-top:6px" onclick="try{localStorage.removeItem('tbook_errlog');document.getElementById('errlogBox').textContent='없음';toast('오류 기록 삭제됨');}catch(e){}">🗑️ 기록 지우기</button></details></div></div></div><div class="tset-acc" id="tsetA9"><button class="tset-head" onclick="tsetAcc('tsetA9')"><span class="ico">🐾</span><span class="t">발자취 — 이 앱이 걸어온 길<small>도입기부터 v20.0까지 · 제작 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><div class="info-box" style="font-size:13px;line-height:1.7"><b>제작 기록</b> — 이 앱은 서울 서초경찰서 교통과에서 시작해, 지금은 <b>전국 교통·지역경찰이 함께 쓰는 도구</b>입니다. <b>현장 30년 경험을 담아 제작자가 직접 기획·작성·검수·배포</b>해 왔습니다. 서버·DB·외부 전송 없이 단일 HTML 파일로, 도입기부터 지금까지 수십 차례 판올림을 거치며 현장 의견을 반영해 다듬어 왔습니다.</div><style>#tsetA9 .why-wrap{margin:10px 0 4px}#tsetA9 .why-rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 2px 10px}#tsetA9 .why-rail::-webkit-scrollbar{height:6px}#tsetA9 .why-rail::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}#tsetA9 .why-c{flex:0 0 86%;max-width:520px;scroll-snap-align:center;border-radius:14px;padding:14px 15px 13px;background:var(--card,#fff);border:1px solid var(--line,#e2e8f0);box-shadow:0 1px 4px rgba(15,23,42,.07)}#tsetA9 .why-c .no{font-size:11.5px;font-weight:800;letter-spacing:.4px;opacity:.75}#tsetA9 .why-c .hd{font-size:17px;font-weight:900;margin:3px 0 8px;line-height:1.35}#tsetA9 .why-c .bd{font-size:13px;line-height:1.8;color:var(--text,#0f172a)}#tsetA9 .why-c .ft{font-size:12px;line-height:1.6;margin-top:9px;padding-top:8px;border-top:1px dashed var(--line,#e2e8f0);color:var(--text-dim,#475569)}#tsetA9 .why-hint{font-size:11.5px;color:var(--text-dim,#475569);margin:0 2px 2px}</style><div class="why-wrap"><div class="why-hint">← 좌우로 넘겨 보십시오 (5장)</div><div class="why-rail"><div class="why-c" style="border-top:4px solid #b8924b"><div class="no" style="color:#b8924b">1 / 5</div><div class="hd">왜 만들었나</div><div class="bd">현장에서 필요했습니다.<br>교통사고를 <b>예방</b>하고, <b>처리</b>하고, 원활히 <b>소통</b>하고,<br>그리고 <b>교통경찰 스스로의 안전</b>과 안정적인 근무를 위해서였습니다.</div><div class="ft">누가 시켜서가 아니라, 내가 필요해서 만들었습니다.</div></div><div class="why-c" style="border-top:4px solid #1d4ed8"><div class="no" style="color:#1d4ed8">2 / 5</div><div class="hd">무엇을 넣었나</div><div class="bd"><b>58개 화면</b> · 법령 · 판례 · 서식 · 유형별 처리 절차<br>서버도 DB도 외부 전송도 없는 <b>단일 HTML 파일</b>입니다.</div><div class="ft">현장에서 3초 안에 찾아야 하는 것만 남겼습니다.</div></div><div class="why-c" style="border-top:4px solid #1d4ed8"><div class="no" style="color:#1d4ed8">3 / 5</div><div class="hd">어떻게 만들었나</div><div class="bd">빌드 <b>105회</b> · 패치 <b>32회</b> · 검증도구 6종 · 배포 관문 6종<br>화면은 <b>360px 실측 스크린샷</b>으로 매번 눈으로 확인했습니다.</div><div class="ft">자동 검증만 믿지 않았습니다. 눈으로 봤습니다.</div></div><div class="why-c" style="border-top:4px solid #b91c1c"><div class="no" style="color:#b91c1c">4 / 5</div><div class="hd">무엇을 틀렸나</div><div class="bd">v19.7에서 자동차손해배상보장법 <b>「40만원」 오류</b>를 냈습니다.<br><b>확인하지 않은 조문을 앱에 넣은 결과</b>였습니다.<br>그래서 규칙이 생겼습니다 — <b>검증 안 된 법령 조문은 앱에 넣지 않는다.</b></div><div class="ft">틀린 것을 지우지 않고 남겨 둡니다. 그래야 검증이 됩니다.</div></div><div class="why-c" style="border-top:4px solid #b8924b"><div class="no" style="color:#b8924b">5 / 5</div><div class="hd">지금은 어디로 가나</div><div class="bd">처음엔 <b>이 앱을 알리려고</b> 교육에 지원했습니다.<br>그런데 도중에 판이 바뀌었습니다.<br><b>사람이 죽는 자리가 어디인지를 데이터로 찾는 일</b>이 됐습니다.</div><div class="ft">그 결과가 이 앱의 「관내 중대사고 데이터분석」입니다.</div></div></div></div><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🗓️ v18 시대 — 근무표를 화면에 맞추다 (2026.7)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[v18.5]</b> 관서 공식 근무지정표 기준으로 교대주기 시딩. 6월 −17h · 7월 0h · 연가 반영 −16.5h 전수 대조 일치.<br><b>[v18.6]</b> 시간외 정산표를 한 줄 요약 + 펼침 표로 압축. "너무 길고 산만하다"는 지적에서 출발.<br><b>[v18.7]</b> 달력 → 연월·팀 지정 → 정산표 순으로 재배치. 엑셀식 격자.<br><b>[v18.8]</b> 달력이 안 커지던 진짜 원인을 찾음 — v18.2의 압축 CSS가 <b>!important</b>로 셀 높이를 못 박고 있었다.<br><b>[v18.9]</b> <b>_fitShiftCal()</b> 신설. 셀 높이를 계산이 아니라 <b>실측 수렴</b>으로 화면에 자동으로 맞춤. 7해상도 × 12개월 = 84조합 실측, 글자 넘침 0건.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">⭐ v20.1 — 「내 앱」이 되다 (2026.8.13)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[개인화]</b> <b>⭐ 즐겨찾기</b>와 <b>📝 내 메모</b>를 열었습니다. 어느 화면이든 맨 위 ☆ 를 누르면 모이고, 처리한 사건 경과와 공문 요지를 적어 둘 수 있습니다. <b>이 기기 안에만 저장되고 외부로 나가지 않습니다.</b> 주민등록번호는 감지되면 저장 자체를 거부합니다.<br><b>[나를 지킨다]</b> 폭언·협박·모욕·지능적 괴롭힘·이상성향자를 만난 뒤, 그리고 소진됐을 때 들어오는 길을 <b>겪은 말 그대로</b> 18개 문구로 열었습니다. 내용은 원래 다 있었는데 <b>찾아 들어가는 길이 없었습니다.</b><br><b>[찾기]</b> 「무보험차량」·「먹튀」·「씽씽이」처럼 <b>실제로 치는 말</b>로도 찾히게 했습니다. 「무모험」처럼 한 글자 틀려도 잡습니다. 못 찾아도 빈 화면을 주지 않습니다. — 그동안 <b>「말로 찾기」 46개 단추가 전부 헛돌고 있었습니다.</b> 눌러도 검색창이 빈 채로 열렸습니다. 고쳤습니다.<br><b>[정리]</b> 같은 항목이 세 군데 겹쳐 나오던 것을 정리했습니다. 빠른 찾기 단추 <b>124개 → 62개.</b> 어려운 걸 찾는 곳이지, 같은 걸 계속 볼 데가 아니기 때문입니다.<br><b>[바로잡음]</b> 「약물이 의심된다」를 누르면 엉뚱하게 PM 화면 맨 위로 가던 것, 실행할 때마다 뜨던 「중점 추진사항」 알림(전국 공용판에 맞지 않음), 하단에 남아 있던 옛 판 번호를 바로잡았습니다.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚓 v20.1 — 지역경찰 실무노트 162항목 · 새로고침 속도 (2026.8.13)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[실무노트 162항목]</b> 현직 지역경찰관이 <b>여러 해에 걸쳐 손수 모아 온 실무 기록</b>을 내주셨습니다. 366항목을 정리해 <b>법령 수치가 들어가지 않은 절차 지식 162항목</b>을 먼저 실었습니다. 새 화면 <b>📝 서류작성 › ⚖️ 죄명·체포(42) · 🔎 변사·여청·풍속(9)</b>와 <b>🚦 근무(교통·지역) › 🚓 지역경찰 실무노트(14)</b>를 만들고, 나머지 97항목은 필요서류·각종사고·단속처리·순서·지역경찰·단속참조에 나눠 넣었습니다. 「🚦 교통관리」는 지역경찰 내용이 함께 들어가면서 <b>「🚦 근무(교통·지역)」</b>으로 이름을 바꿨습니다. — <b>⚙️ 설정 › 🙏 함께 만든 분들</b>에 적었습니다.<br><b>[개인정보 0]</b> 반입 전에 <b>전화번호 25건(개인 휴대전화 4건 포함) · 실명 · 주민번호 예시</b>를 전량 제거했습니다. 원문에 남아 있던 <b>업무 계정의 ID·비밀번호 한 건도 지웠습니다</b> — 이 앱에는 어떤 계정 정보도 적지 않습니다. 관서명·지역명은 <b>「관할 경찰서」·「○○파출소」</b>로 일반화했습니다. 검사 항목에 <b>「전화번호·주민번호·계정정보·관서명 0건」</b>을 넣어 다음 판부터 자동으로 막습니다.<br><b>[법령 재검증]</b> 원문 문서가 <b>2019년 상반기</b>에 쓰인 것이라 수치를 다시 봤습니다. 국가법령정보센터 <b>조문 원문 31개</b>를 대조해 — 음주 기준 <b>0.05% → 0.03%</b>(2019.6.25 시행), 생계형 면허구제 <b>0.120% → 0.1% 초과 시 제외</b>(시행규칙 별표28), 무면허 벌칙 <b>1년 이하·300만원 이하</b>(§152), 즉결심판 대상 <b>20만원 이하</b>(즉심법 §2)를 확인·정정했습니다. 「간통죄」 등 폐지 조문은 뺐습니다.<br><b>[아직 확인 못 한 것]</b> 형법 죄명별 형량·벌금액, 시행령 별표8 금액은 <b>전수 재확인 전</b>입니다. 실무노트 내용은 <b>참고 자료</b>이며 <b>반드시 현행 조문을 확인</b>하고 쓰십시오.<br><b>[새로고침 속도]</b> 새로고침할 때 옛 화면이 잠깐 보이고 느리던 것 — 서비스워커가 <b>매번 앱 전체를 다시 받도록</b> 되어 있었습니다. <b>바뀐 것이 없으면 다시 받지 않고</b>, 회선이 느리면 <b>2.5초만 기다린 뒤 있는 것을 먼저 보여주도록</b> 고쳤습니다. 새 판이 준비되면 화면 아래에 알려 드립니다.<br><b>[검사]</b> 배포 전 자동 검사를 <b>48항목 → 64항목</b>으로 늘렸습니다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🏛️ v20.0 — 서초 전용에서 전국 공용으로 (2026.8.12)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">
+<div class="tset-acc" id="tsetA7"><button class="tset-head" onclick="tsetAcc('tsetA7');try{stationRefresh();}catch(e){}"><span class="ico">📦</span><span class="t">관서 맞춤 배포<small>편집 내용 내보내기 · 다른 기기 가져오기</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.8"><b>T-Book은 특정 관서 전용 앱이 아닙니다.</b> 법령·판례·서식·절차는 전국 공통이고, 관할·연락처·관내 데이터만 관서별로 다릅니다.<br>전용도로·관할·연락처 화면에서 <b>✏️ 우리 관서용 편집</b>으로 고친 내용을 파일 하나로 내보내, 동료 기기에서 가져오면 <b>관서 전체가 같은 맞춤판</b>을 씁니다.</p><p class="u-fs13">현재 이 기기의 편집 화면: <b id="stationCnt">0</b>개</p><div class="btn-group"><button class="btn btn-primary u-flex1" onclick="stationExport()">⬇️ 관서 설정 내보내기</button><button class="btn btn-sec u-flex1" onclick="document.getElementById('stationFile').click()">⬆️ 가져오기</button></div><input type="file" id="stationFile" accept=".json" style="display:none" onchange="stationImportFile(this)"><p style="font-size:11.5px;color:var(--text-dim);margin-top:6px">※ 편집 내용만 담기며 근무기록·개인 데이터는 포함되지 않습니다.</p></div></div></div><div class="tset-acc" id="tsetA8"><button class="tset-head" onclick="tsetAcc('tsetA8');try{var l=JSON.parse(localStorage.getItem('tbook_errlog')||'[]');var b=document.getElementById('errlogBox');if(b)b.innerHTML=l.length?l.map(function(x){return x.t+' · '+x.m;}).join('<br>'):'없음';}catch(e){}"><span class="ico">🛡️</span><span class="t">데이터 신뢰성·점검<small>법령 기준일 · 백업 상태 · 오류 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><p class="u-fs13" style="line-height:1.9">📌 법령·범칙금 데이터 기준: <b>2026.7</b> — 매월 초 국가법령정보센터·경찰청 공지로 개정 여부 점검 권장.<br>💾 마지막 백업: <b id="lastBackupInfo">기록 없음</b> <span style="color:var(--text-dim);font-size:12px">(30일 경과 시 자동 알림)</span><br>🗄️ 저장소 보호: <b id="persistInfo">확인 중…</b> <span style="color:var(--text-dim);font-size:12px">(브라우저 임의삭제 방지 요청)</span></p><div class="warn-box" style="font-size:12px">아이폰 사파리로만(홈 화면 앱 설치 없이) 쓰면 <b>7일 미사용 시 기록이 삭제</b>될 수 있습니다. <b>앱 설치</b> + 월 1회 백업을 권장합니다.</div><details style="margin-top:6px"><summary style="font-weight:800;cursor:pointer">⚠️ 오류 기록 (최근 5건)</summary><div id="errlogBox" class="u-fs12" style="font-family:var(--mono);line-height:1.7;margin-top:6px;word-break:break-all">없음</div><button class="btn btn-sec btn-full" style="margin-top:6px" onclick="try{localStorage.removeItem('tbook_errlog');document.getElementById('errlogBox').textContent='없음';toast('오류 기록 삭제됨');}catch(e){}">🗑️ 기록 지우기</button></details></div></div></div><div class="tset-acc" id="tsetA9"><button class="tset-head" onclick="tsetAcc('tsetA9')"><span class="ico">🐾</span><span class="t">발자취 — 이 앱이 걸어온 길<small>도입기부터 v20.0까지 · 제작 기록</small></span><span class="chev">▼</span></button><div class="tset-body"><div class="tset-inner"><div class="info-box" style="font-size:13px;line-height:1.7"><b>제작 기록</b> — 이 앱은 서울 서초경찰서 교통과에서 시작해, 지금은 <b>전국 교통·지역경찰이 함께 쓰는 도구</b>입니다. <b>현장 30년 경험을 담아 제작자가 직접 기획·작성·검수·배포</b>해 왔습니다. 서버·DB·외부 전송 없이 단일 HTML 파일로, 도입기부터 지금까지 수십 차례 판올림을 거치며 현장 의견을 반영해 다듬어 왔습니다.</div><style>#tsetA9 .why-wrap{margin:10px 0 4px}#tsetA9 .why-rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 2px 10px}#tsetA9 .why-rail::-webkit-scrollbar{height:6px}#tsetA9 .why-rail::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}#tsetA9 .why-c{flex:0 0 86%;max-width:520px;scroll-snap-align:center;border-radius:14px;padding:14px 15px 13px;background:var(--card,#fff);border:1px solid var(--line,#e2e8f0);box-shadow:0 1px 4px rgba(15,23,42,.07)}#tsetA9 .why-c .no{font-size:11.5px;font-weight:800;letter-spacing:.4px;opacity:.75}#tsetA9 .why-c .hd{font-size:17px;font-weight:900;margin:3px 0 8px;line-height:1.35}#tsetA9 .why-c .bd{font-size:13px;line-height:1.8;color:var(--text,#0f172a)}#tsetA9 .why-c .ft{font-size:12px;line-height:1.6;margin-top:9px;padding-top:8px;border-top:1px dashed var(--line,#e2e8f0);color:var(--text-dim,#475569)}#tsetA9 .why-hint{font-size:11.5px;color:var(--text-dim,#475569);margin:0 2px 2px}</style><div class="why-wrap"><div class="why-hint">← 좌우로 넘겨 보십시오 (5장)</div><div class="why-rail"><div class="why-c" style="border-top:4px solid #b8924b"><div class="no" style="color:#b8924b">1 / 5</div><div class="hd">왜 만들었나</div><div class="bd">현장에서 필요했습니다.<br>교통사고를 <b>예방</b>하고, <b>처리</b>하고, 원활히 <b>소통</b>하고,<br>그리고 <b>교통경찰 스스로의 안전</b>과 안정적인 근무를 위해서였습니다.</div><div class="ft">누가 시켜서가 아니라, 내가 필요해서 만들었습니다.</div></div><div class="why-c" style="border-top:4px solid #1d4ed8"><div class="no" style="color:#1d4ed8">2 / 5</div><div class="hd">무엇을 넣었나</div><div class="bd"><b>58개 화면</b> · 법령 · 판례 · 서식 · 유형별 처리 절차<br>서버도 DB도 외부 전송도 없는 <b>단일 HTML 파일</b>입니다.</div><div class="ft">현장에서 3초 안에 찾아야 하는 것만 남겼습니다.</div></div><div class="why-c" style="border-top:4px solid #1d4ed8"><div class="no" style="color:#1d4ed8">3 / 5</div><div class="hd">어떻게 만들었나</div><div class="bd">빌드 <b>105회</b> · 패치 <b>32회</b> · 검증도구 6종 · 배포 관문 6종<br>화면은 <b>360px 실측 스크린샷</b>으로 매번 눈으로 확인했습니다.</div><div class="ft">자동 검증만 믿지 않았습니다. 눈으로 봤습니다.</div></div><div class="why-c" style="border-top:4px solid #b91c1c"><div class="no" style="color:#b91c1c">4 / 5</div><div class="hd">무엇을 틀렸나</div><div class="bd">v19.7에서 자동차손해배상보장법 <b>「40만원」 오류</b>를 냈습니다.<br><b>확인하지 않은 조문을 앱에 넣은 결과</b>였습니다.<br>그래서 규칙이 생겼습니다 — <b>검증 안 된 법령 조문은 앱에 넣지 않는다.</b></div><div class="ft">틀린 것을 지우지 않고 남겨 둡니다. 그래야 검증이 됩니다.</div></div><div class="why-c" style="border-top:4px solid #b8924b"><div class="no" style="color:#b8924b">5 / 5</div><div class="hd">지금은 어디로 가나</div><div class="bd">처음엔 <b>이 앱을 알리려고</b> 교육에 지원했습니다.<br>그런데 도중에 판이 바뀌었습니다.<br><b>사람이 죽는 자리가 어디인지를 데이터로 찾는 일</b>이 됐습니다.</div><div class="ft">그 결과가 이 앱의 「관내 중대사고 데이터분석」입니다.</div></div></div></div><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🗓️ v18 시대 — 근무표를 화면에 맞추다 (2026.7)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[v18.5]</b> 관서 공식 근무지정표 기준으로 교대주기 시딩. 6월 −17h · 7월 0h · 연가 반영 −16.5h 전수 대조 일치.<br><b>[v18.6]</b> 시간외 정산표를 한 줄 요약 + 펼침 표로 압축. "너무 길고 산만하다"는 지적에서 출발.<br><b>[v18.7]</b> 달력 → 연월·팀 지정 → 정산표 순으로 재배치. 엑셀식 격자.<br><b>[v18.8]</b> 달력이 안 커지던 진짜 원인을 찾음 — v18.2의 압축 CSS가 <b>!important</b>로 셀 높이를 못 박고 있었다.<br><b>[v18.9]</b> <b>_fitShiftCal()</b> 신설. 셀 높이를 계산이 아니라 <b>실측 수렴</b>으로 화면에 자동으로 맞춤. 7해상도 × 12개월 = 84조합 실측, 글자 넘침 0건.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">⭐ v20.1 — 「내 앱」이 되다 (2026.8.13)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[개인화]</b> <b>⭐ 즐겨찾기</b>와 <b>📝 내 메모</b>를 열었습니다. 어느 화면이든 맨 위 ☆ 를 누르면 모이고, 처리한 사건 경과와 공문 요지를 적어 둘 수 있습니다. <b>이 기기 안에만 저장되고 외부로 나가지 않습니다.</b> 주민등록번호는 감지되면 저장 자체를 거부합니다.<br><b>[나를 지킨다]</b> 폭언·협박·모욕·지능적 괴롭힘·이상성향자를 만난 뒤, 그리고 소진됐을 때 들어오는 길을 <b>겪은 말 그대로</b> 18개 문구로 열었습니다. 내용은 원래 다 있었는데 <b>찾아 들어가는 길이 없었습니다.</b><br><b>[찾기]</b> 「무보험차량」·「먹튀」·「씽씽이」처럼 <b>실제로 치는 말</b>로도 찾히게 했습니다. 「무모험」처럼 한 글자 틀려도 잡습니다. 못 찾아도 빈 화면을 주지 않습니다. — 그동안 <b>「말로 찾기」 46개 단추가 전부 헛돌고 있었습니다.</b> 눌러도 검색창이 빈 채로 열렸습니다. 고쳤습니다.<br><b>[정리]</b> 같은 항목이 세 군데 겹쳐 나오던 것을 정리했습니다. 빠른 찾기 단추 <b>124개 → 62개.</b> 어려운 걸 찾는 곳이지, 같은 걸 계속 볼 데가 아니기 때문입니다.<br><b>[바로잡음]</b> 「약물이 의심된다」를 누르면 엉뚱하게 PM 화면 맨 위로 가던 것, 실행할 때마다 뜨던 「중점 추진사항」 알림(전국 공용판에 맞지 않음), 하단에 남아 있던 옛 판 번호를 바로잡았습니다.</p></div></details><details style="margin:6px 0" open><summary style="font-weight:800;cursor:pointer;padding:6px 0">🚓 v20.1 — 지역경찰 실무노트 162항목 · 새로고침 속도 (2026.8.13)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75"><b>[실무노트 162항목]</b> 현직 지역경찰관이 <b>여러 해에 걸쳐 손수 모아 온 실무 기록</b>을 내주셨습니다. 366항목을 정리해 <b>법령 수치가 들어가지 않은 절차 지식 162항목</b>을 먼저 실었습니다. 새 화면 <b>📝 서류작성 › ⚖️ 죄명·체포(42) · 🔎 변사·여청·풍속(9)</b>와 <b>🚦 근무(교통·지역) › 🚓 지역경찰 실무노트(14)</b>를 만들고, 나머지 97항목은 필요서류·각종사고·단속처리·순서·지역경찰·단속참조에 나눠 넣었습니다. 「🚦 교통관리」는 지역경찰 내용이 함께 들어가면서 <b>「🚦 근무(교통·지역)」</b>으로 이름을 바꿨습니다. — <b>⚙️ 설정 › 🙏 함께 만든 분들</b>에 적었습니다.<br><b>[개인정보 0]</b> 반입 전에 <b>전화번호 25건(개인 휴대전화 4건 포함) · 실명 · 주민번호 예시</b>를 전량 제거했습니다. 원문에 남아 있던 <b>업무 계정의 ID·비밀번호 한 건도 지웠습니다</b> — 이 앱에는 어떤 계정 정보도 적지 않습니다. 관서명·지역명은 <b>「관할 경찰서」·「○○파출소」</b>로 일반화했습니다. 검사 항목에 <b>「전화번호·주민번호·계정정보·관서명 0건」</b>을 넣어 다음 판부터 자동으로 막습니다.<br><b>[법령 재검증]</b> 원문 문서가 <b>2019년 상반기</b>에 쓰인 것이라 수치를 다시 봤습니다. 국가법령정보센터 <b>조문 원문 31개</b>를 대조해 — 음주 기준 <b>0.05% → 0.03%</b>(2019.6.25 시행), 생계형 면허구제 <b>0.120% → 0.1% 초과 시 제외</b>(시행규칙 별표28), 무면허 벌칙 <b>1년 이하·300만원 이하</b>(§152), 즉결심판 대상 <b>20만원 이하</b>(즉심법 §2)를 확인·정정했습니다. 「간통죄」 등 폐지 조문은 뺐습니다.<br><b>[아직 확인 못 한 것]</b> 형법 죄명별 형량·벌금액, 시행령 별표8 금액은 <b>전수 재확인 전</b>입니다. 실무노트 내용은 <b>참고 자료</b>이며 <b>반드시 현행 조문을 확인</b>하고 쓰십시오.<br><b>[새로고침 속도]</b> 새로고침할 때 옛 화면이 잠깐 보이고 느리던 것 — 서비스워커가 <b>매번 앱 전체를 다시 받도록</b> 되어 있었습니다. <b>바뀐 것이 없으면 다시 받지 않고</b>, 회선이 느리면 <b>2.5초만 기다린 뒤 있는 것을 먼저 보여주도록</b> 고쳤습니다. 새 판이 준비되면 화면 아래에 알려 드립니다.<br><b>[서식·메모 넘기기]</b> 서식이나 메모를 열고 <b>좌우로 밀면 다음 장</b>이 나옵니다. 한 장 보고 닫고 다시 누르지 않아도 됩니다. 아래 <b>‹ ›</b> 단추와 키보드 <b>←/→</b>로도 됩니다. 지금 화면에 걸러 놓은 순서(전체·메모만·서식만·항목별) 그대로 넘어갑니다.<br><b>[검사]</b> 배포 전 자동 검사를 <b>48항목 → 70항목</b>으로 늘렸습니다.</p></div></details><details style="margin:6px 0"><summary style="font-weight:800;cursor:pointer;padding:6px 0">🏛️ v20.0 — 서초 전용에서 전국 공용으로 (2026.8.12)</summary><div class="u-p8-0"><p class="u-fs13" style="line-height:1.75">
 <b>[정체성]</b> 「서초경찰서 앱」에서 <b>전국 교통·지역경찰 공용판</b>으로 전환. 최초 실행 안내·설정·발자취의 관서 표기를 중립화하고 <b>⚙️ 설정 › 우리 관서 설정</b>을 신설. 관할·전용도로·연락처 화면에는 <b>「기본 프리셋(서초 기준)」</b> 배지를 자동 표시.<br>
 <b>[최초 팝업]</b> 세로 길이를 줄여 작은 화면에서도 한 화면에 읽히도록 재구성. <b>두 번째 팝업(중점 추진사항 안내)은 삭제</b> — 실행할 때마다 두 번 막는 구조를 없앴습니다.<br>
 <b>[법적 성격 명시]</b> 팝업과 설정에 <b>「업무보조 자료 · 최종 판단은 담당자와 법원의 몫」</b>을 명기. 설정에 <b>⚖️ 이 앱의 법적 성격</b> 항목 신설.<br>
@@ -12463,6 +12463,181 @@ var LOCNOTE=[
 .ln-kw{margin-top:8px;font-size:11px;font-weight:700;color:var(--text-dim);
  border-top:1px dashed var(--border);padding-top:7px;word-break:keep-all}
 .ln-hl{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   v20.2 — 서식·메모 좌우 밀어 넘기기
+   · 한 장 보고 닫고 다시 누르는 것을 없앤다. 밀면 다음 장이 나온다.
+   · 기존 tbShelfOpen / tbMemoOpen 은 무수정. 열린 뒤에 조작부만 덧댄다.
+   · 목록 순서는 「지금 화면에 보이는 순서」를 따른다.
+     (전체/메모만/서식만/항목별 어느 걸로 걸러 놓았든 그대로 넘어간다)
+   · 손가락·마우스·키보드(←/→) 모두 된다.
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+ if(window.__SWIPE_ON) return; window.__SWIPE_ON=1;
+
+ var SWIPE=48;      /* 이만큼 밀어야 넘어간다 (px) */
+ var SLOPE=1.2;     /* 가로가 세로보다 이 배 이상이어야 넘김 — 세로 스크롤을 뺏지 않는다 */
+
+ /* ── 목록 구하기 ────────────────────────────────────────
+    화면에 깔린 단추의 onclick 에서 id 를 읽는다. 보이는 순서가 곧 넘김 순서다. */
+ function listFrom(fn, fallback){
+  var out=[], seen={};
+  var rx=new RegExp(fn.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+"\\('([^']+)'\\)");
+  [].forEach.call(document.querySelectorAll('[onclick*="'+fn+'("]'), function(b){
+   if(b.closest('#shelf_modal,#memo_modal')) return;   /* 모달 안 단추는 목록이 아니다 */
+   var m=(b.getAttribute('onclick')||'').match(rx);
+   if(m && !seen[m[1]]){ seen[m[1]]=1; out.push(m[1]); }
+  });
+  if(out.length) return out;
+  try{ return fallback()||[]; }catch(e){ return []; }
+ }
+ function shelfList(){
+  return listFrom('tbShelfOpen', function(){
+   return (window.tbShelfMeta?tbShelfMeta():[]).map(function(x){ return x.id; });
+  });
+ }
+ function memoList(){
+  return listFrom('tbMemoOpen', function(){
+   return (JSON.parse(localStorage.getItem('tbook_memo_v1')||'[]')||[]).map(function(x){ return x.id; });
+  });
+ }
+
+ /* ── 조작부 덧대기 ──────────────────────────────────────── */
+ function deco(modalId, list, curId, open, close){
+  var m=document.getElementById(modalId);
+  if(!m || m.__nav) return false;
+  var i=list.indexOf(curId);
+  if(i<0 || list.length<2) return true;     /* 한 장뿐이면 아무것도 안 붙인다 */
+  m.__nav=1;
+
+  function go(d){
+   var n=i+d;
+   if(n<0 || n>=list.length) return;
+   var id=list[n];
+   try{ close(); }catch(e){}
+   setTimeout(function(){ try{ open(id); }catch(e){} }, 0);
+  }
+
+  /* 서식은 전체화면 뷰어라 하단 고정, 메모는 하단 시트라 모달 안쪽에 넣는다.
+     (고정으로 두면 메모의 「복사·고치기」 단추와 겹친다) */
+  var host=m.querySelector('.mn-box') || m;
+  var inline=(host!==m);
+  var bar=document.createElement('div');
+  bar.className='sw-bar'+(inline?' sw-inline':'');
+  bar.innerHTML=
+   '<button type="button" class="sw-b sw-p" aria-label="이전"'+(i===0?' disabled':'')+'>‹</button>'+
+   '<span class="sw-n">'+(i+1)+' / '+list.length+'</span>'+
+   '<button type="button" class="sw-b sw-x" aria-label="다음"'+(i===list.length-1?' disabled':'')+'>›</button>';
+  host.appendChild(bar);
+  bar.querySelector('.sw-p').addEventListener('click',function(e){ e.stopPropagation(); go(-1); });
+  bar.querySelector('.sw-x').addEventListener('click',function(e){ e.stopPropagation(); go(1); });
+
+  /* 처음 한 번만 「밀어서 넘기기」를 알려 준다 */
+  try{
+   if(!localStorage.getItem('tb_swipe_seen')){
+    localStorage.setItem('tb_swipe_seen','1');
+    var h=document.createElement('div'); h.className='sw-hint'+(inline?' sw-hint-in':'');
+    h.textContent='← 좌우로 밀면 다음 장 →';
+    (inline?host:m).appendChild(h);
+    setTimeout(function(){ try{ h.remove(); }catch(e){} }, 2600);
+   }
+  }catch(e){}
+
+  /* 손가락 · 마우스 */
+  var x0=null, y0=null, lock=false;
+  function start(x,y,t){
+   if(t && t.closest && t.closest('input,textarea,select,button,a')) { x0=null; return; }
+   x0=x; y0=y; lock=false;
+  }
+  function end(x,y){
+   if(x0===null) return;
+   var dx=x-x0, dy=y-y0;
+   x0=null;
+   if(Math.abs(dx)<SWIPE) return;
+   if(Math.abs(dx) < Math.abs(dy)*SLOPE) return;   /* 세로로 민 것은 무시 */
+   go(dx<0 ? 1 : -1);
+  }
+  m.addEventListener('touchstart',function(e){
+   var t=e.touches[0]; start(t.clientX,t.clientY,e.target);
+  },{passive:true});
+  m.addEventListener('touchend',function(e){
+   var t=(e.changedTouches||[])[0]; if(t) end(t.clientX,t.clientY);
+  },{passive:true});
+  m.addEventListener('mousedown',function(e){ start(e.clientX,e.clientY,e.target); });
+  m.addEventListener('mouseup',function(e){ end(e.clientX,e.clientY); });
+
+  /* 키보드 — 글자 칸에서는 안 먹게 한다 */
+  m.__key=function(e){
+   if(!document.getElementById(modalId)) { document.removeEventListener('keydown',m.__key,true); return; }
+   var t=e.target;
+   if(t && t.tagName && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+   if(e.key==='ArrowLeft'){ e.preventDefault(); go(-1); }
+   else if(e.key==='ArrowRight'){ e.preventDefault(); go(1); }
+  };
+  document.addEventListener('keydown',m.__key,true);
+  return true;
+ }
+
+ /* 모달이 뜰 때까지 잠깐 기다렸다 붙인다 (서식은 IndexedDB 라 비동기다) */
+ function later(modalId, listFn, id, open, close){
+  var n=0;
+  (function tick(){
+   if(deco(modalId, listFn(), id, open, close)) return;
+   if(++n<14) setTimeout(tick,45);
+  })();
+ }
+
+ /* ── 감싸기 ─────────────────────────────────────────────── */
+ function wrap(name, modalId, listFn, closeName){
+  var orig=window[name];
+  if(typeof orig!=='function' || orig.__sw) return;
+  var w=function(id){
+   var r=orig.apply(this, arguments);
+   later(modalId, listFn, id, w, function(){ try{ window[closeName](); }catch(e){} });
+   return r;
+  };
+  w.__sw=1; w.__orig=orig;
+  window[name]=w;
+ }
+ function boot(){
+  wrap('tbShelfOpen','shelf_modal',shelfList,'tbShelfClose');
+  wrap('tbMemoOpen','memo_modal',memoList,'tbMemoClose');
+ }
+ boot();
+ setTimeout(boot,1200);      /* 나중에 정의되는 경우 대비 */
+ setTimeout(boot,3000);
+})();
+</script>
+<style>
+.sw-bar{position:fixed;left:0;right:0;
+ bottom:calc(var(--tb-navh,64px) + env(safe-area-inset-bottom,0px) + 12px);
+ z-index:20;display:flex;align-items:center;justify-content:center;gap:14px;pointer-events:none}
+.sw-bar .sw-b{pointer-events:auto;width:52px;height:52px;border-radius:50%;
+ background:rgba(20,24,34,.82);color:#fff;border:1px solid rgba(255,255,255,.35);
+ font-size:27px;font-weight:900;line-height:1;cursor:pointer;
+ display:flex;align-items:center;justify-content:center;padding:0}
+.sw-bar .sw-b[disabled]{opacity:.28;cursor:default}
+.sw-bar .sw-n{pointer-events:none;background:rgba(20,24,34,.82);color:#fff;
+ border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;
+ font-size:13px;font-weight:900;min-width:64px;text-align:center}
+/* 메모 — 모달 안쪽 흐름에 놓는다 */
+.sw-bar.sw-inline{position:static;margin-top:11px;padding-top:10px;
+ border-top:1px solid var(--border);gap:12px}
+.sw-bar.sw-inline .sw-b{width:46px;height:46px;font-size:24px;
+ background:var(--panel-2);color:var(--text);border:1px solid var(--border)}
+.sw-bar.sw-inline .sw-n{background:var(--panel-2);color:var(--text);border-color:var(--border);
+ font-size:12.5px;padding:7px 13px}
+.sw-hint.sw-hint-in{position:static;transform:none;margin:8px auto 0;display:block;width:max-content;
+ background:var(--panel-2);color:var(--text-dim);border:1px solid var(--border)}
+.sw-hint{position:fixed;left:50%;transform:translateX(-50%);
+ bottom:calc(var(--tb-navh,64px) + env(safe-area-inset-bottom,0px) + 76px);z-index:21;pointer-events:none;
+ background:rgba(20,24,34,.9);color:#fff;border-radius:999px;padding:9px 16px;
+ font-size:12.5px;font-weight:800;white-space:nowrap;
+ animation:swFade 2.6s ease forwards}
+@keyframes swFade{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}
 </style>
 
 </body>
