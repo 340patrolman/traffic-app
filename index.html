@@ -12866,16 +12866,16 @@ mark.la-mk{background:var(--accent);color:#fff;border-radius:3px;padding:0 1px}
   if(host.querySelector('.la-bar')) return;
 
   var h='<div class="la-bar">'+
-     '<div class="la-ip" id="la_ipw">'+
+     '<div class="la-cats" id="la_cats"></div>'+
+     '<div class="la-tools la-tools-row">'+
+      '<button type="button" id="la_all">📖 본문 전부 펼치기</button>'+
+      '<div class="la-ip la-ip-inline" id="la_ipw">'+
       '<span class="la-mag">🔎</span>'+
       '<input id="la_q" type="search" inputmode="search" autocomplete="off" '+
        'placeholder="찾을 말을 치십시오">'+
       '<button type="button" class="la-x" id="la_x" aria-label="지우기">×</button>'+
      '</div>'+
-     '<div class="la-cats" id="la_cats"></div>'+
-     '<div class="la-tools">'+
       '<span class="la-msg" id="la_msg"></span>'+
-      '<button type="button" id="la_all">📖 본문 전부 펼치기</button>'+
      '</div>'+
     '</div>'+
     '<div class="la-top">🚓 <b>지역경찰 실무노트</b> — 여러 화면에 흩어져 있던 것을 '+
@@ -14582,48 +14582,67 @@ body.nopeek summary[data-peek]::before{content:none}
 })();
 </script>
 
-<style id="tb-spaceopt-2116">
+<style id="tb-spaceopt-2117">
 .tb-fav-bar{display:none!important}
 .tb-fav-float{position:fixed;right:10px;bottom:calc(var(--tb-navh,64px) + env(safe-area-inset-bottom,0px) + 118px);z-index:18;width:36px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--panel);opacity:.5;box-shadow:0 1px 5px rgba(0,0,0,.2);font-size:17px;line-height:34px;text-align:center;cursor:pointer;padding:0;display:none}
 .tb-fav-float.on{opacity:.92}
-.footer-note{margin-bottom:calc(var(--tb-navh,64px) + env(safe-area-inset-bottom,0px) + 16px)}
 </style>
-<script id="tb-spaceopt-js-2116">
+<script id="tb-spaceopt-js-2117">
 (function(){
- function relocFooter(){
-  var f=document.querySelector(".footer-note"); if(!f) return;
-  var pgs=document.querySelectorAll(".page");
-  var c = pgs.length ? pgs[pgs.length-1].parentNode : f.parentNode;
-  if(c && c.lastElementChild!==f){ try{ c.appendChild(f); }catch(e){} }
- }
- function favList(){ try{ return JSON.parse(localStorage.getItem("tbook_fav_v1")||"[]")||[]; }catch(e){ return []; } }
  function curPid(){
   var pgs=document.querySelectorAll(".page");
   for(var i=0;i<pgs.length;i++){ var p=pgs[i];
    if(p.offsetParent!==null && getComputedStyle(p).display!=="none") return p.id.replace("page-","");
   } return null;
  }
+ /* footer는 DOM을 옮기지 않는다(메뉴 드로어 파손 방지) — 홈 외 화면에서만 숨겨 상단 공간 회수 */
+ function toggleFooter(){
+  try{ var f=document.querySelector(".footer-note"); if(!f) return;
+   var pid=curPid();
+   f.style.display=(pid===null||pid==="home_dash")?"":"none";
+  }catch(e){}
+ }
+ function favList(){ try{ return JSON.parse(localStorage.getItem("tbook_fav_v1")||"[]")||[]; }catch(e){ return []; } }
  var gs=null;
  function ensureStar(){
   if(gs) return gs;
-  gs=document.createElement("button"); gs.type="button"; gs.className="tb-fav-float";
-  gs.setAttribute("aria-label","즐겨찾기");
+  gs=document.createElement("button"); gs.type="button"; gs.className="tb-fav-float"; gs.setAttribute("aria-label","즐겨찾기");
   gs.addEventListener("click",function(){ var pid=curPid(); if(pid && window.tbFavToggle){ window.tbFavToggle(pid); } setTimeout(syncStar,30); });
   document.body.appendChild(gs); return gs;
  }
  function syncStar(){
   try{ ensureStar(); var pid=curPid();
-   if(!pid || pid==="home_dash" || pid==="mynote"){ gs.style.display="none"; return; }
-   gs.style.display="block";
-   var on=favList().indexOf(pid)>=0;
-   gs.textContent=on?"★":"☆"; gs.classList.toggle("on",on);
-   gs.title=on?"즐겨찾기에서 빼기":"즐겨찾기에 넣기";
+   if(!pid || pid==="home_dash" || pid==="mynote"){ gs.style.display="none"; }
+   else { gs.style.display="block"; var on=favList().indexOf(pid)>=0; gs.textContent=on?"★":"☆"; gs.classList.toggle("on",on); gs.title=on?"즐겨찾기에서 빼기":"즐겨찾기에 넣기"; }
   }catch(e){}
  }
- function run(){ relocFooter(); syncStar(); }
- if(document.readyState!=="loading") run(); else document.addEventListener("DOMContentLoaded",run);
- setTimeout(run,1500); setTimeout(run,4000);
- setInterval(syncStar,700);
+ function tick(){ toggleFooter(); syncStar(); }
+ if(document.readyState!=="loading") tick(); else document.addEventListener("DOMContentLoaded",tick);
+ setTimeout(tick,1500); setTimeout(tick,4000);
+ setInterval(tick,700);
+})();
+</script>
+<style id="tb-la-inline-2118">
+.la-tools-row{align-items:center;margin-top:8px;flex-wrap:nowrap;gap:8px}
+.la-tools-row .la-msg{display:none}
+.la-ip-inline{flex:1 1 auto;min-width:0;position:relative}
+.la-ip-inline input{min-height:44px!important;padding:10px 34px 10px 36px!important;font-size:16px!important}
+.la-tools-row #la_all{flex:0 0 auto;white-space:nowrap;padding-left:10px;padding-right:10px}
+</style>
+<style id="tb-immersive-2119">
+.topbar,.hd-tabs{transition:transform .25s ease;will-change:transform}
+body.tb-immersive .topbar{transform:translateY(-105%)}
+body.tb-immersive .hd-tabs{transform:translateY(110%)}
+</style>
+<script id="tb-immersive-js-2119">
+(function(){
+ var lastY=0,hidden=false,tick=false;
+ function setH(h){ if(h===hidden)return; hidden=h; document.body.classList.toggle("tb-immersive",h); }
+ function onScroll(){ if(tick)return; tick=true; requestAnimationFrame(function(){ tick=false;
+   var y=window.scrollY||window.pageYOffset||document.documentElement.scrollTop||0; var dy=y-lastY;
+   if(y<72){ setH(false); } else if(dy>8){ setH(true); } else if(dy<-8){ setH(false); }
+   lastY=y; }); }
+ window.addEventListener("scroll",onScroll,{passive:true});
 })();
 </script>
 </body>
