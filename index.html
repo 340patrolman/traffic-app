@@ -14582,5 +14582,49 @@ body.nopeek summary[data-peek]::before{content:none}
 })();
 </script>
 
+<style id="tb-spaceopt-2116">
+.tb-fav-bar{display:none!important}
+.tb-fav-float{position:fixed;right:10px;bottom:calc(var(--tb-navh,64px) + env(safe-area-inset-bottom,0px) + 118px);z-index:18;width:36px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--panel);opacity:.5;box-shadow:0 1px 5px rgba(0,0,0,.2);font-size:17px;line-height:34px;text-align:center;cursor:pointer;padding:0;display:none}
+.tb-fav-float.on{opacity:.92}
+.footer-note{margin-bottom:calc(var(--tb-navh,64px) + env(safe-area-inset-bottom,0px) + 16px)}
+</style>
+<script id="tb-spaceopt-js-2116">
+(function(){
+ function relocFooter(){
+  var f=document.querySelector(".footer-note"); if(!f) return;
+  var pgs=document.querySelectorAll(".page");
+  var c = pgs.length ? pgs[pgs.length-1].parentNode : f.parentNode;
+  if(c && c.lastElementChild!==f){ try{ c.appendChild(f); }catch(e){} }
+ }
+ function favList(){ try{ return JSON.parse(localStorage.getItem("tbook_fav_v1")||"[]")||[]; }catch(e){ return []; } }
+ function curPid(){
+  var pgs=document.querySelectorAll(".page");
+  for(var i=0;i<pgs.length;i++){ var p=pgs[i];
+   if(p.offsetParent!==null && getComputedStyle(p).display!=="none") return p.id.replace("page-","");
+  } return null;
+ }
+ var gs=null;
+ function ensureStar(){
+  if(gs) return gs;
+  gs=document.createElement("button"); gs.type="button"; gs.className="tb-fav-float";
+  gs.setAttribute("aria-label","즐겨찾기");
+  gs.addEventListener("click",function(){ var pid=curPid(); if(pid && window.tbFavToggle){ window.tbFavToggle(pid); } setTimeout(syncStar,30); });
+  document.body.appendChild(gs); return gs;
+ }
+ function syncStar(){
+  try{ ensureStar(); var pid=curPid();
+   if(!pid || pid==="home_dash" || pid==="mynote"){ gs.style.display="none"; return; }
+   gs.style.display="block";
+   var on=favList().indexOf(pid)>=0;
+   gs.textContent=on?"★":"☆"; gs.classList.toggle("on",on);
+   gs.title=on?"즐겨찾기에서 빼기":"즐겨찾기에 넣기";
+  }catch(e){}
+ }
+ function run(){ relocFooter(); syncStar(); }
+ if(document.readyState!=="loading") run(); else document.addEventListener("DOMContentLoaded",run);
+ setTimeout(run,1500); setTimeout(run,4000);
+ setInterval(syncStar,700);
+})();
+</script>
 </body>
 </html>
