@@ -417,7 +417,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 </div>
 <div id="sub_shift" class="sub-tabs" style="display:none"> <div class="stab" data-sub="shift_cal" onclick="showSubPage('shift_cal')">🗓️ 교대근무표</div>
 </div>
-<div id="sub_sop" class="sub-tabs" style="display:none"> <div class="stab" data-sub="sop_daily" onclick="showSubPage('sop_daily')">🚦 교통근무</div> <div class="stab" data-sub="sop_seongmo" onclick="showSubPage('sop_seongmo')">🚦 교차로관리</div> <div class="stab" data-sub="enforce" onclick="showSubPage('enforce')">🚓 교통단속</div> <div class="stab" data-sub="traffic_fac" onclick="showSubPage('traffic_fac')">🚥 교통시설</div> <div class="stab" data-sub="future_police" onclick="showSubPage('future_police')">🔮 AI미래치안</div> <div class="stab" data-sub="sop_safety" onclick="showSubPage('sop_safety')">🦺 안전시뮬</div>
+<div id="sub_sop" class="sub-tabs" style="display:none"> <div class="stab" data-sub="sop_daily" onclick="showSubPage('sop_daily')">🚦 교통근무</div>
 </div><div id="sub_acci" class="sub-tabs" style="display:none"> <div class="stab" data-sub="acc_hub" onclick="showSubPage('acc_hub')">🚗 사고처리 허브</div> <div class="stab" data-sub="sop_dogma" onclick="showSubPage('sop_dogma')">🛡️ 2차사고 철칙</div> <div class="stab" data-sub="sop_matrix" onclick="showSubPage('sop_matrix')">🎯 사고유형별</div> <div class="stab" data-sub="acc_types" onclick="showSubPage('acc_types')">💥 각종사고</div></div>
 <div id="sub_coach" class="sub-tabs" style="display:none"> <div class="stab" data-sub="co_psych" onclick="showSubPage('co_psych')">🧠 현장심리</div> <div class="stab" data-sub="co_excuse" onclick="showSubPage('co_excuse')">💬 현장대응멘트</div> <div class="stab" data-sub="co_staff" onclick="showSubPage('co_staff')">🤝 직장관계</div> <div class="stab" data-sub="co_stress" onclick="showSubPage('co_stress')">🌿 회복·스트레스</div>
 </div>
@@ -15104,58 +15104,72 @@ body.tb-immersive .tb-fav-float{opacity:0!important;transform:translateY(22px);p
 </script>
 
 <style id="sopchip_css">
-/* v21.31 — 형제 화면 칩 바. 서브탭 6개 아래, 각 화면 맨 위 한 줄. */
-.sopchip-bar{display:flex;gap:6px;overflow-x:auto;padding:1px 0 9px;margin:0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.sopchip-bar::-webkit-scrollbar{display:none}
-.sopchip{flex:0 0 auto;min-height:38px;padding:0 13px;display:inline-flex;align-items:center;gap:4px;
+/* v21.32 — 교통근무 서브버튼 2단.
+   1단 = 항상 같은 자리에 있는 6개. 2단 = 그 안의 화면들.
+   위치가 고정이라 어느 화면에 있어도 같은 자리를 누르면 같은 곳으로 간다. */
+.sopchip-wrap{margin:0 0 8px}
+.sopchip-bar{display:flex;flex-wrap:wrap;gap:6px;padding:1px 0 0;margin:0}
+.sopchip-bar.l2{padding-top:6px;margin-top:5px;border-top:1px dashed var(--border)}
+.sopchip{flex:0 0 auto;min-width:88px;justify-content:center;min-height:38px;padding:0 12px;display:inline-flex;align-items:center;gap:4px;
  background:var(--panel-2);border:1.5px solid var(--border);color:var(--text-dim);border-radius:19px;
- font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:inherit;
+ font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:inherit;line-height:1;
  -webkit-tap-highlight-color:rgba(0,0,0,.06)}
 .sopchip:active{opacity:.72}
 .sopchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.sopchip.l2{min-width:78px;min-height:32px;padding:0 10px;font-size:12.5px;font-weight:700;border-radius:16px;
+ background:transparent;border-style:dashed}
+.sopchip.l2.on{background:var(--accent-gold);border-color:var(--accent-gold);border-style:solid;color:#fff}
 </style>
 <script>
-/* ═══════ T-Book v21.31 — 교통근무 서브버튼(형제 칩) ═══════
-   서브탭 6개는 「부모」다. 각 부모에 딸린 화면은 그 화면 맨 위 칩 한 줄로 간다.
-   기존 페이지의 id·본문·이벤트는 건드리지 않는다 — 맨 앞에 형제 노드 1개만 넣는다. */
+/* ═══════ T-Book v21.32 — 교통근무 서브버튼(2단 칩) ═══════
+   서브탭은 「교통근무」 하나. 그 아래 두 줄로 길을 편다.
+   1단(6개) — 근무 · 교차로 · 단속 · 시설 · AI미래 · 안전시뮬 : 모든 화면에서 같은 자리
+   2단      — 그 1단에 딸린 화면들. 없으면 줄 자체가 안 생긴다.
+   기존 페이지의 id·본문·이벤트는 건드리지 않는다(맨 앞에 형제 노드 1개만 삽입). */
 (function(){
- var SETS=[
-  ['sop_daily',  [['sop_daily','🌅 근무시작'],['sop_season','🌦️ 계절대비']]],
-  ['enforce',    [['enforce','🚓 단속처리'],['sop_enforce','📒 단속참조']]],
-  ['future_police',[['future_police','🔮 미래치안'],['sop_taas','📊 TAAS'],
-                    ['aiguide','🤖 AI 사용법'],['openapi','🔌 오픈API'],['claudeuse','🧠 클로드']]],
-  ['sop_safety', [['sop_safety','🦺 안전시뮬'],['sop_faq','❓ 신임 FAQ']]]
- ];
- var PARENT={}, CHIPS={};
- SETS.forEach(function(st){ st[1].forEach(function(c){ PARENT[c[0]]=st[0]; CHIPS[c[0]]=st[1]; }); });
- PARENT['sop_seongmo']='sop_seongmo'; PARENT['traffic_fac']='traffic_fac';
+ var L1=[['sop_daily','🌅 근무'],['sop_seongmo','🚦 교차로'],['enforce','🚓 단속'],
+         ['traffic_fac','🚥 시설'],['future_police','🔮 AI미래'],['sop_safety','🦺 안전시뮬']];
+ var L2={
+  sop_daily:     [['sop_daily','근무시작'],['sop_season','계절대비']],
+  enforce:       [['enforce','단속처리'],['sop_enforce','단속참조']],
+  future_police: [['future_police','미래치안'],['sop_taas','TAAS'],['aiguide','AI 사용법'],
+                  ['openapi','오픈API'],['claudeuse','클로드']],
+  sop_safety:    [['sop_safety','안전시뮬'],['sop_faq','신임 FAQ']]
+ };
+ var PARENT={sop_seongmo:'sop_seongmo', traffic_fac:'traffic_fac'};
+ Object.keys(L2).forEach(function(p){ L2[p].forEach(function(c){ PARENT[c[0]]=p; }); });
+ function mk(list,pid,lv){
+  var bar=document.createElement('div');
+  bar.className='sopchip-bar'+(lv===2?' l2':'');
+  list.forEach(function(c){
+   var b=document.createElement('button'); b.type='button';
+   var on=(lv===1)?(PARENT[pid]===c[0]):(c[0]===pid);
+   b.className='sopchip'+(lv===2?' l2':'')+(on?' on':'');
+   b.textContent=c[1]; b.setAttribute('data-go',c[0]);
+   b.addEventListener('click',function(){ if(c[0]!==pid){ try{ showSubPage(c[0]); }catch(e){} } });
+   bar.appendChild(b);
+  });
+  return bar;
+ }
  function build(pid){
   try{
    var pg=document.getElementById('page-'+pid); if(!pg||pg.dataset.sopchip) return;
    pg.dataset.sopchip='1';
-   var list=CHIPS[pid]; if(!list) return;
-   var bar=document.createElement('div'); bar.className='sopchip-bar';
-   list.forEach(function(c){
-    var b=document.createElement('button'); b.type='button';
-    b.className='sopchip'+(c[0]===pid?' on':''); b.textContent=c[1];
-    b.setAttribute('data-go',c[0]);
-    b.addEventListener('click',function(){ if(c[0]!==pid){ try{ showSubPage(c[0]); }catch(e){} } });
-    bar.appendChild(b);
-   });
-   pg.insertBefore(bar,pg.firstChild);
+   var w=document.createElement('div'); w.className='sopchip-wrap';
+   w.appendChild(mk(L1,pid,1));
+   var sub=L2[PARENT[pid]];
+   if(sub&&sub.length>1) w.appendChild(mk(sub,pid,2));
+   pg.insertBefore(w,pg.firstChild);
   }catch(e){}
  }
  function run(){ for(var k in PARENT) build(k); }
- /* 부모 서브탭을 계속 켜 둔다 — 자식 화면에 있어도 어디에 있는지 보인다 */
+ /* 어느 화면에 있든 서브탭 「교통근무」를 켜 둔다 */
  var _s=window.showSubPage;
  if(typeof _s==='function'){
   window.showSubPage=function(id){
    var r=_s.apply(this,arguments);
-   try{
-    var p=PARENT[id];
-    if(p) document.querySelectorAll('#sub_sop .stab').forEach(function(t){
-     t.classList.toggle('active', t.getAttribute('data-sub')===p); });
-   }catch(e){}
+   try{ if(PARENT[id]) document.querySelectorAll('#sub_sop .stab').forEach(function(t){
+    t.classList.toggle('active', t.getAttribute('data-sub')==='sop_daily'); }); }catch(e){}
    return r;
   };
  }
@@ -15163,5 +15177,16 @@ body.tb-immersive .tb-fav-float{opacity:0!important;transform:translateY(22px);p
  setTimeout(run,1500);
 })();
 </script>
+<style id="vnav_align_fix">
+/* v21.32 — 전체 메뉴 타일 글씨 정렬 통일.
+   기존 .ndesc 의 margin-left:auto 가 부제를 오른쪽 끝으로 밀어
+   제목은 왼쪽·부제는 오른쪽이 되고, 두 줄로 넘치면 줄마다 시작점이 달라졌다.
+   제목과 부제의 왼쪽 세로선을 맞춘다. */
+.vopen .nav-tabs .ntab{flex-direction:column!important;align-items:flex-start!important;
+ justify-content:center!important;text-align:left!important;gap:3px!important}
+.vopen .nav-tabs .ntab .ndesc{display:block!important;width:100%!important;margin-left:0!important;
+ padding-left:0!important;text-align:left!important;white-space:normal!important;
+ line-height:1.45!important;opacity:.82!important}
+</style>
 </body>
 </html>
