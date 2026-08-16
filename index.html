@@ -9220,6 +9220,7 @@ details.card.cl-x{padding-bottom:10px}
   if(c.querySelector('input,select,textarea')) return '입력카드';
   if(c.querySelector('.danger-box')) return '위험고지';
   var tx=(t.textContent||'');
+  if(tx.indexOf('작성순서')>=0) return '작성순서';   /* 서류 작성순서 체크리스트는 항상 펼침 */
   if(/🚨|긴급|죽겠다|자살|119|112|109/.test(tx)) return '위기카드';
   if(c.closest('#page-home_dash')) return '홈';
   if(c.querySelectorAll('details').length>=2) return '컨테이너';  /* 접이식 목록을 품은 카드(= 그 화면의 색인)
@@ -14644,7 +14645,13 @@ body.tb-immersive .hd-tabs{transform:translateY(110%)}
 })();
 </script>
 <style id="tb-bujo-2120">
-.tb-bujo-sec{margin-top:11px;border-top:1px dashed var(--border);padding-top:9px}
+details.tb-bujo-sec{margin-top:11px;background:transparent;border:1px dashed var(--border);border-radius:10px;padding:8px 10px}
+details.tb-bujo-sec>summary{cursor:pointer;list-style:none;align-items:center}
+details.tb-bujo-sec>summary::-webkit-details-marker{display:none}
+details.tb-bujo-sec>summary::after{content:'▸ 열기';margin-left:auto;font-size:10.5px;font-weight:800;color:var(--text-dim)}
+details.tb-bujo-sec[open]>summary::after{content:'▾ 접기'}
+details.tb-bujo-sec[open]>summary{margin-bottom:4px;border-bottom:1px dashed var(--border);padding-bottom:6px}
+details.tb-bujo-sec:not([open])>*:not(summary){display:none!important}
 .tb-bujo-hd{font-size:13.5px;font-weight:900;color:var(--accent);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tb-bujo-hd small{font-weight:600;font-size:10px;color:var(--text-dim)}
 .tb-bujo-note{font-size:10.5px;color:var(--text-dim);line-height:1.45;margin:3px 0 7px;background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.18);border-radius:7px;padding:5px 7px}
@@ -14690,7 +14697,7 @@ body.tb-immersive .hd-tabs{transform:translateY(110%)}
  function _find(arr,id){ for(var i=0;i<arr.length;i++){ if(arr[i].id===id) return arr[i]; } return null; }
 
  function _secHTML(key){
-  return '<div class="tb-bujo-hd">📓 이 날 불렛저널 <small>(개인 할 일 · 자동저장)</small></div>'
+  return '<summary class="tb-bujo-hd">📓 이 날 불렛저널 <small>(개인 할 일)</small></summary>'
    +'<div class="tb-bujo-note">🔒 <b>사건·수사내용·주민번호·차량번호는 금지</b> — 개인 할 일·메모만. 이 기기 안에만 저장, 외부 전송 없음.</div>'
    +'<div class="tb-bujo-wk" id="tb-bujo-week"></div>'
    +'<div class="tb-bujo-ip"><button type="button" class="tb-bujo-kind" id="tb-bujo-kind" data-k="t" title="지금: 할일 (눌러서 메모로)" onclick="tbBujoKind()">•</button>'
@@ -14760,7 +14767,7 @@ body.tb-immersive .hd-tabs{transform:translateY(110%)}
   var m=document.getElementById('day_note_modal'); if(!m) return;
   if(m.querySelector('.tb-bujo-sec')) return;
   var box=m.querySelector('div'); if(!box) return;
-  var sec=document.createElement('div'); sec.className='tb-bujo-sec'; sec.innerHTML=_secHTML(key);
+  var sec=document.createElement('details'); sec.className='tb-bujo-sec'; sec.innerHTML=_secHTML(key);
   var bg=box.querySelector('.btn-group');
   if(bg) box.insertBefore(sec,bg); else box.appendChild(sec);
   _renderWeek(key); _renderList(key);
