@@ -409,7 +409,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
  <button aria-label="안내 배너 닫기" onclick="document.getElementById('pwa_guide_banner').style.display='none';try{localStorage.setItem('pwa_modal_closed_time',Date.now().toString());}catch(e){}" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.25);border:none;color:#fff;width:32px;height:32px;border-radius:16px;font-size:18px;cursor:pointer;">✕</button>
 </div>
 <!-- ══ 그룹 탭 ══ -->
- <div id="vnav_bar" onclick="vnavToggle()" style="display:none;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:900;cursor:pointer;margin-bottom:6px"><span style="font-size:18px">☰</span><span style="font-size:12px;opacity:.85;white-space:nowrap">전체 메뉴</span><span id="vnav_cur" style="flex:1;text-align:center">🚨 보고서</span><span style="font-size:12px;opacity:.85">▾</span></div> <div class="nav-tabs"> <div class="ntab" data-group="quick" onclick="showGroup('quick')">⚡ 빠른찾기<span class="ndesc">상황·키워드로 한 번에</span></div> <div class="ntab active" data-group="report" onclick="showGroup('report')">🚨 보고서<span class="ndesc">최초·발생·언론·실시간CCTV</span></div> <div class="ntab" data-group="docs"   onclick="showGroup('docs')">📝 서류작성<span class="ndesc">서류·순서·빠른찾기·지역경찰</span></div> <div class="ntab" data-group="shift"  onclick="showGroup('shift')">🗓️ 교대근무표<span class="ndesc">달력·시간외수당</span></div> <div class="ntab" data-group="sop"    onclick="showGroup('sop')">🚦 근무(교통·지역)<span class="ndesc">교통근무 9종 · 미래치안</span></div> <div class="ntab" data-group="acci"   onclick="showGroup('acci')">💥 사고처리<span class="ndesc">허브·철칙·유형별·각종사고</span></div> <div class="ntab" data-group="coach"  onclick="showGroup('coach')">🛡️ 현장심리<span class="ndesc">대응멘트·심리방어</span></div> <div class="ntab" data-group="ref"    onclick="showGroup('ref')">📚 법령·자료<span class="ndesc">법적대응·배상청구·법령</span></div> <div class="ntab" data-group="expr"   onclick="showGroup('expr')">🛣️ 전용도로·관할<span class="ndesc">경부·올림픽·관할판정</span></div> <div class="ntab" data-group="orgs" onclick="showGroup('orgs')">📞 연락처<span class="ndesc">기관·부서 전화번호</span></div> <div class="ntab" data-group="life" onclick="showGroup('life')">💚 민생·복지<span class="ndesc">위기대응·생계·체납 지원</span></div> <div class="ntab" data-group="setg" onclick="showGroup('setg')">⚙️ 설정<span class="ndesc">글자크기·백업·사용설명서·보안</span></div>    
+ <div id="vnav_bar" onclick="vnavToggle()" style="display:none;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:900;cursor:pointer;margin-bottom:6px"><span style="font-size:18px">☰</span><span style="font-size:12px;opacity:.85;white-space:nowrap">전체 메뉴</span><span id="vnav_cur" style="flex:1;text-align:center">🚨 보고서</span><span style="font-size:12px;opacity:.85">▾</span></div> <div class="nav-tabs"> <div class="ntab" data-group="quick" onclick="showGroup('quick')">⚡ 빠른찾기<span class="ndesc">상황·키워드로 한 번에</span></div> <div class="ntab active" data-group="report" onclick="showGroup('report')">🚨 보고서<span class="ndesc">최초·발생·언론·실시간CCTV</span></div> <div class="ntab" data-group="docs"   onclick="showGroup('docs')">📝 서류작성<span class="ndesc">서류·순서·빠른찾기·지역경찰</span></div> <div class="ntab" data-group="shift"  onclick="showGroup('shift')">🗓️ 교대근무표<span class="ndesc">달력·시간외수당</span></div> <div class="ntab" data-group="sop"    onclick="showGroup('sop')">🚦 교통근무<span class="ndesc">단속·신호·시설·AI미래치안</span></div> <div class="ntab" data-group="acci"   onclick="showGroup('acci')">💥 사고처리<span class="ndesc">허브·철칙·유형별·각종사고</span></div> <div class="ntab" data-group="coach"  onclick="showGroup('coach')">🛡️ 현장심리<span class="ndesc">대응멘트·심리방어</span></div> <div class="ntab" data-group="ref"    onclick="showGroup('ref')">📚 법령·자료<span class="ndesc">법적대응·배상청구·법령</span></div> <div class="ntab" data-group="expr"   onclick="showGroup('expr')">🛣️ 전용도로·관할<span class="ndesc">경부·올림픽·관할판정</span></div> <div class="ntab" data-group="orgs" onclick="showGroup('orgs')">📞 연락처<span class="ndesc">기관·부서 전화번호</span></div> <div class="ntab" data-group="life" onclick="showGroup('life')">💚 민생·복지<span class="ndesc">위기대응·생계·체납 지원</span></div> <div class="ntab" data-group="setg" onclick="showGroup('setg')">⚙️ 설정<span class="ndesc">글자크기·백업·사용설명서·보안</span></div>    
 </div> <!-- ══ 서브탭 ══ -->
 <div id="sub_home" class="sub-tabs" style="display:none"></div> <div id="sub_report" class="sub-tabs"> <div class="stab active" data-sub="rep1" onclick="showSubPage('rep1')">최초</div> <div class="stab" data-sub="rep2" onclick="showSubPage('rep2')">발생</div> <div class="stab" data-sub="rep3" onclick="showSubPage('rep3')">언론예상</div> <div class="stab" data-sub="cctv" onclick="showSubPage('cctv')">실시간CCTV</div> <div class="stab" data-sub="rep_manual" onclick="showSubPage('rep_manual')">체계</div> <div class="stab" data-sub="voice" onclick="showSubPage('voice')">음성 · 블박</div>
 </div>
@@ -417,7 +417,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
 </div>
 <div id="sub_shift" class="sub-tabs" style="display:none"> <div class="stab" data-sub="shift_cal" onclick="showSubPage('shift_cal')">🗓️ 교대근무표</div>
 </div>
-<div id="sub_sop" class="sub-tabs" style="display:none"> <div class="stab" data-sub="sop_hub" onclick="showSubPage('sop_hub')">🚦 교통근무</div> <div class="stab" data-sub="future_police" onclick="showSubPage('future_police')">🔮 미래치안</div>
+<div id="sub_sop" class="sub-tabs" style="display:none"> <div class="stab" data-sub="sop_daily" onclick="showSubPage('sop_daily')">🚦 교통근무</div> <div class="stab" data-sub="sop_seongmo" onclick="showSubPage('sop_seongmo')">🚦 교차로관리</div> <div class="stab" data-sub="enforce" onclick="showSubPage('enforce')">🚓 교통단속</div> <div class="stab" data-sub="traffic_fac" onclick="showSubPage('traffic_fac')">🚥 교통시설</div> <div class="stab" data-sub="future_police" onclick="showSubPage('future_police')">🔮 AI미래치안</div> <div class="stab" data-sub="sop_safety" onclick="showSubPage('sop_safety')">🦺 안전시뮬</div>
 </div><div id="sub_acci" class="sub-tabs" style="display:none"> <div class="stab" data-sub="acc_hub" onclick="showSubPage('acc_hub')">🚗 사고처리 허브</div> <div class="stab" data-sub="sop_dogma" onclick="showSubPage('sop_dogma')">🛡️ 2차사고 철칙</div> <div class="stab" data-sub="sop_matrix" onclick="showSubPage('sop_matrix')">🎯 사고유형별</div> <div class="stab" data-sub="acc_types" onclick="showSubPage('acc_types')">💥 각종사고</div></div>
 <div id="sub_coach" class="sub-tabs" style="display:none"> <div class="stab" data-sub="co_psych" onclick="showSubPage('co_psych')">🧠 현장심리</div> <div class="stab" data-sub="co_excuse" onclick="showSubPage('co_excuse')">💬 현장대응멘트</div> <div class="stab" data-sub="co_staff" onclick="showSubPage('co_staff')">🤝 직장관계</div> <div class="stab" data-sub="co_stress" onclick="showSubPage('co_stress')">🌿 회복·스트레스</div>
 </div>
@@ -438,41 +438,6 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
      ② page-future_police: 미래치안 (데이터로 사고를 미리 막는다)
      ※ 기존 9개 화면의 id·본문은 손대지 않았다. 서브탭만 허브로 접었다.
 ════════════════════════════════════════════════════════════ -->
-<div class="page" id="page-sop_hub">
- <div class="card" style="border:2px solid var(--accent-gold)">
-  <div class="card-title">🚦 교통근무</div>
-  <div class="guide-box">오늘 필요한 화면을 여기서 고릅니다. 눌러서 들어가고, 위 <b>◀</b> 또는 각 화면 맨 위 <b>「◀ 교통근무」</b>로 돌아옵니다.</div>
- </div>
-
- <div class="card">
-  <div class="card-title">🌅 근무 전</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-   <button class="btn btn-outline" onclick="showSubPage('sop_daily')">🌅 근무시작</button>
-   <button class="btn btn-outline" onclick="showSubPage('sop_season')">🌦️ 계절대비</button>
-  </div>
- </div>
-
- <div class="card">
-  <div class="card-title">🚓 근무 중</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-   <button class="btn btn-outline" onclick="showSubPage('sop_seongmo')">🚦 교차로관리</button>
-   <button class="btn btn-outline" onclick="showSubPage('enforce')">🚓 단속처리</button>
-   <button class="btn btn-outline" onclick="showSubPage('sop_enforce')">📒 단속참조</button>
-   <button class="btn btn-outline" onclick="showSubPage('traffic_fac')">🚥 교통시설</button>
-  </div>
- </div>
-
- <div class="card">
-  <div class="card-title">📚 배우고 확인</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-   <button class="btn btn-outline" onclick="showSubPage('sop_faq')">❓ 신임 FAQ</button>
-   <button class="btn btn-outline" onclick="showSubPage('sop_safety')">🦺 안전시뮬</button>
-   <button class="btn btn-outline" onclick="showSubPage('sop_taas')">📊 TAAS</button>
-   <button class="btn btn-outline" onclick="showSubPage('future_police')">🔮 미래치안</button>
-  </div>
- </div>
-</div>
-
 <div class="page" id="page-future_police">
 
  <div class="card" style="border:2px solid var(--accent-gold)">
@@ -629,9 +594,9 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
    <button class="hd-tile" style="--c:var(--hd-green);--cbg:var(--hd-greenbg)" onclick="hdGo('coach','co_psych')">
     <span class="hd-ic"><svg viewBox="0 0 24 24"><path d="M20.5 12.4a7.6 7.6 0 0 1-8.2 7.5c-.9 0-1.8-.1-2.6-.4L4 21l1.5-5.4a7.4 7.4 0 0 1-.9-3.5 7.6 7.6 0 0 1 7.6-7.5h.5a7.6 7.6 0 0 1 7.8 7.4z"/><path d="M9.4 11h5.2M9.4 14h3.4"/></svg></span>
     <span class="hd-tx"><b>현장심리</b><i>유형판별 · 대응원칙</i></span></button>
-   <button class="hd-tile" style="--c:var(--hd-orange);--cbg:var(--hd-orangebg)" onclick="hdGo('sop','sop_hub')">
+   <button class="hd-tile" style="--c:var(--hd-orange);--cbg:var(--hd-orangebg)" onclick="hdGo('sop','sop_daily')">
     <span class="hd-ic"><svg viewBox="0 0 24 24"><rect x="8.2" y="2.4" width="7.6" height="15.4" rx="3.8"/><circle cx="12" cy="6.2" r="1.1"/><circle cx="12" cy="10.1" r="1.1"/><circle cx="12" cy="14" r="1.1"/><path d="M12 17.8v3.8M8 21.6h8"/></svg></span>
-    <span class="hd-tx"><b>교통관리</b><i>교통근무 · 미래치안</i></span></button>
+    <span class="hd-tx"><b>교통관리</b><i>단속 · 신호 · 시설 · AI미래치안</i></span></button>
    <button class="hd-tile" style="--c:var(--hd-red);--cbg:var(--hd-redbg)" onclick="hdGo('acci','acc_hub')">
     <span class="hd-ic"><svg viewBox="0 0 24 24"><path d="m2.6 15.4 1.5-4.3a2.9 2.9 0 0 1 2.7-1.9h5.4a2.9 2.9 0 0 1 2.7 1.9l1.5 4.3"/><rect x="2.2" y="15.4" width="14.4" height="4.2" rx="1.5"/><circle cx="5.6" cy="17.5" r=".8"/><circle cx="13.2" cy="17.5" r=".8"/><path d="m18.4 4.4 1.6 2.8-3 .5 1.6 2.8"/></svg></span>
     <span class="hd-tx"><b>사고처리</b><i>허브 · 2차사고</i></span></button>
@@ -5426,7 +5391,7 @@ const GROUP_PAGES = {
  report:['rep1','rep2','rep3','cctv','rep_manual','voice','video'],
  docs:['doc_manual','checklist','doc_quick','police_gen','doc_needed'],
  shift:['shift_cal'],
- sop:['sop_hub','sop_daily','sop_seongmo','enforce','sop_enforce','sop_season','traffic_fac','sop_taas','sop_faq','sop_safety','future_police','aiguide','openapi','claudeuse'],
+ sop:['sop_daily','sop_season','sop_seongmo','enforce','sop_enforce','traffic_fac','future_police','sop_taas','aiguide','openapi','claudeuse','sop_safety','sop_faq'],
  acci:['acc_hub','sop_dogma','sop_matrix','acc_types'],
  coach:['co_psych','co_excuse','co_staff','co_stress'],
  ref:['co_legal','civil_remedy','laws','precedent','civil_answer','edu'],
@@ -7625,7 +7590,7 @@ function renderShiftCal(){
   html+='<td onclick="openDayNote(\''+_dkey(dt)+'\')" style="border:'+border+';background:'+SHIFT_BG[myState]+';vertical-align:top;padding:4px;height:100px;cursor:pointer">';
   var _shf='<span style="background:'+SHIFT_COLOR[myState]+';color:#fff;font-size:16.5px;font-weight:800;padding:1px 5px;border-radius:5px;line-height:1.5;white-space:nowrap">'+SHIFT_EMOJI[myState]+SHIFT_SHORT[myState]+'</span>';
   html+='<div style="display:flex;align-items:center;gap:3px;flex-wrap:wrap;line-height:1.4"><span style="font-size:19px;font-weight:800;color:'+dcol+'">'+('0'+d).slice(-2)+'</span>'+_shf+(hasNote?'<span style="color:var(--accent-gold);font-size:13px">●</span>':'')+(_hol?'<span style="font-size:12px;color:#dc2626;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%">'+_hol+'</span>':'')+'</div>';
-  var _hasV=function(v){if(!v)return false;if(typeof v==='object'){for(var k in v){if(v[k])return true;}return false;}return true;};var _MK=[['dvol','☀자'],['nvol','🌙자'],['early','조'],['late','지'],['leave','연'],['edu','교'],['mobil','동'],['rush','러'],['phys','물'],['shoot','사'],['train','훈']];var _mk='';if(note){_MK.forEach(function(p){if(_hasV(note[p[0]]))_mk+='<span style="display:inline-block;background:var(--accent);color:#fff;font-size:13px;font-weight:700;padding:1px 4px;border-radius:4px;margin:1px 2px 1px 0;line-height:1.35">'+p[1]+'</span>';});}if(_mk)html+='<div style="line-height:1.3;margin-top:1px">'+_mk+'</div>';var allteams='';
+  var _hasV=function(v){if(!v)return false;if(typeof v==='object'){for(var k in v){if(v[k])return true;}return false;}return true;};var _MK=[['dvol','☀자'],['nvol','🌙자'],['early','조'],['late','지'],['leave','연'],['edu','교'],['mobil','동'],['rush','러'],['phys','물'],['shoot','사'],['train','훈']];var _PF=_otProfile();var _mkH=function(nt,k){ if(k==='late'||k==='early'){ var d=_otDed(nt,k); return d?('−'+(d%1?d.toFixed(1):d)):''; } if(k==='dvol'||k==='nvol'||k==='rush_am'||k==='rush_pm'){ var v=_otH(nt,k,_PF); return v?('+'+(v%1?v.toFixed(1):v)):''; } return ''; };var _mk='';if(note){_MK.forEach(function(p){if(_hasV(note[p[0]])){var _hh=_mkH(note,p[0]);_mk+='<span style="display:inline-block;background:'+((p[0]==='late'||p[0]==='early')?'#1d4ed8':'var(--accent)')+';color:#fff;font-size:13px;font-weight:700;padding:1px 4px;border-radius:4px;margin:1px 2px 1px 0;line-height:1.35">'+p[1]+_hh+'</span>';}});}if(_mk)html+='<div style="line-height:1.3;margin-top:1px">'+_mk+'</div>';var allteams='';
   if(_showTeams()){ for(var t=1;t<=_sys.teams;t++){ if(t===c.team) continue; var st2=_pat()[_stateIdx(dt,t)]; allteams+='<span style="color:'+SHIFT_COLOR[st2]+';font-weight:600">'+t+SHIFT_SHORT[st2]+'</span> '; } }
   if(allteams) html+='<div style="font-size:12px;line-height:1.4;margin-top:1px">'+allteams+'</div>';
   var tags=''; if(hasNote){ var bg=function(t,col){return '<span style="display:inline-block;font-size:10px;font-weight:900;color:#fff;background:'+col+';border-radius:3px;padding:1px 3px;margin:1px 1px 0 0;line-height:1.3;white-space:nowrap">'+t+'</span>';}; if(note.phys)tags+=bg('물리력','#b45309'); if(note.shoot)tags+=bg('사격','#dc2626'); if(note.train)tags+=bg('직장훈련','#6d28d9'); if(note.leave)tags+=bg('연가','#1d4ed8'); if(note.late)tags+=bg('지각','#9333ea'); if(note.early)tags+=bg('조퇴','#0891b2'); if(note.edu)tags+=bg('교육','#0d9488'); if(note.mobil)tags+=bg('동원','#ea580c'); if(note.dvol)tags+=bg('주자원','#ca8a04'); if(note.nvol)tags+=bg('야자원','#1e3a8a'); if(note.rush_am)tags+=bg('아침러시','#be123c'); if(note.rush_pm)tags+=bg('저녁러시','#9f1239'); } /* 풀네임 칩 제거(짧은 표식과 중복) — 상세는 날짜 탭 */
@@ -7639,34 +7604,162 @@ function renderShiftCal(){
  try{calcOT();}catch(e){}
  try{_fitShiftCal();}catch(e){}
 }
-/* 날짜 기록 모달 */
+/* ══ 날짜 기록 모달 — v21.29 아코디언 개편 ══
+   컨테이너(중앙 모달 92vh)는 그대로 둔다. 바꾼 것은 위계뿐이다.
+   ① 헤더 고정 — 날짜·근무유형·이 날 인정합계 실시간
+   ② 4개 아코디언(연가·차감 / 자원 / 러쉬 / 교육·훈련·동원) — 동시 개폐 허용
+   ③ 자원·러쉬 시간값을 그 날만 조정하거나 관서 기본값으로 저장
+   ④ 지각·조퇴 시간(h) 입력 — 월 합산되어 계산식에 표시된다
+   ⑤ 연가·교육의 배타/대체 규칙을 화면에 즉시 알린다 */
+var _DN_KEY=null;
+function _dnWins(key){ try{ var dt=new Date(key+'T00:00:00'); return {st:_stateOf(dt,_shiftCfg().team), wins:_shiftWins(_stateOf(dt,_shiftCfg().team))||[], hol:(dt.getDay()===0||dt.getDay()===6||!!holidayName(key)), dow:['일','월','화','수','목','금','토'][dt.getDay()]}; }catch(e){ return {st:'',wins:[],hol:false,dow:''}; } }
+function _dnV(id){ var e=document.getElementById(id); return e?e.value:''; }
+function _dnC(id){ var e=document.getElementById(id); return !!(e&&e.checked); }
+function _dnN(id){ var v=parseFloat(_dnV(id)); return isNaN(v)?0:v; }
+function dnRecalc(){
+ if(!_DN_KEY) return;
+ var W=_dnWins(_DN_KEY), P=_otProfile(), leave=_dnC('dn_leave');
+ var add=0, ded=0, parts=[];
+ if(!leave){
+  if(_dnC('dn_dvol')){ var a=_dnN('dn_dvol_h'); add+=a; parts.push('주자원 '+a); }
+  if(_dnC('dn_nvol')){ var b=_dnN('dn_nvol_h'); add+=b; parts.push('야자원 '+b); }
+  if(_dnC('dn_rush_am')){ var c1=_dnN('dn_rush_am_h'); add+=c1; parts.push('아침 '+c1); }
+  if(_dnC('dn_rush_pm')){ var c2=_dnN('dn_rush_pm_h'); add+=c2; parts.push('저녁 '+c2); }
+  ['phys','shoot','train','mobil'].forEach(function(k){
+   if(_dnC('dn_'+k)){ var h=_otOutside(_dnV('dn_'+k+'_s'),_dnV('dn_'+k+'_e'),W.wins); h=Math.max(0,h); add+=h; if(h) parts.push(k+' '+(Math.round(h*10)/10)); }
+  });
+  /* 교육 — 근무시간과 겹치거나 휴·비번일이면 기본근무를 대체한다(초과 0h) */
+  var eduMsg=document.getElementById('dn_edu_msg');
+  if(_dnC('dn_edu')){
+   var base=false;
+   if(!W.wins.length) base=true;
+   else if(_otOutside(_dnV('dn_edu_s'),_dnV('dn_edu_e'),[])-_otOutside(_dnV('dn_edu_s'),_dnV('dn_edu_e'),W.wins)>0) base=true;
+   var eh=Math.max(0,_otOutside(_dnV('dn_edu_s'),_dnV('dn_edu_e'),W.wins));
+   if(!base){ add+=eh; if(eh) parts.push('교육 '+(Math.round(eh*10)/10)); }
+   if(eduMsg){ eduMsg.style.display='block';
+    eduMsg.innerHTML = base
+     ? 'ℹ️ 이 교육은 <b>기본근무를 대체</b>합니다 — 초과근무 <b>+0h</b>'+(W.hol?' (휴일이라 기본근무도 0h)':' (평일 기본 8h로 계산)')
+     : 'ℹ️ 근무시간과 겹치지 않아 <b>초과근무 +'+(Math.round(eh*10)/10)+'h</b>로 가산됩니다'; }
+  } else if(eduMsg){ eduMsg.style.display='none'; }
+ }
+ if(_dnC('dn_late')){  var _l=_dnN('dn_late_h');  ded+=_l; if(_l) parts.push('지각 −'+_l); }
+ if(_dnC('dn_early')){ var _e=_dnN('dn_early_h'); ded+=_e; if(_e) parts.push('조퇴 −'+_e); }
+ var net=add-ded;
+ var t=document.getElementById('dn_total');
+ if(t){ t.textContent=(net>0?'+':'')+(Math.round(net*10)/10)+'h';
+        t.style.color = net>0?'#dc2626':(net<0?'#1d4ed8':'var(--text-dim)'); }
+ var lw=document.getElementById('dn_leave_warn');
+ if(lw) lw.style.display=leave?'block':'none';
+ var sc=document.getElementById('dn_body_add');
+ if(sc){ sc.style.opacity=leave?'.4':'1'; sc.style.pointerEvents=leave?'none':'auto'; }
+ var sm=document.getElementById('dn_sum_note');
+ if(sm) sm.textContent = leave ? '연가일 — 다른 항목은 계산되지 않습니다' : (parts.join(' · ')||'기록 없음');
+ var e2=document.getElementById('dn_err'); if(e2){ var bad=(add>24||ded>24); e2.style.display=bad?'block':'none'; }
+}
+function dnProfileSave(){
+ var P=_otProfile();
+ ['dvol','nvol','rush_am','rush_pm'].forEach(function(k){ var v=_dnN('dn_'+k+'_h'); if(v>=0&&v<=24) P[k]=v; });
+ _otProfileSave(P);
+ try{ toast('⚙️ 관서 기본값으로 저장 — 앞으로 이 값이 처음부터 들어갑니다'); }catch(e){}
+}
 function openDayNote(key){
  var n=null; try{ n=JSON.parse(localStorage.getItem('shift_note_'+key)||'null'); }catch(e){}
- n=n||{};
+ n=n||{}; _DN_KEY=key;
+ var P=_otProfile(), W=_dnWins(key);
  var m=document.getElementById('day_note_modal');
- if(!m){ m=document.createElement('div'); m.id='day_note_modal'; m.setAttribute('style','position:fixed;inset:0;background:rgba(15,23,42,.85);z-index:9700;display:flex;align-items:center;justify-content:center;padding:16px'); document.body.appendChild(m); }
- var ck=function(id,lbl,on){ return '<label style="display:flex;align-items:center;gap:6px;padding:2px 0;font-size:13px;font-weight:700"><input type="checkbox" id="dn_'+id+'" style="width:18px;height:18px;min-height:18px" '+(on?'checked':'')+'> '+lbl+'</label>'; };
- var tm=function(id,lbl,on,s,e){ return '<div style="display:flex;align-items:center;gap:3px;padding:1px 0;border-bottom:1px solid var(--border)"><label style="display:flex;align-items:center;gap:3px;font-size:12px;font-weight:700;white-space:nowrap;flex:0 0 92px;width:92px"><input type="checkbox" id="dn_'+id+'" style="width:16px;height:16px;min-height:16px" '+(on?'checked':'')+'> '+lbl+'</label><input type="time" id="dn_'+id+'_s" value="'+(s||'')+'" style="font-size:11px;padding:0 2px;width:90px;min-height:26px;height:26px;border:1px solid var(--border);border-radius:5px"><span style="font-size:11px;color:var(--text-dim)">~</span><input type="time" id="dn_'+id+'_e" value="'+(e||'')+'" style="font-size:11px;padding:0 2px;width:90px;min-height:26px;height:26px;border:1px solid var(--border);border-radius:5px"><button type="button" onclick="setAllDay(\''+id+'\')" style="margin-left:3px;font-size:10.5px;font-weight:800;cursor:pointer;white-space:nowrap;min-height:26px;height:26px;padding:0 6px;background:var(--panel-2);color:var(--accent);border:1px solid var(--accent);border-radius:5px">전일</button></div>'; };
- var h='<div style="background:var(--panel);border:2px solid var(--accent);border-radius:16px;max-width:440px;width:100%;padding:12px 14px;max-height:92vh;overflow-y:auto">';
- h+='<div style="font-size:15px;font-weight:900;color:var(--accent);margin-bottom:2px">🗓️ '+key+' 기록</div>';
- h+='<div style="font-size:10.5px;color:var(--text-dim);margin-bottom:4px;line-height:1.4">⏱️ 근무시간 밖 +가산 · 안 −차감 (동원은 가산만, 연가일 제외)</div>';
- h+=tm('phys','💪물리력',n.phys,n.phys_s,n.phys_e);
- h+=tm('shoot','🎯사격',n.shoot,n.shoot_s,n.shoot_e);
- h+=tm('train','📚직장훈련',n.train,n.train_s,n.train_e);
- h+=tm('edu','📖교육',n.edu,n.edu_s,n.edu_e);
- h+=tm('mobil','📣동원',n.mobil,n.mobil_s,n.mobil_e);
- h+='<div style="font-size:10.5px;color:var(--text-dim);margin:4px 0 1px">✓ 체크하면 자동 가산/차감</div>';
- h+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px">';
- h+=ck('dvol','☀️ 주간자원 +9h',n.dvol)+ck('nvol','🌙 야간자원 +10h',n.nvol)+ck('rush_am','🌅 아침러시 +2h',n.rush_am)+ck('rush_pm','🌆 저녁러시 +2h',n.rush_pm)+ck('leave','🏖️ 연가 −',n.leave)+ck('late','⏰ 지각',n.late)+ck('early','🏃 조퇴',n.early);
+ if(!m){ m=document.createElement('div'); m.id='day_note_modal'; m.setAttribute('style','position:fixed;inset:0;background:rgba(15,23,42,.85);z-index:9700;display:flex;align-items:flex-start;justify-content:center;padding:10px;overflow-y:auto;-webkit-overflow-scrolling:touch'); document.body.appendChild(m); }
+ else { m.style.alignItems='flex-start'; m.style.overflowY='auto'; m.style.padding='10px'; }
+ var esc=function(x){ return (x==null?'':String(x)).replace(/</g,'&lt;').replace(/"/g,'&quot;'); };
+ /* 체크 + 시간(h) 한 줄 */
+ var hr=function(id,lbl,on,val){ return '<div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid var(--border)">'
+   +'<label style="display:flex;align-items:center;gap:6px;flex:1;font-size:13.5px;font-weight:800;min-height:34px;cursor:pointer">'
+   +'<input type="checkbox" id="dn_'+id+'" style="width:19px;height:19px;min-height:19px" '+(on?'checked':'')+' onchange="dnRecalc()"> '+lbl+'</label>'
+   +'<input type="number" id="dn_'+id+'_h" value="'+esc(val)+'" step="0.5" min="0" max="24" inputmode="decimal" oninput="dnRecalc()" '
+   +'style="width:74px;text-align:right;font-size:14px;font-weight:800;padding:4px 6px;min-height:34px;border:1px solid var(--border);border-radius:7px">'
+   +'<span style="font-size:12px;color:var(--text-dim)">h</span></div>'; };
+ /* 체크 + 시각범위 한 줄 (기존 방식 유지 — 계산이 시각에 의존한다) */
+ var tm=function(id,lbl,on,s0,e0){ return '<div style="display:flex;align-items:center;gap:3px;padding:3px 0;border-bottom:1px solid var(--border)">'
+   +'<label style="display:flex;align-items:center;gap:4px;font-size:12.5px;font-weight:800;white-space:nowrap;flex:0 0 96px;width:96px;min-height:32px;cursor:pointer">'
+   +'<input type="checkbox" id="dn_'+id+'" style="width:17px;height:17px;min-height:17px" '+(on?'checked':'')+' onchange="dnRecalc()"> '+lbl+'</label>'
+   +'<input type="time" id="dn_'+id+'_s" value="'+esc(s0)+'" onchange="dnRecalc()" style="font-size:11.5px;padding:0 2px;flex:1;min-width:74px;min-height:30px;height:30px;border:1px solid var(--border);border-radius:6px">'
+   +'<span style="font-size:11px;color:var(--text-dim)">~</span>'
+   +'<input type="time" id="dn_'+id+'_e" value="'+esc(e0)+'" onchange="dnRecalc()" style="font-size:11.5px;padding:0 2px;flex:1;min-width:74px;min-height:30px;height:30px;border:1px solid var(--border);border-radius:6px">'
+   +'<button type="button" onclick="setAllDay(\''+id+'\');dnRecalc()" style="margin-left:2px;font-size:10.5px;font-weight:800;cursor:pointer;white-space:nowrap;min-height:30px;height:30px;padding:0 6px;background:var(--panel-2);color:var(--accent);border:1px solid var(--accent);border-radius:6px">전일</button></div>'; };
+ var acc=function(t,inner,open){ return '<details class="dnacc" '+(open?'open':'')+' style="border:1px solid var(--border);border-radius:11px;margin-bottom:8px;background:var(--panel-2)">'
+   +'<summary style="cursor:pointer;list-style:none;padding:10px 12px;font-size:13.5px;font-weight:900;color:var(--accent)">'+t+'</summary>'
+   +'<div style="padding:2px 12px 12px">'+inner+'</div></details>'; };
+
+ var h='<div style="background:var(--panel);border:2px solid var(--accent);border-radius:16px;max-width:470px;width:100%;max-height:calc(100vh - 20px);display:flex;flex-direction:column;overflow:hidden;margin:auto 0">';
+ /* ① 고정 헤더 */
+ h+='<div style="padding:10px 14px 9px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--panel)">'
+   +'<div style="min-width:0"><div style="font-size:15px;font-weight:900;color:var(--accent)">🗓️ '+key+' ('+W.dow+')</div>'
+   +'<div style="font-size:12px;color:var(--text-dim)">'+(W.st||'-')+(W.hol?' · 휴일':'')+'</div></div>'
+   +'<div style="text-align:right;flex:0 0 auto"><div style="font-size:10.5px;color:var(--text-dim)">이 날 인정</div>'
+   +'<div id="dn_total" style="font-size:23px;font-weight:900;font-variant-numeric:tabular-nums">0h</div></div></div>';
+ h+='<div id="dn_sum_note" style="padding:5px 14px;font-size:11.5px;color:var(--text-dim);border-bottom:1px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>';
+ /* ② 스크롤 본문 */
+ h+='<div style="overflow-y:auto;padding:10px 12px 4px;-webkit-overflow-scrolling:touch">';
+ h+=acc('🏖️ 연가 · 지각 · 조퇴',
+      '<label style="display:flex;align-items:center;gap:6px;padding:5px 0;font-size:13.5px;font-weight:800;min-height:34px;cursor:pointer;border-bottom:1px solid var(--border)">'
+      +'<input type="checkbox" id="dn_leave" style="width:19px;height:19px;min-height:19px" '+(n.leave?'checked':'')+' onchange="dnRecalc()"> 🏖️ 연가 · 휴가</label>'
+      +'<div id="dn_leave_warn" style="display:none;font-size:11.5px;color:#b45309;background:rgba(180,83,9,.10);border-radius:7px;padding:6px 8px;margin:6px 0;line-height:1.6">'
+      +'⚠️ <b>연가일은 다른 항목이 계산되지 않습니다.</b> 자원·러쉬·훈련을 넣어도 0h입니다.</div>'
+      +hr('late','⏰ 지각',n.late,n.late_h)
+      +hr('early','🏃 조퇴',n.early,n.early_h)
+      +'<div style="font-size:11px;color:var(--text-dim);margin-top:6px;line-height:1.6">시간을 넣으면 그만큼 <b>월 합산에서 차감</b>되고 계산식에 표시됩니다. 비워두면 표시만 됩니다.</div>',
+      !!(n.leave||n.late||n.early));
+ h+='<div id="dn_body_add">';
+ h+=acc('☀️ 자원근무',
+      hr('dvol','☀️ 주간자원',n.dvol,(n.dvol_h!=null&&n.dvol_h!=='')?n.dvol_h:P.dvol)
+      +hr('nvol','🌙 야간자원',n.nvol,(n.nvol_h!=null&&n.nvol_h!=='')?n.nvol_h:P.nvol)
+      +'<div style="display:flex;gap:6px;margin-top:8px;align-items:center"><button type="button" onclick="dnProfileSave()" style="font-size:11.5px;font-weight:800;padding:6px 10px;min-height:32px;background:var(--panel);color:var(--accent);border:1px solid var(--accent);border-radius:7px;cursor:pointer">⚙️ 관서 기본값으로 저장</button>'
+      +'<span style="font-size:11px;color:var(--text-dim);line-height:1.5">관서마다 인정시간이 다릅니다. 한 번 저장하면 다음부터 그 값이 들어갑니다.</span></div>',
+      !!(n.dvol||n.nvol));
+ h+=acc('🌅 러쉬근무',
+      hr('rush_am','🌅 아침러시',n.rush_am,(n.rush_am_h!=null&&n.rush_am_h!=='')?n.rush_am_h:P.rush_am)
+      +hr('rush_pm','🌆 저녁러시',n.rush_pm,(n.rush_pm_h!=null&&n.rush_pm_h!=='')?n.rush_pm_h:P.rush_pm),
+      !!(n.rush_am||n.rush_pm));
+ h+=acc('📚 교육 · 훈련 · 동원',
+      '<div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;line-height:1.6">⏱️ <b>시각으로 입력합니다.</b> 근무시간 <b>밖</b>의 시간만 초과로 가산되기 때문입니다.</div>'
+      +tm('phys','💪물리력',n.phys,n.phys_s,n.phys_e)
+      +tm('shoot','🎯사격',n.shoot,n.shoot_s,n.shoot_e)
+      +tm('train','📚직장훈련',n.train,n.train_s,n.train_e)
+      +tm('edu','📖교육',n.edu,n.edu_s,n.edu_e)
+      +'<div id="dn_edu_msg" style="display:none;font-size:11.5px;color:#0d9488;background:rgba(13,148,136,.10);border-radius:7px;padding:6px 8px;margin:6px 0;line-height:1.6"></div>'
+      +tm('mobil','📣동원',n.mobil,n.mobil_s,n.mobil_e)
+      +'<div style="font-size:11px;color:var(--text-dim);margin-top:6px;line-height:1.6">📣 동원은 시간외 근무입니다. 법정근무시간에 <b>부족한 달</b>이면 먼저 그 부족분을 채우고, 넘어선 시간부터 수당이 붙습니다.</div>',
+      !!(n.phys||n.shoot||n.train||n.edu||n.mobil));
  h+='</div>';
- h+='<label style="font-size:12px;margin-top:4px;display:block">메모</label><textarea id="dn_memo" style="width:100%;min-height:36px;padding:6px" placeholder="특이사항·일정 메모">'+((n.memo||'').replace(/</g,'&lt;'))+'</textarea>';
- h+='<div class="btn-group" style="margin-top:8px"><button class="btn btn-primary u-flex1" onclick="saveDayNote(\''+key+'\')">저장</button><button class="btn btn-sec" onclick="deleteDayNote(\''+key+'\')">삭제</button><button class="btn btn-sec" onclick="document.getElementById(\'day_note_modal\').style.display=\'none\'">닫기</button></div></div>';
+ h+='<div style="font-size:12px;font-weight:800;margin:4px 0 3px">📝 메모</div>'
+   +'<textarea id="dn_memo" style="width:100%;min-height:56px;padding:7px;font-size:13px" placeholder="특이사항 · 일정 · 할 일">'+esc(n.memo||'')+'</textarea>';
+ h+='<div id="dn_err" style="display:none;font-size:12.5px;color:#dc2626;margin-top:6px;font-weight:800">⚠️ 24시간을 넘는 값이 있습니다 — 확인하세요</div>';
+ h+='</div>';
+ /* ③ 고정 버튼 */
+ h+='<div style="padding:9px 14px 12px;border-top:1px solid var(--border);background:var(--panel)">'
+   +'<div class="btn-group"><button class="btn btn-primary u-flex1" onclick="saveDayNote(\''+key+'\')">저장</button>'
+   +'<button class="btn btn-sec" onclick="deleteDayNote(\''+key+'\')">삭제</button>'
+   +'<button class="btn btn-sec" onclick="document.getElementById(\'day_note_modal\').style.display=\'none\'">닫기</button></div>'
+   +'<div style="font-size:10.5px;color:var(--text-dim);margin-top:6px;text-align:center">저장은 끝이 아닙니다. 다시 열어 언제든 고칠 수 있습니다.</div></div>';
+ h+='</div>';
  m.innerHTML=h; m.style.display='flex';
+ try{ dnRecalc(); }catch(e){}
 }
 function saveDayNote(key){
- var _c=function(id){var e=document.getElementById(id);return !!(e&&e.checked);};
- var _v=function(id){var e=document.getElementById(id);return e?e.value:'';};
- var o={phys:_c('dn_phys'),phys_s:_v('dn_phys_s'),phys_e:_v('dn_phys_e'),shoot:_c('dn_shoot'),shoot_s:_v('dn_shoot_s'),shoot_e:_v('dn_shoot_e'),train:_c('dn_train'),train_s:_v('dn_train_s'),train_e:_v('dn_train_e'),edu:_c('dn_edu'),edu_s:_v('dn_edu_s'),edu_e:_v('dn_edu_e'),mobil:_c('dn_mobil'),mobil_s:_v('dn_mobil_s'),mobil_e:_v('dn_mobil_e'),dvol:_c('dn_dvol'),nvol:_c('dn_nvol'),rush_am:_c('dn_rush_am'),rush_pm:_c('dn_rush_pm'),leave:_c('dn_leave'),late:_c('dn_late'),early:_c('dn_early'),memo:_v('dn_memo')};
+ var _c=_dnC, _v=_dnV;
+ var _h=function(id){ var v=parseFloat(_dnV(id)); return (isNaN(v)||v<0||v>24)?'':v; };
+ var o={phys:_c('dn_phys'),phys_s:_v('dn_phys_s'),phys_e:_v('dn_phys_e'),
+        shoot:_c('dn_shoot'),shoot_s:_v('dn_shoot_s'),shoot_e:_v('dn_shoot_e'),
+        train:_c('dn_train'),train_s:_v('dn_train_s'),train_e:_v('dn_train_e'),
+        edu:_c('dn_edu'),edu_s:_v('dn_edu_s'),edu_e:_v('dn_edu_e'),
+        mobil:_c('dn_mobil'),mobil_s:_v('dn_mobil_s'),mobil_e:_v('dn_mobil_e'),
+        dvol:_c('dn_dvol'),dvol_h:_h('dn_dvol_h'),
+        nvol:_c('dn_nvol'),nvol_h:_h('dn_nvol_h'),
+        rush_am:_c('dn_rush_am'),rush_am_h:_h('dn_rush_am_h'),
+        rush_pm:_c('dn_rush_pm'),rush_pm_h:_h('dn_rush_pm_h'),
+        leave:_c('dn_leave'),
+        late:_c('dn_late'),late_h:_h('dn_late_h'),
+        early:_c('dn_early'),early_h:_h('dn_early_h'),
+        memo:_v('dn_memo')};
  try{ localStorage.setItem('shift_note_'+key,JSON.stringify(o)); }catch(e){}
  document.getElementById('day_note_modal').style.display='none'; renderShiftCal(); calcOT(); try{toast('💾 기록 저장');}catch(e){}
 }
@@ -7708,13 +7801,28 @@ function _weekdaysInMonth(y,m){ var days=new Date(y,m+1,0).getDate(),wd=0; for(v
      시간외   = floor(max(0, 총근무 - 법정근무시간))
      기준초과 = floor(max(0, 기본근무 - 법정근무시간) + 휴일주간일수 * 8)
    ══════════════════════════════════════════════════════════════ */
+/* ══ v21.29 — 관서 프로필 & 시각 유틸 전역화 ══
+   산식은 바뀌지 않는다. _monthCalc 안에 있던 _t2m/_outside 를 밖으로 옮겨
+   날짜 모달이 같은 로직으로 실시간 합계를 보여줄 수 있게 한 것뿐이다(복제 금지).
+   자원·러쉬 시간값은 관서마다 다르다(전국 공용판) → 상수를 프로필로 뺀다.
+   기본값은 현행 상수와 동일(9/10/2/2)이므로 미설정 사용자의 결과는 불변이다. */
+function _otT2M(s){ if(!s) return null; var a=(''+s).split(':'); if(a.length<2) return null; var v=(+a[0])*60+(+a[1]); return isNaN(v)?null:v; }
+function _otOutside(s,e,wins){ var ss=_otT2M(s),ee=_otT2M(e); if(ss===null||ee===null) return 0; if(ee<=ss) ee+=1440; var dur=ee-ss; if(dur<=0) return 0; var ins=0; for(var i=0;i<wins.length;i++){ for(var k=0;k<2;k++){ var w0=wins[i][0]+k*1440,w1=wins[i][1]+k*1440; var ov=Math.min(ee,w1)-Math.max(ss,w0); if(ov>0) ins+=ov; } } var o=dur-ins; return o>0?o/60:0; }
+var OTP_DEF={dvol:9,nvol:10,rush_am:2,rush_pm:2};
+function _otProfile(){ var r={dvol:OTP_DEF.dvol,nvol:OTP_DEF.nvol,rush_am:OTP_DEF.rush_am,rush_pm:OTP_DEF.rush_pm};
+ try{ var o=JSON.parse(localStorage.getItem('cfg_ot_profile')||'null'); if(o){ ['dvol','nvol','rush_am','rush_pm'].forEach(function(k){ var v=parseFloat(o[k]); if(!isNaN(v)&&v>=0&&v<=24) r[k]=v; }); } }catch(e){}
+ return r; }
+function _otProfileSave(o){ try{ localStorage.setItem('cfg_ot_profile',JSON.stringify(o)); }catch(e){} }
+/* 날짜 레코드에 값이 있으면 그 값을 쓴다 — 값 스냅샷(프로필을 나중에 고쳐도 지난 기록은 안 바뀐다) */
+function _otH(nt,key,prof){ var v=parseFloat(nt&&nt[key+'_h']); return (!isNaN(v)&&v>=0&&v<=24)?v:prof[key]; }
+function _otDed(nt,key){ var v=parseFloat(nt&&nt[key+'_h']); return (!isNaN(v)&&v>0&&v<=24)?v:0; }
 function _monthCalc(){
  var c=_shiftCfg(); var y=_shiftView.getFullYear(),m=_shiftView.getMonth(),days=new Date(y,m+1,0).getDate();
  var cntD=0,cntN=0,cntM=0,cntA=0,lvD=0,lvN=0,lvM=0,lvA=0,holDS=0,holNS=0;
- var _t2m=function(s){ if(!s) return null; var a=(''+s).split(':'); if(a.length<2) return null; var v=(+a[0])*60+(+a[1]); return isNaN(v)?null:v; };
- var _outside=function(s,e,wins){ var ss=_t2m(s),ee=_t2m(e); if(ss===null||ee===null) return 0; if(ee<=ss) ee+=1440; var dur=ee-ss; if(dur<=0) return 0; var ins=0; for(var i=0;i<wins.length;i++){ for(var k=0;k<2;k++){ var w0=wins[i][0]+k*1440,w1=wins[i][1]+k*1440; var ov=Math.min(ee,w1)-Math.max(ss,w0); if(ov>0) ins+=ov; } } var o=dur-ins; return o>0?o/60:0; };
+ var _t2m=_otT2M, _outside=_otOutside;
  var WIN={}; _pat().forEach(function(_p){ var _w=_shiftWins(_p); if(_w.length) WIN[_p]=_w; });
- var dn=0, dnB={train:0,edu:0,phys:0,shoot:0,mobil:0,dvol:0,nvol:0,rush:0};
+ var dn=0, dnLate=0, dnEarly=0, _P=_otProfile();
+ var dnB={train:0,edu:0,phys:0,shoot:0,mobil:0,dvol:0,nvol:0,rush:0,late:0,early:0};
  var g=function(id,def){ var e=document.getElementById(id); return e?(parseFloat(e.value)||def):def; };
  var dh=g('ot_dayh',_shiftDur('주간')||11.5),nh=g('ot_nighth',_shiftDur('야간')||13.5),mh=g('ot_midh',_shiftDur('심야')||8),ah=g('ot_afth',_shiftDur('오후')||8),dayStd=g('ot_basestd',8),lv=g('ot_leave',0),early=g('ot_early',0),late=g('ot_late',0),cap=g('ot_cap',0),addw=g('ot_addwork',0);
  var baseWork=0, bwD=0, bwDH=0, bwN=0, bwM=0, bwA=0, bwE=0;
@@ -7726,10 +7834,14 @@ function _monthCalc(){
   if(nt.train){ du=_outside(nt.train_s,nt.train_e,[]); h=_outside(nt.train_s,nt.train_e,wins); h=Math.max(0,h); dn+=h; dnB.train+=h; }
   if(nt.edu&&!_eduBase){ h=_outside(nt.edu_s,nt.edu_e,wins); h=Math.max(0,h); dn+=h; dnB.edu+=h; }
   if(nt.mobil){ h=_outside(nt.mobil_s,nt.mobil_e,wins); dn+=h; dnB.mobil+=h; }
-  if(nt.dvol){ dn+=9; dnB.dvol+=9; }
-  if(nt.nvol){ dn+=10; dnB.nvol+=10; }
-  if(nt.rush_am){ dn+=2; dnB.rush+=2; }
-  if(nt.rush_pm){ dn+=2; dnB.rush+=2; }
+  if(nt.dvol){ var _hdv=_otH(nt,'dvol',_P); dn+=_hdv; dnB.dvol+=_hdv; }
+  if(nt.nvol){ var _hnv=_otH(nt,'nvol',_P); dn+=_hnv; dnB.nvol+=_hnv; }
+  if(nt.rush_am){ var _hra=_otH(nt,'rush_am',_P); dn+=_hra; dnB.rush+=_hra; }
+  if(nt.rush_pm){ var _hrp=_otH(nt,'rush_pm',_P); dn+=_hrp; dnB.rush+=_hrp; }
+  /* v21.29 — 지각·조퇴를 날짜별로 받아 월 합산한다. 산식 구조는 그대로,
+     뺄셈 항목의 값만 날짜 기록에서 온다. 시간이 안 적힌 기록은 0h(표시만) */
+  if(nt.late){ var _hlt=_otDed(nt,'late'); dnLate+=_hlt; dnB.late+=_hlt; }
+  if(nt.early){ var _hey=_otDed(nt,'early'); dnEarly+=_hey; dnB.early+=_hey; }
  }
  var npr=g('ot_nightpr',0),hpr=g('ot_holpr',0); var _pe=document.getElementById('ot_premium'); var prem=_pe?_pe.checked:false;
  var rateEl=document.getElementById('ot_rate'),rankEl=document.getElementById('ot_rank');
@@ -7740,7 +7852,7 @@ function _monthCalc(){
  var legalH=0, legalAuto=false, legalInfo=null;
  try{ legalH=_legalSaved(y,m); }catch(e){}
  if(!(legalH>0)){ legalInfo=_calcLegalH(y,m); legalH=legalInfo.h; legalAuto=true; }
- var totalW=baseWork+dn+addw-lv-early-late+premH;
+ var totalW=baseWork+dn+addw-lv-(early+dnEarly)-(late+dnLate)+premH;
  var sigot = legalH>0 ? Math.floor(Math.max(0,totalW-legalH)) : null;
  var gijun = legalH>0 ? Math.floor(Math.max(0,baseWork-legalH)+holDS*8) : null;
  /* 하위호환: calcOT·_otLedger·홈대시보드 참조용 */
@@ -7752,7 +7864,7 @@ function _monthCalc(){
  var nightHrs=(bwN+bwM)*8;
  var paidHours=Math.max(0,sigot||0); if(cap>0) paidHours=Math.min(paidHours,cap); var ot=paidHours*rate;
  var _rkEl=document.getElementById('ot_rank');var rankName=(_rkEl&&_rkEl.options[_rkEl.selectedIndex])?_rkEl.options[_rkEl.selectedIndex].text:'';var rateManual=!!(rateEl&&rateEl.value!==''&&parseFloat(rateEl.value));
- return {shortH:shortH,needH:needH,legalAuto:legalAuto,legalInfo:legalInfo,baseWork:baseWork,bwD:bwD,bwDH:bwDH,bwN:bwN,bwM:bwM,bwA:bwA,bwE:bwE,legalH:legalH,rankName:rankName,rateManual:rateManual,team:c.team,month:m+1,cntD:cntD,cntN:cntN,cntM:cntM,cntA:cntA,dh:dh,nh:nh,mh:mh,ah:ah,bs:bs,lv:lv,early:early,late:late,addw:addw,dn:dn,dnB:dnB,cap:cap,prem:prem,premH:premH,work:work,gijun:gijun,sigot:sigot,nightHrs:nightHrs,paidHours:paidHours,rate:rate,ot:ot,wd:wd,dayStd:dayStd,lvAuto:lvAuto,lvD:lvD,lvN:lvN,holDS:holDS,holNS:holNS,holDed:holDed};
+ return {shortH:shortH,needH:needH,legalAuto:legalAuto,legalInfo:legalInfo,baseWork:baseWork,bwD:bwD,bwDH:bwDH,bwN:bwN,bwM:bwM,bwA:bwA,bwE:bwE,legalH:legalH,rankName:rankName,rateManual:rateManual,team:c.team,month:m+1,cntD:cntD,cntN:cntN,cntM:cntM,cntA:cntA,dh:dh,nh:nh,mh:mh,ah:ah,bs:bs,lv:lv,early:early,late:late,addw:addw,dn:dn,dnB:dnB,dnLate:dnLate,dnEarly:dnEarly,cap:cap,prem:prem,premH:premH,work:work,gijun:gijun,sigot:sigot,nightHrs:nightHrs,paidHours:paidHours,rate:rate,ot:ot,wd:wd,dayStd:dayStd,lvAuto:lvAuto,lvD:lvD,lvN:lvN,holDS:holDS,holNS:holNS,holDed:holDed};
 }
 function _otLedger(r){
  var f1=function(x){ var v=Math.round(x*10)/10; return (v===Math.floor(v)?v.toFixed(0):v.toFixed(1)); };
@@ -7776,6 +7888,8 @@ function _otLedger(r){
  if(r.addw) h+=row('추가근무','','+'+f1(r.addw)+'h',RED);
  if(r.prem&&r.premH) h+=row('야간·휴일 가산','설정값',' +'+f1(r.premH)+'h',RED);
  if(r.lvAuto) h+=row('연가 자동차감','8h 초과분','−'+f1(r.lvAuto)+'h',BLU);
+ if(r.dnLate) h+=row('지각','날짜기록 합산','−'+f1(r.dnLate)+'h',BLU);
+ if(r.dnEarly) h+=row('조퇴','날짜기록 합산','−'+f1(r.dnEarly)+'h',BLU);
  if(r.lv) h+=row('연가 수동차감','','−'+f1(r.lv)+'h',BLU);
  if(r.early) h+=row('조퇴','','−'+f1(r.early)+'h',BLU);
  if(r.late) h+=row('지각','','−'+f1(r.late)+'h',BLU);
@@ -7926,7 +8040,7 @@ function calcOT(){
  if(b.nvol) f+='+ 야간자원 '+b.nvol.toFixed(0)+'h<br>';
  if(b.rush) f+='+ 러쉬근무 '+b.rush.toFixed(0)+'h<br>';
  if(r.addw) f+='+ 추가근무 '+clk('ot_addwork',r.addw+'h')+'<br>';
- if(r.lv) f+='- 연가 수동 '+clk('ot_leave',r.lv+'h')+'<br>'; if(r.early) f+='- 조퇴 '+clk('ot_early',r.early+'h')+'<br>'; if(r.late) f+='- 지각 '+clk('ot_late',r.late+'h')+'<br>'; if(r.lvAuto) f+='- 연가 자동차감 '+r.lvAuto.toFixed(1)+'h <span style="color:var(--text-dim);font-size:11px">(연가일은 8h만 유급 인정 — 근무시간 초과분 차감)</span><br>';
+ if(r.dnLate) f+='- 지각(날짜기록) '+r.dnLate.toFixed(1)+'h<br>'; if(r.dnEarly) f+='- 조퇴(날짜기록) '+r.dnEarly.toFixed(1)+'h<br>'; if(r.lv) f+='- 연가 수동 '+clk('ot_leave',r.lv+'h')+'<br>'; if(r.early) f+='- 조퇴 '+clk('ot_early',r.early+'h')+'<br>'; if(r.late) f+='- 지각 '+clk('ot_late',r.late+'h')+'<br>'; if(r.lvAuto) f+='- 연가 자동차감 '+r.lvAuto.toFixed(1)+'h <span style="color:var(--text-dim);font-size:11px">(연가일은 8h만 유급 인정 — 근무시간 초과분 차감)</span><br>';
  if(r.prem&&r.premH) f+='+ 야간·휴일 가산 '+r.premH+'h<br>';
  f+='= 총 근무 <b>'+r.work.toFixed(1).replace(".0","")+'h</b><br>';
  f+='- 법정근무시간 <b>'+r.bs.toFixed(1).replace(".0","")+'h</b> <span style="font-size:11px;color:var(--text-dim)">'
@@ -9556,7 +9670,7 @@ details.card.cl-x{padding-bottom:10px}
    규격이 같아지므로 서브탭 줄바꿈이 줄어든다. */
 (function(){
  var P={"file": "<path d=\"M13.6 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.4z\"/><path d=\"M13.6 3v5.4H19\"/><path d=\"M8.6 12.6h6.8M8.6 16h4.6\"/>", "mic": "<rect x=\"9.4\" y=\"2.6\" width=\"5.2\" height=\"10.4\" rx=\"2.6\"/><path d=\"M6 11.4a6 6 0 0 0 12 0M12 17.4v4M9 21.4h6\"/>", "cam": "<rect x=\"2.6\" y=\"6.6\" width=\"12.8\" height=\"11\" rx=\"2.2\"/><path d=\"m15.4 11 5.4-3.2v8.4L15.4 13z\"/>", "wave": "<path d=\"M12 12.6v8.8\"/><path d=\"M8.4 9.2a5 5 0 0 1 7.2 0M5.4 6a9.2 9.2 0 0 1 13.2 0\"/><circle cx=\"12\" cy=\"12.4\" r=\"1.5\"/>", "cal": "<rect x=\"3.4\" y=\"4.6\" width=\"17.2\" height=\"16\" rx=\"2.4\"/><path d=\"M3.4 9.6h17.2M8.4 2.6v4M15.6 2.6v4\"/><path d=\"M7.6 13.4h2.2M14.2 13.4h2.2\"/>", "sun": "<circle cx=\"12\" cy=\"13.4\" r=\"4\"/><path d=\"M12 5.4v2M5.4 13.4h2M16.6 13.4h2M7.3 8.7l1.4 1.4M15.3 10.1l1.4-1.4M3.4 19h17.2\"/>", "light": "<rect x=\"8\" y=\"2.6\" width=\"8\" height=\"15.4\" rx=\"4\"/><circle cx=\"12\" cy=\"6.6\" r=\"1.1\"/><circle cx=\"12\" cy=\"10.3\" r=\"1.1\"/><circle cx=\"12\" cy=\"14\" r=\"1.1\"/><path d=\"M12 18v3.4M8.4 21.4h7.2\"/>", "car": "<path d=\"m3 14 1.5-4.4A2.9 2.9 0 0 1 7.2 7.6h9.6a2.9 2.9 0 0 1 2.7 2L21 14\"/><rect x=\"2.6\" y=\"14\" width=\"18.8\" height=\"5\" rx=\"1.7\"/><circle cx=\"6.4\" cy=\"16.5\" r=\".9\"/><circle cx=\"17.6\" cy=\"16.5\" r=\".9\"/>", "cloud": "<path d=\"M6.8 15.4a3.6 3.6 0 0 1 .5-7.2 5.2 5.2 0 0 1 10 1.2 3.2 3.2 0 0 1-.4 6z\"/><path d=\"M8.6 18.6l-.8 2.2M12 18.6l-.8 2.2M15.4 18.6l-.8 2.2\"/>", "shield": "<path d=\"M12 2.8 4.6 5.6v6c0 4.4 3.1 8 7.4 9.6 4.3-1.6 7.4-5.2 7.4-9.6v-6z\"/><path d=\"m8.8 12 2.3 2.4 4-4.6\"/>", "crash": "<path d=\"m11 2.6 1.6 6.2 3.4-2-1 5.4 5.4-.6-4.2 3.6 4.6 3.4-6-.4 1 5.2-4.2-4-3.2 4.4-.4-5.6-5.4 1.4 3-4.4-4.6-2.6 5.8-1.4z\"/>", "brain": "<path d=\"M9.4 3.4A4.4 4.4 0 0 0 5 7.8c0 .8.2 1.5.6 2.2a4 4 0 0 0 .4 5.2 4 4 0 0 0 3.4 5.4z\"/><path d=\"M14.6 3.4A4.4 4.4 0 0 1 19 7.8c0 .8-.2 1.5-.6 2.2a4 4 0 0 1-.4 5.2 4 4 0 0 1-3.4 5.4z\"/><path d=\"M12 3.4v17.2\"/>", "chat": "<path d=\"M20.4 12.4a7.4 7.4 0 0 1-8 7.4c-.9 0-1.7-.1-2.5-.4L4.2 21l1.5-5.2a7.2 7.2 0 0 1-.9-3.4A7.4 7.4 0 0 1 12.2 5h.4a7.4 7.4 0 0 1 7.8 7.2z\"/><path d=\"M9.4 11h5.2M9.4 14h3.4\"/>", "people": "<circle cx=\"8.6\" cy=\"8\" r=\"3\"/><circle cx=\"16.4\" cy=\"9.4\" r=\"2.4\"/><path d=\"M2.8 20c0-3.2 2.6-5.4 5.8-5.4s5.8 2.2 5.8 5.4\"/><path d=\"M15.4 14.8c2.8.2 5 2.2 5 5.2\"/>", "leaf": "<path d=\"M12 21.4v-7.2\"/><path d=\"M12 14.2C12 9.6 15.4 5.4 20.4 4.6c.6 4.8-2.4 9.6-8.4 9.6z\"/><path d=\"M12 17.4C12 14 9.4 10.8 5.6 10.2c-.4 3.6 1.8 7.2 6.4 7.2z\"/>", "scale": "<path d=\"M12 3.4v17.2M7 20.6h10\"/><path d=\"M12 6.4 4.6 8.2M12 6.4l7.4 1.8\"/><path d=\"M4.6 8.2 2.4 13.4a3 3 0 0 0 4.4 0zM19.4 8.2l-2.2 5.2a3 3 0 0 0 4.4 0z\"/>", "coin": "<circle cx=\"12\" cy=\"12\" r=\"8.6\"/><path d=\"M12 7.2v9.6M9.6 9.6h4a1.8 1.8 0 0 1 0 3.6h-4h4.4a1.8 1.8 0 0 1 0 3.6h-4.4\"/>", "mail": "<rect x=\"2.6\" y=\"5.4\" width=\"18.8\" height=\"13.2\" rx=\"2.2\"/><path d=\"m3.4 6.6 8.6 6.2 8.6-6.2\"/>", "route": "<circle cx=\"6.4\" cy=\"5.6\" r=\"2.6\"/><circle cx=\"17.6\" cy=\"18.4\" r=\"2.6\"/><path d=\"M6.4 8.2v4.2a3.4 3.4 0 0 0 3.4 3.4h4.4\"/><path d=\"M17.6 15.8v-3.4a3.4 3.4 0 0 0-3.4-3.4H9.6\"/>", "phone": "<path d=\"M6.2 3.4h3l1.6 4-2 1.4a10.4 10.4 0 0 0 6.4 6.4l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16.6 16.6 0 0 1 4.2 5.6a2 2 0 0 1 2-2.2z\"/>", "road": "<path d=\"M8.4 3 5.4 21M15.6 3l3 18\"/><path d=\"M12 3.4v3M12 10.4v3M12 17.4v3\"/>", "cross": "<path d=\"M12 3.6h0a8.4 8.4 0 0 1 8.4 8.4v8.4H3.6V12A8.4 8.4 0 0 1 12 3.6z\"/><path d=\"M12 8.6v7M8.4 12h7.2\"/>", "truck": "<rect x=\"1.8\" y=\"7.4\" width=\"11.4\" height=\"8.6\" rx=\"1.4\"/><path d=\"M13.2 10.6h3.6l3.4 3.4v2h-7z\"/><circle cx=\"6.2\" cy=\"18\" r=\"1.9\"/><circle cx=\"17\" cy=\"18\" r=\"1.9\"/>", "bank": "<path d=\"M3.4 9.6 12 4l8.6 5.6\"/><path d=\"M5.4 9.6v9M9.4 9.6v9M14.6 9.6v9M18.6 9.6v9\"/><path d=\"M3 20.6h18\"/>", "heart": "<path d=\"M12 20.4S3.6 15.4 3.6 9.8A4.6 4.6 0 0 1 12 7.2a4.6 4.6 0 0 1 8.4 2.6c0 5.6-8.4 10.6-8.4 10.6z\"/>", "sign":"<path d=\"M12 13.6v7.8M8.6 21.4h6.8\"/><rect x=\"3.6\" y=\"3.4\" width=\"16.8\" height=\"10.2\" rx=\"2.2\"/><path d=\"M7.6 8.4h8.8M12 5.6v5.6\"/>", "gear": "<circle cx=\"12\" cy=\"12\" r=\"3.2\"/><path d=\"M19.6 14.6a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1v.3a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-2.7-1.2l-.1.1A2 2 0 1 1 4.7 16l.1-.1a1.6 1.6 0 0 0-1.1-2.7H3.4a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 4.8 6.5L4.7 6.4A2 2 0 1 1 7.5 3.6l.1.1a1.6 1.6 0 0 0 1.8.3H9.5a1.6 1.6 0 0 0 1-1.5V2.2a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7h.3a2 2 0 1 1 0 4h-.3a1.6 1.6 0 0 0-1.4 1z\"/>"};
- var M={"rep1": "file", "rep2": "file", "rep3": "file", "rep_manual": "wave", "voice": "mic", "video": "cam", "doc_manual": "file", "checklist": "file", "drunk": "car", "unlicense": "car", "banned": "car", "noinsure": "shield", "police_gen": "scale", "civil_answer": "mail", "accident": "crash", "shift_cal": "cal", "sop_hub": "light", "future_police": "brain", "sop_daily": "sun", "sop_seongmo": "light", "enforce": "car", "sop_enforce": "car", "sop_season": "cloud", "traffic_fac": "sign", "sop_taas": "road", "sop_faq": "chat", "sop_safety": "shield", "acc_hub": "crash", "sop_dogma": "shield", "sop_matrix": "crash", "acc_types": "crash", "co_psych": "brain", "co_excuse": "chat", "co_staff": "people", "co_stress": "leaf", "laws": "scale", "precedent": "scale", "co_legal": "scale", "civil_remedy": "coin", "edu": "file", "feedback": "mail", "expr_gyeongbu": "route", "expr_olympic": "route", "expr_dogma": "route", "sop_jurisdiction": "route", "expr_contact": "phone", "orgs_road": "road", "orgs_fire": "cross", "orgs_tow": "truck", "orgs_gov": "bank", "orgs_media": "wave", "life_help": "heart", "settings": "gear"};
+ var M={"rep1": "file", "rep2": "file", "rep3": "file", "rep_manual": "wave", "voice": "mic", "video": "cam", "doc_manual": "file", "checklist": "file", "drunk": "car", "unlicense": "car", "banned": "car", "noinsure": "shield", "police_gen": "scale", "civil_answer": "mail", "accident": "crash", "shift_cal": "cal", "future_police": "brain", "sop_daily": "sun", "sop_seongmo": "light", "enforce": "car", "sop_enforce": "car", "sop_season": "cloud", "traffic_fac": "sign", "sop_taas": "road", "sop_faq": "chat", "sop_safety": "shield", "acc_hub": "crash", "sop_dogma": "shield", "sop_matrix": "crash", "acc_types": "crash", "co_psych": "brain", "co_excuse": "chat", "co_staff": "people", "co_stress": "leaf", "laws": "scale", "precedent": "scale", "co_legal": "scale", "civil_remedy": "coin", "edu": "file", "feedback": "mail", "expr_gyeongbu": "route", "expr_olympic": "route", "expr_dogma": "route", "sop_jurisdiction": "route", "expr_contact": "phone", "orgs_road": "road", "orgs_fire": "cross", "orgs_tow": "truck", "orgs_gov": "bank", "orgs_media": "wave", "life_help": "heart", "settings": "gear"};
  var EMO=/^[\s\u2190-\u21FF\u2460-\u24FF\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u{1F000}-\u{1FAFF}]+/u;
  function ico(k){ return '<svg class="sti" viewBox="0 0 24 24" aria-hidden="true">'+(P[k]||P.file)+'</svg>'; }
  function run(){
@@ -14989,51 +15103,63 @@ body.tb-immersive .tb-fav-float{opacity:0!important;transform:translateY(22px);p
 })();
 </script>
 
-<style id="sophub_back_css">
-.sophub-back{display:flex;align-items:center;gap:6px;width:100%;justify-content:flex-start;background:var(--panel-2);border:1.5px solid var(--border);color:var(--text-dim);border-radius:12px;padding:9px 12px;font-size:13px;font-weight:800;cursor:pointer;margin:0 0 10px;-webkit-tap-highlight-color:rgba(0,0,0,.06)}
-.sophub-back:active{opacity:.7}
+<style id="sopchip_css">
+/* v21.31 — 형제 화면 칩 바. 서브탭 6개 아래, 각 화면 맨 위 한 줄. */
+.sopchip-bar{display:flex;gap:6px;overflow-x:auto;padding:1px 0 9px;margin:0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.sopchip-bar::-webkit-scrollbar{display:none}
+.sopchip{flex:0 0 auto;min-height:38px;padding:0 13px;display:inline-flex;align-items:center;gap:4px;
+ background:var(--panel-2);border:1.5px solid var(--border);color:var(--text-dim);border-radius:19px;
+ font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:inherit;
+ -webkit-tap-highlight-color:rgba(0,0,0,.06)}
+.sopchip:active{opacity:.72}
+.sopchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
 </style>
 <script>
-/* ═══════ T-Book v21.28 — 교통근무 허브 되돌아가기 바 ═══════
-   서브탭 9개를 허브 1개로 접었으므로, 자식 화면 맨 위에
-   「◀ 교통근무」 한 줄을 넣어 돌아갈 길을 남긴다.
-   기존 본문·id·이벤트는 건드리지 않는다(맨 앞에 형제 노드 1개 삽입). */
+/* ═══════ T-Book v21.31 — 교통근무 서브버튼(형제 칩) ═══════
+   서브탭 6개는 「부모」다. 각 부모에 딸린 화면은 그 화면 맨 위 칩 한 줄로 간다.
+   기존 페이지의 id·본문·이벤트는 건드리지 않는다 — 맨 앞에 형제 노드 1개만 넣는다. */
 (function(){
- var KID={sop_daily:'sop_hub',sop_seongmo:'sop_hub',enforce:'sop_hub',sop_enforce:'sop_hub',
-          sop_season:'sop_hub',traffic_fac:'sop_hub',sop_taas:'sop_hub',sop_faq:'sop_hub',
-          sop_safety:'sop_hub',
-          aiguide:'future_police',openapi:'future_police',claudeuse:'future_police'};
- var LBL={sop_hub:'◀ 교통근무',future_police:'◀ 미래치안'};
- function add(pid){
+ var SETS=[
+  ['sop_daily',  [['sop_daily','🌅 근무시작'],['sop_season','🌦️ 계절대비']]],
+  ['enforce',    [['enforce','🚓 단속처리'],['sop_enforce','📒 단속참조']]],
+  ['future_police',[['future_police','🔮 미래치안'],['sop_taas','📊 TAAS'],
+                    ['aiguide','🤖 AI 사용법'],['openapi','🔌 오픈API'],['claudeuse','🧠 클로드']]],
+  ['sop_safety', [['sop_safety','🦺 안전시뮬'],['sop_faq','❓ 신임 FAQ']]]
+ ];
+ var PARENT={}, CHIPS={};
+ SETS.forEach(function(st){ st[1].forEach(function(c){ PARENT[c[0]]=st[0]; CHIPS[c[0]]=st[1]; }); });
+ PARENT['sop_seongmo']='sop_seongmo'; PARENT['traffic_fac']='traffic_fac';
+ function build(pid){
   try{
-   var pg=document.getElementById('page-'+pid); if(!pg||pg.dataset.sophubBack) return;
-   pg.dataset.sophubBack='1';
-   var b=document.createElement('button');
-   b.className='sophub-back'; b.type='button';
-   b.textContent=LBL[KID[pid]]||'◀ 뒤로';
-   b.setAttribute('aria-label','교통근무 메뉴로 돌아가기');
-   b.addEventListener('click',function(){ try{ showSubPage(KID[pid]); }catch(e){} });
-   pg.insertBefore(b,pg.firstChild);
+   var pg=document.getElementById('page-'+pid); if(!pg||pg.dataset.sopchip) return;
+   pg.dataset.sopchip='1';
+   var list=CHIPS[pid]; if(!list) return;
+   var bar=document.createElement('div'); bar.className='sopchip-bar';
+   list.forEach(function(c){
+    var b=document.createElement('button'); b.type='button';
+    b.className='sopchip'+(c[0]===pid?' on':''); b.textContent=c[1];
+    b.setAttribute('data-go',c[0]);
+    b.addEventListener('click',function(){ if(c[0]!==pid){ try{ showSubPage(c[0]); }catch(e){} } });
+    bar.appendChild(b);
+   });
+   pg.insertBefore(bar,pg.firstChild);
   }catch(e){}
  }
- /* 미래치안 첫 진입 시 — 도입부와 「⑥ 평소 근무와 어떻게 잇나」는 펼친 채로 둔다.
-    (긴 카드 자동 접기 v19.3이 전부 접어버리면 읽히지 않는다) */
- var fpDone=0;
- function fpOpen(){
-  try{
-   if(fpDone) return; var pg=document.getElementById('page-future_police'); if(!pg) return;
-   var ds=pg.querySelectorAll(':scope>details'); if(!ds.length) return;
-   fpDone=1;
-   ds[0].open=true;
-   for(var i=0;i<ds.length;i++){ var t=ds[i].querySelector('.card-title'); if(t&&t.textContent.indexOf('\u2465')>=0) ds[i].open=true; }
-  }catch(e){}
+ function run(){ for(var k in PARENT) build(k); }
+ /* 부모 서브탭을 계속 켜 둔다 — 자식 화면에 있어도 어디에 있는지 보인다 */
+ var _s=window.showSubPage;
+ if(typeof _s==='function'){
+  window.showSubPage=function(id){
+   var r=_s.apply(this,arguments);
+   try{
+    var p=PARENT[id];
+    if(p) document.querySelectorAll('#sub_sop .stab').forEach(function(t){
+     t.classList.toggle('active', t.getAttribute('data-sub')===p); });
+   }catch(e){}
+   return r;
+  };
  }
- var _sp=window.showSubPage;
- if(typeof _sp==='function'){ window.showSubPage=function(id){ var r=_sp.apply(this,arguments); if(id==='future_police') setTimeout(fpOpen,60); return r; }; }
- setTimeout(fpOpen,2600);
- function run(){ for(var k in KID) add(k); }
- if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run);
- else run();
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
  setTimeout(run,1500);
 })();
 </script>
