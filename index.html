@@ -15203,15 +15203,17 @@ body.tb-immersive .tb-fav-float{opacity:0!important;transform:translateY(22px);p
 .sopchip.l2{min-width:78px;min-height:32px;padding:0 10px;font-size:12.5px;font-weight:700;border-radius:16px;
  background:transparent;border-style:dashed}
 .sopchip.l2.on{background:var(--accent-gold);border-color:var(--accent-gold);border-style:solid;color:#fff}
+/* v21.35 — 교통근무 1개짜리 서브탭 행 숨김(DOM은 유지: grpOf·active 토글이 참조) */
+#sub_sop{display:none!important}
 </style>
 <script>
 /* ═══════ T-Book v21.32 — 교통근무 서브버튼(2단 칩) ═══════
    서브탭은 「교통근무」 하나. 그 아래 두 줄로 길을 편다.
-   1단(6개) — 근무 · 교차로 · 단속 · 시설 · AI미래 · 안전시뮬 : 모든 화면에서 같은 자리
+   1단(6개) — 교통근무 · 교차로 · 단속 · 시설 · AI미래 · 안전시뮬 : 모든 화면에서 같은 자리
    2단      — 그 1단에 딸린 화면들. 없으면 줄 자체가 안 생긴다.
    기존 페이지의 id·본문·이벤트는 건드리지 않는다(맨 앞에 형제 노드 1개만 삽입). */
 (function(){
- var L1=[['sop_daily','🌅 근무'],['sop_seongmo','🚦 교차로'],['enforce','🚓 단속'],
+ var L1=[['sop_daily','🌅 교통근무'],['sop_seongmo','🚦 교차로'],['enforce','🚓 단속'],
          ['traffic_fac','🚥 시설'],['future_police','🔮 AI미래'],['sop_safety','🦺 안전시뮬']];
  var L2={
   sop_daily:     [['sop_daily','근무시작'],['sop_season','계절대비']],
