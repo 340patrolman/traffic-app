@@ -11287,10 +11287,14 @@ body.nofav .tb-fav-bar{display:none}
    if(!it) return;
    var url=URL.createObjectURL(it.blob);
    var w=document.createElement('div'); w.id='shelf_modal';
-   w.setAttribute('style','position:fixed;inset:0;z-index:9760;background:rgba(0,0,0,.92);display:flex;'+
-    'flex-direction:column;align-items:center;justify-content:center;padding:10px');
-   w.innerHTML='<div style="width:100%;max-width:520px;display:flex;align-items:center;gap:8px;'+
-     'color:#fff;font-size:13.5px;font-weight:800;padding:4px 2px 8px">'+
+   w.setAttribute('style','position:fixed;inset:0;z-index:9760;background:rgba(0,0,0,.92);'+
+    'display:block;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;'+
+    'overscroll-behavior:contain;padding:10px');
+   w.innerHTML='<div style="min-height:calc(100% - 0px);display:flex;flex-direction:column;'+
+     'align-items:center;justify-content:center">'+
+     '<div style="width:100%;max-width:560px;display:flex;align-items:center;gap:8px;'+
+     'position:sticky;top:-10px;background:rgba(0,0,0,.92);'+
+     'color:#fff;font-size:13.5px;font-weight:800;padding:8px 2px;z-index:2">'+
      '<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+
      (it.name||'')+'</span>'+
      '<button type="button" onclick="tbShelfMemo(\''+id+'\')" style="background:none;border:1px solid #b8924b;'+
@@ -11301,12 +11305,14 @@ body.nofav .tb-fav-bar{display:none}
      'color:#ef4444;border-radius:9px;padding:6px 11px;font-size:12px;font-weight:900;cursor:pointer">삭제</button>'+
      '<button type="button" onclick="tbShelfClose()" style="background:none;border:none;color:#fff;'+
      'font-size:21px;font-weight:900;cursor:pointer;padding:2px 6px">✕</button></div>'+
-     '<img src="'+url+'" style="max-width:100%;max-height:80vh;object-fit:contain;border-radius:10px;background:#fff">'+
+     '<img src="'+url+'" style="display:block;width:auto;height:auto;max-width:100%;'+
+     'max-height:72vh;max-height:calc(100dvh - 190px);object-fit:contain;'+
+     'border-radius:10px;background:#fff;margin:0 auto">'+
      (it.note?('<div style="color:#e2e8f0;font-size:13px;font-weight:700;line-height:1.65;'+
-       'max-width:520px;width:100%;background:rgba(255,255,255,.08);border-radius:10px;'+
+       'max-width:560px;width:100%;background:rgba(255,255,255,.08);border-radius:10px;'+
        'padding:9px 11px;margin-top:9px;white-space:pre-wrap">📝 '+esc2(it.note)+'</div>'):'')+
      '<div style="color:#cbd5e1;font-size:11.5px;font-weight:700;margin-top:8px">'+
-     it.w+'×'+it.h+' · '+Math.round(it.size/1024)+'KB · '+it.at+'</div>';
+     it.w+'×'+it.h+' · '+Math.round(it.size/1024)+'KB · '+it.at+'</div></div>';
    w.__url=url;
    w.addEventListener('click',function(e){ if(e.target===w) tbShelfClose(); });
    document.body.appendChild(w);
@@ -15367,5 +15373,351 @@ body[data-home="dash"] #fabAll,body[data-home="dash"] #more_below_hint{
  }catch(e){}
 })();
 </script>
+
+<style id="dk_css">
+/* ═══ v21.36 — 📂 서류함 : 항목마다 ＋ · 미리보기 · 처리횟수 · 바로가기 ═══ */
+.dk-bar{display:inline-flex;align-items:center;gap:5px;margin-left:7px;vertical-align:middle}
+.dk-b{background:var(--panel-2);color:var(--text-dim);border:1px solid var(--border);border-radius:999px;
+ padding:3px 9px;font-size:10.5px;font-weight:800;cursor:pointer;white-space:nowrap;min-height:26px;
+ font-family:inherit;line-height:1}
+.dk-b.dk-add{color:var(--accent);border-color:var(--accent);font-size:13px;padding:3px 10px}
+.dk-b.dk-cnt.on{color:#fff;background:var(--accent-gold,#b8924b);border-color:var(--accent-gold,#b8924b)}
+#dk_modal{position:fixed;inset:0;z-index:9758;background:rgba(0,0,0,.66);display:flex;
+ align-items:flex-end;justify-content:center}
+#dk_modal .dk-box{background:var(--panel);color:var(--text);width:100%;max-width:480px;
+ border-radius:18px 18px 0 0;padding:14px 13px calc(16px + env(safe-area-inset-bottom));
+ max-height:86vh;overflow-y:auto;box-shadow:0 -10px 34px rgba(0,0,0,.5)}
+#dk_modal .dk-hd{font-size:15.5px;font-weight:900;color:var(--accent);display:flex;align-items:flex-start;
+ gap:8px;line-height:1.35;word-break:keep-all}
+#dk_modal .dk-x{margin-left:auto;background:none;border:none;color:var(--text-dim);font-size:19px;
+ font-weight:900;cursor:pointer;padding:2px 6px;flex:0 0 auto}
+#dk_modal .dk-sub{font-size:11.5px;color:var(--text-dim);font-weight:700;margin:4px 0 11px;line-height:1.6}
+#dk_modal .dk-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+ background:var(--panel-2);color:var(--text);border:1px solid var(--border);border-radius:12px;
+ padding:11px;margin-bottom:7px;cursor:pointer;min-height:52px;font-family:inherit}
+#dk_modal .dk-row .dk-ic{flex:0 0 auto;font-size:17px}
+#dk_modal .dk-row .dk-tx{flex:1 1 auto;min-width:0}
+#dk_modal .dk-row b{display:block;font-size:13.5px;font-weight:800;line-height:1.4;word-break:keep-all}
+#dk_modal .dk-row small{display:block;font-size:11px;color:var(--text-dim);font-weight:700;margin-top:2px;
+ line-height:1.5;word-break:keep-all}
+#dk_modal .dk-row .dk-ar{flex:0 0 auto;color:var(--text-dim);font-size:17px;font-weight:900}
+#dk_modal .dk-ft{font-size:11px;color:var(--text-dim);font-weight:700;text-align:center;margin-top:9px;line-height:1.6}
+.dk-recent .dk-rb{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:var(--panel-2);
+ color:var(--text);border:1px solid var(--border);border-radius:11px;padding:9px 11px;margin-bottom:6px;
+ cursor:pointer;font-family:inherit;min-height:46px}
+.dk-recent .dk-n{flex:0 0 auto;background:var(--accent);color:#fff;border-radius:999px;padding:3px 9px;
+ font-size:11px;font-weight:900}
+.dk-recent .dk-tt{flex:1 1 auto;min-width:0;font-size:13px;font-weight:800;line-height:1.4;word-break:keep-all}
+.dk-recent .dk-dt{flex:0 0 auto;font-size:10.5px;color:var(--text-dim);font-weight:700}
+</style>
+<script>
+/* ═══════ T-Book v21.36 — 📂 서류함 ═══════
+   · 서류 항목 제목 옆에 ＋(서식·메모 붙이기) 와 ✔(처리 횟수) 를 붙인다.
+   · 붙이는 저장소는 v20.1 의 「붙일 곳(lk)」 구조를 그대로 쓴다 — 새 저장소를 만들지 않는다.
+     그래서 기존 「📄 내 자료 N」 칩·미리보기가 그대로 동작한다.
+   · 처리 횟수만 새 키(tbook_doccnt_v1)에 쌓는다. 기기 안에만 저장. 외부 전송 0.
+   · 메모·서식 저장 직전 주민번호·차량번호·전화번호를 자동으로 가린다. */
+(function(){
+ var CK='tbook_doccnt_v1';
+ /* 서류를 다루는 화면들 — 여기 있는 <details> 항목 전부에 붙는다 */
+ var PIDS=['doc_manual','checklist','doc_needed','police_gen','doc_quick',
+           'enforce','sop_enforce','acc_types','acc_hub','sop_matrix',
+           'loc_all','loc_crime','loc_work','loc_case'];
+
+ function rd(){ try{ return JSON.parse(localStorage.getItem(CK)||'{}'); }catch(e){ return {}; } }
+ function wr(o){ try{ localStorage.setItem(CK,JSON.stringify(o)); return true; }
+                 catch(e){ try{ toast('저장 공간이 부족합니다'); }catch(_){} return false; } }
+ function esc(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
+                    .replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+ function today(){ var d=new Date(), p=function(n){return (n<10?'0':'')+n;};
+   return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+
+ /* ── 1) 개인정보 자동 가리기 ───────────────────────────── */
+ var M_RRN=/(\d{6})\s*[-–—]?\s*([1-8])\d{6}/g;                       /* 주민등록번호 */
+ var M_TEL=/(01[016789])\s*[-–—]?\s*(\d{3,4})\s*[-–—]?\s*(\d{4})/g; /* 휴대전화 */
+ var M_CAR=/(\d{2,3})\s*([가-힣])\s*(\d{4})/g;                          /* 차량번호 */
+ function mask(v){
+  if(!v) return v;
+  return String(v)
+   .replace(M_RRN, function(_,a,b){ return a+'-'+b+'●●●●●●'; })
+   .replace(M_TEL, function(_,a,b,c){ return a+'-●●●●-'+c; })
+   .replace(M_CAR, function(_,a,b,c){ return a+b+'●●●●'; });
+ }
+ window.tbMask=mask;
+ function maskFields(ids){
+  var hit=0;
+  ids.forEach(function(id){
+   var el=document.getElementById(id); if(!el) return;
+   var v=mask(el.value); if(v!==el.value){ el.value=v; hit++; }
+  });
+  if(hit){ try{ toast('🔒 개인정보로 보이는 부분을 가렸습니다'); }catch(e){} }
+  return hit;
+ }
+ var _ms=window.tbMemoSave;
+ if(typeof _ms==='function'){
+  window.tbMemoSave=function(){ maskFields(['memo_t','memo_b','memo_kw']); return _ms.apply(this,arguments); };
+ }
+ var _sc=window.tbShelfCommit;
+ if(typeof _sc==='function'){
+  window.tbShelfCommit=function(){
+   if(maskFields(['up_name','up_kw','up_note'])){ try{ tbUpRefresh(); }catch(e){} }
+   return _sc.apply(this,arguments);
+  };
+ }
+
+ /* ── 2) 서류 항목 수집 ─────────────────────────────────── */
+ var ITEMS=[], BYT={};
+ function titleOf(sm){
+  var c=sm.cloneNode(true);
+  var junk=c.querySelectorAll('.lk-chip,.dk-bar'); 
+  for(var i=0;i<junk.length;i++) junk[i].parentNode.removeChild(junk[i]);
+  return (c.textContent||'').replace(/\s+/g,' ').replace(/^[□■▶▸●○\s]+/,'').trim();
+ }
+ function collect(){
+  ITEMS=[]; BYT={};
+  PIDS.forEach(function(pid){
+   var pg=document.getElementById('page-'+pid); if(!pg) return;
+   var sms=pg.querySelectorAll('details > summary');
+   for(var i=0;i<sms.length;i++){
+    var sm=sms[i], d=sm.parentNode;
+    var t=titleOf(sm);
+    if(!t || t.length<2 || t.length>70) continue;
+    if(!d.id) d.id='dk-'+pid+'-'+i;
+    /* 같은 제목이 여러 화면에 있으면(분류 화면 등) 단추는 전부 붙이고,
+       바로가기 목표는 처음 만난 자리 하나만 기억한다. */
+    var o={t:t,p:pid,a:d.id}; ITEMS.push(o); if(!BYT[t]) BYT[t]=o;
+   }
+  });
+  return ITEMS;
+ }
+ window.tbDocItems=function(){ return ITEMS.slice(); };
+
+ /* ── 3) 「붙일 곳」 목록에 서류 항목 전체를 얹는다 ────────── */
+ var _opt=window.tbLinkOptions;
+ window.tbLinkOptions=function(sel){
+  var base=(typeof _opt==='function')?_opt(sel):'<option value="">(붙이지 않음)</option>';
+  if(!ITEMS.length) collect();
+  var have={}, mm=base.match(/value="([^"]*)"/g)||[];
+  mm.forEach(function(x){ have[x.slice(7,-1)]=1; });
+  var seen={};
+  var extra=ITEMS.filter(function(it){
+   if(have[esc(it.t)]||seen[it.t]) return false; seen[it.t]=1; return true;
+  }).map(function(it){
+   return '<option value="'+esc(it.t)+'"'+(it.t===(sel||'')?' selected':'')+'>'+esc(it.t)+'</option>';
+  }).join('');
+  return base+(extra?('<optgroup label="📕 서류 항목 전체">'+extra+'</optgroup>'):'');
+ };
+
+ /* ── 4) 붙어 있는 자료 세기 ────────────────────────────── */
+ function attOf(t){
+  var out=[];
+  try{ (window.tbShelfMeta?tbShelfMeta():[]).forEach(function(x){
+        if(x.lk===t) out.push({k:'서식',id:x.id,t:x.name||'서식'}); }); }catch(e){}
+  try{ JSON.parse(localStorage.getItem('tbook_memo_v1')||'[]').forEach(function(m){
+        if(m.lk===t) out.push({k:'메모',id:m.id,t:m.t||'메모'}); }); }catch(e){}
+  return out;
+ }
+
+ /* ── 5) 제목 옆 단추 그리기 ────────────────────────────── */
+ function paint(){
+  collect();
+  var C=rd();
+  ITEMS.forEach(function(it){
+   var d=document.getElementById(it.a); if(!d) return;
+   var sm=null, ch=d.children;
+   for(var i=0;i<ch.length;i++) if(ch[i].tagName==='SUMMARY'){ sm=ch[i]; break; }
+   if(!sm) return;
+   var old=sm.querySelector('.dk-bar'); if(old) old.parentNode.removeChild(old);
+   var n=(C[it.t]&&C[it.t].n)||0;
+   var bar=document.createElement('span'); bar.className='dk-bar';
+   var add=document.createElement('button');
+   add.type='button'; add.className='dk-b dk-add'; add.textContent='＋';
+   add.title='서식·메모 붙이기';
+   var cnt=document.createElement('button');
+   cnt.type='button'; cnt.className='dk-b dk-cnt'+(n?' on':''); cnt.textContent='✔ '+n;
+   cnt.title='처리 횟수';
+   function stop(e){ e.preventDefault(); e.stopPropagation(); }
+   add.addEventListener('click',function(e){ stop(e); tbDocSheet(it.t); });
+   cnt.addEventListener('click',function(e){ stop(e); tbDocSheet(it.t); });
+   bar.appendChild(add); bar.appendChild(cnt);
+   sm.appendChild(bar);
+  });
+  try{ if(window.tbPaintChips) tbPaintChips(); }catch(e){}
+  renderRecent();
+ }
+ window.tbDocPaint=paint;
+
+ /* ── 6) ＋ 시트 ────────────────────────────────────────── */
+ window.tbDocClose=function(){ var m=document.getElementById('dk_modal'); if(m) m.remove(); };
+ window.tbDocSheet=function(t){
+  tbDocClose();
+  var C=rd(), rec=C[t]||{n:0}, att=attOf(t);
+  var w=document.createElement('div'); w.id='dk_modal';
+  var box=document.createElement('div'); box.className='dk-box';
+  box.innerHTML='<div class="dk-hd"><span style="flex:1;min-width:0">'+esc(t)+'</span>'+
+   '<button type="button" class="dk-x">✕</button></div>'+
+   '<div class="dk-sub">붙여 둔 자료 <b>'+att.length+'건</b> · 처리 <b>'+(rec.n||0)+'회</b>'+
+   (rec.last?(' · 마지막 '+esc(rec.last)):'')+'</div>';
+  function row(ic,tt,sb,fn){
+   var b=document.createElement('button'); b.type='button'; b.className='dk-row';
+   b.innerHTML='<span class="dk-ic">'+ic+'</span><span class="dk-tx"><b>'+esc(tt)+'</b>'+
+     (sb?'<small>'+esc(sb)+'</small>':'')+'</span><span class="dk-ar">›</span>';
+   b.addEventListener('click',fn); box.appendChild(b); return b;
+  }
+  if(att.length){
+   att.forEach(function(a){
+    row(a.k==='서식'?'📄':'📝', a.t, a.k+' — 눌러서 미리보기', function(){
+     tbDocClose();
+     setTimeout(function(){
+      try{ if(a.k==='서식') tbShelfOpen(a.id); else tbMemoOpen(a.id); }catch(e){}
+     },90);
+    });
+   });
+  } else {
+   var e0=document.createElement('div'); e0.className='dk-sub';
+   e0.style.cssText='background:var(--panel-2);border:1px dashed var(--border);border-radius:12px;padding:11px;margin-bottom:9px';
+   e0.innerHTML='아직 붙여 둔 것이 없습니다. 아래에서 <b>우리 서 서식 사진</b>이나 <b>메모</b>를 붙여 두면, 다음에 이 항목을 펼칠 때 여기서 바로 꺼내 봅니다.';
+   box.appendChild(e0);
+  }
+  row('📷','서식 사진 붙이기','우리 서 양식·공문을 찍어 이 항목에 붙입니다',function(){
+   tbDocClose();
+   try{ tbShelfPick(); }catch(e){ return; }
+   var n=0, iv=setInterval(function(){
+    n++;
+    var el=document.getElementById('up_lk');
+    if(el){ clearInterval(iv);
+     var has=false, i;
+     for(i=0;i<el.options.length;i++) if(el.options[i].value===t){ has=true; break; }
+     if(!has){ var o=document.createElement('option'); o.value=t; o.textContent=t; el.appendChild(o); }
+     el.value=t; try{ tbUpRefresh(); }catch(e){}
+    }
+    if(n>80) clearInterval(iv);
+   },250);
+  });
+  row('📝','메모 쓰기','처리 경과·주의점을 적어 이 항목에 붙입니다',function(){
+   tbDocClose();
+   try{ tbMemoEdit(null); }catch(e){ return; }
+   setTimeout(function(){
+    var el=document.getElementById('memo_lk');
+    if(el){
+     var has=false,i;
+     for(i=0;i<el.options.length;i++) if(el.options[i].value===t){ has=true; break; }
+     if(!has){ var o=document.createElement('option'); o.value=t; o.textContent=t; el.appendChild(o); }
+     el.value=t;
+    }
+    var ti=document.getElementById('memo_t');
+    if(ti && !ti.value) ti.value=today()+' '+t;
+   },230);
+  });
+  row('✔','처리 1건 기록','오늘 이 서류를 다뤘다고 세어 둡니다 (현재 '+(rec.n||0)+'회)',function(){
+   tbDocTick(t,1); tbDocClose();
+   try{ toast('✔ '+t+' — '+((rd()[t]||{}).n||0)+'회'); }catch(e){}
+  });
+  if(rec.n>0){
+   row('↩','횟수 1건 되돌리기','잘못 눌렀을 때',function(){
+    tbDocTick(t,-1); tbDocClose(); try{ toast('되돌렸습니다'); }catch(e){}
+   });
+  }
+  var ft=document.createElement('div'); ft.className='dk-ft';
+  ft.innerHTML='이 기기 안에만 저장됩니다 · 외부로 나가지 않습니다<br>주민번호·차량번호·전화번호는 저장 직전 자동으로 가려집니다';
+  box.appendChild(ft);
+  box.querySelector('.dk-x').addEventListener('click',tbDocClose);
+  w.appendChild(box);
+  w.addEventListener('click',function(e){ if(e.target===w) tbDocClose(); });
+  document.body.appendChild(w);
+ };
+
+ /* ── 7) 처리 횟수 ──────────────────────────────────────── */
+ window.tbDocTick=function(t,delta){
+  var C=rd(), r=C[t]||{n:0};
+  r.n=Math.max(0,(r.n||0)+(delta||1));
+  var it=BYT[t]; if(it){ r.p=it.p; r.a=it.a; }
+  r.last=today();
+  if(r.n<=0) delete C[t]; else C[t]=r;
+  wr(C); paint();
+ };
+
+ /* ── 8) 바로가기 — 최근 다룬 서류 ──────────────────────── */
+ function renderRecent(){
+  var C=rd();
+  var arr=Object.keys(C).map(function(k){ var o=C[k]||{}; return {t:k,n:o.n||0,last:o.last||'',p:o.p,a:o.a}; })
+    .filter(function(o){ return o.n>0; })
+    .sort(function(a,b){ return (b.last||'').localeCompare(a.last||'') || (b.n-a.n); })
+    .slice(0,8);
+  ['doc_manual','doc_quick','doc_needed'].forEach(function(pid){
+   var pg=document.getElementById('page-'+pid); if(!pg) return;
+   var box=pg.querySelector('.dk-recent');
+   if(!arr.length){ if(box) box.parentNode.removeChild(box); return; }
+   if(!box){
+    box=document.createElement('div'); box.className='card dk-recent'; box.setAttribute('data-cl','1');
+    var anchor=pg.querySelector('.sopchip-wrap')||pg.querySelector('.tb-fav-bar');
+    if(anchor && anchor.nextSibling) pg.insertBefore(box, anchor.nextSibling);
+    else if(anchor) pg.appendChild(box);
+    else pg.insertBefore(box, pg.firstChild);
+   }
+   box.innerHTML='<div class="card-title">🕘 최근 다룬 서류 · 바로가기'+
+     '<span style="float:right;font-size:11.5px;color:var(--text-dim);font-weight:700">'+arr.length+'종</span></div>';
+   arr.forEach(function(o){
+    var b=document.createElement('button'); b.type='button'; b.className='dk-rb';
+    b.innerHTML='<span class="dk-n">'+o.n+'회</span><span class="dk-tt">'+esc(o.t)+
+      '</span><span class="dk-dt">'+esc(o.last)+'</span>';
+    b.addEventListener('click',function(){ tbDocGo(o.t); });
+    box.appendChild(b);
+   });
+  });
+ }
+
+ window.tbDocGo=function(t){
+  var r=rd()[t]||BYT[t]; if(!r||!r.p){ try{ toast('위치를 찾지 못했습니다'); }catch(e){} return; }
+  try{ showSubPage(r.p); }catch(e){}
+  setTimeout(function(){
+   var el=document.getElementById(r.a);
+   if(!el && BYT[t]) el=document.getElementById(BYT[t].a);
+   if(!el){ try{ toast('항목을 찾지 못했습니다 — 앱이 갱신되며 위치가 바뀌었을 수 있습니다'); }catch(e){} return; }
+   try{
+    var p=el;
+    while(p && p!==document.body){ if(p.tagName==='DETAILS') p.open=true; p=p.parentElement; }
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+    el.style.outline='3px solid var(--accent-gold,#b8924b)';
+    setTimeout(function(){ el.style.outline=''; },2200);
+   }catch(e){}
+  },320);
+ };
+
+ /* ── 9) 시작 · 화면 전환 · 늦게 주입되는 카드까지 ───────── */
+ /* 실무노트 160건은 런타임 주입이라 6초쯤 뒤에 들어온다.
+    타이머만 믿지 않고 「항목 수가 늘었는지」를 보고 다시 그린다.
+    내가 붙인 단추 때문에 무한루프가 나지 않도록 항목 수로만 판단한다. */
+ function domN(){
+  var n=0;
+  PIDS.forEach(function(pid){
+   var pg=document.getElementById('page-'+pid);
+   if(pg) n+=pg.querySelectorAll('details > summary').length;
+  });
+  return n;
+ }
+ var lastN=-1, pend=null;
+ function repaint(){ if(pend) clearTimeout(pend); pend=setTimeout(function(){ pend=null; paint(); },350); }
+ function maybe(){ if(domN()!==lastN) repaint(); }
+ var _paint0=paint;
+ paint=function(){ _paint0(); lastN=domN(); };
+ window.tbDocPaint=paint;
+
+ function boot(){
+  [1200,2800,5200,8000,12000].forEach(function(ms){ setTimeout(maybe,ms); });
+  try{
+   var mo=new MutationObserver(maybe);
+   mo.observe(document.body,{childList:true,subtree:true});
+   setTimeout(function(){ try{ mo.disconnect(); }catch(e){} },30000);
+  }catch(e){}
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
+ var _sp=window.showSubPage;
+ if(typeof _sp==='function'){
+  window.showSubPage=function(){ var r=_sp.apply(this,arguments); setTimeout(maybe,260); setTimeout(maybe,900); return r; };
+ }
+})();
+</script>
+
 </body>
 </html>
