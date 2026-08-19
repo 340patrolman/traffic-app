@@ -15796,5 +15796,370 @@ details[open] > summary.dk-on .dk-chev{color:var(--accent);border-color:var(--ac
 })();
 </script>
 
+
+<style id="rd_css">
+/* ═══ v21.38 — 🔊 읽어주기 (현장심리) ═══ */
+#fabRead{position:fixed;right:8px;bottom:calc(120px + env(safe-area-inset-bottom));z-index:1150;
+ display:none;align-items:center;gap:4px;background:var(--accent-gold,#b8924b);color:#fff;border:none;
+ border-radius:14px;padding:8px 12px;font-size:12px;font-weight:900;cursor:pointer;font-family:inherit;
+ box-shadow:0 2px 10px rgba(0,0,0,.25);opacity:.62;-webkit-tap-highlight-color:transparent;
+ transition:opacity .18s ease}
+#fabRead.on{display:flex}
+#fabRead:active{opacity:1;transform:scale(.96)}
+#fabRead.playing{opacity:1;background:#dc2626}
+#rd_modal{position:fixed;inset:0;z-index:9762;background:rgba(0,0,0,.66);display:flex;
+ align-items:flex-end;justify-content:center}
+#rd_modal .rd-box{background:var(--panel);color:var(--text);width:100%;max-width:520px;
+ border-radius:18px 18px 0 0;padding:14px 13px calc(14px + env(safe-area-inset-bottom));
+ max-height:88vh;max-height:88dvh;display:flex;flex-direction:column}
+#rd_modal .rd-hd{font-size:15.5px;font-weight:900;color:var(--accent);display:flex;align-items:center;gap:8px}
+#rd_modal .rd-x{margin-left:auto;background:none;border:none;color:var(--text-dim);font-size:19px;
+ font-weight:900;cursor:pointer;padding:2px 6px}
+#rd_modal .rd-q{width:100%;box-sizing:border-box;margin:9px 0 7px;padding:11px 12px;font-size:14px;
+ font-weight:700;border:1.5px solid var(--border);border-radius:12px;background:var(--panel-2);
+ color:var(--text);font-family:inherit}
+#rd_modal .rd-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+#rd_modal .rd-chip{background:var(--panel-2);border:1px solid var(--border);color:var(--text-dim);
+ border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit}
+#rd_modal .rd-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#rd_modal .rd-list{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1 1 auto;min-height:80px}
+#rd_modal .rd-row{display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+ background:var(--panel-2);color:var(--text);border:1px solid var(--border);border-radius:11px;
+ padding:10px 11px;margin-bottom:6px;cursor:pointer;min-height:48px;font-family:inherit}
+#rd_modal .rd-row.cur{border-color:var(--accent-gold,#b8924b);background:rgba(184,146,75,.14)}
+#rd_modal .rd-n{flex:0 0 auto;font-size:11px;font-weight:900;color:var(--text-dim);min-width:22px}
+#rd_modal .rd-t{flex:1 1 auto;min-width:0;font-size:13px;font-weight:800;line-height:1.4;word-break:keep-all}
+#rd_modal .rd-t small{display:block;font-size:10.5px;color:var(--text-dim);font-weight:700;margin-top:2px;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#rd_modal .rd-go{flex:0 0 auto;font-size:13px;color:var(--accent);font-weight:900}
+#rd_modal .rd-ft{font-size:11px;color:var(--text-dim);font-weight:700;text-align:center;margin-top:8px;line-height:1.6}
+#rd_bar{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom));z-index:9500;
+ background:var(--panel);border-top:2px solid var(--accent-gold,#b8924b);
+ box-shadow:0 -4px 14px rgba(0,0,0,.28);padding:8px 10px;display:none}
+#rd_bar.on{display:block}
+#rd_bar .rb-t{font-size:12px;font-weight:800;color:var(--text);white-space:nowrap;overflow:hidden;
+ text-overflow:ellipsis;margin-bottom:6px}
+#rd_bar .rb-t b{color:var(--accent-gold,#b8924b)}
+#rd_bar .rb-r{display:flex;align-items:center;gap:6px}
+#rd_bar button{background:var(--panel-2);border:1px solid var(--border);color:var(--text);border-radius:10px;
+ min-height:38px;padding:0 11px;font-size:13px;font-weight:900;cursor:pointer;font-family:inherit}
+#rd_bar button.pri{background:var(--accent);border-color:var(--accent);color:#fff;flex:1 1 auto}
+#rd_bar button.stop{color:#ef4444;border-color:#ef4444}
+#rd_bar select{background:var(--panel-2);border:1px solid var(--border);color:var(--text);border-radius:10px;
+ min-height:38px;font-size:12px;font-weight:800;font-family:inherit;padding:0 4px}
+.rd-hl{outline:3px solid var(--accent-gold,#b8924b)!important;outline-offset:2px;border-radius:10px}
+</style>
+<script>
+/* ═══════ T-Book v21.38 — 🔊 읽어주기 ═══════
+   현장심리는 운전 중·대기 중에 「듣는」 것이 맞다. 그런데 늘 처음부터라 불편했다.
+   · 어디서부터 읽을지 고른다 (항목 목록)
+   · 키워드로 찾아 그 자리부터 읽는다 (제목 + 본문 전문 검색)
+   · 기기 내장 음성만 쓴다 — 네트워크 요청 0. 외부 전송 없음
+   · 안드로이드는 한 번에 긴 글을 못 읽는다 → 문장 단위로 잘라 이어 읽는다 */
+(function(){
+ if(!('speechSynthesis' in window)) return;
+ var PAGES={co_psych:1,co_excuse:1,co_staff:1,co_stress:1};
+ /* 화면 라벨에 이모지를 넣지 않는다 — 항목 제목에 이미 이모지가 있어 겹쳐 보인다 */
+ var PGLAB={co_psych:'심리', co_excuse:'대응멘트', co_staff:'직장관계', co_stress:'나를 지킨다'};
+ var PGORD=['co_excuse','co_psych','co_staff','co_stress'];
+ var SWITCHING=false;
+ var LOCK=/^(psych_lock|spicy_lock|staff_lock|us_hub)$/;
+ var KEYS=['이상성향','흥분','욕설','폭언','음주 거부','촬영','항의','민원','트라우마','상사','동료','스트레스'];
+
+ var BLOCKS=[], IDX=-1, CHUNKS=[], CI=0, RATE=1, PLAYING=false, FILTER='', WD=null, SPOKE=false;
+ var fab=null, bar=null, curEl=null;
+
+ function esc(t){ return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+ function curPage(){ var p=document.querySelector('.page.active'); return p?p.id.replace('page-',''):''; }
+ function isOn(){ return !!PAGES[curPage()]; }
+
+ /* ── 읽을 덩어리 모으기 : 카드 / details 를 순서대로 ── */
+ function textOf(el){
+  var c=el.cloneNode(true);
+  var junk=c.querySelectorAll('script,style,.dk-bar,.lk-chip,button,input,textarea,select,.tb-fav-bar,.sopchip-wrap');
+  for(var i=0;i<junk.length;i++) junk[i].parentNode.removeChild(junk[i]);
+  return (c.textContent||'').replace(/ /g,' ').replace(/\s+/g,' ').trim();
+ }
+ function headOf(el){
+  var h=el.querySelector(':scope > .card-title, :scope > summary, .card-title, summary');
+  if(!h) return '';
+  var c=h.cloneNode(true);
+  var j=c.querySelectorAll('.dk-bar,.lk-chip,button');
+  for(var i=0;i<j.length;i++) j[i].parentNode.removeChild(j[i]);
+  return (c.textContent||'').replace(/\s+/g,' ').trim();
+ }
+ /* 카드 안의 <details> 는 따로 떼어 하나의 덩어리로 만든다 —
+    「어디서부터」를 고를 수 있어야 하므로 잘게 나누는 편이 낫다.
+    카드 서두(details 를 뺀 나머지)도 내용이 있으면 하나의 덩어리다. */
+ function pushUnit(out, el, pid, headFallback){
+  if(LOCK.test(el.id||'')) return;
+  var dets=el.querySelectorAll(':scope > details, :scope > * > details');
+  var hd=headOf(el)||headFallback||'';
+  if(dets.length){
+   var c=el.cloneNode(true);
+   var dd=c.querySelectorAll('details');
+   for(var z=0;z<dd.length;z++) dd[z].parentNode.removeChild(dd[z]);
+   var intro=textOf(c);
+   if(hd && intro.indexOf(hd)===0) intro=intro.slice(hd.length).trim();
+   if(intro.replace(/\s/g,'').length>25) out.push({p:pid, el:el, head:hd, text:intro, sub:false});
+   for(var j=0;j<dets.length;j++){
+    var d=dets[j];
+    if(LOCK.test(d.id||'')) continue;
+    var dh=headOf(d)||'';
+    var dt=textOf(d);
+    if(dh && dt.indexOf(dh)===0) dt=dt.slice(dh.length).trim();
+    if(dt.replace(/\s/g,'').length<20) continue;
+    out.push({p:pid, el:d, head:(dh||hd), text:dt, sub:true});
+   }
+  } else {
+   var t=textOf(el);
+   if(hd && t.indexOf(hd)===0) t=t.slice(hd.length).trim();
+   if(t.replace(/\s/g,'').length<20) return;
+   out.push({p:pid, el:el, head:hd, text:t, sub:false});
+  }
+ }
+ function collect(){
+  BLOCKS=[];
+  var cur=curPage(), order=PGORD.slice();
+  /* 지금 보고 있는 화면을 맨 앞으로 — 「여기서부터」가 기본이 되도록 */
+  if(PAGES[cur]){ order = [cur].concat(order.filter(function(x){ return x!==cur; })); }
+  order.forEach(function(pid){
+   var pg=document.getElementById('page-'+pid); if(!pg) return;
+   var units=pg.querySelectorAll(':scope > .card, :scope > details');
+   for(var i=0;i<units.length;i++) pushUnit(BLOCKS, units[i], pid, '');
+  });
+  return BLOCKS;
+ }
+
+ /* ── 문장 단위 조각내기 (안드로이드 끊김 방지) ── */
+ function chunk(t){
+  var parts=t.replace(/([.!?。·]|다\.|요\.)\s+/g,'$1|@|').split('|@|');
+  var out=[], buf='';
+  for(var i=0;i<parts.length;i++){
+   var q=parts[i];
+   while(q.length>170){ out.push(q.slice(0,170)); q=q.slice(170); }
+   if((buf+' '+q).length>170){ if(buf) out.push(buf); buf=q; }
+   else buf=buf?(buf+' '+q):q;
+  }
+  if(buf) out.push(buf);
+  return out.filter(function(x){ return x.replace(/\s/g,'').length>0; });
+ }
+
+ function koVoice(){
+  try{
+   var vs=speechSynthesis.getVoices()||[];
+   for(var i=0;i<vs.length;i++) if(/^ko/i.test(vs[i].lang||'')) return vs[i];
+  }catch(e){}
+  return null;
+ }
+
+ function hl(el){
+  if(curEl) curEl.classList.remove('rd-hl');
+  curEl=el||null;
+  if(curEl){
+   curEl.classList.add('rd-hl');
+   try{ var d=curEl.closest('details'); if(d) d.open=true;
+        curEl.scrollIntoView({behavior:'smooth',block:'center'}); }catch(e){}
+  }
+ }
+
+ function speakNext(){
+  if(!PLAYING) return;
+  if(CI>=CHUNKS.length){
+   if(IDX+1<BLOCKS.length){ start(IDX+1); return; }
+   stop(); try{ toast('🔊 끝까지 읽었습니다'); }catch(e){} return;
+  }
+  var u=new SpeechSynthesisUtterance(CHUNKS[CI]);
+  u.lang='ko-KR'; u.rate=RATE; u.pitch=1;
+  var v=koVoice(); if(v) u.voice=v;
+  u.onstart=function(){ SPOKE=true; if(WD){ clearTimeout(WD); WD=null; } };
+  u.onend=function(){ SPOKE=true; CI++; speakNext(); };
+  u.onerror=function(){ CI++; setTimeout(speakNext,180); };
+  try{ speechSynthesis.speak(u); }catch(e){ stop(); return; }
+  /* 갤럭시 일부 기기는 한국어 음성 데이터가 없어 speak() 가 조용히 아무것도 안 한다.
+     1.8초 안에 시작 신호가 없으면 원인을 알려 준다 — 「눌렀는데 아무 일도 없다」를 막는다. */
+  if(!SPOKE && !WD){
+   WD=setTimeout(function(){
+    WD=null;
+    if(SPOKE) return;
+    try{ toast('🔇 이 기기에 한국어 음성이 없습니다 — 설정 › 일반 › 접근성 › TTS(음성 출력)에서 한국어를 내려받으십시오'); }catch(e){}
+    stop();
+   },1800);
+  }
+ }
+
+ function start(i){
+  if(!BLOCKS.length) collect();
+  if(i<0||i>=BLOCKS.length) return;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  var b=BLOCKS[i];
+  if(b.p && b.p!==curPage()){
+   SWITCHING=true;
+   try{ showSubPage(b.p); }catch(e){}
+   setTimeout(function(){ SWITCHING=false; IDX=i;
+    CHUNKS=chunk((b.head?b.head+'. ':'')+b.text); CI=0; PLAYING=true; SPOKE=false;
+    hl(b.el); paintBar(); speakNext(); },340);
+   return;
+  }
+  IDX=i;
+  CHUNKS=chunk((b.head?b.head+'. ':'')+b.text); CI=0; PLAYING=true; SPOKE=false;
+  hl(b.el); paintBar(); speakNext();
+ }
+ function stop(){
+  PLAYING=false; IDX=-1; CHUNKS=[]; CI=0;
+  if(WD){ clearTimeout(WD); WD=null; }
+  try{ speechSynthesis.cancel(); }catch(e){}
+  hl(null); paintBar();
+ }
+ function pause(){
+  PLAYING=false;
+  try{ speechSynthesis.pause(); }catch(e){}
+  paintBar();
+ }
+ function toggle(){
+  if(!PLAYING){
+   if(IDX<0){ start(0); return; }
+   PLAYING=true;
+   try{ speechSynthesis.resume(); }catch(e){}
+   if(!speechSynthesis.speaking) speakNext();
+   paintBar(); return;
+  }
+  pause();
+ }
+ window.tbReadStop=stop;
+
+ /* ── 하단 조작줄 ── */
+ function paintBar(){
+  if(!bar) return;
+  var on=(IDX>=0);
+  bar.classList.toggle('on', on);
+  if(fab) fab.classList.toggle('playing', PLAYING);
+  if(!on) return;
+  var b=BLOCKS[IDX]||{head:''};
+  bar.querySelector('.rb-t').innerHTML='🔊 <b>'+(IDX+1)+'/'+BLOCKS.length+'</b> · '+esc(b.head).slice(0,60);
+  bar.querySelector('.rb-play').textContent=PLAYING?'⏸ 일시정지':'▶ 이어 읽기';
+ }
+ function mkBar(){
+  bar=document.createElement('div'); bar.id='rd_bar';
+  bar.innerHTML='<div class="rb-t"></div><div class="rb-r">'+
+   '<button class="rb-prev" aria-label="이전 항목">⏮</button>'+
+   '<button class="pri rb-play" aria-label="재생 일시정지">▶ 이어 읽기</button>'+
+   '<button class="rb-next" aria-label="다음 항목">⏭</button>'+
+   '<select class="rb-rate" aria-label="읽는 속도">'+
+    '<option value="0.8">0.8×</option><option value="1" selected>1.0×</option>'+
+    '<option value="1.2">1.2×</option><option value="1.5">1.5×</option></select>'+
+   '<button class="stop rb-stop" aria-label="정지">■</button></div>';
+  document.body.appendChild(bar);
+  bar.querySelector('.rb-play').addEventListener('click',toggle);
+  bar.querySelector('.rb-prev').addEventListener('click',function(){ if(IDX>0) start(IDX-1); });
+  bar.querySelector('.rb-next').addEventListener('click',function(){ if(IDX+1<BLOCKS.length) start(IDX+1); });
+  bar.querySelector('.rb-stop').addEventListener('click',stop);
+  bar.querySelector('.rb-rate').addEventListener('change',function(){
+   RATE=parseFloat(this.value)||1;
+   if(PLAYING){ var keep=IDX, kc=CI; try{ speechSynthesis.cancel(); }catch(e){}
+     IDX=keep; CI=kc; PLAYING=true; speakNext(); }
+  });
+ }
+
+ /* ── 어디서부터 읽을지 고르는 시트 ── */
+ window.tbReadClose=function(){ var m=document.getElementById('rd_modal'); if(m) m.remove(); };
+ function rows(box){
+  var list=box.querySelector('.rd-list');
+  var q=FILTER.replace(/\s+/g,'');
+  var html='', n=0;
+  for(var i=0;i<BLOCKS.length;i++){
+   var b=BLOCKS[i];
+   if(q){
+    var hay=(b.head+' '+b.text).replace(/\s+/g,'');
+    if(hay.indexOf(q)<0) continue;
+   }
+   n++;
+   var sn=b.text.slice(0,70);
+   if(q){
+    var raw=b.text.indexOf(FILTER.trim());          /* 원문에서 그대로 찾힌다면 그 자리를 쓴다 */
+    if(raw>12) sn='…'+b.text.slice(raw-10, raw+58);
+    else if(raw>=0) sn=b.text.slice(0,70);
+   }
+   var lab=PGLAB[b.p]||'';
+   html+='<button type="button" class="rd-row'+(i===IDX?' cur':'')+'" data-i="'+i+'">'+
+     '<span class="rd-n">'+(i+1)+'</span><span class="rd-t">'+
+     (lab?'<em style="font-style:normal;color:#fff;background:var(--accent);font-size:9.5px;font-weight:900;border-radius:5px;padding:1px 5px;margin-right:5px;vertical-align:1px">'+esc(lab)+'</em> ':'')+
+     esc(b.head||'(제목 없음)')+'<small>'+esc(sn)+'</small></span><span class="rd-go">▶</span></button>';
+  }
+  list.innerHTML = n?html:'<div class="rd-ft" style="padding:18px 6px">「'+esc(FILTER)+'」가 이 화면에 없습니다. 다른 말로 찾아 보십시오.</div>';
+  var bs=list.querySelectorAll('.rd-row');
+  for(var k=0;k<bs.length;k++){
+   bs[k].addEventListener('click',(function(el){ return function(){
+    tbReadClose(); start(parseInt(el.getAttribute('data-i'),10));
+   };})(bs[k]));
+  }
+ }
+ window.tbReadSheet=function(){
+  collect();
+  if(!BLOCKS.length){ try{ toast('이 화면에는 읽을 내용이 없습니다'); }catch(e){} return; }
+  tbReadClose();
+  var w=document.createElement('div'); w.id='rd_modal';
+  var box=document.createElement('div'); box.className='rd-box';
+  box.innerHTML='<div class="rd-hd"><span style="flex:1;min-width:0">🔊 읽어주기 — 어디서부터?</span>'+
+   '<button type="button" class="rd-x" aria-label="닫기">✕</button></div>'+
+   '<input class="rd-q" type="search" placeholder="🔎 현장심리 4화면 전체에서 찾기 — 예: 이상성향" value="'+esc(FILTER)+'">'+
+   '<div class="rd-chips">'+KEYS.map(function(k){
+     return '<button type="button" class="rd-chip'+(FILTER===k?' on':'')+'" data-k="'+esc(k)+'">'+esc(k)+'</button>';
+   }).join('')+'</div><div class="rd-list"></div>'+
+   '<div class="rd-ft">기기에 내장된 음성으로 읽습니다 · 통신 없음<br>읽는 중에도 화면을 만질 수 있고, 아래 줄에서 멈추거나 속도를 바꿉니다</div>';
+  w.appendChild(box);
+  w.addEventListener('click',function(e){ if(e.target===w) tbReadClose(); });
+  document.body.appendChild(w);
+  box.querySelector('.rd-x').addEventListener('click',tbReadClose);
+  var qi=box.querySelector('.rd-q'), t=null;
+  qi.addEventListener('input',function(){ if(t) clearTimeout(t);
+   t=setTimeout(function(){ FILTER=qi.value.trim(); rows(box);
+    var cs=box.querySelectorAll('.rd-chip');
+    for(var i=0;i<cs.length;i++) cs[i].classList.toggle('on', cs[i].getAttribute('data-k')===FILTER);
+   },200); });
+  var cs=box.querySelectorAll('.rd-chip');
+  for(var i=0;i<cs.length;i++) cs[i].addEventListener('click',(function(el){ return function(){
+   var k=el.getAttribute('data-k');
+   FILTER=(FILTER===k)?'':k; qi.value=FILTER; rows(box);
+   var c2=box.querySelectorAll('.rd-chip');
+   for(var j=0;j<c2.length;j++) c2[j].classList.toggle('on', c2[j].getAttribute('data-k')===FILTER);
+  };})(cs[i]));
+  rows(box);
+ };
+
+ /* ── 🔊 단추 : 「전부 펼치기」 바로 위 ── */
+ function mkFab(){
+  fab=document.createElement('button');
+  fab.id='fabRead'; fab.type='button';
+  fab.setAttribute('aria-label','읽어주기 — 어디서부터 읽을지 고르기');
+  fab.innerHTML='🔊 읽어주기';
+  fab.addEventListener('click',function(e){ e.preventDefault(); tbReadSheet(); });
+  document.body.appendChild(fab);
+ }
+ function refresh(){
+  if(!fab) return;
+  var on=isOn();
+  fab.classList.toggle('on', on);
+  if(!on && IDX>=0) stop();
+ }
+
+ function boot(){
+  mkFab(); mkBar();
+  refresh();
+  var _sp=window.showSubPage;
+  if(typeof _sp==='function'){
+   window.showSubPage=function(){ var r=_sp.apply(this,arguments);
+    if(!SWITCHING){ stop(); BLOCKS=[]; IDX=-1; }
+    setTimeout(refresh,180); return r; };
+  }
+  try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=function(){}; }catch(e){}
+  window.addEventListener('pagehide',stop);
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) stop(); });
+  setTimeout(refresh,1400);
+ }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
+})();
+</script>
+
 </body>
 </html>
