@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>T-Book 열기</title>
+<meta property="og:title" content="🚔 교통수첩 T-Book">
+<meta property="og:description" content="교통외근 통합보조 도구 — 눌러서 여십시오.">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:22px;
+ background:#0f172a;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",Roboto,sans-serif}
+.box{background:#1e293b;border:2px solid #b8924b;border-radius:20px;max-width:400px;width:100%;padding:24px 20px;text-align:center}
+.logo{font-size:42px;line-height:1;margin-bottom:8px}
+h1{font-size:20px;font-weight:900;color:#fff;margin:0 0 6px}
+.sub{font-size:13.5px;color:#94a3b8;line-height:1.75;margin-bottom:16px}
+.warn{background:#3f1d1d;border:1px solid #dc2626;color:#fecaca;border-radius:10px;
+ padding:11px 13px;font-size:13px;line-height:1.75;margin-bottom:14px;text-align:left;display:none}
+.tip{background:#152a1a;border:1px solid #16a34a;color:#bbf7d0;border-radius:10px;
+ padding:11px 13px;font-size:12.5px;line-height:1.8;margin-top:14px;text-align:left;display:none}
+.warn b,.tip b{color:#fff}
+.btn{display:block;width:100%;padding:15px 12px;border-radius:12px;border:0;cursor:pointer;
+ font-size:16px;font-weight:800;margin-top:9px;font-family:inherit;text-decoration:none}
+.p{background:#b8924b;color:#0f172a}
+.s{background:#334155;color:#e2e8f0;font-size:14.5px;padding:13px}
+.hint{font-size:12px;color:#64748b;line-height:1.8;margin-top:14px}
+.url{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:#94a3b8;
+ word-break:break-all;background:#0f172a;border-radius:8px;padding:9px;margin-top:9px}
+.ok{color:#4ade80;font-weight:700}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">🚔</div>
+  <h1>교통수첩 T-Book</h1>
+  <div class="sub" id="msg">여는 중입니다…</div>
+
+  <div class="warn" id="inapp">
+    <b>⚠️ 지금 카카오톡(또는 다른 앱) 안에서 열렸습니다.</b><br>
+    이 상태로는 <b>홈 화면 추가</b>와 <b>파일 첨부·자동저장</b>이 제대로 되지 않습니다.<br>
+    아래 단추로 <b id="escapeName">브라우저</b>에서 다시 열어 주십시오.
+  </div>
+
+  <button class="btn p" id="go">브라우저로 열기</button>
+  <a class="btn s" id="plain" href="https://340patrolman.github.io/traffic-app/">이대로 열기</a>
+  <button class="btn s" id="copy">주소 복사</button>
+
+  <div class="tip" id="pwa"></div>
+
+  <div class="hint">열리지 않으면 주소를 복사해 주소창에 붙여넣기 하십시오.</div>
+  <div class="url" id="url">https://340patrolman.github.io/traffic-app/</div>
+</div>
+
+<script>
+(function(){
+  /* ══════════════════════════════════════════════════════════════
+     T-Book 진입 도우미 (go.html)  ver.2
+     ① QR 스캔 진입 — 기기에 맞는 브라우저로 보낸다
+     ② 카카오톡 등 인앱브라우저 탈출 — 인앱에서는 홈화면 추가·
+        IndexedDB 파일보관이 정상 동작하지 않는다
+
+     🔴 안드로이드와 아이폰은 목표 브라우저가 다르다
+        · 안드로이드 → 크롬 (intent 로 강제 가능)
+        · 아이폰     → 사파리. iOS 는 「홈 화면에 추가」가
+          사파리에서만 되므로 크롬으로 보내면 오히려 손해다.
+          (iOS 에 사파리 강제 스킴은 없다. 기본 브라우저가 사파리다)
+
+     ⚠️ 이동 목적지는 반드시 앱 주소(APP)여야 한다.
+        go.html 로 보내면 무한루프가 난다.
+     ══════════════════════════════════════════════════════════════ */
+  var APP  = 'https://340patrolman.github.io/traffic-app/';
+  var HOST = '340patrolman.github.io/traffic-app/';
+  var ua   = navigator.userAgent || '';
+
+  var isAndroid = /Android/i.test(ua);
+  var isIOS     = /iPhone|iPad|iPod/i.test(ua) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isKakao   = /KAKAOTALK/i.test(ua);
+  var isInApp   = isKakao ||
+                  /NAVER\(inapp|Line\/|FBAN|FBAV|Instagram|BAND|DaumApps|everytimeApp|wv\)/i.test(ua);
+  /* 삼성인터넷·엣지·웨일은 UA 에 Chrome 이 들어가므로 반드시 제외한다 */
+  var isChrome  = /Chrome|CriOS/i.test(ua) &&
+                  !/SamsungBrowser|EdgA?|OPR|Whale|FxiOS|KAKAOTALK|NAVER|Line\/|FBAN|FBAV|Instagram/i.test(ua);
+  var isSafari  = isIOS && /Safari/i.test(ua) &&
+                  !/CriOS|FxiOS|EdgiOS|OPT\/|KAKAOTALK|NAVER|Line\/|FBAN|FBAV|Instagram/i.test(ua);
+
+  var $ = function(id){ return document.getElementById(id); };
+  $('url').textContent = APP;
+  $('plain').href = APP;
+
+  var target = isIOS ? '사파리' : '크롬';
+  var JOSA = isIOS ? '사파리로' : '크롬으로';
+  $('go').textContent = JOSA + ' 열기';
+  $('escapeName').textContent = target;
+
+  var jumped = false;
+  function escapeOut(){
+    if (jumped) return; jumped = true;
+    if (isAndroid) {
+      /* 안드로이드 — 크롬 직행. 크롬이 없으면 fallback_url 로 보통 브라우저가 뜬다 */
+      location.href = 'intent://' + HOST +
+        '#Intent;scheme=https;package=com.android.chrome;' +
+        'S.browser_fallback_url=' + encodeURIComponent(APP) + ';end';
+      return;
+    }
+    if (isIOS) {
+      /* 아이폰 — 사파리로. 카톡 안이면 카톡의 외부열기 스킴이 기본 브라우저를 띄운다 */
+      if (isKakao) { location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(APP); }
+      else { location.href = APP; }
+      setTimeout(function(){ if (!document.hidden) location.href = APP; }, 1500);
+      return;
+    }
+    location.href = APP;
+  }
+
+  $('go').addEventListener('click', function(){ jumped = false; escapeOut(); });
+
+  $('copy').addEventListener('click', function(){
+    var done = function(){ $('copy').textContent = '✅ 복사했습니다'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(APP).then(done, fb);
+    } else { fb(); }
+    function fb(){
+      try {
+        var t = document.createElement('textarea');
+        t.value = APP; t.setAttribute('readonly','');
+        t.style.position = 'fixed'; t.style.left = '-9999px';
+        document.body.appendChild(t); t.select();
+        document.execCommand('copy'); document.body.removeChild(t); done();
+      } catch(e) { $('copy').textContent = '주소를 길게 눌러 복사하십시오'; }
+    }
+  });
+
+  function pwaTip(){
+    var t = $('pwa');
+    if (isIOS) {
+      t.innerHTML = '<b>📲 홈 화면에 추가하기 (아이폰)</b><br>' +
+        '사파리 아래쪽 <b>공유 단추(⬆️)</b> → <b>홈 화면에 추가</b><br>' +
+        '<span style="color:#86efac">※ 아이폰은 사파리에서만 추가됩니다. 크롬에서는 안 됩니다.</span>';
+    } else {
+      t.innerHTML = '<b>📲 홈 화면에 추가하기 (안드로이드)</b><br>' +
+        '크롬 오른쪽 위 <b>⋮</b> → <b>홈 화면에 추가</b> 또는 <b>앱 설치</b><br>' +
+        '<span style="color:#86efac">※ 추가하면 오프라인에서도 열립니다.</span>';
+    }
+    t.style.display = 'block';
+  }
+
+  /* ── 분기 ───────────────────────────────────────────────── */
+  if (isInApp) {
+    $('inapp').style.display = 'block';
+    $('msg').textContent = '앱 안에서 열렸습니다. ' + JOSA + ' 옮겨야 제대로 동작합니다.';
+    pwaTip();
+    setTimeout(escapeOut, 400);
+  } else if ((isAndroid && isChrome) || (isIOS && isSafari)) {
+    /* 이미 맞는 브라우저 — 바로 앱으로 */
+    $('msg').innerHTML = '<span class="ok">' + target + '입니다.</span> 앱을 여는 중…';
+    location.replace(APP);
+  } else if (!isAndroid && !isIOS) {
+    /* PC — 그냥 앱으로 */
+    $('msg').textContent = '앱을 여는 중…';
+    location.replace(APP);
+  } else {
+    /* 삼성인터넷 · iOS 크롬 등 */
+    if (isIOS) {
+      /* iOS 크롬 등 — 사파리 강제 스킴이 없다. 안내를 읽을 시간을 준 뒤 이동한다 */
+      $('msg').textContent = '아이폰은 사파리에서 열어야 홈 화면에 추가됩니다.';
+      pwaTip();
+      setTimeout(escapeOut, 2600);
+    } else {
+      $('msg').textContent = JOSA + ' 여는 중입니다…';
+      pwaTip();
+      setTimeout(escapeOut, 300);
+    }
+    setTimeout(function(){
+      if (!document.hidden) { $('msg').textContent = '자동으로 열리지 않았습니다. 아래 단추를 눌러 주십시오.'; }
+    }, 3000);
+  }
+})();
+</script>
+</body>
+</html>
