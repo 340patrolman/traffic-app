@@ -13675,7 +13675,7 @@ mark.la-mk{background:var(--accent);color:#fff;border-radius:3px;padding:0 1px}
     return '<button type="button" data-g="'+c[0]+'">'+c[2]+
            '<span class="la-c" data-gc="'+c[0]+'">0</span></button>';
    }).join('');
-  cw.parentNode.insertAdjacentHTML('beforeend','<div class="la-toolsrow"><div class="la-ip la-ip-inline" id="la_ipw"><span class="la-mag">🔎</span><input id="la_q" type="search" inputmode="search" autocomplete="off" placeholder="찾을 말을 치십시오"><button type="button" class="la-x" id="la_x" aria-label="지우기">×</button></div><button type="button" class="la-allbtn" id="la_allbtn" data-on="0" title="본문 전부 펼치기/접기" onclick="laToggleAllBodies()">📖 펼치기</button><span class="la-msg" id="la_msg"></span></div>');
+  cw.parentNode.insertAdjacentHTML('beforeend','<div class="la-toolsrow"><div class="la-ip la-ip-inline" id="la_ipw"><span class="la-mag">🔎</span><input id="la_q" type="search" inputmode="search" autocomplete="off" placeholder="찾을 말"><button type="button" class="la-x" id="la_x" aria-label="지우기">×</button></div><button type="button" class="la-allbtn" id="la_allbtn" data-on="0" title="본문 전부 펼치기/접기" onclick="laToggleAllBodies()">📖 펼치기</button><span class="la-msg" id="la_msg"></span></div>');
   window.laToggleAllBodies=function(){ var btn=document.getElementById('la_allbtn'); if(!btn)return; var open=btn.getAttribute('data-on')!=='1'; btn.setAttribute('data-on',open?'1':'0'); btn.textContent=open?'📕 접기':'📖 펼치기'; document.querySelectorAll('#page-'+PID+' details.ln-d').forEach(function(d){ if(d.classList.contains('la-hide'))return; d.open=open; }); };
   cw.addEventListener('click', function(e){
    var b=e.target.closest('button[data-g]'); if(!b) return;
@@ -17632,5 +17632,31 @@ html body .tb1-menu{border:1px solid rgba(255,255,255,.42)!important;
  [400,1200,2400].forEach(function(t){ setTimeout(function(){fix();splitTitles();},t); });
 })();
 </script>
+
+<style id="nt-density-v1">
+/* ══ 실무노트 밀도 개선 v1 (2026-08-24) ══
+   되돌리려면 id 가 nt-density-v1 인 이 블록만 통째로 지우면 된다.
+   기존 규칙은 하나도 수정하지 않았다. */
+
+/* 분류칩 + 찾기칸 + 펼치기를 한 줄로 — la-bar 안에서만 적용 */
+.la-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.la-bar>.la-cats{flex:0 0 auto;max-width:52%;margin:0}
+.la-bar>.la-toolsrow{flex:1 1 auto;min-width:0;margin-top:0}
+/* 분류를 펼치면 목록이 전체 폭을 쓴다 */
+.la-bar>.la-cats.acc-open{flex:1 1 100%;max-width:none}
+.la-bar>.la-cats.acc-open+.la-toolsrow{flex:1 1 100%}
+/* 접힘 상태의 분류칩 — 긴 분류명은 줄임표로 */
+.la-bar>.la-cats:not(.acc-open)>button.on{padding:9px 12px;font-size:13.5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.la-bar>.la-cats:not(.acc-open)>button.on::after{margin-left:6px;flex:0 0 auto}
+/* 찾기칸 — 한 줄 안에서 살아남게 최소폭 확보 */
+.la-bar .la-ip-inline{flex:1 1 96px}
+.la-bar .la-ip-inline input{padding:10px 34px 10px 34px!important;font-size:15px!important}
+.la-bar .la-ip .la-mag{left:11px;font-size:14px}
+.la-allbtn{min-height:38px;padding:0 10px;font-size:12.5px}
+
+/* 상단 안내문 한 줄로 압축 */
+.la-top{padding:7px 10px;margin:0 0 8px;font-size:12.5px;line-height:1.5}
+</style>
 </body>
 </html>
