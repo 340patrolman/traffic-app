@@ -17634,29 +17634,39 @@ html body .tb1-menu{border:1px solid rgba(255,255,255,.42)!important;
 </script>
 
 <style id="nt-density-v1">
-/* ══ 실무노트 밀도 개선 v1 (2026-08-24) ══
+/* ══ 실무노트 밀도 개선 v2 (2026-08-24) ══
    되돌리려면 id 가 nt-density-v1 인 이 블록만 통째로 지우면 된다.
    기존 규칙은 하나도 수정하지 않았다. */
 
-/* 분류칩 + 찾기칸 + 펼치기를 한 줄로 — la-bar 안에서만 적용 */
-.la-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
-.la-bar>.la-cats{flex:0 0 auto;max-width:52%;margin:0}
-.la-bar>.la-toolsrow{flex:1 1 auto;min-width:0;margin-top:0}
-/* 분류를 펼치면 목록이 전체 폭을 쓴다 */
+/* ── 분류칩 + 찾기칸 + 펼치기 : 한 줄 고정 ── */
+.la-bar{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;padding:6px 0 6px}
+.la-bar>.la-cats{flex:0 1 auto;min-width:0;max-width:38%;margin:0}
+.la-bar>.la-toolsrow{flex:1 1 0;min-width:0;margin-top:0;flex-wrap:nowrap;gap:6px}
+
+/* 접힘 상태의 분류칩 — 높이 통일, 긴 분류명은 줄임표 */
+.la-bar>.la-cats:not(.acc-open)>button.on{min-height:38px;padding:0 10px;
+  font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.la-bar>.la-cats:not(.acc-open)>button.on::after{margin-left:5px;flex:0 0 auto;font-size:10.5px}
+
+/* 찾기칸 — iOS 자동확대 방지를 위해 16px 유지, 여백만 축소 */
+.la-bar .la-ip-inline{flex:1 1 60px;min-width:0}
+.la-bar .la-ip-inline input{min-width:0;min-height:38px!important;
+  padding:8px 28px 8px 30px!important;font-size:16px!important}
+.la-bar .la-ip .la-mag{left:9px;font-size:13px}
+.la-bar .la-ip .la-x{right:2px}
+
+/* 펼치기 단추 */
+.la-bar .la-allbtn{min-height:38px;padding:0 8px;font-size:12px;letter-spacing:-.3px}
+
+/* 분류를 펼쳤을 때만 두 줄로 되돌린다 */
+.la-bar:has(>.la-cats.acc-open){flex-wrap:wrap}
 .la-bar>.la-cats.acc-open{flex:1 1 100%;max-width:none}
 .la-bar>.la-cats.acc-open+.la-toolsrow{flex:1 1 100%}
-/* 접힘 상태의 분류칩 — 긴 분류명은 줄임표로 */
-.la-bar>.la-cats:not(.acc-open)>button.on{padding:9px 12px;font-size:13.5px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.la-bar>.la-cats:not(.acc-open)>button.on::after{margin-left:6px;flex:0 0 auto}
-/* 찾기칸 — 한 줄 안에서 살아남게 최소폭 확보 */
-.la-bar .la-ip-inline{flex:1 1 96px}
-.la-bar .la-ip-inline input{padding:10px 34px 10px 34px!important;font-size:15px!important}
-.la-bar .la-ip .la-mag{left:11px;font-size:14px}
-.la-allbtn{min-height:38px;padding:0 10px;font-size:12.5px}
 
-/* 상단 안내문 한 줄로 압축 */
-.la-top{padding:7px 10px;margin:0 0 8px;font-size:12.5px;line-height:1.5}
+/* ── 상단 안내문 : 한 번 보고 마는 줄이므로 최소 높이로 ── */
+.la-top{padding:3px 9px;margin:0 0 7px;font-size:11.5px;line-height:1.45;
+  border-radius:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.la-top b{font-weight:800}
 </style>
 </body>
 </html>
