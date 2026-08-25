@@ -605,7 +605,7 @@ window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbo
    <b>6. 흔들어 보기</b> — 반경 8단계(50~400m), 임계값, 8년 이력 등으로 결론이 <b>특정 설정에서만 나오는지</b> 확인했습니다.<br>
    <b>7. 기록 · 배포</b> — 함정과 실패를 포함해 이 앱에 남겼습니다.
   </div>
-  <div class="info-box u-fs13" style="margin-top:8px;line-height:1.9">🗓️ <b>실제 걸린 시간</b> — 과제발굴 2026.08.01 / 자료수집 08.01~08.06 / 전처리·분석 08.02~08.16.<br>중간에 손이 멈춘 이유는 실력이 아니라 <b>들어오는 정보가 정리 속도를 넘어서</b>였습니다. 그래서 <b>틀린 것을 지우지 않고 남기고, 규칙을 적고, 함정을 목록으로 만들면서</b> 갔습니다. 그 정리가 이 화면입니다.</div>
+  <div class="info-box u-fs13" style="margin-top:8px;line-height:1.9">🗓️ <b>분석 작업 기간</b> — 착수 2026.08.01 / 자료수집 08.01~08.06 / 전처리·분석 08.02~08.16.<br>중간에 손이 멈춘 이유는 실력이 아니라 <b>들어오는 정보가 정리 속도를 넘어서</b>였습니다. 그래서 <b>틀린 것을 지우지 않고 남기고, 규칙을 적고, 함정을 목록으로 만들면서</b> 갔습니다. 그 정리가 이 화면입니다.</div>
  </div>
 
  <div class="card">
@@ -7584,7 +7584,7 @@ if(document.readyState!=='loading')updTimerUI();else document.addEventListener('
  if(document.readyState!=='loading') init(); else document.addEventListener('DOMContentLoaded',init);
 })();
 </script>
-<div id="entry_gate_modal" style="display:flex;position:fixed;inset:0;background:#0f172a;z-index:9700;align-items:center;justify-content:center;padding:20px"> <div style="background:#1e293b;border:2px solid #b8924b;border-radius:20px;max-width:420px;width:100%;padding:24px"> <div style="font-size:20px;font-weight:900;color:#fff;margin-bottom:6px">🚔 T-Book</div> <div style="font-size:13px;color:#94a3b8;margin-bottom:14px">내부 직원 확인 — 최초 1회만 묻습니다.</div> <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:10px">Q. 서초경찰서 교통센터 이름은?</div> <input id="entry_gate_a" type="text" placeholder="정답 입력" autocomplete="off" style="background:#0f172a;color:#fff;border:1.5px solid #475569"> <div id="entry_gate_msg" style="font-size:13px;color:#f87171;margin-top:8px;min-height:18px"></div> <button class="btn btn-primary btn-full" onclick="submitEntryGate()" style="margin-top:10px">확인</button> </div> </div>
+<div id="entry_gate_modal" style="display:flex;position:fixed;inset:0;background:#0f172a;z-index:9700;align-items:center;justify-content:center;padding:20px"> <div style="background:#1e293b;border:2px solid #b8924b;border-radius:20px;max-width:420px;width:100%;padding:24px"> <div style="font-size:20px;font-weight:900;color:#fff;margin-bottom:6px">🚔 T-Book</div> <div style="font-size:13px;color:#94a3b8;margin-bottom:14px">내부 직원 확인 — 최초 1회만 묻습니다.</div> <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:10px">Q. 배포 시 안내받은 확인코드는?</div> <input id="entry_gate_a" type="text" placeholder="정답 입력" autocomplete="off" style="background:#0f172a;color:#fff;border:1.5px solid #475569"> <div id="entry_gate_msg" style="font-size:13px;color:#f87171;margin-top:8px;min-height:18px"></div> <button class="btn btn-primary btn-full" onclick="submitEntryGate()" style="margin-top:10px">확인</button> </div> </div>
 <script>
 /* v9.4 — 최초 진입 게이트 (정답 시 영구 통과, 5회 오답 시 1시간 잠금) */
 (function(){
@@ -7627,7 +7627,7 @@ if(document.readyState!=='loading')updTimerUI();else document.addEventListener('
 <div id="vet_gate_modal" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.88);z-index:9600;align-items:center;justify-content:center;padding:20px"> <div style="background:var(--panel);border:2px solid var(--accent);border-radius:20px;max-width:420px;width:100%;padding:22px"> <div style="font-size:17px;font-weight:900;color:var(--accent);margin-bottom:10px">🛡️ 베테랑 모드 인증</div> <div id="vet_gate_q" style="font-size:15px;font-weight:700;margin-bottom:10px"></div> <input id="vet_gate_a" type="text" inputmode="numeric" placeholder="정답 입력" autocomplete="off"> <div class="btn-group" style="margin-top:12px"> <button class="btn btn-primary u-flex1" onclick="submitVetGate()">확인</button> <button class="btn btn-sec u-flex1" onclick="closeVetGate()">취소</button> </div> </div> </div>
 <script>
 /* v9.4 — 비기너/베테랑 모드 + 주관식 게이트 */
-var VET_DEFAULT_Q='교통센터 경비전화 뒷자리 3자리는?';
+var VET_DEFAULT_Q='내부 확인용 숫자 3자리는?';
 var _vetFails=0,_vetLockUntil=0;
 function _norm(t){return (t||'').replace(/\s/g,'');}
 async function _hash(t){
@@ -8791,7 +8791,7 @@ function calcOT(){
       m.innerHTML='<div style="background:var(--panel);color:var(--text);border:2px solid var(--accent-gold);border-radius:18px;max-width:380px;width:100%;padding:22px;text-align:center">'
         +'<div style="font-size:34px">🛡️</div>'
         +'<div style="font-size:18px;font-weight:900;color:var(--accent)">🚔 T-Book</div><div style="font-size:12px;color:var(--text-dim);margin:0 0 6px">정식 배포판</div><div style="font-size:16px;font-weight:800;margin:2px 0;color:var(--accent)">🛡️ 보안 안내</div>'
-        +'<div style="font-size:13px;line-height:1.8;text-align:left">현재 기기: <b>'+plat+'</b><br>이 앱은 <b>직무용 보안 자료</b>입니다.<br>• 무단 재배포·화면 캡처 금지<br>• 분실·기기 공유 주의(자동 잠금·삭제 작동)<br>• 데이터는 <b>이 기기에만</b> 저장(외부 전송 0)</div>'
+        +'<div style="font-size:13px;line-height:1.8;text-align:left">현재 기기: <b>'+plat+'</b><br>이 앱은 <b>직무용 보안 자료</b>입니다.<br>• 무단 재배포·화면 캡처 금지<br>• 분실·기기 공유 주의(사용기한 만료 시 잠금)<br>• 데이터는 <b>이 기기에만</b> 저장(외부 전송 0)</div>'
         +'<button onclick="window.__closeSecNotice()" style="margin-top:14px;width:100%;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px;font-size:14px;font-weight:800;line-height:1.4">위 사항을 모두 인지하였으며 동의합니다</button></div>';
       document.body.appendChild(m);
     }catch(e){}
