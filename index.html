@@ -55,30 +55,133 @@ html.tb-rdy body{opacity:1;transition:opacity .16s ease-out}
 <meta http-equiv="x-dns-prefetch-control" content="off">
 <title>T-Book v21.56 (2026 전국 공용판)</title>
 <script>
+/* ══ 진단 배너 v2 (2026-08-24) ══
+   바뀐 점 3가지
+   1) 통신 사정으로 생기는 것(비행기모드·터널·지하)은 「오류」로 띄우지 않는다.
+      앱은 캐시로 정상 동작하므로 오류가 아니다. 설정 → 진단 기록에만 남는다.
+   2) 문구를 현장 말로 바꿨다. 「오류」 대신 「앱 점검 알림」.
+   3) [내용 복사] 단추를 넣었다. 스크린샷을 찍지 않아도 된다.
+   되돌리려면 이 블록을 v1 원본으로 교체하면 된다. */
 (function(){
- window.__ERRS=[];
+ window.__ERRS=[];    /* 진짜 오류 — 배너로 띄운다 */
+ window.__NOTES=[];   /* 통신 사정 — 조용히 기록만 한다 */
+
+ /* 앱 동작에 지장이 없는 것을 가려낸다.
+    주의 — 「오프라인이면 전부 무시」로 하면 안 된다.
+    현장은 오프라인일 때가 많고, 그때 난 진짜 코드 오류까지 묻히기 때문이다.
+    통신 계열 문구일 때만 걸러낸다. */
+ function isNetworkNoise(s){
+  s=String(s||'');
+  if(/ServiceWorker|serviceworker|sw\.js/i.test(s)) return true;
+  if(/Failed to fetch|NetworkError|net::ERR|Load failed|network error|ERR_INTERNET|ERR_NETWORK|ERR_NAME_NOT_RESOLVED/i.test(s)) return true;
+  return false;
+ }
+
+ function plain(){
+  var t='T-Book 점검 기록\n';
+  try{ t+='판 '+(document.title||'')+'\n'; }catch(e){}
+  t+='때 '+new Date().toLocaleString('ko-KR')+'\n';
+  t+='연결 '+(navigator.onLine?'있음':'없음')+'\n\n';
+  for(var i=0;i<window.__ERRS.length;i++) t+=(i+1)+') '+window.__ERRS[i]+'\n';
+  return t;
+ }
+
  function draw(){
   try{
    if(!document.body||!window.__ERRS.length) return;
    var d=document.getElementById('err_banner');
-   if(!d){ d=document.createElement('div'); d.id='err_banner';
-    d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:2147483647;background:#8f1d1d;color:#fff;font-size:11px;line-height:1.5;padding:6px 8px;font-family:monospace;word-break:break-all;max-height:45vh;overflow:auto;border-bottom:3px solid #ffb4a9';
-    d.onclick=function(){ d.style.display='none'; };
+   if(!d){
+    d=document.createElement('div'); d.id='err_banner';
+    d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:2147483647;'+
+     'background:#7f1d1d;color:#fff;font-size:12px;line-height:1.6;padding:9px 10px;'+
+     'font-family:-apple-system,"Pretendard","Noto Sans KR",sans-serif;'+
+     'word-break:break-all;max-height:45vh;overflow:auto;border-bottom:3px solid #fca5a5';
     document.body.appendChild(d);
    }
-   var html='🩺 오류 '+window.__ERRS.length+'건 — 이 문구를 그대로 전달해 주세요 (누르면 닫힘)';
-   for(var i=0;i<window.__ERRS.length&&i<8;i++){ html+='<br>⚠ '+String(window.__ERRS[i]).replace(/</g,'&lt;'); }
-   d.innerHTML=html;
+   var head='<div style="font-weight:900;font-size:13px;margin-bottom:5px">'+
+            '🩺 앱 점검 알림 '+window.__ERRS.length+'건</div>'+
+            '<div style="font-size:11.5px;color:#fecaca;margin-bottom:7px">'+
+            '앱은 계속 쓰실 수 있습니다. 아래 내용을 만든 사람에게 보내 주십시오.</div>';
+   var body='<div style="font-family:monospace;font-size:11px;line-height:1.55">';
+   for(var i=0;i<window.__ERRS.length&&i<8;i++){
+    body+='· '+String(window.__ERRS[i]).replace(/</g,'&lt;')+'<br>';
+   }
+   body+='</div>';
+   var btn='<div style="margin-top:8px;display:flex;gap:6px">'+
+    '<button id="err_copy" style="flex:1;background:#fff;color:#7f1d1d;border:none;'+
+    'border-radius:8px;padding:8px;font-size:12px;font-weight:900">내용 복사</button>'+
+    '<button id="err_close" style="flex:1;background:rgba(255,255,255,.2);color:#fff;'+
+    'border:1px solid rgba(255,255,255,.5);border-radius:8px;padding:8px;'+
+    'font-size:12px;font-weight:900">닫기</button></div>';
+   d.innerHTML=head+body+btn;
+   var c=document.getElementById('err_copy');
+   if(c) c.onclick=function(ev){
+    ev.stopPropagation();
+    var t=plain();
+    try{
+     if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){ c.textContent='복사했습니다'; },
+                                           function(){ c.textContent='복사 안 됨'; });
+     }else{
+      var ta=document.createElement('textarea'); ta.value=t;
+      ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      c.textContent='복사했습니다';
+     }
+    }catch(e){ c.textContent='복사 안 됨'; }
+   };
+   var x=document.getElementById('err_close');
+   if(x) x.onclick=function(ev){ ev.stopPropagation(); d.style.display='none'; };
   }catch(e){}
  }
+
+ function take(msg){
+  if(isNetworkNoise(msg)){
+   window.__NOTES.push(msg);
+   try{ console.info('[T-Book 통신 사정 — 오류 아님]', msg); }catch(e){}
+   return;
+  }
+  window.__ERRS.push(msg); draw();
+ }
+
  window.addEventListener('error',function(ev){
   var m=(ev&&ev.message?ev.message:'오류')+' @줄'+(ev&&ev.lineno?ev.lineno:'?');
-  window.__ERRS.push(m); draw();
+  take(m);
  });
  window.addEventListener('unhandledrejection',function(ev){
-  var r=ev&&ev.reason; window.__ERRS.push('Promise: '+String(r&&r.message?r.message:r).slice(0,120)); draw();
+  var r=ev&&ev.reason;
+  take('Promise: '+String(r&&r.message?r.message:r).slice(0,120));
  });
- if(document.readyState!=='loading') draw(); else document.addEventListener('DOMContentLoaded',draw);
+ /* ── 오프라인 표시 ──
+    인터넷이 없을 때는 「오류」가 아니라 「오프라인」이라고만 알린다.
+    저장된 내용으로 정상 동작 중이라는 뜻이므로 붉은색을 쓰지 않는다.
+    연결이 돌아오면 스스로 사라진다. 눌러도 닫힌다. */
+ function offBar(show){
+  try{
+   if(!document.body) return;
+   var b=document.getElementById('tb_offbar');
+   if(show){
+    if(!b){
+     b=document.createElement('div'); b.id='tb_offbar';
+     b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:2147483646;'+
+      'background:#334155;color:#e2e8f0;font-size:12.5px;font-weight:800;'+
+      'text-align:center;padding:6px 10px;line-height:1.45;'+
+      'font-family:-apple-system,"Pretendard","Noto Sans KR",sans-serif;'+
+      'box-shadow:0 2px 6px rgba(0,0,0,.25);cursor:pointer';
+     b.textContent='\u2708\uFE0F 오프라인 — 저장된 내용으로 보고 있습니다';
+     b.onclick=function(){ b.style.display='none'; };
+     document.body.appendChild(b);
+    }
+    b.style.display='block';
+   }else if(b){ b.style.display='none'; }
+  }catch(e){}
+ }
+ function syncOff(){ offBar(navigator.onLine===false); }
+ window.addEventListener('offline',syncOff);
+ window.addEventListener('online',syncOff);
+
+ if(document.readyState!=='loading'){ draw(); syncOff(); }
+ else document.addEventListener('DOMContentLoaded',function(){ draw(); syncOff(); });
 })();
 </script>
 <script>/* v14.7: 정적 manifest.json 사용 — blob 매니페스트·내장 아이콘 제거(설치 배지·아이콘 갱신 문제 해결) */</script>
@@ -8480,7 +8583,7 @@ function calcOT(){
   if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
     window.addEventListener('load',function(){
       navigator.serviceWorker.register('sw.js',{updateViaCache:'none'})
-        .then(function(reg){ try{ reg.update(); }catch(e){} })
+        .then(function(reg){ try{ var p=reg.update(); if(p&&typeof p.catch==='function') p.catch(function(){}); }catch(e){} })
         .catch(function(e){ console.warn('[SW]',e); });
       /* v20.1 — 워커가 「새 판이 있다」고 알려주면 아래에 띠를 띄운다.
          자동으로 새로고침하지 않는다. 현장에서 쓰던 화면이 갑자기 날아가면 안 된다. */
