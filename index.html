@@ -1053,12 +1053,13 @@ body[data-theme='dark']{
 /* v21.67 — 달력형 진행막대.
    종전 막대는 work/bs 를 100%에서 잘라 써서, 기준(160h)을 넘는 순간 늘 꽉 차 보였다.
    교대근무자는 대부분 기준을 넘으므로 사실상 아무 것도 알려주지 못했다.
-   이제 가로를 꽉 채운 테두리 트랙 안에서 그 달 일수만큼 칸을 나누고,
-   오늘까지 하루 한 칸씩 채운다. 28일 달이든 31일 달이든 칸 수가 그 달에 맞는다. */
-.hd-cal{display:flex;gap:1.5px;margin-top:11px;height:9px;padding:2px;
- border:1px solid var(--hd-line);border-radius:4px;box-sizing:content-box}
-.hd-cal i{flex:1 1 0;border-radius:1px;background:transparent}
-.hd-cal i.on{background:var(--hd-gold)}
+   이제 가로를 꽉 채운 테두리 트랙 안을 「오늘 ÷ 그 달 일수」 만큼 채운다.
+   28일 달이든 31일 달이든 그 달 기준이다. 칸을 나눠 그렸더니 사이 여백이 도드라져
+   금색 옅은 톤에서 진한 톤으로 흐르는 그라데이션 한 줄로 바꿨다. */
+.hd-cal{margin-top:11px;height:9px;padding:2px;border:1px solid var(--hd-line);
+ border-radius:5px;box-sizing:content-box;overflow:hidden}
+.hd-cal i{display:block;height:100%;border-radius:3px;
+ background:linear-gradient(90deg,rgba(184,146,75,.28),rgba(184,146,75,.74))}
 .hd-df{display:flex;justify-content:space-between;font-size:10.6px;color:var(--hd-ink2);margin-top:6px;font-weight:700}
 
 /* 타일 */
@@ -6628,7 +6629,7 @@ try{tsetSyncFont();tsetSyncNav();}catch(e){}
 <span style="color:var(--text-dim)"><b>교통외근과 지역경찰이 현장에서 쓰기에는 이미 충분합니다.</b> 지금 하고 있는 일은 기능을 더 얹는 것이 아니라, <b>이 파일이 몇 해 뒤에도 고쳐질 수 있도록 뼈대를 정리하는 것</b>입니다. 남은 것은 스타일 규칙 병합과 본문 데이터 분리 — 둘 다 화면에는 아무 변화가 없고, 고치는 속도만 빨라집니다. 그다음이 <b>서무용 시간외수당 집계</b>입니다.</span><br>
 <b>[측정방법 다툼 · C-5 C-6]</b> <b>「호흡은 안 하고 채혈로만 하겠다」</b>와 <b>「가다가 못 하겠다」</b> 두 국면을 카드로 넣었습니다. 앞은 <b>측정거부로 입건하지 말고 채혈로 진행</b>하는 것이 안전하고, 뒤는 <b>반드시 호흡측정으로 되돌려 물은 뒤</b>에 거부죄를 따집니다. 순서를 건너뛰면 무죄가 납니다.<br>
 <b>[진입 확인코드]</b> 오답 5회 뒤에는 <b>바른 코드를 넣어도 1시간 못 들어가던 것</b>을 고쳤습니다. 이제 <b>바른 코드는 잠금 중에도 통과</b>합니다. 한/영 키를 안 바꾸고 친 영문 자판 입력도 같이 받고, 2회 틀리면 <b>「한/영 키를 확인하십시오」</b>가 뜹니다.<br>
-<b>[홈 진행막대]</b> 카드 아래 <b>갈색 막대가 늘 꽉 차 있던 것</b>을 고쳤습니다. 종전에는 「일한 시간 ÷ 기준시간」을 100%에서 잘라 그렸는데, 교대근무는 대부분 기준을 넘으니 <b>언제 봐도 꽉 찬 막대</b>였습니다. 이제 <b>그 달 일수만큼 칸을 나누고 오늘까지 하루 한 칸씩</b> 채웁니다. 31일 달은 31칸, 2월은 28칸입니다. <b>이번 달이 얼마나 남았는지</b>가 한눈에 보입니다.<br>
+<b>[홈 진행막대]</b> 카드 아래 <b>갈색 막대가 늘 꽉 차 있던 것</b>을 고쳤습니다. 종전에는 「일한 시간 ÷ 기준시간」을 100%에서 잘라 그렸는데, 교대근무는 대부분 기준을 넘으니 <b>언제 봐도 꽉 찬 막대</b>였습니다. 이제 <b>그 달 일수를 기준으로 오늘까지</b> 채웁니다. 31일 달과 2월이 각각 그 달 기준으로 그려집니다. 금색 옅은 톤에서 진한 톤으로 흐르는 그라데이션이라 <b>어디까지 왔는지</b>가 한눈에 보입니다.<br>
 <b>[바깥 검증]</b> 이번 판은 <b>클로드 · 그록 · 제미나이</b> 세 곳에 같은 파일을 주고 서로 반박시켰습니다. 수치는 전부 <b>코드로 직접 세어</b> 대조했고, 맞지 않는 지적은 버렸습니다. 판례는 사건번호를 확인하기 전까지 <b>「미확인」</b>으로 적습니다.
 </p></div></details>
 
@@ -11163,9 +11164,9 @@ window.__tbookBooted=true;
   try{
    var m=now.getMonth(), today=now.getDate();
    var last=new Date(now.getFullYear(),m+1,0).getDate();
-   var h='';
-   for(var d=1; d<=last; d++) h+='<i class="'+(d<=today?'on':'')+'"></i>';
-   return '<div class="hd-cal" role="img" aria-label="'+(m+1)+'월 '+last+'일 중 '+today+'일 경과">'+h+'</div>';
+   var w=(today/last*100).toFixed(2);
+   return '<div class="hd-cal" role="img" aria-label="'+(m+1)+'월 '+last+'일 중 '+today+'일 경과">'
+        + '<i style="width:'+w+'%"></i></div>';
   }catch(e){ return '<div class="hd-bar"><i style="width:0%"></i></div>'; }
  }
 
