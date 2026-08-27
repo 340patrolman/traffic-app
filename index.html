@@ -1,4 +1,34 @@
 <!DOCTYPE html>
+<!--
+════════════════════════════════════════════════════════════════════════
+ T-Book 코드 계약서  ver.1  (v21.57 · 2026-08-27)
+ 이 파일을 고치는 사람과 AI는 아래 8개를 지킨다. 어기면 파일이 또 부푼다.
+────────────────────────────────────────────────────────────────────────
+ 1. 새 <script> · <style> 를 파일 끝에 붙이지 않는다.
+    해당 기능이 이미 있는 자리를 찾아서 고친다.
+ 2. window.X = function(){ 옛X(); ... } 형태의 감싸기를 금지한다.
+    화면이 열릴 때 뭔가 하고 싶으면  onPage('화면id', 함수)  를 쓴다.
+    최초 1회만 돌릴 것은  onReady(함수)  를 쓴다.  (API는 <body> 바로 아래)
+ 3. 기능을 끌 때 시체를 남기지 않는다.
+    return; 으로 우회하지 말고 블록을 지운다. 복구는 이전 버전 파일에서.
+ 4. 본문(법령·판례·서류매뉴얼·실무노트)과 엔진(화면전환·저장·계산)을
+    한 번의 요청에서 같이 고치지 않는다. 본문은 원문 대조를 거친 자산이다.
+ 5. 화면을 새로 만들면 GROUP_PAGES · 서브탭 · HTML id 세 곳을 함께 맞춘다.
+    (2026-08-27 기준 지도에서 빠진 화면 8개:
+     accident, banned, drunk, unlicense, noinsure, det_text/photo/video)
+ 6. 런타임으로 DOM을 수술하지 않는다. HTML에 처음부터 넣고 JS는 이벤트만.
+    타이머(700·900·1200·1500ms)로 화면을 고치는 방식은 늦은 폰에서 깜빡인다.
+ 7. CSS 는 마지막 승자만 남는다. !important 를 더 얹기 전에
+    같은 선택자가 앞에 몇 번 나오는지 먼저 센다. (현재 !important 475개)
+ 8. 배포 전 확인 3가지 —
+    ① 화면 전수 진입  ② 콘솔 JS 오류 0건  ③ 근무표·시간외수당 값 대조
+────────────────────────────────────────────────────────────────────────
+ 현재 규모 (2026-08-27 실측)
+   2,273,xxx자 / 17,7xx줄 · <script> 115개(78만자) · <style> 85개
+   화면 65개(런타임 4개 추가 → 69) · GROUP_PAGES 등록 57개
+   showSubPage 래핑 19겹 — 이후로는 늘리지 않는다
+════════════════════════════════════════════════════════════════════════
+-->
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' data: blob: mediastream:; font-src 'self' data:; manifest-src 'self' blob:; worker-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
@@ -507,7 +537,33 @@ select{max-width:100%;}
 #vnav_menu_btn{animation:tbManGlow 1.7s ease-in-out infinite}
 </style>
 </head>
-<body data-home="dash" data-nav="v"> <script>(function(){ if(location.protocol==='file:'){ var o=document.createElement('div'); o.setAttribute('style','position:fixed;inset:0;background:#0f172a;color:#fff;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center'); o.innerHTML='<div style="font-size:46px;margin-bottom:14px">🔗</div><div style="font-size:20px;font-weight:900;margin-bottom:12px">정식 링크로 접속해 주세요</div><div style="font-size:15px;line-height:1.9;color:#cbd5e1;max-width:330px">이 앱은 <b style=color:#fff>다운로드한 파일</b>로는 사용할 수 없습니다.<br>부서에서 안내한 <b style=color:#fff>정식 주소</b>로 접속하거나,<br>접속 후 <b style=color:#fff>홈 화면에 추가</b>한 바로가기로 여세요.<br><br><span style="font-size:13px;color:#94a3b8">자동 업데이트·보안 보호는 정식 링크에서만 작동합니다.</span></div>'; (document.body||document.documentElement).appendChild(o); document.documentElement.style.overflow='hidden'; } })();</script><script>
+<body data-home="dash" data-nav="v">
+<script>
+/* ══ [v21.57] onPage / onReady 버스 ══════════════════════════════
+   showSubPage 를 다시 감싸지 마십시오. 아래 세 가지만 쓰십시오.
+       onPage('shift_cal', fn)   해당 화면이 열릴 때
+       onPage('*', fn)           모든 화면이 열릴 때
+       onReady(fn)               최초 1회
+   구독자 하나가 죽어도 나머지는 계속 돕니다.
+   (v21.44 판례 모듈 사고처럼 뒤 패치가 통째로 멈추는 일을 막는다) */
+(function(){
+ var SUB={}, RDY=[], done=false;
+ window.onPage=function(id,fn){ if(typeof fn!=='function') return;
+  (SUB[id]=SUB[id]||[]).push(fn); };
+ window.__tbEmitPage=function(id){
+  var L=(SUB['*']||[]).concat(SUB[id]||[]);
+  for(var i=0;i<L.length;i++){ try{ L[i](id); }
+   catch(e){ try{ console.warn('[onPage]',id,e); }catch(_){} } } };
+ window.onReady=function(fn){ if(typeof fn!=='function') return;
+  if(done){ setTimeout(function(){ try{ fn(); }catch(e){} },0); } else RDY.push(fn); };
+ function fire(){ if(done) return; done=true;
+  for(var i=0;i<RDY.length;i++){ try{ RDY[i](); }catch(e){
+   try{ console.warn('[onReady]',e); }catch(_){} } } }
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fire);
+ else fire();
+})();
+</script>
+ <script>(function(){ if(location.protocol==='file:'){ var o=document.createElement('div'); o.setAttribute('style','position:fixed;inset:0;background:#0f172a;color:#fff;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center'); o.innerHTML='<div style="font-size:46px;margin-bottom:14px">🔗</div><div style="font-size:20px;font-weight:900;margin-bottom:12px">정식 링크로 접속해 주세요</div><div style="font-size:15px;line-height:1.9;color:#cbd5e1;max-width:330px">이 앱은 <b style=color:#fff>다운로드한 파일</b>로는 사용할 수 없습니다.<br>부서에서 안내한 <b style=color:#fff>정식 주소</b>로 접속하거나,<br>접속 후 <b style=color:#fff>홈 화면에 추가</b>한 바로가기로 여세요.<br><br><span style="font-size:13px;color:#94a3b8">자동 업데이트·보안 보호는 정식 링크에서만 작동합니다.</span></div>'; (document.body||document.documentElement).appendChild(o); document.documentElement.style.overflow='hidden'; } })();</script><script>
 /* P0 안전망: 전역 오류 포착 — 침묵 사망 방지 */
 window.__tbookErrN=0;(function(){
 function h(msg){try{var n=Date.now();
@@ -7498,7 +7554,7 @@ window._fillRange=function(r){ if(!r)return; var mn=parseFloat(r.min),mx=parseFl
 _fillAllRanges=function(){ ['rng_idle','rng_ttl','rng_bg'].forEach(function(id){ var e=document.getElementById(id); if(e) _fillRange(e); }); };
 onTimerSlide=function(key,val,lblId,isHr){APP_TIMERS[key]=parseInt(val,10);try{localStorage.setItem('app_timers',JSON.stringify(APP_TIMERS));}catch(e){}var l=document.getElementById(lblId);if(l)l.textContent=isHr?APP_TIMERS[key]+'시간':fmtMin(APP_TIMERS[key]);_fillAllRanges();};
 window.updTimerUI=function(){var m=[['rng_idle','lbl_idle',APP_TIMERS.idleMin,false],['rng_ttl','lbl_ttl',APP_TIMERS.ttlHr,true],['rng_bg','lbl_bg',APP_TIMERS.bgMin,false]];m.forEach(function(a){var r=document.getElementById(a[0]),l=document.getElementById(a[1]);if(r)r.value=a[2];if(l)l.textContent=a[3]?a[2]+'시간':fmtMin(a[2]);});_fillAllRanges();};
-window.resetTimers=function(){APP_TIMERS.idleMin=30;APP_TIMERS.ttlHr=8;APP_TIMERS.bgMin=60;try{localStorage.setItem('app_timers',JSON.stringify(APP_TIMERS));}catch(e){}updTimerUI();try{toast('\u23F2\uFE0F 기본값 복원 (30분·8시간·1시간)');}catch(e){}};
+/* [v21.57] 죽은 함수 resetTimers 삭제 (호출 0건 실측) */
 if(document.readyState!=='loading')updTimerUI();else document.addEventListener('DOMContentLoaded',updTimerUI);
 </script>
 <script>
@@ -7683,28 +7739,9 @@ function loadVetNotes(){ ['daily','season'].forEach(function(k){ try{ var v=loca
  },false);
 })();
 </script>
-<script>
-/* v9.7 — 유휴 자동 잠금 (매뉴얼·베테랑)
-   ⛔ v21.46 비활성화. 해제가 3자리 숫자라 방어력이 없는 반면,
-      현장에서 베테랑 모드가 말없이 풀리는 오조작만 유발했다.
-   ※ 개인정보 실삭제 장치(APP_TIMERS.ttlHr·bgMin → pii wipe)는 그대로 유지된다.
-      되살릴 때는 아래 return 한 줄만 지우면 된다. */
-(function(){
- return; /* v21.46 — 유휴 자동잠금 비활성화 (아래 로직은 보존) */
- var t=null, last=0;
- function isActive(){ return document.body.getAttribute('data-mode')==='vet'; } /* 매뉴얼은 세션 유지 — 유휴 자동잠금 대상에서 제외 */
- function relock(){
-  t=null; var did=[];
-  if(document.body.getAttribute('data-mode')==='vet'){ if(typeof applyMode==='function') applyMode('beginner'); did.push('베테랑 모드'); }
-  if(did.length){ try{toast('🔒 '+APP_TIMERS.idleMin+'분 미사용 — '+did.join('·')+' 자동 잠금');}catch(e){} }
- }
- function arm(){ if(t){clearTimeout(t);t=null;} if(isActive()){ t=setTimeout(relock,tIdleMs()); } }
- function onact(){ var n=Date.now(); if(n-last<1500) return; last=n; if(isActive()) arm(); }
- ['touchstart','click','keydown','scroll'].forEach(function(ev){ document.addEventListener(ev,onact,{passive:true}); });
- // 잠금 해제/베테랑 진입 직후 타이머가 걸리도록 주기 점검
- setInterval(function(){ if(isActive()&&!t) arm(); else if(!isActive()&&t){ clearTimeout(t); t=null; } }, 15000);
-})();
-</script>
+<!-- [v21.57] v9.7 유휴 자동잠금: v21.46에서 return으로 비활성화된 뒤 시체만 남아 있어
+     스크립트 1,177자를 통째로 제거함. 복구가 필요하면 v21.56 파일에서 가져올 것.
+     개인정보 실삭제 장치(APP_TIMERS.ttlHr·bgMin → pii wipe)는 별도 코드로 그대로 유지됨. -->
 <script>
 /* v9.9 — 교대 근무표 (색상 강화 + 날짜 기록 + 수당 계산, 로컬 저장·전송 없음) */
 var SHIFT_SYS={
@@ -8902,12 +8939,12 @@ function fsGet(){var v=parseFloat(localStorage.getItem('app_font_scale'));return
 function fsApply(v){try{document.documentElement.style.zoom=v;}catch(e){}var el=document.getElementById('fs_val');if(el)el.textContent=Math.round(v*100)+'%';}
 function fsIdx(v){var b=0,bd=9;for(var i=0;i<FS.length;i++){var d=Math.abs(FS[i]-v);if(d<bd){bd=d;b=i;}}return b;}
 window.fontScaleStep=function(d){var i=fsIdx(fsGet());i=Math.max(0,Math.min(FS.length-1,i+d));var v=FS[i];try{localStorage.setItem('app_font_scale',v);}catch(e){}fsApply(v);_t('글자 '+Math.round(v*100)+'%');};
-window.fontScaleReset=function(){try{localStorage.setItem('app_font_scale',1.2);}catch(e){}fsApply(1.2);_t('기본 120%');};
+/* [v21.57] 죽은 함수 fontScaleReset 삭제 (호출 0건 실측) */
 fsApply(fsGet());
 })();
 </script>
 
-<script>/* v20.0 — 2차 인트로 팝업 제거. 호출부 보호용 스텀 */window.closeIntro=function(){};</script>
+<script>/* v20.0 — 2차 인트로 팝업 제거. 호출부 보호용 스텀 *//* [v21.57] 죽은 함수 closeIntro 삭제 (호출 0건 실측) */</script>
 <script>
 /* [scroll-lock 안전망 v14.1] 시작 오버레이가 body.overflow='hidden'을 남겨 휠/스크롤이 잠기는 현상 자동 복구. 100% 추가 코드. */
 (function(){
@@ -8956,7 +8993,7 @@ function _navMode(){ return 'v'; }   /* v20.2 — 세로형 단일화 */
 function _curLabel(){ var a=document.querySelector('.ntab.active'); return a?a.textContent.trim():'메뉴'; }
 window.vnavToggle=function(){ var b=document.body; b.classList.toggle('vopen'); if(b.classList.contains('vopen')){ try{window.scrollTo({top:0,behavior:'smooth'});}catch(e){window.scrollTo(0,0);} } };
 window.applyNavLayout=function(){ var v=_navMode()==='v'; document.body.setAttribute('data-nav',v?'v':'h'); document.body.classList.remove('vopen'); var bar=document.getElementById('vnav_bar'); if(bar) bar.style.display='none'; var mb=document.getElementById('vnav_menu_btn'); if(mb) mb.style.display=v?'':'none'; var bh=document.getElementById('navlay_h'),bv=document.getElementById('navlay_v'); if(bh&&bv){ bh.className=v?'btn btn-sec u-flex1':'btn btn-primary u-flex1'; bv.className=v?'btn btn-primary u-flex1':'btn btn-sec u-flex1'; } };
-window.setNavLayout=function(m){ try{ localStorage.setItem('nav_layout',m==='h'?'h':'v'); }catch(e){} applyNavLayout(); try{toast(m==='h'?'↔️ 가로형 메뉴 적용':'↕️ 세로형 메뉴 적용');}catch(e){} };
+/* [v21.57] 죽은 함수 setNavLayout 삭제 (호출 0건 실측) */
 (function(){ var o=window.showGroup; if(typeof o==='function'){ window.showGroup=function(g){ var r=o.apply(this,arguments); try{ if(_navMode()==='v') document.body.classList.remove('vopen'); }catch(e){} return r; }; } })();
 function _boot(){ applyNavLayout(); try{ showGroup('home'); showSubPage('home_dash'); }catch(e){} try{ renderShiftCal(); calcOT(); }catch(e){} }
 if(document.readyState!=='loading') _boot(); else document.addEventListener('DOMContentLoaded',_boot);
@@ -9745,10 +9782,7 @@ body[data-home="dash"] #sub_home{display:none!important}
   try{ hdSyncSettings(); }catch(e){}
   try{ hdSyncTab(); }catch(e){}
  };
- window.hdSetMode=function(){   /* v20.2 — 대시보드 단일화 */
-  hdApplyMode('dash');
-  showGroup('home'); showSubPage('home_dash');
- };
+ /* [v21.57] 죽은 함수 hdSetMode 삭제 (호출 0건 실측) */
  window.hdGo=function(g,p){
   try{ showGroup(g); showSubPage(p); window.scrollTo(0,0); }catch(e){}
   try{ hdSyncTab(); }catch(e){}
@@ -12429,18 +12463,7 @@ window.tbGoMine=function(v){
   try{ if(window.__ccSheet && document.getElementById('cc_sheet')){ var sd=window.__ccSheet; tbCctvSheetClose(); tbCctvSheet(sd); } }catch(e){}
   try{ toast(i>=0?'자주 보기에서 뺐습니다':'⭐ 자주 보는 곳에 넣었습니다 — 맨 위로 올라갑니다'); }catch(e){}
  };
- window.tbCctvEdit=function(id){
-  var x=byId(id); if(!x) return;
-  var u=null;
-  try{ u=window.prompt('「'+x.n+'」 주소\n\n· 안 열리거나 더 좋은 주소를 아시면 여기서 바꾸십시오.\n· 비우고 확인하면 원래 주소로 되돌립니다.', x.u); }catch(e){}
-  if(u===null) return;
-  u=(u||'').trim();
-  var o=over();
-  if(!u){ delete o[id]; jw(OK,o); paintAll(); try{ toast('원래 주소로 되돌렸습니다'); }catch(e){} return; }
-  if(!/^https?:\/\//i.test(u)){ alert('주소가 http:// 또는 https:// 로 시작해야 합니다.'); return; }
-  o[id]={u:u, t:'내가 고친 주소'}; jw(OK,o); paintAll();
-  try{ toast('주소를 바꿨습니다'); }catch(e){}
- };
+ /* [v21.57] 죽은 함수 tbCctvEdit 삭제 (호출 0건 실측) */
 
  function star(id){ var on=favs().indexOf(id)>=0;
   return '<span class="cc-st'+(on?' on':'')+'" role="button" aria-label="자주 보기" '+
@@ -12950,10 +12973,7 @@ var LOCNOTE=[
 
  /* 「▾ 전부 펼치기」로 카드를 열 때 실무노트 본문도 같이 채워지도록 —
     앱의 전체펼침은 .card 접기만 건드리고 <details> 는 안 연다. */
- window.lnOpenAll=function(pid){
-  var sel=(pid?'#page-'+pid+' ':'')+'details.ln-d';
-  document.querySelectorAll(sel).forEach(function(d){ d.open=true; });
- };
+ /* [v21.57] 죽은 함수 lnOpenAll 삭제 (호출 0건 실측) */
 
  /* ── 6) 찾기 — 본문까지 뒤진다 (기존 검색 무접촉, 결과만 덧댐) ── */
  function N(t){ return (t||'').replace(/\s/g,''); }
@@ -14231,7 +14251,7 @@ mark.la-mk{background:var(--accent);color:#fff;border-radius:3px;padding:0 1px}
   return out;
  }
  function idx(){ if(!IDX) IDX=build(); return IDX; }
- window.tbFtReindex=function(){ IDX=null; SEQ=0; return idx().length; };
+ /* [v21.57] 죽은 함수 tbFtReindex 삭제 (호출 0건 실측) */
 
  /* ── 찾기 ────────────────────────────────────────────────── */
  function hits(q){
@@ -16199,7 +16219,7 @@ details[open] > summary.dk-on .dk-chev{color:var(--accent);border-color:var(--ac
   });
   return ITEMS;
  }
- window.tbDocItems=function(){ return ITEMS.slice(); };
+ /* [v21.57] 죽은 함수 tbDocItems 삭제 (호출 0건 실측) */
 
  /* ── 3) 「붙일 곳」 목록에 서류 항목 전체를 얹는다 ────────── */
  var _opt=window.tbLinkOptions;
@@ -17771,5 +17791,20 @@ html body .tb1-menu{border:1px solid rgba(255,255,255,.42)!important;
   border-radius:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .la-top b{font-weight:800}
 </style>
+
+<script>
+/* ══ [v21.57] 버스 발화 — 이 파일의 마지막 showSubPage 래핑 ══════
+   기존 19겹은 그대로 두고, 그 전부가 끝난 뒤 구독자를 부른다.
+   앞으로 새 패치는 감싸지 말고 onPage() 로 등록할 것. (계약서 2항) */
+(function(){
+ var _sp=window.showSubPage;
+ if(typeof _sp!=='function'){ try{ console.warn('[bus] showSubPage 미검출'); }catch(e){} return; }
+ window.showSubPage=function(id){
+  var r=_sp.apply(this,arguments);
+  try{ window.__tbEmitPage(id); }catch(e){ try{ console.warn('[bus]',e); }catch(_){} }
+  return r; };
+ try{ window.__tbBusOn=true; }catch(e){}
+})();
+</script>
 </body>
 </html>
