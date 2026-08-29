@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 ════════════════════════════════════════════════════════════════════════
- T-Book 코드 계약서  ver.2  (v21.71 · 2026-08-29)
+ T-Book 코드 계약서  ver.2  (v21.72 · 2026-08-29)
  이 파일을 고치는 사람과 AI는 아래 8개를 지킨다. 어기면 파일이 또 부푼다.
 ────────────────────────────────────────────────────────────────────────
  1. 새 script 태그·style 태그를 파일 끝에 붙이지 않는다.
@@ -40,11 +40,11 @@
       그래서 이 파일의 주석에는 태그 기호를 쓰지 않는다. 글자로만 적는다.
 ────────────────────────────────────────────────────────────────────────
  현재 규모 (2026-08-29 실측)
-   232.1만자 / 18,594줄 · script 117개 · style 32개(전부 head) · !important 549개
+   232.3만자 / 18,625줄 · script 117개 · style 32개(전부 head) · !important 549개
    화면 65개(런타임 4개 추가 → 69) · GROUP_PAGES 등록 65개 (미아 0)
    showSubPage 대입 17회 = 함수 재정의 13 + 준비된 래퍼 재할당 4. 늘리지 않는다.
    새로 화면 훅이 필요하면 onPage 를 쓴다 (감싸기 금지 — 위 2항)
-   (v21.71 에서 코드로 직접 센 값이다. 파일을 고칠 때마다 다시 세서 여기를 맞춘다)
+   (v21.72 에서 코드로 직접 센 값이다. 파일을 고칠 때마다 다시 세서 여기를 맞춘다)
 ════════════════════════════════════════════════════════════════════════
 -->
 <html lang="ko">
@@ -106,7 +106,7 @@ try{var _fs0=parseFloat(localStorage.getItem("app_font_scale"));document.documen
 <meta name="format-detection" content="telephone=no">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="x-dns-prefetch-control" content="off">
-<title>T-Book v21.71 (2026 전국 공용판)</title>
+<title>T-Book v21.72 (2026 전국 공용판)</title>
 <script>
 /* ══ 진단 배너 v2 (2026-08-24) ══
    바뀐 점 3가지
@@ -1202,7 +1202,7 @@ body[data-home="dash"] #sub_home{display:none!important}
 #page-settings .hm-op b{font-size:14px;font-weight:900;display:block}
 #page-settings .hm-op small{font-size:11px;color:#475569;display:block;margin-top:2px;line-height:1.45}
 
-/* ═══ v21.71 — 설정 화면만 촘촘하게 ═══
+/* ═══ v21.72 — 설정 화면만 촘촘하게 ═══
    설정은 외근 중에 보는 화면이 아니라 시간 있을 때 앉아서 보는 화면이다.
    그래서 손가락 여유보다 한 눈에 들어오는 양을 앞에 둔다.
    #page-settings 안으로 한정되어 다른 화면에는 영향이 없다. 되돌리려면 이 블록만 지운다. */
@@ -1215,7 +1215,7 @@ body[data-home="dash"] #sub_home{display:none!important}
 #page-settings li{line-height:1.5!important}
 #page-settings hr{margin:7px 0!important}
 
-/* ═══ v21.71 — 설정 카드가 1600px 에서 잘리던 것을 푼다 ═══
+/* ═══ v21.72 — 설정 카드가 1600px 에서 잘리던 것을 푼다 ═══
    .tset-acc 는 overflow:hidden 이고, 열렸을 때 .tset-body 의 max-height 가 1600px 로 묶여 있었다.
    그 결과 「발자취」는 내용 14,099px 중 1,920px 만 보이고 86% 가 잘려 있었다(v21.69 헤드리스 실측).
    높이 제한을 풀고, 펼칠 때의 부드러움은 내용 페이드로 대신한다.
@@ -1993,7 +1993,7 @@ body.tb-immersive .tb-fav-float{opacity:0!important;transform:translateY(22px);p
 .topbar,.hd-tabs{will-change:auto!important}
 body[data-home="dash"] #fabAll,body[data-home="dash"] #more_below_hint{
   -webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-/* v21.71 — 전환을 부드럽게 되돌린다.
+/* v21.72 — 전환을 부드럽게 되돌린다.
    v21.33 에서 잔상 때문에 애니메이션을 통째로 껐고, 의심 후보 3개 중 범인을 특정하지 못한 채 왔다.
    범인은 ③ pageIn 의 세로 이동(translateY)이 sticky 상단바 GPU 승격과 겹치는 조합이다.
    이동을 없애고 투명도만 쓰면 그 조합 자체가 성립하지 않는다 — 잔상 없이 부드러움만 남는다.
@@ -2392,7 +2392,7 @@ function h(msg){try{var n=Date.now();
  /* v21.57 — 화면 안내는 진단 배너 한 곳. 여기는 기록 + 부팅 감시만. */
  }catch(e){}}
 window.addEventListener('load',function(){setTimeout(function(){if(!window.__tbookBooted)h('앱 로드 미완료(boot-incomplete)');},4000);});
-})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동"><svg class="tb-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#fff" d="M12 2.6 4.7 5.6v6.3c0 4.7 3.2 8.6 7.3 9.5 4.1-.9 7.3-4.8 7.3-9.5V5.6z"/></svg> T-Book<span class="ver">v21.71</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="hdMenu()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
+})();</script> <div class="topbar tb1"><div class="title" onclick="goHome()" role="button" title="누르면 홈(사건보고)으로" aria-label="홈으로 이동"><svg class="tb-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#fff" d="M12 2.6 4.7 5.6v6.3c0 4.7 3.2 8.6 7.3 9.5 4.1-.9 7.3-4.8 7.3-9.5V5.6z"/></svg> T-Book<span class="ver">v21.72</span></div><button class="icon-btn tb1-back" onclick="goBack()" title="뒤로 가기" aria-label="뒤로 가기">◀</button><span class="tb1-sp"></span><button class="icon-btn tb1-menu" id="vnav_menu_btn" onclick="hdMenu()" title="전체 메뉴" style="display:none">☰ 메뉴</button><button class="icon-btn tb1-man" onclick="showGroup('docs');showSubPage('doc_manual')" title="업무매뉴얼">매뉴얼</button><button class="icon-btn tb1-find" onclick="openSearch()" title="검색(찾기)">🔎 찾기</button><button class="icon-btn tb1-set" onclick="showGroup('setg')" title="설정">⚙️ 설정</button></div> <!-- ══ iOS 홈화면 배너 ══ -->
 <!-- 📱 브라우저 및 홈화면 설치 안내 -->
 <div id="pwa_guide_modal">
  <div class="pwa-modal-content">
@@ -6742,12 +6742,12 @@ function tsetSyncFont(){var v=1.2;try{v=parseFloat(localStorage.getItem('app_fon
 function tsetSyncNav(){var m='h';try{m=localStorage.getItem('nav_layout')||'h';}catch(e){}var H=document.getElementById('tsetNavH'),V=document.getElementById('tsetNavV'),D=document.getElementById('tsetNavDesc');if(!H||!V)return;if(m==='v'){V.classList.add('sel');H.classList.remove('sel');if(D)D.innerHTML='<b>세로형</b>: 상단 ☰ 버튼 하나로 정리됩니다. 좁은 폰에서 깔끔합니다.';}else{H.classList.add('sel');V.classList.remove('sel');if(D)D.innerHTML='<b>가로형</b>: 상단에 탭이 나란히 놓입니다. 화면이 넓을 때 편합니다.';}}
 try{tsetSyncFont();tsetSyncNav();}catch(e){}
 </script></div><div class="page" id="page-feedback"> <div class="card"> <div class="card-title">📮 앱 피드백 · 요구사항</div> <div class="guide-box">이 앱의 <b>수정·보완·추가 요구사항</b>을 적어 두는 칸입니다. 입력 내용은 <b>이 기기에만 저장</b>됩니다(서버 전송 없음). 모아서 전달하려면 <b>📋 전체 복사</b>로 카톡·메일에 붙여넣으세요.</div> <label>구분</label> <select id="fb_cat"><option>수정</option><option>보완</option><option>추가</option><option>버그</option><option>기타</option></select> <label>내용 🎙️</label> <div class="mic-wrap"> <textarea id="fb_text" rows="3" placeholder="예: 음주 화면에 측정기 사진 칸 추가 / 글씨 더 크게" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea> <button class="mic-btn" onclick="toggleMicFor('fb_text',this)">🎙️</button> </div> <label>작성자(선택)</label><input id="fb_author" placeholder="이름·계급"> <button class="btn btn-primary btn-full" onclick="addFeedback()">💾 저장</button> <div class="btn-group"> <button class="btn btn-sec u-flex1" onclick="copyAllFeedback()">📋 전체 복사</button> <button class="btn btn-danger u-flex1" onclick="clearAllFeedback()">🗑️ 전체 삭제</button> </div> </div> <div class="card"> <div class="card-title">📋 저장된 피드백 (<span id="fb_count">0</span>건)</div> <div id="fb_list"><p style="color:var(--text-dim);font-size:13px">저장된 피드백 없음</p></div> </div> </div>
-<div class="footer-note">🚔 T-Book v21.71 (2026 전국 공용판) · 2026.8 · 로컬처리 · 외부송신 없음<br>현장 의견을 반영해 세부 기능을 하나하나 보완하며 지속 업데이트하고 있습니다.<br><span style="display:inline-block;margin-top:5px;font-size:11.5px;color:var(--text-dim)">© 2026 이동렬 · 저작권 접수 2026-050093 · 무단 복제·배포 금지</span></div>
+<div class="footer-note">🚔 T-Book v21.72 (2026 전국 공용판) · 2026.8 · 로컬처리 · 외부송신 없음<br>현장 의견을 반영해 세부 기능을 하나하나 보완하며 지속 업데이트하고 있습니다.<br><span style="display:inline-block;margin-top:5px;font-size:11.5px;color:var(--text-dim)">© 2026 이동렬 · 저작권 접수 2026-050093 · 무단 복제·배포 금지</span></div>
 <div id="toast" class="toast"></div> <!-- ══ 최초 실행 책임 고지 모달 ══ -->
 
 <div id="first_run_modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9500;overflow-y:auto;padding:8px;align-items:center;justify-content:center">
 <div style="background:#fff;border-radius:16px;padding:13px 13px 12px;max-width:430px;width:100%;margin:auto;max-height:96vh;overflow-y:auto;box-shadow:0 16px 44px rgba(0,0,0,.5)">
-<div style="font-size:16.5px;font-weight:900;color:#002366;text-align:center;letter-spacing:-.5px">🚓 T-Book v21.71</div>
+<div style="font-size:16.5px;font-weight:900;color:#002366;text-align:center;letter-spacing:-.5px">🚓 T-Book v21.72</div>
 <div style="font-size:11px;color:#64748b;text-align:center;margin:1px 0 7px">전국 교통·지역경찰 현장 공용판 · 최초 실행 필독</div>
 <div style="font-size:12px;color:#334155;text-align:center;margin-bottom:7px;line-height:1.45">📕 <b>T-Book = Traffic Police Book</b><br>외우지 말고, 필요할 때 펼쳐 보는 책입니다.</div>
 <div style="background:#fef2f2;border:1.5px solid #fca5a5;border-radius:10px;padding:8px 9px;margin-bottom:5px;font-size:11.5px;line-height:1.5;color:#1e1e1e"><b style="color:#b91c1c">⚠️ 핵심 고지</b> — 본 도구와 산출물은 <b>직무상 비밀</b>. 무단 반출·제3자 공유·인터넷 공개 금지(<b>형법 §127 · 개인정보보호법 §71 · 국가공무원법 §60</b>). 모든 데이터는 <b>이 기기 안에서만</b> 처리 · 외부 전송 없음.</div>
@@ -7592,7 +7592,7 @@ const DEFAULT_TEMPLATES = {
 보고자: {OFFICER} / {STATION} {DEPT}`
 };
 
-const APP_VERSION='v21.71';
+const APP_VERSION='v21.72';
 let state = {
  templates: {...DEFAULT_TEMPLATES},
  settings: {station:'', dept:'', phone:''}
@@ -10484,7 +10484,7 @@ function calcOT(){
   }
   var _deferred=null;
   window.addEventListener('beforeinstallprompt',function(e){
-    /* v21.71 — 설정 「앱 새로 설치」에서도 쓸 수 있게 밖으로 내어 둔다.
+    /* v21.72 — 설정 「앱 새로 설치」에서도 쓸 수 있게 밖으로 내어 둔다.
        종전에는 이 함수 안에만 있어서 화면 오른쪽 아래 뜨는 버튼으로만 설치할 수 있었다. */
     e.preventDefault(); _deferred=e; window.__tbInstallPrompt=e; _showInstallFab();
   });
@@ -10506,7 +10506,7 @@ function calcOT(){
     window.__tbInstallPrompt=null;
   });
 
-  /* v21.71 — 설정 「앱 새로 설치·갱신」
+  /* v21.72 — 설정 「앱 새로 설치·갱신」
      웹앱은 스스로를 지웠다 깔 수 없다(브라우저가 막는다). 할 수 있는 것만 넣었다.
      ① 캐시와 서비스워커를 비우고 다시 받기 — 앱 내용은 이걸로 확실히 최신이 된다
      ② 홈 화면 아이콘은 안드로이드 WebAPK 라 기기가 다시 만들어야 바뀐다 — 절차를 안내한다 */
@@ -10545,7 +10545,7 @@ function calcOT(){
 </script>
 <script>
 (function(){
-  var DEPLOY_TAG = "T-Book v21.71 전국 공용판";
+  var DEPLOY_TAG = "T-Book v21.72 전국 공용판";
   window.__DEPLOY_TAG = DEPLOY_TAG;
   var KILL_LABEL = "2027-02-20";
   var KILL = new Date(2027,1,20,0,0,0);
@@ -11224,9 +11224,11 @@ window.__tbookBooted=true;
 })();
 </script>
 <script>
-/* v21.71 — 서무용 (베타). 교대근무표 안에서만 산다. 새 화면을 만들지 않으므로 계약서 5항 해당 없음.
+/* v21.72 — 서무용 (베타). 교대근무표 안에서만 산다. 새 화면을 만들지 않으므로 계약서 5항 해당 없음.
    계약서 2항 — showSubPage 를 감싸지 않는다. onPage / onReady 버스만 쓴다.
-   계약서 6항 — 칸의 껍데기는 HTML 에 이미 들어 있다. 여기서는 사람 줄만 그린다.
+   계약서 6항 — 칸의 껍데기(단추·제목·안내문)는 HTML 에 이미 들어 있다.
+                여기서 그리는 것은 그때그때 달라지는 속(조직 탭 · 1단계 기준칸 · 사람 줄)뿐이고,
+                방식은 renderShiftCal 과 같다. 타이머로 화면을 고치지 않는다.
    계약서 7항 — 저장은 이 기기 안(localStorage)뿐. 밖으로 나가는 길이 없다.
    순서 — ① 그 달 조직(팀·제대) 기준 시간외를 먼저 낸다 ② 개인은 거기서 빼고 더한다.
           서무가 40명치를 하나씩 세는 게 아니라, 팀 기준 한 번에 개인 편차만 넣는 순서다.
@@ -11244,33 +11246,56 @@ window.__tbookBooted=true;
     {id:'o4',name:'안전3팀',kind:'외근',team:3},
     {id:'o5',name:'안전4팀',kind:'외근',team:4}], base:{}, people:{}};
  }
- function load(){ try{ var d=JSON.parse(localStorage.getItem(KEY)||'null'); if(d&&d.orgs&&d.orgs.length) return d; }catch(e){} return def(); }
- function save(d){ try{ localStorage.setItem(KEY,JSON.stringify(d)); }catch(e){} }
+ /* v21.72 — 읽다 깨지면 원본을 백업해 두고 기본값으로 연다.
+    종전에는 그대로 기본값을 주고, 다음 저장에서 원본을 덮어썼다(자료 유실 경로). */
+ function load(){
+  var raw=null; try{ raw=localStorage.getItem(KEY); }catch(e){}
+  if(raw){
+   try{ var d=JSON.parse(raw); if(d&&d.orgs&&d.orgs.length) return d; }catch(e){}
+   try{ localStorage.setItem(KEY+'_backup_'+Date.now(), raw); }catch(e){}
+   try{ toast('⚠️ 서무 자료를 읽지 못해 따로 보관했습니다 — 기본값으로 엽니다'); }catch(e){}
+  }
+  return def();
+ }
+ function save(d){
+  try{ localStorage.setItem(KEY,JSON.stringify(d)); }
+  catch(e){ try{ toast('⚠️ 저장하지 못했습니다 — 기기 저장공간을 확인하십시오'); }catch(_){} }
+ }
  function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
  function num(v){ var f=parseFloat(v); return isNaN(f)?0:f; }
  function mkey(){ try{ return _shiftView.getFullYear()+'-'+String(_shiftView.getMonth()+1).padStart(2,'0'); }catch(e){ return '0000-00'; } }
+ /* v21.72 — 근무형태 이름을 그때그때 읽는다. 종전에는 「4조2교대」로 글자가 박혀 있어
+    3조2교대·상시주간으로 바꿔도 라벨이 따라가지 않았다. */
+ function sysName(){ try{ return (SHIFT_SYS[_shiftSysId()]||{}).name||'교대'; }catch(e){ return '교대'; } }
  function org(d,id){ for(var i=0;i<d.orgs.length;i++){ if(d.orgs[i].id===id) return d.orgs[i]; } return d.orgs[0]; }
 
  /* ── 1단계 : 그 달 조직 기준 시간외 ──────────────────────────────
     개인 사정(연가·지각·교육 기록)은 넣지 않는다. 근무표만으로 나오는 값이다.
-    휴일 주간은 3.5h — 시간외 정산표(baseWork)의 계수를 그대로 따른다. */
+    휴일 주간은 3.5h — 시간외 정산표(baseWork)의 계수를 그대로 따른다.
+    v21.72 — 두 가지를 정산표와 같은 소스로 맞췄다.
+      ① 근무시간은 정산표 ①의 입력칸(주간·야간·심야·오후)에서 읽는다.
+         종전에는 늘 기본 시각을 썼기 때문에, 시간을 고친 관서에서 개인 정산과 값이 갈라졌다.
+      ② 법정근무시간은 늘 「평일 × 8h」로 낸다.
+         종전에는 그 달에 저장된 개인 법정시간을 먼저 썼는데, 그 값에는 개인 연가가 빠져 있어
+         조직 기준으로는 틀린 값이었다(주석과도 어긋났다). */
+ function _gv(id,dflt){ var e=document.getElementById(id); var v=e?parseFloat(e.value):NaN; return isNaN(v)?dflt:v; }
  function teamBase(teamNo){
   var y=_shiftView.getFullYear(), m=_shiftView.getMonth(), days=new Date(y,m+1,0).getDate();
+  var H={'주간':_gv('ot_dayh',_shiftDur('주간')||11.5), '야간':_gv('ot_nighth',_shiftDur('야간')||13.5),
+         '심야':_gv('ot_midh',_shiftDur('심야')||8),   '오후':_gv('ot_afth',_shiftDur('오후')||8)};
   var cnt={}, work=0;
   for(var i=1;i<=days;i++){
    var dt=new Date(y,m,i); dt.setHours(0,0,0,0);
    var st=_pat()[_stateIdx(dt,teamNo)];
    cnt[st]=(cnt[st]||0)+1;
-   if(st==='주간'||st==='야간'||st==='심야'||st==='오후'){
+   if(H[st]!==undefined){
     var dow=dt.getDay(), isHol=(dow===0||dow===6||!!holidayName(_dkey(dt)));
-    work += (st==='주간'&&isHol) ? 3.5 : _shiftDur(st);
+    work += (st==='주간'&&isHol) ? 3.5 : H[st];
    }
   }
   var info=_calcLegalH(y,m);
-  var legal=0; try{ legal=_legalSaved(y,m); }catch(e){}
-  var auto=false;
-  if(!(legal>0)){ legal=Math.max(0,info.wd)*8; auto=true; }   /* 조직 기준이므로 개인 연가는 빼지 않는다 */
-  return {work:Math.round(work*10)/10, legal:legal, legalAuto:auto,
+  var legal=Math.max(0,info.wd)*8;
+  return {work:Math.round(work*10)/10, legal:legal, wd:info.wd,
           ot:Math.max(0,Math.round((work-legal)*10)/10), cnt:cnt};
  }
 
@@ -11284,7 +11309,7 @@ window.__tbookBooted=true;
  };
  window.tbAdmWin=function(){
   try{
-   var w=window.open(location.pathname+location.search+'#seomu','_blank');
+   var w=window.open(location.pathname+'?seomu=1#shift_cal','_blank');
    if(!w) { try{ toast('팝업이 막혀 있습니다 — 주소창 오른쪽에서 허용해 주십시오'); }catch(e){} }
   }catch(e){ try{ toast('새 창을 열지 못했습니다'); }catch(_){} }
  };
@@ -11302,7 +11327,7 @@ window.__tbookBooted=true;
    +'<b>✎ 이 칸의 이름과 구분</b><br>'
    +'이름 <input id="tb_adm_e_n" type="text" value="'+esc(o.name)+'" autocomplete="off" style="min-height:38px;width:150px;border:1.5px solid var(--border);border-radius:8px;background:var(--input-bg);color:var(--text);font-size:14px;font-family:inherit;padding:0 8px"><br>'
    +'구분 <select id="tb_adm_e_k" style="min-height:38px;border:1.5px solid var(--border);border-radius:8px;background:var(--input-bg);color:var(--text);font-size:14px;font-family:inherit">'
-   +'<option value="외근"'+(o.kind==='외근'?' selected':'')+'>외근 (4조2교대 — 근무표에서 자동)</option>'
+   +'<option value="외근"'+(o.kind==='외근'?' selected':'')+'>외근 ('+esc(sysName())+' — 근무표에서 자동)</option>'
    +'<option value="내근"'+(o.kind==='내근'?' selected':'')+'>내근 (동원·당직·현업 — 직접 입력)</option></select><br>'
    +'교대 순번 <select id="tb_adm_e_t" style="min-height:38px;border:1.5px solid var(--border);border-radius:8px;background:var(--input-bg);color:var(--text);font-size:14px;font-family:inherit">'
    +[0,1,2,3,4].map(function(t){ return '<option value="'+t+'"'+(o.team===t?' selected':'')+'>'+(t?(t+'번'):'없음(내근)')+'</option>'; }).join('')
@@ -11366,11 +11391,17 @@ window.__tbookBooted=true;
   L.push('연번\t계급\t성명\t연가(h)\t지각·조퇴(h)\t추가(h)\t시간외(h)');
   list.forEach(function(x,i){ L.push((i+1)+'\t'+(x.r||'')+'\t'+(x.n||'')+'\t'+(x.lv||'')+'\t'+(x.lt||'')+'\t'+(x.ad||'')+'\t'+person(x,b.h)); });
   var txt=L.join('\n');
-  try{
-   if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt);
-   else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
-   try{ toast('📋 '+o.name+' '+list.length+'명 복사 — 엑셀에 붙여넣으십시오'); }catch(e){}
-  }catch(e){ try{ toast('복사에 실패했습니다'); }catch(_){} }
+  /* v21.72 — 종전에는 클립보드가 거절해도 「복사 완료」가 떴다.
+     writeText 는 약속(Promise)이라 try/catch 로는 안 잡힌다. 앱의 다른 복사 단추와 같은 방식으로 고쳤다. */
+  function _ok(){ try{ toast('📋 '+o.name+' '+list.length+'명 복사 — 엑셀에 붙여넣으십시오'); }catch(e){} }
+  function _fb(){
+   try{ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select();
+        var r=document.execCommand('copy'); document.body.removeChild(ta);
+        if(r) _ok(); else { try{ toast('복사하지 못했습니다 — 길게 눌러 직접 복사해 주십시오'); }catch(e){} }
+   }catch(e){ try{ toast('복사하지 못했습니다'); }catch(_){} }
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(_ok,_fb);
+  else _fb();
  };
 
  function tabs(){
@@ -11399,7 +11430,7 @@ window.__tbookBooted=true;
    var c=b.calc, parts=[];
    ['주간','야간','심야','오후'].forEach(function(k){ if(c.cnt[k]) parts.push(k+' '+c.cnt[k]+'일'); });
    h+='<span style="color:var(--text-dim)">근무표 '+parts.join(' · ')+' → 총근무 <b>'+c.work+'h</b> / 법정 <b>'+c.legal+'h</b>'
-     +(c.legalAuto?' <span style="color:#b45309">(평일×8h 자동)</span>':'')+'</span><br>'
+     +' <span style="color:#b45309">(평일 '+c.wd+'일 × 8h)</span></span><br>'
      +'조직 기준 시간외 <b style="color:var(--accent);font-size:17px">'+b.h+'h</b> '
      +'<button type="button" onclick="tbAdmBaseMode(\'manual\')" style="min-height:32px;padding:0 9px;margin-left:5px;border:1.5px solid var(--border);border-radius:8px;background:var(--panel-2);color:var(--text);font-size:12px;font-weight:800;cursor:pointer">직접 입력으로</button>';
   } else {
@@ -11480,26 +11511,22 @@ window.__tbookBooted=true;
  }
  function draw(focusLast){ tabs(); base(); rows(focusLast); sum(); }
 
+ /* v21.72 — 타이머를 걷어냈다. 화면이 열리는 순간을 버스가 알려 주므로 기다릴 필요가 없다.
+    종전에는 0.1초마다 40번 두드렸고(계약서 6항이 금지한 패턴), 그나마도 앱의 딥링크와
+    순서를 다투다 새 창이 홈 화면으로 튀었다(실측).
+    이제는 앱이 원래 쓰는 길을 그대로 탄다 — 주소 끝을 #shift_cal 로 주어 교대근무표로 보내고,
+    서무용을 펼칠지는 물음표 뒤의 seomu=1 로 알린다. */
+ function _fromWin(){ try{ return (location.search||'').indexOf('seomu=1')>=0; }catch(e){ return false; } }
  if(typeof onPage==='function') onPage('shift_cal', function(){
-   var p=document.getElementById('tb_adm');
-   if(p&&p.style.display!=='none') draw();
- });
- /* 새 창으로 열었을 때 — 주소 끝의 #seomu 를 보고 바로 펼친다 */
- if(typeof onReady==='function') onReady(function(){
-   if((location.hash||'')!=='#seomu') return;
-   try{ showGroup('shift'); }catch(e){}
-   var n=0;
-   var iv=setInterval(function(){
-     var p=document.getElementById('tb_adm');
-     if(p){ clearInterval(iv); if(p.style.display==='none') tbAdmToggle(); }
-     else if(++n>40) clearInterval(iv);
-   },100);
+   var p=document.getElementById('tb_adm'); if(!p) return;
+   if(_fromWin() && p.style.display==='none'){ tbAdmToggle(); return; }
+   if(p.style.display!=='none') draw();
  });
 })();
 </script>
 
 <script>
-/* v21.71 — 좌우로 밀어 같은 메뉴 안의 이전/다음 화면으로 이동.
+/* v21.72 — 좌우로 밀어 같은 메뉴 안의 이전/다음 화면으로 이동.
    계약서 2항 — showSubPage 를 감싸지 않는다. 호출만 한다.
    계약서 6항 — DOM 을 만들지 않는다. 리스너 두 개만 붙인다. 타이머도 쓰지 않는다.
    막아야 할 다섯 곳을 먼저 거른다.
@@ -11567,8 +11594,12 @@ window.__tbookBooted=true;
   var nxt=neighbour(dx<0?1:-1);
   if(nxt==='END'){ bump(); return; }
   if(!nxt) return;
-  try{ showSubPage(nxt); }catch(err){}
+  window.__tbSwipeNav=1;
+  try{ showSubPage(nxt); }catch(err){ try{ console.error('[스와이프]',err); }catch(_){} }
+  window.__tbSwipeNav=0;
  },{passive:true});
+ /* 시스템 제스처가 터치를 가져가면 여기로 온다 — 남은 상태를 끊는다 */
+ document.addEventListener('touchcancel',function(){ live=false; },{passive:true});
 })();
 </script>
 
@@ -12457,7 +12488,7 @@ function push(id){
   if (!id || !_settled) return;          /* 기동 창에서는 push 금지 */
   try{
     if ((location.hash || '').slice(1) === id) return;
-    history.pushState({tb:id}, '', '#' + id);
+    history[window.__tbSwipeNav?'replaceState':'pushState']({tb:id}, '', '#' + id); /* v21.72 — 스와이프로 옮길 때는 쌓지 않고 갈아끼운다. 열 번 밀고 뒤로가기 열 번 하는 일을 막는다 */
   }catch(e){}
 }
 
