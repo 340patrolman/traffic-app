@@ -2,7 +2,7 @@
    사용:  node preflight.js <index.html 경로> [비교 기준 index.html 경로]
    필요:  node 18+ , npm i playwright (크로미움 1회 설치: npx playwright install chromium)
    검사:
-     A. 정적 — ① 판 번호 7곳 일치 ② 무결성 6종(title·lang=ko·CSP connect-src none·frame-ancestors·manifest·icon·theme-color·body 안 style 0)
+     A. 정적 — ① 판 번호 7곳 일치 ② 무결성 6종(title·lang=ko·CSP connect-src open-meteo 1건·frame-ancestors·manifest·icon·theme-color·body 안 style 0)
                 ③ script/style 개수와 계약서 머리 「현재 규모」 줄의 숫자 대조 ④ 태그 여닫힘 증감 균형(기준 파일 대비) ⑤ 모든 인라인 script node --check
      B. 동적(헤드리스) — ⑥ GROUP_PAGES 전 화면 진입 ⑦ 콘솔·페이지 오류 0 (환경 잡음: frame-ancestors 메타 경고, 로컬 sw.js 404 는 제외)
    결과: 하나라도 FAIL 이면 종료코드 1. 화면 그림이 같아도 통과가 아니다(계약서 8항 ⚠). */
@@ -29,7 +29,7 @@ ok('판 번호 7곳 일치', vset.size === 1 && !vset.has(undefined), JSON.strin
 /* ② 무결성 6종 */
 ok('title 비어 있지 않음', /<title>[^<]{3,}<\/title>/.test(s));
 ok('html lang=ko', /<html lang="ko">/.test(s));
-ok("CSP connect-src 'none'", /http-equiv="Content-Security-Policy"[^>]*connect-src 'none'/.test(s));
+ok("CSP connect-src (open-meteo 1건만 · v21.87)", /http-equiv="Content-Security-Policy"[^>]*connect-src https:\/\/api\.open-meteo\.com; /.test(s));
 ok("CSP frame-ancestors 'none'", /frame-ancestors 'none'/.test(s));
 ok('manifest.json · icon 링크', /rel="manifest" href="manifest\.json"/.test(s) && /rel="icon" href="icon\.png"/.test(s));
 ok('theme-color 메타', /<meta name="theme-color"/.test(s));
