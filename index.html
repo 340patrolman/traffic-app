@@ -19032,7 +19032,7 @@ var PRECDOC = {"2025도8137": {"nm": "교통사고처리특례법위반(치상)�
   b.id='tb_game_link'; b.type='button'; b.className='hd-game';
   b.title='교통경찰 순찰 게임 「순찰길」 열기'; b.setAttribute('aria-label','교통경찰 게임');
   b.innerHTML='🚓 <span class="hd-game-long">교통경찰GAME</span><span class="hd-game-short">GAME</span>';
-  b.addEventListener('click',function(){ try{ window.open(URL,'_blank','noopener'); }catch(e){ location.href=URL; } });
+  b.addEventListener('click',function(){ /* 게임에 티북의 현재 날씨(open-meteo 종류)·기온·테마를 URL 로 넘긴다. 게임은 tb_ 저장소를 읽지 않으므로 여기서만 읽는다. */ var u=URL; try{ var wx=JSON.parse(localStorage.getItem('tb_wx')||'null'), th=localStorage.getItem('police_v6_theme')||sessionStorage.getItem('police_v6_theme')||'', q=[]; if(wx&&wx.cur){ var k=(typeof wxCode==='function')?(wxCode(wx.cur.code)||{}).k:''; if(k) q.push('w='+encodeURIComponent(k)); if(wx.cur.t!=null&&!isNaN(wx.cur.t)) q.push('temp='+encodeURIComponent(Math.round(wx.cur.t))); } if(th) q.push('t='+encodeURIComponent(th)); if(q.length) u+='?'+q.join('&'); }catch(e){} try{ window.open(u,'_blank','noopener'); }catch(e2){ location.href=u; } });
   gear.parentNode.insertBefore(b, gear);
  }
  if(document.readyState!=='loading') ensureGame(); else document.addEventListener('DOMContentLoaded',ensureGame);
