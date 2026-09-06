@@ -19014,5 +19014,30 @@ var PRECDOC = {"2025도8137": {"nm": "교통사고처리특례법위반(치상)�
 
 
 
+<style id="tb-game-link-2189">
+/* 🚓 교통경찰 GAME 바로가기 (홈 「바로 실행」 낮/밤 아이콘 옆) — 순찰길 https://340patrolman.github.io/traffic-game/ */
+.hd-game{height:34px;padding:0 10px;border-radius:11px;border:1px solid var(--hd-line);background:linear-gradient(135deg,#1f4fa8,#2f6fd6);color:#fff;font-weight:800;font-size:12px;letter-spacing:-.2px;display:flex;align-items:center;gap:4px;white-space:nowrap;cursor:pointer;margin-left:6px;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 6px rgba(31,79,168,.25)}
+.hd-game:active{opacity:.7}
+@media (max-width:430px){ .hd-game .hd-game-long{display:none} }
+@media (min-width:431px){ .hd-game .hd-game-short{display:none} }
+</style>
+<script id="tb-game-link-js-2189">
+(function(){
+ /* ── 🚓 교통경찰 GAME (순찰길) 바로가기: 낮/밤 원탭 옆. 같은 github.io 도메인의 별도 앱을 새 탭으로 연다. tb_ 저장소는 건드리지 않는다. ── */
+ var URL='https://340patrolman.github.io/traffic-game/';
+ function ensureGame(){
+  if(document.getElementById('tb_game_link')) return;
+  var gear=document.querySelector('.hd-lbl-row .hd-gear'); if(!gear||!gear.parentNode) return;
+  var b=document.createElement('button');
+  b.id='tb_game_link'; b.type='button'; b.className='hd-game';
+  b.title='교통경찰 순찰 게임 「순찰길」 열기'; b.setAttribute('aria-label','교통경찰 게임');
+  b.innerHTML='🚓 <span class="hd-game-long">교통경찰GAME</span><span class="hd-game-short">GAME</span>';
+  b.addEventListener('click',function(){ try{ window.open(URL,'_blank','noopener'); }catch(e){ location.href=URL; } });
+  gear.parentNode.insertBefore(b, gear);
+ }
+ if(document.readyState!=='loading') ensureGame(); else document.addEventListener('DOMContentLoaded',ensureGame);
+ setTimeout(ensureGame,900); setTimeout(ensureGame,2600);
+})();
+</script>
 </body>
 </html>
