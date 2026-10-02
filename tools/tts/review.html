@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>T-Book 음성 테이크 고르기</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#14213d;--sub:#5b6476;--line:#d9dee8;--acc:#1d4ed8}
+@media (prefers-color-scheme:dark){:root{--bg:#0f172a;--card:#16213a;--ink:#e6ebf5;--sub:#a6b3ca;--line:#2b3a5a;--acc:#7cb5fb}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Malgun Gothic",sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:6px 0 4px}.s{color:var(--sub);font-size:13px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
+.c b{font-size:14px}.t{margin:6px 0 10px}
+.k{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0}
+audio{width:100%;max-width:420px}
+button{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--acc);background:transparent;color:var(--acc);font-weight:700}
+.lk{color:#15803d;font-weight:800}
+code{display:block;white-space:pre-wrap;word-break:break-all;background:var(--bg);border-radius:8px;padding:8px;margin-top:8px;font-size:12.5px}
+</style></head><body><main>
+<h1>음성 테이크 고르기</h1>
+<p class="s">이 PC 에서만 엽니다(배포하지 않음). 테이크 셋을 들어 보고 「이걸로」를 누르면 고정 명령이 복사됩니다 — PowerShell 에 붙여 실행하면 lines.json 의 locked 에 적히고 그 테이크로 앱용 파일을 다시 만듭니다.</p>
+<div id="list"></div>
+<script src="review_data.js"></script>
+<script>
+(function(){
+ var L=window.TTS_REVIEW||[],box=document.getElementById('list');
+ if(!L.length){box.innerHTML='<p class="s">아직 렌더한 것이 없습니다 — render.ps1 을 먼저 실행하십시오.</p>';return;}
+ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+ L.forEach(function(x){
+  var h='<div class="c"><b>'+esc(x.vid)+'</b>'+(x.locked?' <span class="lk">· 고정 테이크 '+x.locked+'</span>':'')+'<div class="t">'+esc(x.text)+'</div>';
+  for(var k=1;k<=x.takes;k++){
+   h+='<div class="k"><span>테이크 '+k+'</span><audio controls preload="none" src="masters/'+encodeURIComponent(x.vid)+'_t'+k+'.wav"></audio>'+
+      '<button type="button" data-cmd="powershell -NoProfile -ExecutionPolicy Bypass -File render.ps1 -Lock '+esc(x.vid)+'='+k+'">이걸로</button></div>';
+  }
+  box.insertAdjacentHTML('beforeend',h+'</div>');
+ });
+ box.addEventListener('click',function(e){var b=e.target.closest('button[data-cmd]');if(!b)return;var t=b.getAttribute('data-cmd');
+  var done=function(){b.textContent='복사됨';setTimeout(function(){b.textContent='이걸로';},1500);};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,function(){prompt('복사',t);});else prompt('복사',t);
+  var c=b.parentNode.parentNode.querySelector('code');if(!c){c=document.createElement('code');b.parentNode.parentNode.appendChild(c);}c.textContent=t;});
+})();
+</script>
+</main></body></html>
