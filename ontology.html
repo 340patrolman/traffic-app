@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>온톨로지 · 팔란티어 방식 · T-Book</title>
+<!--
+  온톨로지 ver.4 (T-Book 서브앱) — 버튼 문답으로 배우고, 같은 문답으로 내 문제의 온톨로지를 만든다.
+  배우기: 온톨로지란 / 왜 필요한가 / 팔란티어는 어떻게 푸나 / 효과 / 한계 / 나·우리·직장·교통에 쓰는 법 / 디지털 트윈이란 / 나를 알아가는 법
+  만들기: 영역 → 결정 질문 → 오브젝트 타입·대상·속성·출처 → 링크 → 액션 → 함수 → 결과(지도·빈 곳·기록)
+  v4(2026-10-02): 이어서 키우기(빈 곳 메우기·결과 채우기·새 액션·선·대상·규칙 → 자라 온 기록 B.log · 빈 곳 변화 B.snaps)
+    · 영역 「현장 대응」(지난 현장 복기 — 판단 규칙 예시는 T-Book 현장심리 카드 원칙 그대로 + 출처 카드 이름)
+    · 개인정보 형태(차량번호·전화·주민번호) 입력 경고 · 바로가기 주소 #field(현장 대응 첫 질문) · #learn(배우기 첫 주제)
+  단일 파일. 서버 없음. 외부 전송 없음(connect-src none). 저장은 이 기기 localStorage(onto3_*)에만.
+  주석에 꺾쇠 기호를 쓰지 않는다(T-Book 계약서 관례).
+-->
+<style>
+:root{--bg:#EEF1F5;--card:#FFF;--ink:#16202E;--sub:#4A5668;--line:#D3D9E2;--me:#2448C8;--meink:#FFF;
+  --c1:#2448C8;--c2:#0E7C66;--c3:#9A5B00;--c4:#8A2F8A;--bad:#B0342A;--note:#E8EEFF;--noteline:#9DB1F2;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10151D;--card:#19212C;--ink:#E8ECF2;--sub:#A6B1C1;--line:#2E3949;--me:#4A67D8;
+  --c1:#7D98FF;--c2:#3FC2A2;--c3:#E0A64A;--c4:#D68AD6;--bad:#E8766B;--note:#1C2640;--noteline:#3A4F8F}}
+:root[data-theme="dark"]{--bg:#10151D;--card:#19212C;--ink:#E8ECF2;--sub:#A6B1C1;--line:#2E3949;--me:#4A67D8;
+  --c1:#7D98FF;--c2:#3FC2A2;--c3:#E0A64A;--c4:#D68AD6;--bad:#E8766B;--note:#1C2640;--noteline:#3A4F8F}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  font-size:17px;line-height:1.6;word-break:keep-all;display:flex;flex-direction:column}
+header.top{flex:none;background:var(--card);border-bottom:1px solid var(--line)}
+header.top .in{max-width:720px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:8px}
+header.top h1{font-size:18px;margin:0;font-weight:800;flex:1}
+header.top h1 small{font-weight:400;color:var(--sub);font-size:13px;margin-left:6px}
+#log{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#log .in{max-width:720px;margin:0 auto;padding:14px 16px 8px}
+.msg{display:flex;margin:10px 0}
+.msg.me{justify-content:flex-end}
+.bub{max-width:88%;padding:11px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.msg.me .bub{background:var(--me);color:var(--meink);border-color:var(--me);border-bottom-right-radius:4px;max-width:80%}
+.msg.bot .bub{border-bottom-left-radius:4px}
+.bub p{margin:0 0 8px}.bub p:last-child{margin-bottom:0}
+.bub b.h{display:block;font-size:18px;margin-bottom:4px}
+.bub .pal{background:var(--note);border:1px solid var(--noteline);border-radius:10px;padding:8px 12px;margin:8px 0}
+.bub .pal b{color:var(--c1)}
+.bub table{width:100%;border-collapse:collapse;font-size:15px;margin:6px 0}
+.bub th,.bub td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+.bub ul{margin:4px 0;padding-left:20px}
+.bub.wide{max-width:100%;width:100%}
+#ctl{flex:none;background:var(--card);border-top:1px solid var(--line)}
+#ctl .in{max-width:720px;margin:0 auto;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+button{font:inherit;cursor:pointer;border-radius:10px}
+.ch{border:1.5px solid var(--c1);background:var(--card);color:var(--c1);padding:8px 14px;font-weight:700;font-size:16px}
+.ch.sub{border-color:var(--line);color:var(--sub);font-weight:400}
+.ch.tg[aria-pressed=true]{background:var(--c1);color:#fff}
+.ch.go{background:var(--c1);color:#fff}
+.inrow{display:flex;gap:8px;margin-top:8px}
+.inrow input{flex:1;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-width:0}
+.tools{display:flex;justify-content:space-between;margin-top:8px}
+.tools button{border:none;background:transparent;color:var(--sub);font-size:14px;padding:4px 2px}
+:focus-visible{outline:3px solid var(--c1);outline-offset:2px}
+.map{width:100%;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:10px;margin:6px 0}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--sub)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.empty{color:var(--bad);font-weight:700}
+.log{border-left:3px solid var(--c3);padding:2px 0 2px 10px;margin:8px 0;font-size:15px}
+.log.f{border-color:var(--c4)}
+.small{font-size:13px;color:var(--sub)}
+.k1{color:var(--c1)}.k2{color:var(--c2)}.k3{color:var(--c3)}.k4{color:var(--c4)}.kb{color:var(--bad)}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.acts button{border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:6px 10px;font-size:14px;font-weight:700}
+.toast{position:fixed;left:50%;bottom:120px;transform:translateX(-50%);background:var(--ink);color:var(--card);
+  padding:10px 16px;border-radius:8px;font-size:15px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9;max-width:90vw}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><h1>온톨로지<small>팔란티어 방식으로 문제 풀기</small></h1>
+  <button type="button" class="ch sub" id="home" style="padding:4px 10px;font-size:14px">처음</button>
+  <button type="button" class="ch sub" id="thm" style="padding:4px 10px;font-size:14px">밝기</button></div></header>
+<div id="log"><div class="in" id="msgs"></div></div>
+<div id="ctl"><div class="in" id="ctlin"></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+'use strict';
+var SRC=['공공데이터','내부자료','현장관찰','아직 모름'];
+var COLORS=['--c1','--c2','--c3','--c4'];
+
+/* ---------- 영역별 예시 ---------- */
+var DOM={
+ me:{label:'나',sub:'시간·건강·관계·진로',
+   q:['퇴직 전 준비를 무엇부터 할까','요즘 자주 지치는 원인을 무엇부터 손볼까','하루 시간을 어디에 먼저 써야 할까'],
+   types:{'나':['쓸 수 있는 시간','체력','돈'],'일':['마감','들이는 시간'],'사람':['만나는 빈도','도움 받는 정도'],'습관':['횟수','계기'],'목표':['기한','진척']},
+   rels:['시간을 뺏는다','힘을 준다','힘을 뺀다','막고 있다','촉발한다','돕는다'],who:['나','가족','상사'],
+   fn:['피곤한 날에는','마감 사흘 전에는','돈이 들 일이 생기면'],
+   note:'나에게 쓸 때는 팔란티어 제품을 쓰는 게 아니라 그 사고방식을 빌리는 것입니다. 적은 내용은 이 기기에만 남습니다. 공용 기기라면 다 쓴 뒤 기록을 지우세요.'},
+ us:{label:'우리',sub:'가족·팀·모임',
+   q:['우리 팀 야간 인수인계 누락을 어떻게 줄일까','가족 여행 일정을 누가 무엇을 맡을까','모임이 자꾸 흐지부지되는 걸 어떻게 막을까'],
+   types:{'사람':['맡은 일','가능한 시간'],'일':['기한','담당'],'자원':['양','쓰는 곳'],'약속·규칙':['지켜지는 정도','누가 정했나'],'일정':['날짜','겹침']},
+   rels:['맡는다','기다린다','겹친다','넘겨준다','확인한다','빠뜨린다'],who:['팀장','당사자','모두'],
+   fn:['담당자가 쉬는 날에는','일정이 겹치면','약속이 두 번 어겨지면'],note:''},
+ work:{label:'직장',sub:'업무·조직·제도',
+   q:['시간외수당 집계 오류를 어디서 먼저 막을까','전입자가 업무를 빨리 익히려면 무엇부터 줄까','같은 민원이 반복되는 원인을 어디서 끊을까'],
+   types:{'업무':['주기','담당','처리 시간'],'사람·부서':['인원','보직 기간'],'문서·양식':['최신 여부','보관 위치'],'민원·사건':['건수','유형'],'규정':['근거 조문','개정일']},
+   rels:['처리한다','근거가 된다','넘긴다','막힌다','반복된다','검토한다'],who:['담당자','계장','과장','서무'],
+   fn:['담당자가 바뀌면','같은 민원이 세 번 오면','규정이 개정되면'],note:''},
+ traffic:{label:'교통',sub:'교차로·구간·사고',
+   q:['평일 15:30 성모병원사거리 정체를 어디서 먼저 끊을까','토요일 분수쇼 정체를 어디서부터 줄일까','사고가 잦은 구간을 무엇부터 바꿀까'],
+   types:{'교차로':['정체 시간대','신호 운영','통행속도'],'원인시설':['몰리는 시각','규모'],'도로·분기점':['소화량','우회 가능'],'사고':['건수','유형','시간대'],'조치':['방식','연동 영향']},
+   rels:['차량을 보낸다','대기를 넘긴다','우회로가 된다','신호가 연동된다','사고를 낸다','막는다'],who:['시설담당','교통안전계장','현장 근무자'],
+   fn:['하류가 받아줄 수 없을 때','학원 수업 시작 30분 전에는','분수쇼 시작 전 토요일 19시에는'],note:''},
+ /* v4 — 지난 현장의 사후 복기. 판단 규칙 예시(fn)는 지어내지 않고 T-Book 현장심리·대응 카드에 이미 있는 원칙을 옮기고 출처 카드 이름을 붙인다. */
+ field:{label:'현장 대응',sub:'지난 현장 복기 — 어디서 꼬였나',strong:1,
+   q:['단속 중 흥분한 운전자가 왜 더 격해졌나','측정 거부를 어떻게 설득할 수 있었나','사고 현장에서 당사자 다툼을 어디서 끊을 수 있었나'],
+   types:{'상대 유형':['흥분 정도','처음 반응'],'상황':['장소 종류','시간대','주변 사람'],'상대의 요구':['무엇을','왜'],'내 말과 행동':['말투','거리','설명 길이'],'결과':['어떻게 끝났나','민원·처분']},
+   rels:['자극했다','진정시켰다','요구했다','무시했다','기록했다','거리를 뒀다'],who:['나','함께 근무한 동료','팀장'],
+   fn:[
+    {w:'상대가 언성을 높이며 자극할 때',t:'톤은 낮게·속도는 천천히, 짧게만 답한다("절차대로 진행합니다")',s:'T-Book 현장심리 › 🎯 상황 전환 실전 기술 5가지 ① 그레이락'},
+    {w:'핑계를 바꿔 가며 논쟁을 끌 때',t:'같은 사실을 표현만 조금씩 바꿔 되풀이한다',s:'T-Book 현장심리 › 🎯 상황 전환 실전 기술 5가지 ② 브로큰 레코드'},
+    {w:'억울함·당황을 드러낼 때',t:'감정을 한 번 이름 붙이고("많이 당황하신 것 같네요") 절차로 돌아온다',s:'T-Book 현장심리 › 🎯 상황 전환 실전 기술 5가지 ④ 레이블링'},
+    {w:'상대가 사정을 말하려 할 때',t:'30초 말하게 둔다 — 들어줬다는 사실이 승복을 만든다(발언권)',s:'T-Book 현장심리 › 🇺🇸 ① 절차적 정의'},
+    {w:'"왜 나만" 이라고 할 때',t:'"이 위반은 누구든"이라는 규칙 기준과 단속 이유를 한 줄로 말한다(중립성·동기 신뢰)',s:'T-Book 현장심리 › 🇺🇸 ① 절차적 정의'},
+    {w:'요청해도 따르지 않을 때',t:'요청 → 이유 한 줄 → 선택지 → "어떻게 하면 협조해 주시겠습니까?" → 조치. 체면을 잃지 않고 물러날 출구를 남긴다',s:'T-Book 현장심리 › 🇺🇸 ② Verbal Judo'},
+    {w:'정신위기·인지저하가 의심될 때',t:'급박한 위해가 없다면 시간을 늘리고 거리를 벌리고, 한 명만 짧은 문장으로 말한다',s:'T-Book 현장심리 › 🇺🇸 ⑦ CIT'},
+    {w:'모욕에 되받아치고 싶을 때',t:'3초 기다린 뒤 감정이 아니라 법·절차로만 답한다',s:'T-Book 현장심리 › ⚖️ 핵심 원칙 5 ③·④'},
+    {w:'납득할 때까지 설명하고 싶을 때',t:'핵심 사실 1~2문장 후 "이의신청은 고지서에 안내됩니다"로 끝낸다',s:'T-Book 현장심리 › 🚫 민원 키우는 실수들 함정 ③'}],
+   note:'실명·차량번호·연락처를 적지 마세요. 사람이 아니라 상황을 복기합니다. 적은 내용은 이 기기에만 남고 밖으로 나가지 않습니다.'}
+};
+
+/* ---------- 배우기 ---------- */
+var PAL=function(s){return '<div class="pal">'+s+'</div>';};
+var LEARN={
+ what:{h:'온톨로지란?',b:[
+  '<p>원래는 철학에서 "존재하는 것이 무엇인가"를 따지는 학문입니다. 1990년대에 컴퓨터 쪽으로 오면서 뜻이 좁아졌습니다.</p>'+
+  '<p><b>세상의 것들을 이름 · 특징 · 관계로 정리해 둔 지도</b>입니다. 사람이 머릿속으로 하는 연결을 컴퓨터도 할 수 있게 적어 둔 것입니다.</p>'+
+  '<table><tr><th>엑셀로 치면</th><th>온톨로지에서는</th><th>예</th></tr><tr><td>표 하나</td><td>오브젝트 타입</td><td>교차로</td></tr><tr><td>열 제목</td><td>속성</td><td>신호주기</td></tr><tr><td>한 줄</td><td>오브젝트</td><td>성모병원사거리</td></tr><tr><td>표끼리 잇기</td><td>링크</td><td>학원가 → 차량을 보낸다 → 사거리</td></tr></table>'+
+  '<p>점(대상)과 선(관계)으로 그리면 그게 지식 그래프입니다.</p>']},
+ why:{h:'왜 필요한가요?',b:[
+  '<p>자료는 이미 많습니다. 신호 자료, 사고 자료, 교통량, 민원. 문제는 <b>서로 따로 논다</b>는 것입니다.</p>'+
+  '<p>같은 교차로가 신호 자료에는 "성모병원사거리", 사고 자료에는 번지 주소로 적혀 있으면 컴퓨터는 둘이 같은 곳인 줄 모릅니다. 사람은 경험으로 이어 붙여 판단하지만, 그 사람이 떠나면 연결도 사라집니다.</p>'+
+  '<p>온톨로지는 그 <b>연결을 사람 머리 밖으로 꺼내 남기는 일</b>입니다.</p>']},
+ how:{h:'팔란티어는 어떻게 문제를 푸나요?',b:[
+  '<p>팔란티어는 온톨로지를 조직의 <b>운영 계층</b>, 곧 조직이 실제로 돌아가는 방식을 옮긴 디지털 쌍둥이로 봅니다. 네 가지를 합니다.</p>'+
+  PAL('<b>① 흩어진 자료를 현실 대상에 붙인다</b><br>표 하나를 오브젝트 타입으로, 한 줄을 오브젝트 하나로 바꿉니다. 자료마다 다른 이름이 한 대상으로 모입니다.')+
+  PAL('<b>② 관계를 정한다 (링크)</b><br>무엇이 무엇과 이어지는지 정의합니다. 이제 "이 정체는 어디서 왔나"처럼 선을 따라가는 질문이 됩니다.')+
+  PAL('<b>③ 바꾸는 방법을 정한다 (액션)</b><br>값을 바꾸는 정해진 방법입니다. 누가 바꿀 수 있는지 권한을 걸고, 바꿀 때마다 기록이 남아 나중에 "왜 그렇게 정했나"를 분석할 수 있습니다. 그림만 그리는 다른 방식과 가장 다른 점입니다.')+
+  PAL('<b>④ 판단 규칙과 AI가 그 위에서 일한다 (함수)</b><br>"이럴 땐 이렇게"를 규칙으로 적고, AI도 같은 지도 위에서 묻고 답합니다.')]},
+ eff:{h:'효과는 무엇인가요?',b:[
+  '<ul><li><b>같은 말을 쓰게 된다</b> — 부서마다 다르게 부르던 것이 한 이름이 됩니다.</li>'+
+  '<li><b>연결된 질문에 답한다</b> — "이 정체의 원인은 어디서 오나", "이 업무가 막히면 누가 기다리나".</li>'+
+  '<li><b>결정의 이유가 남는다</b> — 액션 기록 덕분에 담당자가 바뀌어도 "왜"가 남습니다.</li>'+
+  '<li><b>AI가 지어내지 않는다</b> — 문서 더미에서 비슷한 문장을 찾는 대신, 지도에서 근거를 찾아 답합니다.</li>'+
+  '<li><b>빈 곳이 보인다</b> — 연결이 끊긴 곳, 자료가 없는 곳이 드러나 다음에 무엇을 모을지 정해집니다.</li></ul>'+
+  '<p class="small">효과의 크기를 수치로 보여주는 공개 자료는 확인하지 못했습니다. 위는 구조에서 나오는 효과입니다.</p>']},
+ lim:{h:'한계와 주의',b:[
+  '<ul><li><b>문제 없이 지으면 실패한다</b> — 세상 모든 지식을 담으려던 프로젝트(Cyc)는 수십 년을 들이고도 실용화가 어려웠습니다. 결정 질문 하나에서 시작해야 합니다.</li>'+
+  '<li><b>틀은 사람이 짜야 한다</b> — 무엇을 오브젝트로 볼지는 그 일을 아는 사람만 정할 수 있습니다. 비싸고 시간이 듭니다.</li>'+
+  '<li><b>자료가 없으면 빈 지도</b> — 지도는 있는 자료를 이어 줄 뿐, 없는 자료를 만들지 않습니다.</li>'+
+  '<li><b>경찰은 연결 권한이 먼저</b> — 개인 단위로 자료를 잇는 것은 법적 문제가 됩니다. 독일 헤센주 분석 시스템은 헌법재판소에서 일부 위헌 판단을 받았습니다. 교통처럼 개인을 식별하지 않는 자료부터가 안전합니다.</li></ul>']},
+ use:{h:'나·우리·직장·교통에 어떻게 쓰나요?',b:[
+  '<p>영역은 달라도 묻는 것은 같습니다.</p>'+
+  '<table><tr><th>질문</th><th>나</th><th>교통</th></tr>'+
+  '<tr><td>무엇을 정하려나</td><td>퇴직 준비를 무엇부터</td><td>정체를 어디서 끊을지</td></tr>'+
+  '<tr><td>무엇이 나오나 (오브젝트)</td><td>나, 일, 사람, 습관</td><td>교차로, 학원가, 분기점</td></tr>'+
+  '<tr><td>어떻게 이어지나 (링크)</td><td>야근 → 힘을 뺀다 → 운동</td><td>학원가 → 차량을 보낸다 → 사거리</td></tr>'+
+  '<tr><td>무엇을 바꿨나 (액션)</td><td>수요일 저녁 비우기</td><td>좌회전 5초 지연</td></tr>'+
+  '<tr><td>판단 규칙 (함수)</td><td>피곤한 날엔 운동 대신 산책</td><td>하류가 막히면 상류에서 끊는다</td></tr></table>'+
+  '<p>답하다 보면 지도가 생기고, <b>빈 곳</b>이 다음에 할 일이 됩니다.</p>']},
+ twin:{h:'디지털 트윈이란?',b:[
+  '<p><b>현실의 대상과 그 상태를 자료로 옮겨 두고, 현실이 바뀔 때마다 함께 바뀌게 만든 쌍둥이</b>입니다. 한 번 그리고 끝난 지도는 그림일 뿐이고, 바뀐 것을 계속 받아 적어야 쌍둥이가 됩니다.</p>'+
+  PAL('<b>팔란티어가 온톨로지를 조직의 디지털 쌍둥이로 보는 까닭</b><br>액션(무엇을 누가 왜 바꿨나)이 기록될 때마다 지도도 함께 바뀌기 때문입니다. 지도가 현실을 따라가야 그 위의 판단 규칙과 AI도 오늘의 현실을 봅니다.')+
+  '<p>이 앱은 센서나 실시간 연결 없이 <b>사람이 채워 가는 쌍둥이</b>입니다(외부 전송 없음). 그래서</p>'+
+  '<ul><li><b>액션 결과를 채우고</b></li><li><b>빈 곳을 하나씩 메우고</b></li><li><b>저장할 때마다</b> 「빈 곳 9 → 6 → 4」 같은 변화와 「자라 온 기록」이 남는 것</li></ul>'+
+  '<p>— 이것이 곧 트윈을 키우는 일입니다. 저장한 지도를 「지난 기록」에서 열면 <b>이어서 키우기</b> 단추가 나옵니다.</p>']},
+ self:{h:'나를 알아가는 법',b:[
+  '<p>나를 「성격」으로 보지 않고, <b>나를 흔드는 문제</b>와 <b>그것을 지금 막아 주고 있는 것</b>(습관·사람·규칙·쉬는 시간)으로 보는 관점입니다.</p>'+
+  '<table><tr><th>나를 볼 때</th><th>온톨로지에서는</th><th>예</th></tr><tr><td>나를 흔드는 문제</td><td>오브젝트</td><td>야간 뒤 잠 부족</td></tr><tr><td>그것을 막는 수단</td><td>링크</td><td>운동 → 막고 있다 → 잠 부족</td></tr><tr><td>얼마나 풀렸나</td><td>속성</td><td>이번 주 사흘은 괜찮았다</td></tr><tr><td>바꿔 본 것</td><td>액션</td><td>퇴근 뒤 휴대폰 30분 끄기</td></tr></table>'+
+  PAL('<b>이건 사고방식을 빌리는 것이지 심리 검사가 아닙니다.</b> 점수나 진단을 내지 않습니다. 마음이 많이 힘들 때는 지도를 그리기보다 상담이 먼저입니다(T-Book 현장심리 › 회복·스트레스).')+
+  '<p class="small">「바로 내 문제에 써 보기 → 나」에서 시작합니다. 적은 내용은 이 기기에만 남습니다.</p>']}
+};
+
+/* ---------- 상태 ---------- */
+function blankB(){return{id:'o'+Date.now(),dom:null,title:'',q:{decision:'',now:''},types:[],links:[],actions:[],funcs:[],changed:null,changeWhy:'',saved:null,log:[],snaps:[]};}
+/* v4 — 옛 기록(log·snaps 없는 것)도 열리게 빈 칸을 채운다 */
+function norm(B){B=B||blankB();['types','links','actions','funcs','log','snaps'].forEach(function(k){if(!Array.isArray(B[k]))B[k]=[];});if(!B.q)B.q={decision:'',now:''};return B;}
+function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){toast('저장 공간이 부족합니다');}}
+var ST=load('onto3_state',null)||{msgs:[],node:'start',B:blankB(),tmp:{},sel:[],undo:[]};
+ST.B=norm(ST.B);if(!ST.tmp)ST.tmp={};if(!ST.undo)ST.undo=[];
+var HIST=load('onto3_history',[]);
+function addLog(w){ST.B.log.push({d:today(),w:w});if(ST.B.log.length>300)ST.B.log=ST.B.log.slice(-300);}
+/* v4 — 개인을 알아볼 수 있는 형태(차량번호·휴대전화·주민등록번호). 형식만 잡으니 날짜·장소가 구체적이면 그것도 사람을 드러낸다 */
+var PII=[/\d{2,3}\s?[가-힣]\s?\d{4}/g,/01[016789][-.\s]?\d{3,4}[-.\s]?\d{4}/g,/\d{6}[-\s]?[1-8]\d{6}/g];
+function hasPII(v){return PII.some(function(r){r.lastIndex=0;return r.test(v);});}
+function scrubPII(v){PII.forEach(function(r){r.lastIndex=0;v=v.replace(r,'○○');});return v;}
+/* 넣기 전에 묻는다 — 확인: ○○로 바꿔 넣음 · 취소: 넣지 않고 칸으로 돌아감(null) */
+function piiGate(v){if(!v||!hasPII(v))return v;
+  return confirm('개인을 알아볼 수 있는 정보(차량번호·전화번호·주민번호 형태)가 있습니다. 지우고 넣을까요?\n\n[확인] 그 부분을 ○○로 바꿔 넣기\n[취소] 넣지 않고 고치러 돌아가기')?scrubPII(v):null;}
+function persist(){var c={msgs:ST.msgs.slice(-160),node:ST.node,B:ST.B,tmp:ST.tmp,sel:[],lastB:ST.lastB||null,undo:ST.undo.slice(-15)};save('onto3_state',c);}
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function uid(p){return (p||'x')+Math.random().toString(36).slice(2,8);}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('on');},1900);}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function copyText(txt){function fb(){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+  var ok=false;try{ok=document.execCommand('copy');}catch(e){}document.body.removeChild(ta);toast(ok?'복사했습니다':'복사 실패 — 길게 눌러 직접 복사하세요');}
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(function(){toast('복사했습니다');},fb);else fb();}
+function D(){return DOM[ST.B.dom]||DOM.traffic;}
+function allObjs(){var a=[];ST.B.types.forEach(function(t,ti){t.objs.forEach(function(o){a.push({o:o,t:t,ti:ti});});});return a;}
+function objById(id){var r=null;allObjs().forEach(function(x){if(x.o.id===id)r=x;});return r;}
+
+/* ---------- 노드: say(말풍선들), ui(선택지) ---------- */
+var WHY={
+ q:'팔란티어도 온톨로지를 쓸모에 맞춰 짓습니다. 정할 것이 없으면 자료 창고만 커지고 아무 결정도 바뀌지 않습니다.',
+ now:'지금 무엇으로 정하는지 알아야, 지도가 그 판단을 무엇으로 바꿔 줄지 보입니다. "감"이라고 솔직히 고를수록 좋습니다.',
+ types:'오브젝트 타입은 엑셀의 표 하나입니다. 결정에 등장하는 "종류"만 고르세요. 처음엔 2~4개면 충분합니다.',
+ objs:'오브젝트는 표의 한 줄, 곧 실제 대상입니다. 자료마다 이름이 다르면 하나로 통일해서 적으세요.',
+ props:'속성은 표의 열 제목입니다. 결정에 필요한 특징만 고르세요.',
+ src:'팔란티어에서는 모든 속성이 실제 자료에 연결됩니다. "아직 모름"이라고 답한 칸이 곧 다음에 확보할 자료입니다.',
+ link:'링크는 점과 점을 잇는 선입니다. 온톨로지의 힘은 점이 아니라 선에서 나옵니다. "A가 B에게 ○○한다"로 생각하세요.',
+ act:'액션은 실제로 무엇을 바꿨는지, 누가 바꿀 수 있는지, 왜 바꿨는지를 남기는 칸입니다. 담당자가 떠나도 "왜"가 남습니다.',
+ fn:'함수는 베테랑 머릿속의 "이럴 땐 이렇게"입니다. 조건과 행동, 그리고 조건을 무엇으로 알아챌지 적습니다.'};
+
+function N(id){
+ var B=ST.B,d=D(),t,ti;
+ switch(id){
+ case 'start':return{say:['<b class="h">무엇부터 할까요?</b><p>온톨로지가 무엇이고 팔란티어가 어떻게 문제를 푸는지 먼저 보셔도 되고, 바로 내 문제에 써 보셔도 됩니다. 어느 쪽이든 버튼을 눌러 이어 갑니다.</p>'],
+   ui:{choices:[{l:'온톨로지가 뭔가요?',go:'L:what'},{l:'팔란티어는 어떻게 푸나요?',go:'L:how'},{l:'디지털 트윈이란?',go:'L:twin'},{l:'바로 내 문제에 써 보기',go:'b.dom'},{l:'지난 현장 복기',fn:function(){ST.B=blankB();ST.B.dom='field';ST.tmp={};},go:'b.q'},{l:'예시 먼저 보기',go:'ex'},{l:'지난 기록 ('+HIST.length+') · 이어서 키우기',go:'hist',sub:1}]}};
+ case 'b.dom':return{say:['<b class="h">어느 영역의 문제인가요?</b><p>영역마다 예시가 달라집니다. 묻는 순서는 같습니다.</p>'],
+   ui:{choices:Object.keys(DOM).map(function(k){return{l:DOM[k].label+' · '+DOM[k].sub,fn:function(){ST.B=blankB();ST.B.dom=k;ST.tmp={};},go:'b.q'};}).concat([{l:'영역이 왜 따로 있나요?',go:'L:use',sub:1}])}};
+ case 'b.q':return{say:[(d.note?(d.strong?'<div class="pal">🔒 '+esc(d.note)+'</div>':'<p class="small">'+esc(d.note)+'</p>'):'')+'<b class="h">무엇을 정하려고 하나요?</b><p>질문 하나만 적습니다. 예시를 눌러도 되고 직접 써도 됩니다.</p>'],
+   ui:{choices:d.q.map(function(x){return{l:x,fn:function(){B.q.decision=x;B.title=x;},go:'b.now'};}),input:{ph:'정하려는 것을 한 줄로',fn:function(v){B.q.decision=v;B.title=v;},go:'b.now'},why:'q'}};
+ case 'b.now':return{say:['<b class="h">지금은 무엇으로 정하고 있나요?</b>'],
+   ui:{choices:['경험과 감','남의 말·민원','규정·관행','자료·숫자','정해 본 적 없음'].map(function(x){return{l:x,fn:function(){B.q.now=x;},go:'b.types'};}),why:'now'}};
+ case 'b.types':return{say:['<b class="h">이 결정에 어떤 종류의 것들이 등장하나요?</b><p>여러 개 고른 뒤 "다음"을 누르세요. 없는 종류는 아래에 직접 적습니다(쉼표로 여러 개).</p>'],
+   ui:{multi:Object.keys(d.types),input:{ph:'직접 추가 (예: 버스정류장, 학부모 차량)',keep:1},next:function(sel,extra){
+     var names=sel.concat(extra.split(',').map(function(s){return s.trim();}).filter(Boolean));
+     if(!names.length){toast('하나 이상 골라 주세요');return false;}
+     B.types=names.map(function(n){return{id:uid('t'),name:n,props:[],objs:[]};});ST.tmp.ti=0;return 'b.objs';},why:'types'}};
+ case 'b.objs':ti=ST.tmp.ti;t=B.types[ti];return{say:['<b class="h">'+esc(t.name)+' — 실제 대상의 이름은?</b><p>쉼표로 여러 개 적습니다.'+(ti===0?' 예: 성모병원사거리, 삼호가든사거리':'')+'</p>'],
+   ui:{input:{ph:t.name+' 이름들 (쉼표로)',fn:function(v){t.objs=v.split(',').map(function(s){return s.trim();}).filter(Boolean).map(function(n){return{id:uid('b'),name:n,vals:{}};});},go:'b.props'},why:'objs'}};
+ case 'b.props':ti=ST.tmp.ti;t=B.types[ti];var pre=(d.types[t.name]||[]);return{say:['<b class="h">'+esc(t.name)+'의 무엇을 봐야 결정할 수 있나요?</b><p>'+(pre.length?'고르거나 ':'')+'직접 적습니다.</p>'],
+   ui:{multi:pre,input:{ph:'직접 추가 (쉼표로)',keep:1},next:function(sel,extra){
+     var names=sel.concat(extra.split(',').map(function(s){return s.trim();}).filter(Boolean));
+     t.props=names.map(function(n){return{name:n,src:'아직 모름'};});return names.length?'b.src':nextType();},why:'props'}};
+ case 'b.src':ti=ST.tmp.ti;t=B.types[ti];ST.tmp.pi=ST.tmp.pi||0;var p=t.props[ST.tmp.pi];return{say:['<b class="h">'+esc(t.name)+'의 「'+esc(p.name)+'」은(는) 어디서 알 수 있나요?</b>'],
+   ui:{choices:SRC.map(function(s){return{l:s,fn:function(){p.src=s;ST.tmp.pi++;},go:function(){return ST.tmp.pi<t.props.length?'b.src':(ST.tmp.pi=0,nextType());}};}),why:'src'}};
+ case 'b.link':var os=allObjs();if(os.length<2)return{say:['<p>대상이 두 개 이상이어야 선을 그을 수 있어 링크는 건너뜁니다.</p>'],auto:RET()?'grow':'b.act'};
+   return{say:['<b class="h">무엇이 무엇에 영향을 주나요?</b><p>먼저 <b>영향을 주는 쪽</b>을 고르세요.</p>'],
+   ui:{choices:os.map(function(x){return{l:x.o.name,fn:function(){ST.tmp.lf=x.o.id;},go:'b.link.rel'};}).concat([RET()?{l:'지도로 돌아가기',go:'grow',sub:1}:{l:'링크 없이 넘어가기',go:'b.act',sub:1}]),why:'link'}};
+ case 'b.link.rel':return{say:['<b class="h">'+esc(objById(ST.tmp.lf).o.name)+'이(가) 무엇을 하나요?</b><p>동사로 적습니다.</p>'],
+   ui:{choices:d.rels.map(function(r){return{l:r,fn:function(){ST.tmp.lr=r;},go:'b.link.to'};}),input:{ph:'관계 (예: 차량을 보낸다)',fn:function(v){ST.tmp.lr=v;},go:'b.link.to'}}};
+ case 'b.link.to':return{say:['<b class="h">누구에게·어디에?</b>'],
+   ui:{choices:allObjs().filter(function(x){return x.o.id!==ST.tmp.lf;}).map(function(x){return{l:x.o.name,fn:function(){B.links.push({id:uid('l'),from:ST.tmp.lf,rel:ST.tmp.lr,to:x.o.id});if(RET())addLog('선 — '+objById(ST.tmp.lf).o.name+' → '+ST.tmp.lr+' → '+x.o.name);},go:'b.link.more'};})}};
+ case 'b.link.more':var L=B.links[B.links.length-1];return{say:['<p>선 하나를 그었습니다: <b>'+esc(objById(L.from).o.name)+' → '+esc(L.rel)+' → '+esc(objById(L.to).o.name)+'</b></p><p>더 있나요?</p>'],
+   ui:{choices:[{l:'하나 더',go:'b.link'},RET()?{l:'지도로 돌아가기',go:'grow'}:{l:'다음 (액션)',go:'b.act'}]}};
+ case 'b.act':return{say:['<b class="h">실제로 바꿔 본 것, 또는 바꿀 계획이 있나요?</b><p>여기가 팔란티어 방식의 핵심입니다. 무엇을 누가 왜 바꿨는지가 기록으로 남습니다.</p>'],
+   ui:{choices:[{l:'해 본 것이 있다',fn:function(){ST.tmp.ad='done';},go:'b.act.name'},{l:'할 계획이 있다',fn:function(){ST.tmp.ad='plan';},go:'b.act.name'},RET()?{l:'지도로 돌아가기',go:'grow',sub:1}:{l:'아직 없다',go:'b.fn'}],why:'act'}};
+ case 'b.act.name':return{say:['<b class="h">무엇을 '+(ST.tmp.ad==='plan'?'할 건가요':'했나요')+'?</b>'],
+   ui:{input:{ph:'예: 직좌 동시신호 후 5초 뒤 좌회전만',fn:function(v){B.actions.push({id:uid('a'),name:v,plan:ST.tmp.ad==='plan',target:'',who:'',date:ST.tmp.ad==='plan'?'':today(),why:'',result:''});if(RET())addLog((ST.tmp.ad==='plan'?'새 계획':'새 액션')+' — '+v);},go:'b.act.tgt'}}};
+ case 'b.act.tgt':var A=B.actions[B.actions.length-1];return{say:['<b class="h">무엇을 바꾸는 건가요?</b>'],
+   ui:{choices:allObjs().map(function(x){return{l:x.o.name,fn:function(){A.target=x.o.id;},go:'b.act.who'};}).concat([{l:'목록에 없다',go:'b.act.who',sub:1}])}};
+ case 'b.act.who':A=B.actions[B.actions.length-1];return{say:['<b class="h">누가 바꿀 수 있나요?</b><p>팔란티어는 액션마다 권한을 겁니다. 아무나 바꾸면 안 되는 것을 구분하는 칸입니다.</p>'],
+   ui:{choices:d.who.map(function(w){return{l:w,fn:function(){A.who=w;},go:'b.act.why'};}),input:{ph:'직접 입력',fn:function(v){A.who=v;},go:'b.act.why'}}};
+ case 'b.act.why':A=B.actions[B.actions.length-1];return{say:['<b class="h">왜 그렇게 '+(A.plan?'하려나요':'했나요')+'?</b><p>나중에 이 기록을 볼 후임자에게 남기는 말입니다.</p>'],
+   ui:{input:{ph:'이유',fn:function(v){A.why=v;},go:A.plan?'b.act.more':'b.act.res'}}};
+ case 'b.act.res':A=B.actions[B.actions.length-1];return{say:['<b class="h">결과는 무엇으로 확인했나요?</b>'],
+   ui:{choices:[{l:'확인한 게 있다',go:'b.act.resin'},{l:'느낌으로는 나아졌다',fn:function(){A.result='체감 개선 — 자료 확인 전';},go:'b.act.more'},{l:'아직 모른다',go:'b.act.more'}]}};
+ case 'b.act.resin':A=B.actions[B.actions.length-1];return{say:['<b class="h">무엇으로, 어떻게 확인했나요?</b>'],ui:{input:{ph:'예: 통행속도 전후 비교 15→22km/h',fn:function(v){A.result=v;},go:'b.act.more'}}};
+ case 'b.act.more':return{say:['<p>액션을 기록했습니다. 더 있나요?</p>'],ui:{choices:[{l:'하나 더',go:'b.act'},RET()?{l:'지도로 돌아가기',go:'grow'}:{l:'다음 (판단 규칙)',go:'b.fn'}]}};
+ case 'b.fn':return{say:['<b class="h">"이럴 땐 이렇게" 하는 원칙이 있나요?</b><p>먼저 <b>조건</b>을 적습니다.'+(d.fn.some(function(x){return typeof x==='object';})?' 아래 예시는 T-Book 현장심리 카드에 있는 원칙이고, 고르면 출처 카드 이름이 함께 남습니다.':'')+'</p>'],
+   ui:{choices:d.fn.map(function(x){return typeof x==='object'
+       ?{l:x.w,fn:function(){B.funcs.push({when:x.w,then:x.t,need:'',src:x.s});if(RET())addLog('규칙 — '+x.w);},go:'b.fn.need'}
+       :{l:x,fn:function(){B.funcs.push({when:x,then:'',need:''});if(RET())addLog('규칙 — '+x);},go:'b.fn.then'};}).concat([RET()?{l:'지도로 돌아가기',go:'grow',sub:1}:{l:'없다 — 결과 보기',go:'b.done',sub:1}]),
+     input:{ph:'조건 직접 입력',fn:function(v){B.funcs.push({when:v,then:'',need:''});if(RET())addLog('규칙 — '+v);},go:'b.fn.then'},why:'fn'}};
+ case 'b.fn.then':var F=B.funcs[B.funcs.length-1];return{say:['<b class="h">'+esc(F.when)+' → 어떻게 하나요?</b>'],ui:{input:{ph:'행동',fn:function(v){F.then=v;},go:'b.fn.need'}}};
+ case 'b.fn.need':F=B.funcs[B.funcs.length-1];return{say:[(F.src?'<div class="pal">'+esc(F.when)+' → <b>'+esc(F.then)+'</b><br><span class="small">출처: '+esc(F.src)+'</span></div>':'')+'<b class="h">그 조건이 된 걸 무엇으로 알아채나요?</b><p>규칙이 자동으로 돌려면 조건을 알려 줄 자료가 있어야 합니다.</p>'],
+   ui:{choices:[{l:'모르겠다',go:'b.fn.more',sub:1}],input:{ph:'예: 하류 대기 길이, 시각',fn:function(v){F.need=v;},go:'b.fn.more'}}};
+ case 'b.fn.more':return{say:['<p>규칙을 적었습니다. 더 있나요?</p>'],ui:{choices:[{l:'하나 더',go:'b.fn'},RET()?{l:'지도로 돌아가기',go:'grow'}:{l:'결과 보기',go:'b.done'}]}};
+ case 'b.done':return{say:[resultHTML(),'<b class="h">이 지도로 결정이 바뀌었나요?</b>'],
+   ui:{choices:[{l:'바뀌었다',fn:function(){B.changed='바뀌었다';},go:'b.chg'},{l:'그대로다',fn:function(){B.changed='그대로다';},go:'b.chg'},{l:'아직 모른다',fn:function(){B.changed='아직 모른다';},go:'b.end'}]}};
+ case 'b.chg':return{say:[B.changed==='그대로다'?'<p>그렇다면 그림을 더 그리기보다 <b>결정 질문을 다시</b> 보세요. 질문이 너무 넓거나, 결정을 바꿀 선이 아직 없는 것입니다.</p><b class="h">왜 그대로인지 한 줄로 적어 두세요.</b>':'<b class="h">무엇이 어떻게 바뀌었나요?</b>'],
+   ui:{input:{ph:'한 줄',fn:function(v){B.changeWhy=v;},go:'b.end'},choices:[{l:'넘어가기',go:'b.end',sub:1}]}};
+ case 'b.end':return{say:['<p>다 됐습니다. 위 결과 카드의 단추로 복사하거나 저장하세요. "빈 곳" 목록이 다음에 할 일입니다.</p>'],
+   ui:{choices:[{l:'기록에 저장',fn:saveHist,go:'b.end2'},{l:'이어서 키우기',go:'grow.r'},{l:'처음으로',go:'start',sub:1}]}};
+ case 'b.end2':return{say:['<p>저장했습니다. 다시 볼 때 "지난 기록"에서 열면 됩니다. 현실이 바뀌면 그때 열어 <b>이어서 키우기</b>로 채우세요 — 그래야 지도가 현실을 따라가는 쌍둥이가 됩니다.</p>'],ui:{choices:[{l:'이어서 키우기',go:'grow.r'},{l:'새 문제 하기',fn:function(){ST.B=blankB();},go:'b.dom'},{l:'처음으로',go:'start',sub:1}]}};
+ /* ---- v4 이어서 키우기(디지털 트윈) — 채운 것은 log 에 날짜와 함께, 저장 때마다 snaps 에 빈 곳 수 ---- */
+ case 'grow':ST.tmp.ret=1;return{say:[resultHTML(),'<b class="h">이 지도를 이어서 키웁니다</b><p>현실이 바뀌었거나 빈 곳을 알게 됐을 때 채웁니다. 채운 것은 「자라 온 기록」에 날짜와 함께 남고, 저장할 때마다 빈 곳 수의 변화가 남습니다.</p>'],ui:{choices:growCh(0)}};
+ case 'grow.r':ST.tmp.ret=1;return{say:['<p>'+growLine()+'</p>'],ui:{choices:growCh(1)}};
+ case 'grow.s':ST.tmp.ret=1;var sn=B.snaps;return{say:['<p>저장했습니다.'+(sn.length>1?' 빈 곳 <b>'+sn.slice(-6).map(function(x){return x.g;}).join(' → ')+'</b>':'')+'</p>'],ui:{choices:growCh(1)}};
+ case 'g.gap':var gx=gapsX();return{say:[gx.length?'<b class="h">어느 빈 곳을 메울까요?</b><p>하나 고르면 그 칸만 묻고 지도로 돌아옵니다.</p>':'<p>빈 곳이 없습니다.</p>'],
+   ui:{choices:gx.slice(0,14).map(function(x){return{l:x.s,fn:function(){ST.tmp.gx=x;if(x.k==='nolink')ST.tmp.lf=x.id;},go:{src:'g.src',noobj:'g.objn',nolink:'b.link.rel',nores:'g.resin',nowho:'g.who',noneed:'g.need'}[x.k]};}).concat([{l:'지도로 돌아가기',go:'grow.r',sub:1}])}};
+ case 'g.src':t=B.types[ST.tmp.gx.ti];var gp=t.props[ST.tmp.gx.pi];return{say:['<b class="h">'+esc(t.name)+'의 「'+esc(gp.name)+'」은(는) 어디서 알 수 있나요?</b>'],
+   ui:{choices:SRC.filter(function(s){return s!=='아직 모름';}).map(function(s){return{l:s,fn:function(){gp.src=s;addLog('출처 — '+t.name+'의 「'+gp.name+'」 → '+s);},go:'grow.r'};}).concat([{l:'아직 모르겠다',go:'grow.r',sub:1}]),why:'src'}};
+ case 'g.obj':return{say:['<b class="h">어느 종류에 대상을 더할까요?</b><p>새 종류라면 아래에 이름을 적습니다.</p>'],
+   ui:{choices:B.types.map(function(x,i){return{l:x.name+' ('+x.objs.length+')',fn:function(){ST.tmp.gx={ti:i};},go:'g.objn'};}).concat([{l:'지도로 돌아가기',go:'grow.r',sub:1}]),
+     input:{ph:'새 종류 이름',fn:function(v){B.types.push({id:uid('t'),name:v,props:[],objs:[]});ST.tmp.gx={ti:B.types.length-1};addLog('새 종류 — '+v);},go:'g.objn'},why:'types'}};
+ case 'g.objn':t=B.types[ST.tmp.gx.ti];return{say:['<b class="h">'+esc(t.name)+' — 더할 대상 이름은?</b><p>쉼표로 여러 개 적습니다.'+(t.objs.length?' 지금: '+esc(t.objs.map(function(o){return o.name;}).join(', ')):'')+'</p>'],
+   ui:{input:{ph:t.name+' 이름들 (쉼표로)',fn:function(v){var have={};t.objs.forEach(function(o){have[o.name]=1;});
+     var add=v.split(',').map(function(s){return s.trim();}).filter(function(n){return n&&!have[n]&&(have[n]=1);});
+     add.forEach(function(n){t.objs.push({id:uid('b'),name:n,vals:{}});});if(add.length)addLog('대상 — '+t.name+': '+add.join(', '));},go:'grow.r'},choices:[{l:'지도로 돌아가기',go:'grow.r',sub:1}],why:'objs'}};
+ case 'g.res':var ac=B.actions;return{say:[ac.length?'<b class="h">어느 액션의 결과를 채울까요?</b><p>계획이었던 것을 실제로 했다면 고르세요. 오늘 날짜로 실행 기록이 남습니다.</p>':'<p>아직 액션이 없습니다.</p>'],
+   ui:{choices:ac.map(function(a,i){return{l:(a.plan?'(계획) '+a.name+' — 실행했다':a.name+(a.result?' — 결과 고쳐 적기':' — 결과 채우기')),
+       fn:function(){ST.tmp.gx={ai:i};if(a.plan){a.plan=false;a.date=today();addLog('계획 실행 — '+a.name);}},go:'g.resin'};}).concat([{l:'새 액션 적기',go:'b.act'},{l:'지도로 돌아가기',go:'grow.r',sub:1}])}};
+ case 'g.resin':var ga=B.actions[ST.tmp.gx.ai];return{say:['<b class="h">「'+esc(ga.name)+'」 — 무엇으로, 어떻게 확인했나요?</b>'+(ga.result?'<p class="small">지금 적힌 것: '+esc(ga.result)+'</p>':'')],
+   ui:{choices:[{l:'느낌으로는 나아졌다',fn:function(){ga.result='체감 개선 — 자료 확인 전';addLog('결과 — '+ga.name+': '+ga.result);},go:'grow.r'},{l:'아직 모른다',go:'grow.r',sub:1}],
+     input:{ph:'예: 통행속도 전후 비교 15→22km/h',fn:function(v){ga.result=v;addLog('결과 — '+ga.name+': '+v);},go:'grow.r'}}};
+ case 'g.who':ga=B.actions[ST.tmp.gx.ai];return{say:['<b class="h">「'+esc(ga.name)+'」 — 누가 바꿀 수 있나요?</b>'],
+   ui:{choices:d.who.map(function(w){return{l:w,fn:function(){ga.who=w;addLog('권한 — '+ga.name+': '+w);},go:'grow.r'};}),input:{ph:'직접 입력',fn:function(v){ga.who=v;addLog('권한 — '+ga.name+': '+v);},go:'grow.r'}}};
+ case 'g.need':var gf=B.funcs[ST.tmp.gx.fi];return{say:['<b class="h">「'+esc(gf.when)+'」 — 그 조건이 된 걸 무엇으로 알아채나요?</b>'],
+   ui:{choices:[{l:'아직 모르겠다',go:'grow.r',sub:1}],input:{ph:'예: 하류 대기 길이, 시각',fn:function(v){gf.need=v;addLog('알아채는 자료 — '+gf.when+': '+v);},go:'grow.r'}}};
+ case 'ex':ST.B=example();return{say:['<p>성모병원사거리 평일 오후 정체를 이 방식으로 옮긴 예시입니다.</p>',resultHTML()],
+   ui:{choices:[{l:'이게 어떻게 만들어졌나요?',go:'L:how'},{l:'내 문제로 해 보기',fn:function(){ST.B=blankB();},go:'b.dom'},{l:'처음으로',go:'start',sub:1}]}};
+ case 'hist':var hs=HIST.slice().reverse();return{say:[hs.length?'<b class="h">지난 기록</b><p>열 기록을 고르세요. 이 기기에만 저장되어 있습니다.</p>':'<p>아직 저장한 기록이 없습니다.</p>'],
+   ui:{choices:hs.slice(0,12).map(function(h){return{l:(h.title||'이름 없음')+' · '+h.saved+(h.snaps&&h.snaps.length?' · 빈 곳 '+h.snaps[h.snaps.length-1].g:''),fn:function(){ST.B=norm(JSON.parse(JSON.stringify(h)));},go:'grow'};}).concat(hs.length?[{l:'기록 모두 지우기',fn:function(){if(confirm('저장한 기록을 모두 지울까요?')){HIST=[];save('onto3_history',HIST);}},go:'start',sub:1}]:[]).concat([{l:'처음으로',go:'start',sub:1}])}};
+ case 'histopen':return N('grow');
+ }
+ if(id.indexOf('L:')===0){var k=id.slice(2),x=LEARN[k]||LEARN.what;var nx={what:['why','how'],why:['how','eff'],how:['eff','twin'],eff:['lim','use'],lim:['use','how'],use:['twin','self'],twin:['self','use'],self:['use','twin']}[k]||['why','how'];
+   return{say:['<b class="h">'+x.h+'</b>'+x.b.join('')],ui:{choices:nx.map(function(n){return{l:LEARN[n].h,go:'L:'+n};}).concat([{l:ST.lastB?'하던 것 이어서':'써 보기',go:ST.lastB||'b.dom'},{l:'처음으로',go:'start',sub:1}])}};}
+ return N('start');
+}
+function nextType(){ST.tmp.ti++;ST.tmp.pi=0;return ST.tmp.ti<ST.B.types.length?'b.objs':'b.link';}
+/* v4 — 키우는 중이면 각 단계 끝에서 지도(grow)로 돌아온다 */
+function RET(){return !!(ST.tmp&&ST.tmp.ret);}
+function growLine(){var B=ST.B,g=gapsX().length;return '대상 '+allObjs().length+' · 선 '+B.links.length+' · 액션 '+B.actions.length+' · 규칙 '+B.funcs.length+' · <b>빈 곳 '+g+'</b>'+(B.log.length?' · 자라 온 기록 '+B.log.length+'건':'');}
+function growCh(r){var B=ST.B,g=gapsX().length,c=[];
+  if(g)c.push({l:'빈 곳 하나 메우기 ('+g+')',go:'g.gap'});
+  if(B.actions.some(function(a){return a.plan||!a.result;}))c.push({l:'액션 결과 채우기',go:'g.res'});
+  c.push({l:'새 액션 (바꾼 것·바꿀 것)',go:'b.act'},{l:'선 더 긋기',go:'b.link'},{l:'대상 더하기',go:'g.obj'},{l:'판단 규칙 더하기',go:'b.fn'});
+  if(r)c.push({l:'지도 다시 보기',go:'grow',sub:1});
+  c.push({l:'저장',fn:saveHist,go:'grow.s'},{l:'처음으로',go:'start',sub:1});return c;}
+
+/* ---------- 결과 ---------- */
+function svgMap(){var nodes=allObjs();if(!nodes.length)return '';
+  var W=640,H=Math.max(340,110+nodes.length*24),cx=W/2,cy=H/2,R=Math.min(W,H)/2-70,pos={};
+  nodes.forEach(function(n,i){var a=-Math.PI/2+i*2*Math.PI/nodes.length;pos[n.o.id]={x:cx+R*Math.cos(a),y:cy+R*Math.sin(a),n:n};});
+  var s='<svg class="map" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="온톨로지 지도"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="var(--sub)"/></marker></defs>';
+  ST.B.links.forEach(function(l){var a=pos[l.from],b=pos[l.to];if(!a||!b||a===b)return;var dx=b.x-a.x,dy=b.y-a.y,dd=Math.sqrt(dx*dx+dy*dy)||1,ux=dx/dd,uy=dy/dd,r=22;
+    s+='<line x1="'+(a.x+ux*r)+'" y1="'+(a.y+uy*r)+'" x2="'+(b.x-ux*r)+'" y2="'+(b.y-uy*r)+'" stroke="var(--sub)" stroke-width="1.5" marker-end="url(#ar)"/>';
+    if(l.rel)s+='<text x="'+((a.x+b.x)/2)+'" y="'+((a.y+b.y)/2-4)+'" font-size="13" text-anchor="middle" fill="var(--sub)" paint-order="stroke" stroke="var(--bg)" stroke-width="4">'+esc(l.rel)+'</text>';});
+  Object.keys(pos).forEach(function(id){var p=pos[id],c='var('+COLORS[p.n.ti%4]+')',act=ST.B.actions.some(function(a){return a.target===id;});
+    s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="20" fill="var(--card)" stroke="'+c+'" stroke-width="'+(act?6:3)+'"/><text x="'+p.x+'" y="'+(p.y+40)+'" font-size="14" font-weight="700" text-anchor="middle" fill="var(--ink)" paint-order="stroke" stroke="var(--bg)" stroke-width="4">'+esc(p.n.o.name)+'</text>';});
+  return s+'</svg><div class="legend">'+ST.B.types.map(function(t,ti){return '<span><i style="background:var('+COLORS[ti%4]+')"></i>'+esc(t.name)+'</span>';}).join('')+'<span>굵은 테두리 = 액션이 걸린 대상</span></div>';}
+/* v4 — 빈 곳을 종류(k)와 자리까지 돌려준다(이어서 키우기가 그 칸으로 바로 간다). gaps() 는 글만 */
+function gapsX(){var B=ST.B,g=[];
+  B.types.forEach(function(t,ti){t.props.forEach(function(p,pi){if(p.src==='아직 모름')g.push({k:'src',ti:ti,pi:pi,s:t.name+'의 「'+p.name+'」 — 어디서 알지 아직 모름'});});if(!t.objs.length)g.push({k:'noobj',ti:ti,s:t.name+' — 실제 대상 없음'});});
+  var ln={};B.links.forEach(function(l){ln[l.from]=1;ln[l.to]=1;});if(allObjs().length>1)allObjs().forEach(function(x){if(!ln[x.o.id])g.push({k:'nolink',id:x.o.id,s:x.o.name+' — 다른 것과의 선이 없음'});});
+  B.actions.forEach(function(a,ai){if(!a.plan&&!a.result)g.push({k:'nores',ai:ai,s:'액션 「'+a.name+'」 — 결과 확인 없음'});if(!a.who)g.push({k:'nowho',ai:ai,s:'액션 「'+a.name+'」 — 권한자 미정'});});
+  B.funcs.forEach(function(f,fi){if(!f.need)g.push({k:'noneed',fi:fi,s:'규칙 「'+f.when+'」 — 조건을 알아챌 자료 미정'});});return g;}
+function gaps(){return gapsX().map(function(x){return x.s;});}
+function resultHTML(){var B=ST.B,g=gaps(),h;
+  h='<b class="h">'+esc(B.title||'이름 없는 지도')+'</b><p class="small">'+(B.dom?DOM[B.dom].label+' · ':'')+'지금 판단: '+esc(B.q.now||'—')+'</p>'+svgMap();
+  B.types.forEach(function(t,ti){if(!t.objs.length&&!t.props.length)return;
+    h+='<p style="margin-top:10px"><b class="k'+((ti%4)+1)+'">'+esc(t.name)+'</b>: '+esc(t.objs.map(function(o){return o.name;}).join(', ')||'—')+'<br><span class="small">볼 것 — '+(t.props.map(function(p){return esc(p.name)+(p.src==='아직 모름'?' <span class="kb">(출처 모름)</span>':' ('+esc(p.src)+')');}).join(', ')||'없음')+'</span></p>';});
+  if(B.actions.length){h+='<p style="margin-top:10px"><b class="k3">액션 기록</b></p>';B.actions.forEach(function(a){var t=objById(a.target);
+    h+='<div class="log"><span class="small">'+(a.plan?'계획':esc(a.date||'날짜 없음'))+' · 권한 '+esc(a.who||'미정')+'</span><br><b>'+esc(a.name)+'</b>'+(t?' → '+esc(t.o.name):'')+'<br>왜: '+esc(a.why||'—')+(a.plan?'':'<br>결과: '+(a.result?esc(a.result):'<span class="empty">확인 안 됨</span>'))+'</div>';});}
+  if(B.funcs.length){h+='<p style="margin-top:10px"><b class="k4">판단 규칙</b></p>';B.funcs.forEach(function(f){h+='<div class="log f">'+esc(f.when)+' → <b>'+esc(f.then||'?')+'</b><br><span class="small">알아채는 자료: '+esc(f.need||'미정')+(f.src?' · 출처: '+esc(f.src):'')+'</span></div>';});}
+  h+='<p style="margin-top:10px"><b class="kb">빈 곳 = 다음에 할 일 ('+g.length+')</b></p>'+(g.length?'<ul>'+g.slice(0,20).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'<p>빈 곳이 없습니다.</p>');
+  if(B.snaps.length>1)h+='<p class="small">저장할 때마다 빈 곳: <b>'+B.snaps.slice(-8).map(function(x){return x.g;}).join(' → ')+'</b> ('+esc(B.snaps[0].d)+'부터 '+B.snaps.length+'번 저장)</p>';
+  if(B.log.length)h+='<p style="margin-top:10px"><b class="k2">자라 온 기록 ('+B.log.length+')</b></p><ul>'+B.log.slice(-12).reverse().map(function(x){return '<li><span class="small">'+esc(x.d)+'</span> '+esc(x.w)+'</li>';}).join('')+'</ul>'+(B.log.length>12?'<p class="small">앞의 '+(B.log.length-12)+'건은 「글로 복사」에 다 들어 있습니다.</p>':'');
+  if(B.changed)h+='<p class="small">결정 변화: '+esc(B.changed)+(B.changeWhy?' — '+esc(B.changeWhy):'')+'</p>';
+  h+='<div class="acts"><button type="button" data-act="txt">글로 복사</button><button type="button" data-act="csv">표(CSV) 복사</button><button type="button" data-act="json">백업 복사</button><button type="button" data-act="save">기록에 저장</button></div>';
+  return h;}
+function asText(){var B=ST.B,L=['[온톨로지] '+B.title+' ('+today()+')','영역: '+(B.dom?DOM[B.dom].label:'')+' / 지금 판단: '+B.q.now,''];
+  B.types.forEach(function(t){L.push('■ '+t.name+': '+t.objs.map(function(o){return o.name;}).join(', '));L.push('   볼 것: '+t.props.map(function(p){return p.name+'('+p.src+')';}).join(', '));});
+  L.push('','■ 링크');B.links.forEach(function(l){var a=objById(l.from),b=objById(l.to);if(a&&b)L.push('  '+a.o.name+' → '+l.rel+' → '+b.o.name);});
+  L.push('','■ 액션');B.actions.forEach(function(a){var t=objById(a.target);L.push('  ['+(a.plan?'계획':(a.date||''))+'] '+a.name+(t?' → '+t.o.name:'')+' / 권한 '+(a.who||'미정'));L.push('    왜: '+(a.why||'—')+(a.plan?'':' / 결과: '+(a.result||'확인 안 됨')));});
+  L.push('','■ 판단 규칙');B.funcs.forEach(function(f){L.push('  '+f.when+' → '+f.then+' (자료: '+(f.need||'미정')+')'+(f.src?' [출처: '+f.src+']':''));});
+  var g=gaps();L.push('','■ 빈 곳 ('+g.length+')');g.forEach(function(x){L.push('  - '+x);});
+  if(B.snaps.length>1)L.push('  저장할 때마다 빈 곳: '+B.snaps.map(function(x){return x.g;}).join(' → '));
+  if(B.log.length){L.push('','■ 자라 온 기록 ('+B.log.length+')');B.log.forEach(function(x){L.push('  '+x.d+' '+x.w);});}
+  if(B.changed)L.push('','결정 변화: '+B.changed+(B.changeWhy?' — '+B.changeWhy:''));return L.join('\n');}
+function cq(s){s=String(s==null?'':s);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function asCSV(){var O=[['id','타입','이름']],K=[['출발','관계','도착']],A=[['날짜','액션','대상','권한','왜','결과']];
+  allObjs().forEach(function(x){O.push([x.o.id,x.t.name,x.o.name]);});ST.B.links.forEach(function(l){K.push([l.from,l.rel,l.to]);});
+  ST.B.actions.forEach(function(a){A.push([a.plan?'계획':a.date,a.name,a.target,a.who,a.why,a.result]);});
+  function j(r){return r.map(function(x){return x.map(cq).join(',');}).join('\n');}
+  return '# objects.csv\n'+j(O)+'\n\n# links.csv\n'+j(K)+'\n\n# actions.csv\n'+j(A);}
+function saveHist(){var B=ST.B;B.saved=today()+' '+new Date().toTimeString().slice(0,5);
+  var sp={d:today(),g:gapsX().length,o:allObjs().length,l:B.links.length,a:B.actions.length},ls=B.snaps[B.snaps.length-1];
+  if(!B.log.length)addLog('처음 지도 — 대상 '+sp.o+' · 선 '+sp.l+' · 액션 '+sp.a);
+  if(ls&&ls.g===sp.g&&ls.o===sp.o&&ls.l===sp.l&&ls.a===sp.a)ls.d=sp.d;else{B.snaps.push(sp);if(B.snaps.length>30)B.snaps=B.snaps.slice(-30);}
+  var k=JSON.parse(JSON.stringify(B));
+  HIST=HIST.filter(function(x){return x.id!==k.id;});HIST.push(k);if(HIST.length>60)HIST=HIST.slice(-60);save('onto3_history',HIST);toast('기록에 저장했습니다');}
+function example(){var B=blankB();B.dom='traffic';B.title='평일 15:30 성모병원사거리 정체를 어디서 먼저 끊을까';B.q={decision:B.title,now:'경험과 감'};
+  function T(n,p){var t={id:uid('t'),name:n,props:p.map(function(x){return{name:x[0],src:x[1]};}),objs:[]};B.types.push(t);return t;}
+  function O(t,n){var o={id:uid('b'),name:n,vals:{}};t.objs.push(o);return o.id;}
+  var X=T('교차로',[['정체 시간대','현장관찰'],['신호 운영','내부자료'],['통행속도','아직 모름']]),C=T('원인시설',[['몰리는 시각','현장관찰'],['수업 시각','아직 모름']]),R=T('도로·분기점',[['소화량','내부자료'],['우회 가능','현장관찰']]);
+  var sm=O(X,'성모병원사거리'),hg=O(C,'삼호가든·궁전 학원가'),sp=O(R,'사평대로'),sj=O(R,'사평지하차도');
+  B.links=[{id:uid('l'),from:hg,rel:'차량을 보낸다',to:sm},{id:uid('l'),from:sm,rel:'대기를 넘긴다',to:sp},{id:uid('l'),from:sj,rel:'우회로가 된다',to:sm}];
+  B.actions=[{id:uid('a'),name:'직좌 동시신호 후 5초 뒤 좌회전만, 19시까지',plan:false,target:sm,who:'시설담당(배분값)',date:'',why:'학원차·학부모 차량이 사평지하차도 대신 상부로 몰려 꼬리물기. 사평대로 소화량 기준',result:'체감 개선 — 통행속도 전후 비교는 아직'}];
+  B.funcs=[{when:'하류(사평대로)가 받아줄 수 없을 때',then:'정체 출발점이 아니라 상류에서 먼저 끊는다',need:'사평대로 대기 길이, 시간대별 통행속도'}];return B;}
+
+/* ---------- 그리기·진행 ---------- */
+var msgs=document.getElementById('msgs'),ctl=document.getElementById('ctlin'),logEl=document.getElementById('log');
+function push(who,html){ST.msgs.push({w:who,h:html});}
+function drawMsgs(){msgs.innerHTML=ST.msgs.map(function(m){return '<div class="msg '+m.w+'"><div class="bub'+(m.h.indexOf('class="map"')>-1||m.h.indexOf('<table')>-1?' wide':'')+'">'+m.h+'</div></div>';}).join('');
+  requestAnimationFrame(function(){logEl.scrollTop=logEl.scrollHeight;});}
+var CUR=null;
+function enter(id){
+  if(typeof id==='function')id=id();
+  if(id==='hist'||id==='start'){ST.tmp={};}
+  if((id.indexOf('b.')===0&&id!=='b.end'&&id!=='b.end2')||id.indexOf('g.')===0)ST.lastB=id;else if(id.indexOf('grow')===0)ST.lastB='grow.r';else if(id==='start'||id==='b.end'||id==='b.end2'||id==='ex')ST.lastB=null;
+  ST.node=id;var n=N(id);CUR=n;ST.sel=[];
+  (n.say||[]).forEach(function(s){push('bot',s);});
+  if(n.auto){persist();return enter(n.auto);}
+  persist();drawMsgs();drawCtl();
+}
+function drawCtl(){var u=CUR.ui||{},h='';
+  if(u.multi){h+='<div class="choices">'+u.multi.map(function(x,i){return '<button type="button" class="ch tg" data-tg="'+i+'" aria-pressed="false">'+esc(x)+'</button>';}).join('')+'</div>';}
+  if(u.choices&&u.choices.length){h+='<div class="choices"'+(u.multi?' style="margin-top:8px"':'')+'>'+u.choices.map(function(c,i){return '<button type="button" class="ch'+(c.sub?' sub':'')+'" data-c="'+i+'">'+esc(c.l)+'</button>';}).join('')+'</div>';}
+  if(u.input){h+='<div class="inrow"><input type="text" id="inp" placeholder="'+esc(u.input.ph)+'" enterkeyhint="send" aria-label="'+esc(u.input.ph)+'">'+(u.next?'':'<button type="button" class="ch go" id="send">보내기</button>')+'</div>';}
+  if(u.next)h+='<div class="choices" style="margin-top:8px"><button type="button" class="ch go" id="nx">다음</button></div>';
+  h+='<div class="tools"><span>'+(u.why?'<button type="button" id="why">왜 이걸 묻나요?</button>':'')+'</span><button type="button" id="undo"'+(ST.undo.length?'':' hidden')+'>되돌리기</button></div>';
+  ctl.innerHTML=h;}
+function snap(){ST.undo.push(JSON.stringify({msgs:ST.msgs,node:ST.node,B:ST.B,tmp:ST.tmp,lastB:ST.lastB||null}));if(ST.undo.length>15)ST.undo.shift();}
+function answer(label,fn,go){snap();push('me',esc(label));if(fn)fn();enter(go);}
+ctl.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var u=CUR.ui||{};
+  if(b.dataset.c!=null){var c=u.choices[+b.dataset.c];answer(c.l,c.fn,c.go);return;}
+  if(b.dataset.tg!=null){var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);var v=u.multi[+b.dataset.tg];
+    if(on)ST.sel.push(v);else ST.sel=ST.sel.filter(function(x){return x!==v;});return;}
+  if(b.id==='send'){submitInput();return;}
+  if(b.id==='nx'){var ex=(document.getElementById('inp')||{}).value||'';if(ex){ex=piiGate(ex);if(ex===null)return;}snap();var lbl=ST.sel.concat(ex.split(',').map(function(s){return s.trim();}).filter(Boolean)).join(', ')||'(없음)';
+    var go=u.next(ST.sel.slice(),ex);if(go===false){ST.undo.pop();return;}push('me',esc(lbl));enter(go);return;}
+  if(b.id==='why'){push('bot','<div class="pal">'+esc(WHY[u.why])+'</div>');persist();drawMsgs();return;}
+  if(b.id==='undo'){var s=ST.undo.pop();if(!s)return;var o=JSON.parse(s);
+    ST.msgs=o.msgs;ST.B=o.B;ST.tmp=o.tmp;ST.node=o.node;ST.lastB=o.lastB;CUR=N(o.node);ST.sel=[];persist();drawMsgs();drawCtl();return;}
+});
+function submitInput(){var u=CUR.ui||{},el=document.getElementById('inp');if(!el)return;var v=el.value.trim();if(!v){toast('내용을 적어 주세요');return;}
+  v=piiGate(v);if(v===null){el.focus();return;}
+  answer(v,function(){u.input.fn(v);},u.input.go);}
+ctl.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='inp'&&!e.isComposing){e.preventDefault();if(CUR.ui&&CUR.ui.next)document.getElementById('nx').click();else submitInput();}});
+msgs.addEventListener('click',function(e){var b=e.target.closest('button[data-act]');if(!b)return;var a=b.dataset.act;
+  if(a==='txt')copyText(asText());else if(a==='csv')copyText(asCSV());else if(a==='json')copyText(JSON.stringify(ST.B));else if(a==='save')saveHist();});
+document.getElementById('home').addEventListener('click',function(){if((ST.node.indexOf('b.')===0||ST.node.indexOf('g.')===0||ST.node.indexOf('grow')===0)&&ST.node!=='b.end'&&ST.node!=='b.end2'&&!confirm('처음으로 갈까요? 작성 중인 내용은 "되돌리기"로만 돌아올 수 있습니다.'))return;
+  snap();ST.msgs=[];enter('start');});
+document.getElementById('thm').addEventListener('click',function(){var r=document.documentElement,c=r.getAttribute('data-theme'),dk=c?c==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  r.setAttribute('data-theme',dk?'light':'dark');save('onto3_theme',r.getAttribute('data-theme'));});
+
+var th=load('onto3_theme',null);if(th)document.documentElement.setAttribute('data-theme',th);
+/* v4 — T-Book 에서 바로 들어오는 문: #field(지난 현장 복기) · #learn(배우기). 하던 대화는 「되돌리기」에 남기고 새로 연다 */
+var hsh=(location.hash||'').slice(1);
+if(hsh==='field'||hsh==='learn'){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+  if(ST.msgs.length)snap();ST.msgs=[];
+  if(hsh==='field'){ST.B=blankB();ST.B.dom='field';ST.tmp={};push('bot','<p>T-Book 현장심리에서 왔습니다. 지난 현장 하나를 <b>상황 단위로</b> 복기합니다 — 어디서 꼬였고, 무엇이 통했고, 다음엔 무엇을 할지.</p>');enter('b.q');}
+  else enter('L:what');}
+else if(ST.msgs.length){CUR=N(ST.node);drawMsgs();drawCtl();}else enter('start');
+})();
+</script>
+</body>
+</html>
