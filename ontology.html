@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
 <title>온톨로지 · 팔란티어 방식 · T-Book</title>
 <!--
-  온톨로지 ver.4 (T-Book 서브앱) — 버튼 문답으로 배우고, 같은 문답으로 내 문제의 온톨로지를 만든다.
+  온톨로지 ver.4.1 (T-Book 서브앱) — 버튼 문답으로 배우고, 같은 문답으로 내 문제의 온톨로지를 만든다.
+  ver.4.1 (2026-10-04) — 결과 카드 「AI용 복사」(검토 요청 말머리 + 글) · #open=아이디(T-Book 서식·메모 › 🧭 온톨로지에서 기록 하나를 이어서 키우기로 연다)
   배우기: 온톨로지란 / 왜 필요한가 / 팔란티어는 어떻게 푸나 / 효과 / 한계 / 나·우리·직장·교통에 쓰는 법 / 디지털 트윈이란 / 나를 알아가는 법
   만들기: 영역 → 결정 질문 → 오브젝트 타입·대상·속성·출처 → 링크 → 액션 → 함수 → 결과(지도·빈 곳·기록)
   v4(2026-10-02): 이어서 키우기(빈 곳 메우기·결과 채우기·새 액션·선·대상·규칙 → 자라 온 기록 B.log · 빈 곳 변화 B.snaps)
@@ -361,7 +362,7 @@ function resultHTML(){var B=ST.B,g=gaps(),h;
   if(B.snaps.length>1)h+='<p class="small">저장할 때마다 빈 곳: <b>'+B.snaps.slice(-8).map(function(x){return x.g;}).join(' → ')+'</b> ('+esc(B.snaps[0].d)+'부터 '+B.snaps.length+'번 저장)</p>';
   if(B.log.length)h+='<p style="margin-top:10px"><b class="k2">자라 온 기록 ('+B.log.length+')</b></p><ul>'+B.log.slice(-12).reverse().map(function(x){return '<li><span class="small">'+esc(x.d)+'</span> '+esc(x.w)+'</li>';}).join('')+'</ul>'+(B.log.length>12?'<p class="small">앞의 '+(B.log.length-12)+'건은 「글로 복사」에 다 들어 있습니다.</p>':'');
   if(B.changed)h+='<p class="small">결정 변화: '+esc(B.changed)+(B.changeWhy?' — '+esc(B.changeWhy):'')+'</p>';
-  h+='<div class="acts"><button type="button" data-act="txt">글로 복사</button><button type="button" data-act="csv">표(CSV) 복사</button><button type="button" data-act="json">백업 복사</button><button type="button" data-act="save">기록에 저장</button></div>';
+  h+='<div class="acts"><button type="button" data-act="ai">AI용 복사</button><button type="button" data-act="txt">글로 복사</button><button type="button" data-act="csv">표(CSV) 복사</button><button type="button" data-act="json">백업 복사</button><button type="button" data-act="save">기록에 저장</button></div>';
   return h;}
 function asText(){var B=ST.B,L=['[온톨로지] '+B.title+' ('+today()+')','영역: '+(B.dom?DOM[B.dom].label:'')+' / 지금 판단: '+B.q.now,''];
   B.types.forEach(function(t){L.push('■ '+t.name+': '+t.objs.map(function(o){return o.name;}).join(', '));L.push('   볼 것: '+t.props.map(function(p){return p.name+'('+p.src+')';}).join(', '));});
@@ -372,6 +373,8 @@ function asText(){var B=ST.B,L=['[온톨로지] '+B.title+' ('+today()+')','영�
   if(B.snaps.length>1)L.push('  저장할 때마다 빈 곳: '+B.snaps.map(function(x){return x.g;}).join(' → '));
   if(B.log.length){L.push('','■ 자라 온 기록 ('+B.log.length+')');B.log.forEach(function(x){L.push('  '+x.d+' '+x.w);});}
   if(B.changed)L.push('','결정 변화: '+B.changed+(B.changeWhy?' — '+B.changeWhy:''));return L.join('\n');}
+/* v4.1 — AI 에 붙여 넣어 검토받을 때 앞에 붙이는 말(T-Book 서식·메모 › 온톨로지의 「AI용 복사」와 같은 글) */
+var AI_HEAD='[T-Book 온톨로지 지도 — AI 검토 요청]\n아래는 경찰관이 현장 문제를 온톨로지(대상·속성·관계·액션·판단 규칙)로 정리한 것입니다. 다음을 짚어 주세요.\n1) 「빈 곳」을 어떤 자료로 메울 수 있는지(공개 자료면 이름까지)\n2) 빠진 대상·관계\n3) 다음에 해 볼 액션과 그 결과를 무엇으로 확인할지\n4) 판단 규칙의 허점이나 예외\n추측은 추측이라고 밝히고, 법령·판례는 조문·사건번호를 확인할 수 있을 때만 적어 주세요.\n----\n';
 function cq(s){s=String(s==null?'':s);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
 function asCSV(){var O=[['id','타입','이름']],K=[['출발','관계','도착']],A=[['날짜','액션','대상','권한','왜','결과']];
   allObjs().forEach(function(x){O.push([x.o.id,x.t.name,x.o.name]);});ST.B.links.forEach(function(l){K.push([l.from,l.rel,l.to]);});
@@ -433,7 +436,7 @@ function submitInput(){var u=CUR.ui||{},el=document.getElementById('inp');if(!el
   answer(v,function(){u.input.fn(v);},u.input.go);}
 ctl.addEventListener('keydown',function(e){if(e.key==='Enter'&&e.target.id==='inp'&&!e.isComposing){e.preventDefault();if(CUR.ui&&CUR.ui.next)document.getElementById('nx').click();else submitInput();}});
 msgs.addEventListener('click',function(e){var b=e.target.closest('button[data-act]');if(!b)return;var a=b.dataset.act;
-  if(a==='txt')copyText(asText());else if(a==='csv')copyText(asCSV());else if(a==='json')copyText(JSON.stringify(ST.B));else if(a==='save')saveHist();});
+  if(a==='ai')copyText(AI_HEAD+asText());else if(a==='txt')copyText(asText());else if(a==='csv')copyText(asCSV());else if(a==='json')copyText(JSON.stringify(ST.B));else if(a==='save')saveHist();});
 document.getElementById('home').addEventListener('click',function(){if((ST.node.indexOf('b.')===0||ST.node.indexOf('g.')===0||ST.node.indexOf('grow')===0)&&ST.node!=='b.end'&&ST.node!=='b.end2'&&!confirm('처음으로 갈까요? 작성 중인 내용은 "되돌리기"로만 돌아올 수 있습니다.'))return;
   snap();ST.msgs=[];enter('start');});
 document.getElementById('thm').addEventListener('click',function(){var r=document.documentElement,c=r.getAttribute('data-theme'),dk=c?c==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
@@ -442,7 +445,11 @@ document.getElementById('thm').addEventListener('click',function(){var r=documen
 var th=load('onto3_theme',null);if(th)document.documentElement.setAttribute('data-theme',th);
 /* v4 — T-Book 에서 바로 들어오는 문: #field(지난 현장 복기) · #learn(배우기). 하던 대화는 「되돌리기」에 남기고 새로 연다 */
 var hsh=(location.hash||'').slice(1);
-if(hsh==='field'||hsh==='learn'){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+/* v4.1 — T-Book 서식·메모 › 🧭 온톨로지에서 기록 하나를 골라 열면 #open=아이디 — 그 지도를 「이어서 키우기」로 연다 */
+var hop=/^open=([\w-]+)$/.exec(hsh), hrec=hop&&HIST.filter(function(h){return h.id===hop[1];})[0];
+if(hrec){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+  if(ST.msgs.length)snap();ST.msgs=[];ST.B=norm(JSON.parse(JSON.stringify(hrec)));ST.tmp={};enter('grow');}
+else if(hsh==='field'||hsh==='learn'){try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
   if(ST.msgs.length)snap();ST.msgs=[];
   if(hsh==='field'){ST.B=blankB();ST.B.dom='field';ST.tmp={};push('bot','<p>T-Book 현장심리에서 왔습니다. 지난 현장 하나를 <b>상황 단위로</b> 복기합니다 — 어디서 꼬였고, 무엇이 통했고, 다음엔 무엇을 할지.</p>');enter('b.q');}
   else enter('L:what');}
