@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#002366">
+<title>T-Book 이야기 — 네 앱이 생겨난 길</title>
+<script>
+/* T-Book 과 같은 테마(같은 주소라 기기 저장값을 같이 본다). 통신 없음 · 저장 없음. */
+try{ if((localStorage.getItem('police_v6_theme')||'')==='dark') document.documentElement.setAttribute('data-theme','dark'); }catch(e){}
+</script>
+<style>
+:root{--bg:#ffffff;--panel:#f1f4f9;--panel2:#e8edf5;--border:#cbd5e1;--text:#0a1931;--dim:#3d4f66;--accent:#002366;--gold:#b8924b;--red:#b91c1c;--green:#15803d;--blue:#1d4ed8;--teal:#0f766e}
+html[data-theme="dark"]{--bg:#0f172a;--panel:#1e293b;--panel2:#24324a;--border:#334155;--text:#e2e8f0;--dim:#a6b3ca;--accent:#93c5fd;--gold:#d6b26e;--red:#fca5a5;--green:#86efac;--blue:#93c5fd;--teal:#5eead4}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;font-size:15.5px;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere}
+.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top)) 12px 8px;background:#002366;color:#fff}
+.top h1{margin:0;font-size:15.5px;font-weight:900;flex:1;line-height:1.3}
+.top button,.top a{color:#fff;border:1px solid rgba(255,255,255,.55);border-radius:10px;padding:6px 11px;min-height:38px;font:inherit;font-size:13px;font-weight:800;background:transparent;text-decoration:none;cursor:pointer;white-space:nowrap}
+main{max-width:820px;margin:0 auto;padding:6px 16px 60px}
+section{padding:26px 0 8px;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:0}
+.kick{display:inline-block;font-size:12.5px;font-weight:900;letter-spacing:.3px;color:var(--gold);margin-bottom:4px}
+h2{font-size:22px;line-height:1.35;font-weight:900;margin:0 0 12px}
+h3{font-size:16.5px;font-weight:900;margin:18px 0 8px}
+p{margin:0 0 12px}
+b{font-weight:900}
+.lead{font-size:17px;color:var(--text)}
+.dim{color:var(--dim)}
+.small{font-size:13px}
+.quote{border-left:4px solid var(--gold);background:var(--panel);border-radius:0 12px 12px 0;padding:12px 14px;margin:12px 0;font-weight:700}
+.quote small{display:block;font-weight:600;color:var(--dim);margin-top:4px;font-size:12.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.tile{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px}
+.tile .n{font-size:26px;font-weight:900;line-height:1.15;color:var(--accent)}
+.tile .l{font-size:13px;color:var(--dim);font-weight:700}
+.app{border:1px solid var(--border);border-radius:14px;padding:14px;margin:12px 0;background:var(--bg)}
+.app .h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.app .ic{font-size:30px;line-height:1}
+.app .nm{font-size:18px;font-weight:900}
+.app .sub{font-size:13px;color:var(--dim);font-weight:700}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:2px 9px;margin:2px 4px 2px 0;background:var(--panel2);color:var(--text)}
+ul{margin:6px 0 12px;padding-left:20px}
+li{margin:3px 0}
+.scene{display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:start;padding:10px 0;border-top:1px dashed var(--border)}
+.scene:first-of-type{border-top:0}
+.scene .t{font-weight:900;color:var(--accent);font-size:14px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0}
+.chain span{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:6px 10px;font-weight:800;font-size:14px}
+.chain i{font-style:normal;color:var(--gold);font-weight:900}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.5px}
+th,td{border:1px solid var(--border);padding:7px 6px;text-align:left;vertical-align:top}
+th{background:var(--panel);font-weight:900}
+td.c,th.c{text-align:center}
+.mx td.c{font-size:17px}
+.tl{position:relative;margin:12px 0 4px;padding-left:18px}
+.tl:before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--border)}
+.tl div{position:relative;margin:0 0 9px}
+.tl div:before{content:"";position:absolute;left:-17px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.tl b{color:var(--accent)}
+.ok{color:var(--green);font-weight:900}
+.no{color:var(--red);font-weight:900}
+.cover{text-align:left;padding-top:34px}
+.cover h2{font-size:30px;line-height:1.25}
+.cover .four{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.cover .four span{font-size:15px;font-weight:900;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:8px 12px}
+.foot{font-size:12.5px;color:var(--dim);margin-top:20px}
+/* ── 발표 화면: 한 장씩 ── */
+body.pres{overflow:hidden}
+body.pres .top{display:none}
+body.pres main{max-width:none;height:100dvh;padding:0}
+body.pres section{display:none;border:0;height:100dvh;overflow-y:auto;padding:calc(20px + env(safe-area-inset-top)) max(22px,5vw) 80px;font-size:clamp(15px,1.75vw,20px);line-height:1.6}
+body.pres section.on{display:block}
+body.pres section>*{max-width:1080px;margin-left:auto;margin-right:auto}
+body.pres h2{font-size:clamp(22px,3vw,36px);margin-bottom:10px}
+body.pres .scene{padding:6px 0}
+body.pres td,body.pres th{padding:4px 6px}
+body.pres li{margin:1px 0}
+body.pres .cover h2{font-size:clamp(30px,4.6vw,56px)}
+body.pres .lead{font-size:clamp(17px,2.1vw,24px)}
+body.pres table{font-size:clamp(12px,1.4vw,16.5px)}
+body.pres .tile .n{font-size:clamp(26px,3.6vw,44px)}
+.pbar{display:none}
+body.pres .pbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:9;align-items:center;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(0,35,102,.94);color:#fff}
+.pbar button{min-width:48px;min-height:44px;border:1px solid rgba(255,255,255,.5);border-radius:10px;background:transparent;color:#fff;font:inherit;font-weight:900;font-size:16px;cursor:pointer}
+.pbar .cnt{flex:1;text-align:center;font-weight:800;font-size:14px}
+.pbar .bar{position:absolute;left:0;top:0;height:3px;background:var(--gold)}
+@media (max-width:420px){ h2{font-size:20px} .cover h2{font-size:25px} .scene{grid-template-columns:62px 1fr} th,td{padding:6px 4px} }
+@media print{ .top,.pbar{display:none} section{break-inside:avoid-page} }
+</style>
+</head>
+<body>
+<div class="top"><h1>📖 T-Book 이야기</h1><button type="button" onclick="pres(true)">🎤 발표 화면</button><a href="index.html#settings">← 티북</a></div>
+<main>
+
+<!-- 1 -->
+<section class="cover">
+<span class="kick">교통경찰이 직접 만든 네 개의 앱</span>
+<h2>책 한 권에서 시작해<br>지도와 네비까지</h2>
+<p class="lead">현장에서 필요해서 만든 <b>T-Book</b>이 <b>교통경찰 게임</b>을 낳고, 게임 속 서초를 진짜처럼 만들려다 <b>데이터 압축지도</b>가 생기고, 그 지도에 쌓인 신호 자료로 <b>네비 가르고</b>까지 왔습니다.</p>
+<div class="four"><span>📕 T-Book</span><span>🚓 교통경찰 게임</span><span>🗺️ 데이터 압축지도</span><span>🧭 네비 가르고</span></div>
+<p class="dim small">서울 서초경찰서 교통과 외근에서 시작 · 2026. 10. 18. 기준</p>
+</section>
+
+<!-- 2 -->
+<section>
+<span class="kick">프롤로그</span>
+<h2>왜 만들었나 — 현장에서 필요한 것이 흩어져 있었다</h2>
+<p>교통 외근은 하루에도 여러 번 판단합니다. 이 위반은 범칙금이 얼마인지, 벌점이 붙는지, 사고가 나면 무엇부터 하고 누구에게 보고하는지, 화가 난 운전자에게 어떻게 말할지, 이번 달 시간외는 맞게 나왔는지.</p>
+<p>답은 다 어딘가에 있었습니다. 법령은 국가법령정보센터에, 서식은 업무매뉴얼에, 노하우는 선배 머릿속에. <b>현장에서는 그걸 찾을 시간이 없습니다.</b></p>
+<div class="quote">「누가 시켜서가 아니라, 내가 필요해서 만들었습니다.」<small>— 앱 안 「제작 기록」</small></div>
+<p>그래서 원칙을 하나 세웠습니다. <b>외우지 말고, 필요할 때 펼쳐 보는 책.</b> 이름도 그대로 <b>T-Book(Traffic Police Book)</b>입니다.</p>
+</section>
+
+<!-- 3 -->
+<section>
+<span class="kick">1막 · T-Book</span>
+<h2>📕 교통경찰의 하루를 한 손에</h2>
+<p>폰 하나에 설치 없이 들어가는 웹 앱(PWA)입니다. 서버도 데이터베이스도 없고, 한 번 열면 전파가 약한 곳에서도 열립니다.</p>
+<div class="scene"><div class="t">출근</div><div>홈 화면에 <b>오늘 근무 · 이번 달 달력 · 체감온도와 비 · 지금 있는 곳의 관할 경찰서</b>. 기온이 3시간 안에 급히 떨어지면 방한을 미리 알려 줍니다.</div></div>
+<div class="scene"><div class="t">단속</div><div>「자주 단속하는 20항목」에 조문·범칙금·벌점·구성요건·현장 사례·다투는 점. 범칙금 DB 53항목은 초성(ㅇㅈ)이나 비슷한 말로도 찾습니다.</div></div>
+<div class="scene"><div class="t">사고</div><div>사고처리 허브 → 최초보고. 말로 불러 주면 일시·장소·피해·가해·경위·조치 칸이 채워지고, 장소는 GPS로 관할과 좌표까지. <b>빈칸을 그럴듯한 말로 채우지 않고 「미기재」로 남깁니다.</b></div></div>
+<div class="scene"><div class="t">민원 현장</div><div>현장심리 — 운전자가 하는 핑계별 대응 멘트 32가지, 감정이 격해질 때의 원칙, 그리고 경찰관 자신을 지키는 회복 방법.</div></div>
+<div class="scene"><div class="t">서류</div><div>음주·무면허·PM·이륜차·즉결심판 서류 매뉴얼, 신병 처리별 필요 서류. 내가 쓴 서식을 붙여 두고 다음에 다시 꺼내 봅니다.</div></div>
+<div class="scene"><div class="t">퇴근</div><div>교대근무표와 시간외·야간·휴일수당 계산. 관서가 낸 6월 근무지정표와 한 줄씩 맞대 보니 <b>시간외 −17시간이 똑같이</b> 나왔습니다(v18.5).</div></div>
+</section>
+
+<!-- 4 -->
+<section>
+<span class="kick">1막 · T-Book — 업무 범위</span>
+<h2>열두 갈래, 71개 화면</h2>
+<table>
+<tr><th>갈래</th><th>현장에서 쓰는 것</th></tr>
+<tr><td>⚡ 빠른찾기</td><td>상황·낱말로 한 번에 · 초성 검색 · 비슷한 말</td></tr>
+<tr><td>🚨 보고</td><td>최초·발생 보고 · 음성 받아쓰기 · 실시간 CCTV · CCTV 시각 오차와 여러 대 동선 계산</td></tr>
+<tr><td>📝 서류작성</td><td>서류 매뉴얼 · 필요서류 · 지역경찰 · 내 서식 붙여 두기</td></tr>
+<tr><td>🗓️ 교대근무표</td><td>달력 · 시간외·야간·휴일수당 · 서무용 팀별 정산 · 캘린더 내보내기</td></tr>
+<tr><td>🚦 교통관리</td><td>교통근무 · 단속 · 신호 · 시설 · 정체 원인 현장 사례</td></tr>
+<tr><td>💥 사고처리</td><td>철칙 · 유형별 · 2차사고 · 견인고리 사용법(그림과 조문)</td></tr>
+<tr><td>🛡️ 현장심리</td><td>대응 멘트 32 · 심리 방어 · 직장 · 회복·스트레스</td></tr>
+<tr><td>📚 법령자료</td><td>범칙금 DB 53 · 20항목 해설 · 판례 · 나이 기준 18항목 · 긴급복지지원 해당 여부 · 공개 단속 통계 · 법 개정 예고</td></tr>
+<tr><td>🛣️ 전용도로·관할</td><td>법정 관할 판정(표본점 36,468개) · 반포동은 현장 기준</td></tr>
+<tr><td>📞 연락처</td><td>지금 있는 곳에서 가까운 경찰서 3곳과 번호(전국 259곳)</td></tr>
+<tr><td>💚 민생·복지</td><td>위기 연결 번호 · 생계 · 과태료 분할납부 요건</td></tr>
+<tr><td>⚙️ 설정</td><td>백업 · 글씨 크기 · 햇빛 모드 · 처음 차리기 · 동료에게 QR</td></tr>
+</table>
+</section>
+
+<!-- 5 -->
+<section>
+<span class="kick">1막 · T-Book — 믿을 수 있게</span>
+<h2>틀리면 사고다 — 그래서 원문만</h2>
+<p>앱에 들어가는 법령·판례는 <b>국가법령정보센터와 대법원 원문</b>에서 확인한 것만 넣습니다. 확인 못 한 것은 「미확인」이라고 적습니다. 한 번 틀린 적이 있기 때문입니다(자동차손해배상보장법 금액 오류 — 그 뒤로 「검증 안 된 조문은 넣지 않는다」가 규칙이 됐습니다).</p>
+<div class="grid">
+<div class="tile"><div class="n">53</div><div class="l">범칙금 DB 항목을 원문과 하나씩 대조(10. 15.) — 15곳 바로잡음</div></div>
+<div class="tile"><div class="n">115</div><div class="l">20항목 카드의 법령 숫자 대조 — 9곳 바로잡음</div></div>
+<div class="tile"><div class="n">122</div><div class="l">판례 사건번호 실재·선고일 점검 — 지어낸 판결 0</div></div>
+<div class="tile"><div class="n">4</div><div class="l">이미 공포된 도로교통법 개정의 시행일을 미리 알림</div></div>
+</div>
+<p>판을 올릴 때마다 <b>검사 관문</b>을 통과해야 배포됩니다. 71개 화면을 모두 열어 보고, 답을 아는 값(관할 6곳 · 나이 · 공휴일 · 수당 단가 · 보안 설정 글자)을 대조합니다. 법령 숫자처럼 위험한 변경은 <b>만든 쪽이 아닌 다른 검수자</b>가 한 번 더 봅니다.</p>
+</section>
+
+<!-- 6 -->
+<section>
+<span class="kick">1막 · T-Book — 지키는 것</span>
+<h2>밖으로 나가는 길은 딱 하나</h2>
+<ul>
+<li><b>통신 0에 가깝게</b> — 앱이 밖으로 보내는 것은 사용자가 날씨를 켰을 때 좌표 두 개뿐입니다. 그 밖의 연결은 보안 설정(CSP)으로 막혀 있습니다.</li>
+<li><b>개인정보</b> — 주민번호는 저장하지 않고, 개인정보가 든 입력은 시간이 지나면 지웁니다. 업무 매뉴얼은 암호화되어 있습니다.</li>
+<li><b>기록은 내 폰에만</b> — 메모·근무 기록은 기기 안에 남고, 백업 파일로 직접 옮깁니다.</li>
+<li><b>확인코드</b> — 경찰 동료용이라는 울타리입니다. 금고는 아니라는 것도 앱에 솔직하게 적었습니다.</li>
+</ul>
+<div class="quote">「사람은 자리를 떠나도, 지식은 자리에 남습니다.」<small>— 앱 안 「남기는 글」(2026. 7. 1.)</small></div>
+</section>
+
+<!-- 7 -->
+<section>
+<span class="kick">2막 · 교통경찰 게임</span>
+<h2>🚓 읽는 것으로는 부족했다 — 겪게 하자</h2>
+<p>T-Book의 내용을 홍보하고 교육하려니 글만으로는 전해지지 않았습니다. 그래서 2026년 9월 6일, <b>브라우저에서 바로 하는 교통경찰 순찰 게임</b>을 만들기 시작했습니다(처음 이름 「순찰길」 → 지금 <b>SEOUL PATROL</b>).</p>
+<p>법령의 정본은 T-Book입니다. 게임은 그 내용(위반 25종 · 학습 12항목)을 옮겨와 <b>몸으로 겪게</b> 합니다. 설치도 서버도 없고, 실행 중에 밖으로 나가는 요청이 없습니다.</p>
+<div class="scene"><div class="t">교차로 근무</div><div>서울성모병원 사거리에서 신호제어기를 직접 돌립니다. <b>보행 신호 시간은 줄일 수 없다</b> — 그래도 꼬리물기가 안 풀리면 라바콘으로 차로를 막고 수신호. 현장 실무 그대로입니다.</div></div>
+<div class="scene"><div class="t">추격전</div><div>도주 차량이 <b>어린이보호구역으로 들어가면 추격을 멈추는 것이 정답</b>(+45점). 추격은 최후의 수단이라는 원칙을 점수로 가르칩니다.</div></div>
+<div class="scene"><div class="t">순찰 근무</div><div>단속의 정답·고지·안전조치·112 출동. 사람을 치면 그 자리에서 근무가 끝납니다.</div></div>
+<div class="scene"><div class="t">교통안전 교실</div><div>어린이 보행(멈춘다·본다·손을 든다·걷는다) · 청소년 자전거 · 영아 놀이 · 횡단보도 5원칙 홍보 영상.</div></div>
+</section>
+
+<!-- 8 -->
+<section>
+<span class="kick">3막 · 디지털 트윈</span>
+<h2>게임 속 서초를 진짜처럼</h2>
+<p>게임을 만들다 보니 욕심이 생겼습니다. <b>「게임처럼 보이지만 실제 데이터로 움직이는 서초구」</b>. 같은 세계에 재미를 위한 게임 모드와, 보정을 끄고 실제 값만 쓰는 시뮬레이션 모드를 두는 것 — 디지털 트윈입니다.</p>
+<ul>
+<li>실제 도로 모양(오픈스트리트맵)을 얹고</li>
+<li>서초구 간선 10개 구역을 1:1로, 실제 건물 <b>4,211동</b>을 세우고</li>
+<li>교통사고 10년 자료(TAAS) · 신호 · 인구를 층으로 겹쳤습니다</li>
+</ul>
+<p>그런데 3D 게임 안에 공공데이터를 계속 쌓으니 무거워졌습니다. 그래서 자료만 따로 보는 <b>평면 지도</b>를 게임 안에 하나 만들었습니다(9월 28일). 이것이 다음 앱의 씨앗이 됩니다.</p>
+</section>
+
+<!-- 9 -->
+<section>
+<span class="kick">4막 · 데이터 압축지도</span>
+<h2>🗺️ 흩어진 공공데이터를 지도 한 장에</h2>
+<p>평면 지도는 금방 게임보다 커졌습니다. 10월 4일 <b>별도 앱으로 떼어 냈고</b>, 서초에서 전국으로 넓혔습니다.</p>
+<div class="quote">「전국 공공데이터를 지도 한 장에 겹쳐서, 우리 동네가 지금 어떤지, 10년 뒤 어느 쪽으로 가는지를 출처까지 붙여 보여 주는 앱」<small>— 데이터 압축지도 소개 문장</small></div>
+<ul>
+<li><b>교통안전 층</b> — 교차로 사고 · 사고 10년 · 사망사고 · 음주 다발지 · 어린이보호구역 · 단속 카메라 · 소통 · 신호</li>
+<li><b>치안·안전 층</b> — 경찰 관서와 관할 · 소방 · 응급실 · AED · 안심귀갓길</li>
+<li><b>근무별 한 번에</b> — 근무 나가기 전 필요한 층을 한꺼번에 켬</li>
+<li><b>🚨 신고 차량 예측</b> — 112 음주의심 차량의 자리와 방향으로, 신호에 걸려 설 교차로를 보여 줌</li>
+<li><b>T-Book과 연결</b> — 최초보고 자리 · 지금 위치를 바로 지도로</li>
+</ul>
+<p class="dim">모든 카드 끝에 출처를 붙이고, 없는 값은 「자료 없음」이라고 씁니다. 개인정보는 받는 자리에서 버리고 좌표를 저장하지 않습니다. 「예언이 아니라 방향」입니다.</p>
+</section>
+
+<!-- 10 -->
+<section>
+<span class="kick">5막 · 네비 가르고</span>
+<h2>🧭 추격의 반대 — 앞에서 기다린다</h2>
+<p>지도에 신호 자료가 쌓이자 처음 목적이 다시 보였습니다. 신호를 모은 이유는 셋이었습니다.</p>
+<ul>
+<li>신호에 맞춘 <b>정속 순찰</b></li>
+<li>긴급 출동 때 <b>앞 신호를 미리 아는 것</b></li>
+<li>꼭 잡아야 할 차량이 <b>신호에 걸려 멈출 교차로에 순찰차를 먼저 보내는 것</b></li>
+</ul>
+<p>그래서 10월 10일, 신호를 아는 출동 길 안내 <b>네비 가르고</b>를 시작했습니다. 10월 13일 시험판, 다음 날 서초·강남·송파·동작·관악·용산 여섯 구로 넓혔습니다.</p>
+<p><b>나눠 쓰기</b> — 모든 길 안내를 다 만들려 하지 않았습니다. 가르고는 <b>지금 신호 색 · 남은 초 · 닿을 때의 색</b>을 보여 주는 데 집중하고, 긴 길 안내와 주소 찾기는 티맵·카카오맵·네이버지도로 넘깁니다.</p>
+<p class="dim">권장 속도는 제한속도 안에서만 알려 줍니다. 판단과 주의는 운전자의 몫이라는 것을 화면에 밝힙니다.</p>
+</section>
+
+<!-- 11 -->
+<section>
+<span class="kick">한 줄로 보면</span>
+<h2>하나가 다음을 낳았다</h2>
+<div class="chain"><span>📕 T-Book</span><i>→</i><span>🚓 게임</span><i>→</i><span>🌐 디지털 트윈</span><i>→</i><span>🗺️ 데이터 압축지도</span><i>→</i><span>🧭 네비 가르고</span></div>
+<div class="tl">
+<div><b>2026. 5. 31.</b> T-Book 저장소를 만듦(첫 업로드가 이미 v7.8)</div>
+<div><b>7. 26.</b> 관서 근무지정표와 맞대 보니 시간외 −17시간이 그대로</div>
+<div><b>9. 6.</b> 교통경찰 게임 시작</div>
+<div><b>9. 10.</b> T-Book 기능 추가를 멈추고 유지보수로 — 새 것은 따로 뗀다</div>
+<div><b>9. 28.</b> 게임 안에서 평면 데이터 지도가 태어남</div>
+<div><b>10. 4.</b> 데이터 압축지도 독립 → 곧 전국으로</div>
+<div><b>10. 10.</b> 네비 가르고 시작 · 13일 시험판 · 14일 여섯 구</div>
+<div><b>10. 15.</b> T-Book 법령·판례 전수 원문 대조</div>
+<div><b>10. 18.</b> T-Book 설정에서 네 앱 QR을 한 화면에</div>
+</div>
+<p class="dim small">T-Book은 무거워지지 않도록 화면을 늘리지 않고, 새 기능은 자매 앱으로 떼어 단추 하나로만 잇습니다.</p>
+</section>
+
+<!-- 12 -->
+<section>
+<span class="kick">네 앱 한눈에</span>
+<h2>누가, 언제, 무엇을</h2>
+<table>
+<tr><th></th><th>📕 T-Book</th><th>🚓 게임</th><th>🗺️ 지도</th><th>🧭 가르고</th></tr>
+<tr><th>한 줄</th><td>펼쳐 보는 현장 핸드북</td><td>겪어 보는 교통경찰</td><td>공공데이터 지도 한 장</td><td>신호를 아는 출동 길 안내</td></tr>
+<tr><th>언제</th><td>근무 내내</td><td>교육·홍보·훈련</td><td>근무 전 분석 · 보고 뒤 확인</td><td>출동 · 순찰 이동</td></tr>
+<tr><th>범위</th><td>전국 공통 법령·절차</td><td>서초구 1:1 · 축약 지도</td><td>전국(서울이 가장 자세함)</td><td>여섯 구(서울 전체 시험 중)</td></tr>
+<tr><th>밖으로</th><td>날씨 켰을 때 좌표 2개</td><td>없음</td><td>실시간 층을 켤 때만</td><td>같은 사이트의 신호 자료 · 중요업무는 기기 안에서만</td></tr>
+<tr><th>판</th><td>v24.00</td><td>v0.10.113</td><td>v2.246</td><td>v0.36</td></tr>
+</table>
+<p class="dim small">판 번호는 2026. 10. 18. 기준. 네 앱 모두 설치·서버 없이 주소 하나로 열리고, 홈 화면에 추가하면 앱처럼 씁니다.</p>
+</section>
+
+<!-- 13 -->
+<section>
+<span class="kick">업무 커버</span>
+<h2>어떤 일을 어느 앱이 돕나</h2>
+<table class="mx">
+<tr><th>업무</th><th class="c">📕</th><th class="c">🚓</th><th class="c">🗺️</th><th class="c">🧭</th></tr>
+<tr><td>단속 — 법령·범칙금·벌점</td><td class="c">●</td><td class="c">◐</td><td class="c">·</td><td class="c">·</td></tr>
+<tr><td>사고처리·최초보고</td><td class="c">●</td><td class="c">◐</td><td class="c">◐</td><td class="c">·</td></tr>
+<tr><td>서류·신병 처리</td><td class="c">●</td><td class="c">·</td><td class="c">·</td><td class="c">·</td></tr>
+<tr><td>현장 대응·민원·심리</td><td class="c">●</td><td class="c">◐</td><td class="c">·</td><td class="c">·</td></tr>
+<tr><td>근무표·시간외수당</td><td class="c">●</td><td class="c">·</td><td class="c">·</td><td class="c">·</td></tr>
+<tr><td>관할·연락처</td><td class="c">●</td><td class="c">·</td><td class="c">●</td><td class="c">·</td></tr>
+<tr><td>사고 다발지·예방 분석</td><td class="c">◐</td><td class="c">·</td><td class="c">●</td><td class="c">◐</td></tr>
+<tr><td>신호·교차로 근무</td><td class="c">◐</td><td class="c">●</td><td class="c">●</td><td class="c">●</td></tr>
+<tr><td>출동·순찰 길</td><td class="c">·</td><td class="c">·</td><td class="c">◐</td><td class="c">●</td></tr>
+<tr><td>신고 차량 대응(앞에서 기다리기)</td><td class="c">·</td><td class="c">◐</td><td class="c">●</td><td class="c">◐</td></tr>
+<tr><td>교육·홍보</td><td class="c">◐</td><td class="c">●</td><td class="c">◐</td><td class="c">·</td></tr>
+</table>
+<p class="dim small">● 그 앱의 주된 일 · ◐ 일부 돕거나 연결 · · 다루지 않음</p>
+</section>
+
+<!-- 14 -->
+<section>
+<span class="kick">네 앱이 함께 지키는 것</span>
+<h2>다섯 가지 원칙</h2>
+<div class="app"><div class="h"><span class="ic">📜</span><div><div class="nm">원문만, 출처까지</div><div class="sub">법령·판례는 1차 출처 · 지도 카드마다 출처 · 모르면 「미확인」·「자료 없음」</div></div></div></div>
+<div class="app"><div class="h"><span class="ic">🔒</span><div><div class="nm">밖으로 최소한만</div><div class="sub">서버 없음 · 보안 설정으로 연결 제한 · 실시간은 켤 때만 · 중요업무는 기기 안에서만</div></div></div></div>
+<div class="app"><div class="h"><span class="ic">🙈</span><div><div class="nm">개인정보는 남기지 않는다</div><div class="sub">받는 자리에서 버림 · 좌표·목적지를 저장하지 않음 · 공개 저장소에 올리지 않음</div></div></div></div>
+<div class="app"><div class="h"><span class="ic">✅</span><div><div class="nm">검사를 통과해야 배포</div><div class="sub">판마다 화면 전체·정답 값 대조 · 위험한 변경은 다른 검수자</div></div></div></div>
+<div class="app"><div class="h"><span class="ic">👮</span><div><div class="nm">판단은 사람이</div><div class="sub">앱은 근거와 가능한 범위를 보여 주고, 결정과 주의는 현장 경찰관의 몫</div></div></div></div>
+</section>
+
+<!-- 15 -->
+<section>
+<span class="kick">솔직하게</span>
+<h2>아직 못 하는 것</h2>
+<ul>
+<li><b>T-Book</b> — 시간외 단가·휴일근무 인정 기준은 관서마다 다를 수 있어 화면에 밝힙니다. 음성 받아쓰기는 브라우저가 구글 서버를 거칩니다.</li>
+<li><b>게임</b> — 기본 지도는 축약판(베타)입니다. 1:1 지도를 기본으로 할지는 폰 메모리를 보고 정합니다.</li>
+<li><b>데이터 압축지도</b> — 「예언이 아니라 방향」. 재개발·입주는 다 넣지 못했고, 지방은 기본 층 위주입니다.</li>
+<li><b>네비 가르고</b> — 감응·수동 신호면 계획값과 실제가 다릅니다. 신호값을 자동으로 못 받는 교차로가 아직 있습니다. 시험판입니다.</li>
+</ul>
+<p>그래도 방향은 분명합니다. <b>현장 경찰관이 더 빨리, 더 정확하게, 더 안전하게 판단하도록</b>.</p>
+</section>
+
+<!-- 16 -->
+<section>
+<span class="kick">써 보기</span>
+<h2>QR 하나로 바로 열립니다</h2>
+<p>T-Book <b>설정 › 📤 공유 — 동료에게 알려주기</b>에 네 앱의 QR이 차례로 있습니다.</p>
+<ol>
+<li>📕 <b>T-Book</b> — 안드로이드는 크롬, 아이폰은 사파리로 열어 「홈 화면에 추가」</li>
+<li>🗺️ <b>데이터 압축지도</b></li>
+<li>🚓 <b>교통경찰 게임</b></li>
+<li>🧭 <b>네비 가르고</b></li>
+</ol>
+<p class="dim">경찰 동료용이라 T-Book · 지도 · 가르고는 처음 한 번 확인코드를 묻습니다(T-Book 안의 단추로 열면 묻지 않습니다). 확인코드는 화면에 띄운 채 사진을 찍지 마십시오.</p>
+<div class="quote">외우지 말고, 필요할 때 펼쳐 보십시오.<small>— T-Book</small></div>
+<p class="foot">이 페이지는 T-Book 안에서 열리는 별도 페이지입니다(통신 없음). 숫자와 날짜는 각 앱의 기록·판별 발자취에서 가져왔고 2026. 10. 18. 기준입니다.</p>
+</section>
+
+</main>
+<div class="pbar" role="navigation" aria-label="발표 넘기기"><div class="bar" id="pbBar"></div><button type="button" onclick="go(-1)" aria-label="앞 장">‹</button><div class="cnt" id="pbCnt"></div><button type="button" onclick="pres(false)" aria-label="읽기 화면으로">✕</button><button type="button" onclick="go(1)" aria-label="다음 장">›</button></div>
+<script>
+(function(){
+  var S=[].slice.call(document.querySelectorAll('main>section')), i=0, on=false;
+  function show(){ S.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    var c=document.getElementById('pbCnt'), b=document.getElementById('pbBar');
+    if(c) c.textContent=(i+1)+' / '+S.length; if(b) b.style.width=((i+1)/S.length*100)+'%';
+    try{ S[i].scrollTop=0; }catch(e){} }
+  window.go=function(d){ if(!on) return; i=Math.max(0,Math.min(S.length-1,i+d)); show(); try{ history.replaceState(null,'','#present='+(i+1)); }catch(e){} };
+  window.pres=function(v){ on=!!v; document.body.classList.toggle('pres',on);
+    if(on){ show(); try{ if(document.documentElement.requestFullscreen&&!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function(){}); }catch(e){} try{ history.replaceState(null,'','#present='+(i+1)); }catch(e){} }
+    else { S.forEach(function(s){ s.classList.remove('on'); }); try{ if(document.fullscreenElement) document.exitFullscreen(); }catch(e){} try{ history.replaceState(null,'','#'); }catch(e){} try{ S[i].scrollIntoView(); }catch(e){} } };
+  document.addEventListener('keydown',function(e){ if(!on) return; var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){ e.preventDefault(); go(1); }
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){ e.preventDefault(); go(-1); }
+    else if(k==='Home'){ i=0; show(); } else if(k==='End'){ i=S.length-1; show(); } else if(k==='Escape'){ pres(false); } });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){ if(!on) return; x0=e.touches[0].clientX; y0=e.touches[0].clientY; },{passive:true});
+  document.addEventListener('touchend',function(e){ if(!on||x0===null) return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3) go(dx<0?1:-1); x0=null; },{passive:true});
+  var m=/#present(?:=(\d+))?/.exec(location.hash||''); if(m){ i=Math.max(0,Math.min(S.length-1,(+m[1]||1)-1)); pres(true); }
+})();
+</script>
+</body>
+</html>
