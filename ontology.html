@@ -7,10 +7,11 @@
 <title>온톨로지 · 팔란티어 방식 · T-Book</title>
 <!--
   온톨로지 ver.4.1 (T-Book 서브앱) — 버튼 문답으로 배우고, 같은 문답으로 내 문제의 온톨로지를 만든다.
+  ver.4.3 (2026-10-18) — 배우기에 「팔란티어 방식 — 자세히」·「성공 사례」(우크라이나 전쟁범죄·지뢰·전장 상황판 · 미 해군 ShipOS · 에어버스 Skywise · 헤센)·「실패 사례」(뉴올리언스 · LAPD LASER · 영국 NHS · 독일 헌재 · 전장 표적 책임) — 공개 보도 기준 · 출처 주소를 장마다
   ver.4.2 (2026-10-14) — 「서초 교차로 — 자료로 시작」: 아래 tbcore 블록(교통 온톨로지 코어 v1 · 데이터 압축지도 ontology-core 의 core-seocho.json 에서 교차로 26곳 부분 그래프를 값 그대로 뗀 것)을 읽어
     사고(TAAS 10년) → 주 위반 → 범칙금 DB 조문 → 원문 대조 판례 · 시설(경찰 단속 카메라 · 어린이보호구역) · 과거 조치(교통과 출력물 이력 · 앞 2해 vs 뒤 2해 사고)를 지도로 시작해 이어서 키운다 · 입구 #core · #core=INT-번호
   ver.4.1 (2026-10-04) — 결과 카드 「AI용 복사」(검토 요청 말머리 + 글) · #open=아이디(T-Book 서식·메모 › 🧭 온톨로지에서 기록 하나를 이어서 키우기로 연다)
-  배우기: 온톨로지란 / 왜 필요한가 / 팔란티어는 어떻게 푸나 / 효과 / 한계 / 나·우리·직장·교통에 쓰는 법 / 디지털 트윈이란 / 나를 알아가는 법
+  배우기: 온톨로지란 / 왜 필요한가 / 팔란티어는 어떻게 푸나 / 팔란티어 방식 자세히 / 성공 사례 / 실패 사례 / 효과 / 한계 / 나·우리·직장·교통에 쓰는 법 / 디지털 트윈이란 / 나를 알아가는 법
   만들기: 영역 → 결정 질문 → 오브젝트 타입·대상·속성·출처 → 링크 → 액션 → 함수 → 결과(지도·빈 곳·기록)
   v4(2026-10-02): 이어서 키우기(빈 곳 메우기·결과 채우기·새 액션·선·대상·규칙 → 자라 온 기록 B.log · 빈 곳 변화 B.snaps)
     · 영역 「현장 대응」(지난 현장 복기 — 판단 규칙 예시는 T-Book 현장심리 카드 원칙 그대로 + 출처 카드 이름)
@@ -152,6 +153,73 @@ var LEARN={
   PAL('<b>② 관계를 정한다 (링크)</b><br>무엇이 무엇과 이어지는지 정의합니다. 이제 "이 정체는 어디서 왔나"처럼 선을 따라가는 질문이 됩니다.')+
   PAL('<b>③ 바꾸는 방법을 정한다 (액션)</b><br>값을 바꾸는 정해진 방법입니다. 누가 바꿀 수 있는지 권한을 걸고, 바꿀 때마다 기록이 남아 나중에 "왜 그렇게 정했나"를 분석할 수 있습니다. 그림만 그리는 다른 방식과 가장 다른 점입니다.')+
   PAL('<b>④ 판단 규칙과 AI가 그 위에서 일한다 (함수)</b><br>"이럴 땐 이렇게"를 규칙으로 적고, AI도 같은 지도 위에서 묻고 답합니다.')]},
+ pal:{h:'팔란티어 방식 — 자세히',b:[
+  '<p>팔란티어(Palantir)는 2003년 미국에서 세워진 자료 분석 회사입니다. 정보기관·군·경찰에서 시작해 공장·병원·항공사로 넓혔습니다. 이 회사가 파는 것은 「AI」가 아니라 <b>흩어진 자료를 현실의 대상과 관계로 묶어, 사람이 판단하고 행동하게 만드는 틀</b>이고, 그 틀을 온톨로지라고 부릅니다.</p>'+
+  '<p><b>네 단계로 일합니다.</b></p>'+
+  '<table><tr><th>단계</th><th>하는 일</th><th>교통으로 치면</th></tr>'+
+  '<tr><td>① 잇기</td><td>부서·기관마다 따로 있는 자료를 그대로 끌어온다(새로 만들지 않는다)</td><td>신호 자료 · 사고 자료 · 교통량 · 민원</td></tr>'+
+  '<tr><td>② 같은 것 묶기</td><td>이름이 달라도 같은 대상이면 하나로 묶는다 — 가장 어렵고 가장 값진 일</td><td>T-GIS 521 · 신호 4039 · 사고 자료 「서초역 사거리」 = 서초역사거리 하나</td></tr>'+
+  '<tr><td>③ 관계 긋기</td><td>대상끼리 무슨 사이인지 선을 긋는다</td><td>이 부품이 늦으면 → 이 공정이 막힘 / 이 신호가 길면 → 상류가 막힘</td></tr>'+
+  '<tr><td>④ 행동과 결과 남기기</td><td>그걸 보고 한 조치를 지도 위에 기록하고 결과를 단다</td><td>2025.11 시차제 → 꼬리물기 줄었나</td></tr></table>'+
+  '<p><b>왜 이렇게 하나요?</b> 자료가 엑셀 수백 개로 흩어져 있으면 질문 하나에 사람이 며칠씩 파일을 뒤져 손으로 잇습니다. 그 사람이 떠나면 연결도 사라집니다. 대상과 관계로 묶어 두면 질문 하나로 근거까지 바로 나오고, 담당자가 바뀌어도 「왜」가 남습니다.</p>'+
+  '<p><b>힘은 AI가 아니라 습관입니다.</b> 아래 성공·실패 사례를 보면, 잘된 곳은 장소·사건·물건을 묶고 근거를 보였고, 안된 곳은 사람에게 점수를 매기거나 몰래 했거나 현장이 쓰지 않았습니다.</p>']},
+ win:{h:'성공 사례 — 무엇을 묶어 무엇이 달라졌나',b:[
+  '<p class="small">회사·기관이 발표했거나 언론이 보도한 내용입니다. 독립 평가가 없는 수치는 그렇다고 적었습니다.</p>'+
+  '<p><b>1. 우크라이나 — 전쟁범죄 증거 정리 (2023.4 · 검찰총장실)</b></p>'+
+  '<ul><li><b>문제</b>: 신고된 전쟁범죄가 7만 8천 건이 넘었습니다(살해·고문·성범죄·파괴). 진술·사진·영상·위성사진이 따로 쌓여 사람 손으로는 사건끼리 잇는 것이 사실상 불가능했습니다.</li>'+
+  '<li><b>묶은 것</b>: 장소와 시각을 기준으로 공개 정보(OSINT)와 위성사진을 겹쳐 「어디서 · 언제 · 무엇이」를 지도로 만들었습니다.</li>'+
+  '<li><b>효과</b>: 흩어진 증거가 사건 단위로 모여 수사가 가능한 형태가 됐습니다. 당시 검찰총장은 이 양을 현대 IT 없이 분석하는 것은 사실상 불가능하다고 말했습니다. 회사는 이 일에 돈을 받지 않았다고 보도됐습니다.</li></ul>'+
+  '<p><b>2. 우크라이나 — 지뢰 제거 우선순위 (2024.3 · 경제부)</b></p>'+
+  '<ul><li><b>문제</b>: 지뢰 오염 의심 땅이 약 15만 6천㎢. 정부기관과 민간 제거 단체가 조사 자료를 각자 갖고 있었습니다.</li>'+
+  '<li><b>묶은 것</b>: 조사 결과를 땅(구역) 기준으로 한 판에 모으고, 농사·복구에 얼마나 급한지를 같이 놓았습니다.</li>'+
+  '<li><b>효과</b>: 「어디를 먼저 치워야 사람이 빨리 돌아오나」를 판단하는 근거가 생겼습니다. 새 자료를 만든 것이 아니라 이미 있는 자료를 같은 땅으로 묶은 것입니다.</li></ul>'+
+  '<p><b>3. 우크라이나 · NATO — 전장 상황판</b></p>'+
+  '<ul><li><b>묶은 것</b>: 상업 위성사진 · 드론 영상 · 공개 정보 · 현장 보고를 한 지도 위 「같은 그림」으로 겹쳤습니다.</li>'+
+  '<li><b>효과</b>: 보도에 따르면 큰 부대가 하던 전장 자료 분석을 20~50명이 하게 됐고, NATO도 같은 계열 체계(Maven)를 들였습니다. 표적 판단의 마지막 승인은 사람이 한다고 보도됐습니다.</li>'+
+  '<li><b>주의</b>: 민간인 피해와 연결됐다는 주장이 있으나 확인된 사건으로 분류되지는 않았습니다(아래 실패 사례 5).</li></ul>'+
+  '<p><b>4. 미 해군 — 잠수함·함정 건조 「ShipOS」 (2025.12~)</b></p>'+
+  '<ul><li><b>문제</b>: 핵잠수함 건조가 계속 늦었습니다. 까닭은 손이 아니라 「어느 부품이 어디서 얼마나 늦고, 그게 어느 공정을 막는지」를 아무도 한눈에 못 보는 것이었습니다. 조선소 일정표 · 자재 현황 · 납품업체 납기가 서로 다른 체계에 있었습니다.</li>'+
+  '<li><b>묶은 것</b>: 배 · 공정 · 부품 · 공급업체 · 검사를 대상으로, 「이 부품이 늦으면 → 이 공정이 막히고 → 진수가 며칠 밀린다」를 관계로 이었습니다. 해군 공공 조선소 4곳 · 민간 2곳 · 핵심 공급업체 · 2년 최대 4억 4,800만 달러.</li>'+
+  '<li><b>효과(시범 · 해군·회사 발표)</b>: 일렉트릭 보트 조선소 일정 계획 <b>사람 손 160시간 → 10분 미만</b> · 포츠머스 해군 조선소 자재 검토 <b>몇 주 → 1시간 미만</b>. 해군은 「측정 가능한 절감과 일정 단축」을 성공 기준으로 걸었고 회사도 「가치를 증명해야 한다」고 했습니다 — 지금은 시범이 좋아 크게 시험하는 단계입니다.</li></ul>'+
+  '<p><b>5. 에어버스 — 「Skywise」 (항공기 정비·생산)</b></p>'+
+  '<ul><li><b>묶은 것</b>: 항공사 · 정비업체 · 당국 · 에어버스가 각자 가진 항공기 자료를 항공기·부품 기준으로 이었습니다(회사 공시 기준 1만 대 이상).</li>'+
+  '<li><b>효과</b>: 생산계획 · 품질 · 공급망 앱 600여 개가 매일 이 위에서 돌고 사용자가 5만 명이 넘는다고 보도됐습니다. 고장 나기 전에 정비할 부품을 고르는 데 씁니다.</li>'+
+  '<li><b>논란</b>: 자료가 미국 법의 손에 닿을 수 있느냐(자료 주권)를 두고 스위스 군 보고서가 의문을 냈다고 보도됐습니다.</li></ul>'+
+  '<p><b>6. 독일 헤센주 경찰 — 아동 성착취 사건 (2019)</b></p>'+
+  '<ul><li><b>효과</b>: 베르기슈 글라트바흐 사건에서 흩어진 수사 자료를 엮어 여러 용의자의 신원을 밝히는 데 썼다고 보도됐습니다.</li>'+
+  '<li><b>그러나</b>: 같은 체계가 뒤에 헌법재판소 판단을 받았습니다(아래 실패 사례 4) — 효과가 있어도 법의 테두리가 먼저라는 예입니다.</li></ul>'+
+  '<p><b>공통점</b>: ① 새 자료를 만든 곳은 없다 — 이미 있는 자료를 같은 대상으로 묶었다 ② 묶는 기준이 <b>장소 · 사건 · 물건</b>이었다 ③ 결과를 숫자로 재거나 근거를 보였다 ④ 마지막 판단은 사람이 했다.</p>',
+  '<p class="small">출처: <a href="https://fedscoop.com/palantir-to-help-ukraine-process-data-in-war-crimes-investigations/" target="_blank" rel="noopener">FedScoop — 전쟁범죄</a> · <a href="https://www.businesswire.com/news/home/20240304069003/en/Palantir-and-Ministry-of-Economy-of-Ukraine-Sign-Demining-Partnership" target="_blank" rel="noopener">Business Wire — 지뢰 제거</a> · <a href="https://en.ain.ua/2025/04/15/nato-acquires-palantir-military-ai-system" target="_blank" rel="noopener">AIN — NATO Maven</a> · <a href="https://breakingdefense.com/2025/12/navy-palantir-unveil-shipos-in-a-bid-to-boost-nuclear-sub-production/" target="_blank" rel="noopener">Breaking Defense — ShipOS</a> · <a href="https://www.theregister.com/2025/12/10/palantir_navy_448_million_contract/" target="_blank" rel="noopener">The Register — ShipOS 시범 수치</a> · <a href="https://www.sec.gov/Archives/edgar/data/1321655/000132165523000011/pltr-20221231.htm" target="_blank" rel="noopener">Palantir 10-K — Skywise</a> · <a href="https://lessentieldeleco.fr/5953-palantir-ce-rapport-suisse-quairbus-a-choisi-dignorer/" target="_blank" rel="noopener">L’Essentiel de l’Éco — 에어버스·헤센</a></p>']},
+ fail:{h:'실패 사례 — 왜 그렇게 됐나',b:[
+  '<p class="small">각 사례마다 ① 무엇을 했나 ② 효과는 있었나 ③ 왜 반발이 일었나 ④ 우리에게 주는 교훈. 보도마다 설명이 다른 대목은 그렇다고 적었습니다.</p>'+
+  '<p><b>1. 미국 뉴올리언스 경찰 — 6년 만에 종료 (2012~2018)</b></p>'+
+  '<ul><li><b>무엇을</b>: 사람·사건 자료를 엮어 범죄에 휘말릴 사람과 조직을 찾는 데 썼습니다. 시의 정식 계약이 아니라 회사의 기부 형식(무상)이었고 세 번 연장됐습니다.</li>'+
+  '<li><b>효과</b>: 조직폭력 사건 수사에 쓰였다고 보도됐습니다.</li>'+
+  '<li><b>왜 반발했나</b>: 2018년 언론 보도로 드러나기 전까지 <b>시민도, 시의원 상당수도 그런 체계가 있는 줄 몰랐습니다</b>. 기부 형식이라 예산 심의를 거치지 않았기 때문입니다. 보도 며칠 뒤 시장실이 연장하지 않겠다고 했습니다.</li>'+
+  '<li><b>교훈</b>: 결과가 좋아도 <b>몰래 하면 신뢰를 잃고 끝난다</b>. 무엇을 쓰는지 공개하고 근거를 보여야 오래 간다.</li></ul>'+
+  '<p><b>2. 미국 LA 경찰 「LASER」 — 중단 (2011~2019 무렵)</b></p>'+
+  '<ul><li><b>무엇을</b>: 범죄가 잦은 장소와 「상습 위험 인물」을 골라 점수를 매기고, 그 목록으로 순찰을 보냈습니다.</li>'+
+  '<li><b>효과</b>: 장소 중심 순찰은 효과를 주장했으나, 인물 점수의 기준이 들쭉날쭉하다는 감찰 결과가 나왔습니다.</li>'+
+  '<li><b>왜 반발했나</b>: 넣은 자료가 이미 특정 동네를 더 많이 단속한 기록이라, <b>체계가 그 동네를 다시 더 단속하게 만드는 되먹임</b>이 생긴다는 비판을 받았습니다. 사람에게 점수를 매긴다는 것 자체가 반발을 샀습니다. 종료 까닭(여론·감찰·예산)은 보도마다 조금씩 다르고, 이름을 바꿔 이어졌다는 주장도 있습니다.</li>'+
+  '<li><b>교훈</b>: <b>나쁜 자료를 넣으면 나쁜 판단이 그럴듯하게 나온다</b>. 사람에게 점수를 매기지 말고 장소·시각·사건을 묶어라.</li></ul>'+
+  '<p><b>3. 영국 NHS(국민보건서비스) 연합 데이터 플랫폼 — 진행 중 논란 (2023~)</b></p>'+
+  '<ul><li><b>무엇을</b>: 병원마다 따로 있는 대기 명단 · 수술 일정 · 병상 자료를 이어 대기 시간을 줄이려 했습니다. 3억 3천만 파운드 계약.</li>'+
+  '<li><b>효과</b>: 쓰는 병원에서는 수술 일정 효과를 주장합니다. 그러나 2024년 말까지 병원 트러스트 215곳 가운데 <b>4분의 1도 안 되는 곳만 실제로 썼습니다</b>. 보도에 따르면 감독 기관이 전체 비용을 11억 파운드로 올려 잡은 반면 예상 효과는 8억 800만 파운드로 내려갔습니다.</li>'+
+  '<li><b>왜 반발했나</b>: ① 의료기록은 가장 민감한 개인정보인데 회사가 미국 정보기관·이민단속과 일한다는 점에 대한 불신 ② <b>4만 4천 명 넘게</b> 자기 기록 처리에 법적 이의를 냄 ③ 현장 직원 일부가 쓰기 불편하다고 함 ④ 소프트웨어를 사는 게 아니라 구독이라 빠져나오기 어렵다(묶임)는 비판. 정부가 계약 해지 조항을 검토한다는 보도도 있습니다.</li>'+
+  '<li><b>교훈</b>: <b>위에서 사도 현장이 안 쓰면 실패</b>다. 개인정보를 다루면 기술보다 신뢰가 먼저다.</li></ul>'+
+  '<p><b>4. 독일 헤센·함부르크 경찰 — 헌법재판소 판단 (2023.2)</b></p>'+
+  '<ul><li><b>무엇을</b>: 경찰이 가진 여러 자료를 자동으로 엮어 분석했습니다(헤센은 위 성공 사례 6의 그 체계).</li>'+
+  '<li><b>효과</b>: 아동 성착취 사건 등에서 효과가 있었다고 보도됐습니다.</li>'+
+  '<li><b>왜 문제가 됐나</b>: 연방헌법재판소가 자동 자료 분석을 허용한 주 법 조항이 <b>언제·무엇을·얼마나 엮을 수 있는지 요건이 너무 넓어</b> 기본권을 침해한다고 판단했습니다(일부 위헌 · 법을 고칠 때까지 좁은 조건에서만).</li>'+
+  '<li><b>교훈</b>: 효과가 있어도 <b>법적 근거와 범위 제한</b>이 없으면 멈춘다. 경찰은 연결 권한이 먼저다 — 그래서 T-Book·데이터 압축지도는 개인을 식별하지 않는 공공데이터만 묶는다.</li></ul>'+
+  '<p><b>5. 전장 표적 AI — 책임 논란 (진행 중)</b></p>'+
+  '<ul><li><b>무엇을</b>: 우크라이나·미군에서 표적 정보를 묶어 판단을 빠르게 하는 데 쓰였다고 보도됐습니다.</li>'+
+  '<li><b>효과</b>: 판단 속도와 인력 절감(성공 사례 3).</li>'+
+  '<li><b>왜 논란인가</b>: 민간인 피해와 연결됐다는 주장이 나왔습니다(국제기구 기록에서는 확인된 사건이 아니라 참고 정보로 분류). 체계가 표적을 「골라 주면」 사람의 승인이 형식이 되지 않느냐, 틀리면 누가 책임지느냐가 쟁점입니다.</li>'+
+  '<li><b>교훈</b>: 빠를수록 <b>마지막 판단과 책임은 사람</b>에게 남겨야 한다. 지도는 근거를 보이고, 결정은 사람이 한다.</li></ul>'+
+  '<p><b>성공과 실패를 가른 것</b></p>'+
+  '<table><tr><th>성공한 곳</th><th>실패한 곳</th></tr><tr><td>장소 · 사건 · 물건을 묶음</td><td>사람에게 점수를 매김</td></tr><tr><td>공개하고 근거를 보임</td><td>몰래 함</td></tr><tr><td>현장이 쓰게 만듦</td><td>위에서만 삼</td></tr><tr><td>법 테두리 안 · 범위 제한</td><td>요건이 넓거나 근거 없음</td></tr><tr><td>결과를 숫자로 잼</td><td>효과를 재지 않거나 비용이 효과를 넘음</td></tr></table>',
+  '<p class="small">출처: <a href="https://www.cnbc.com/2018/03/15/new-orleans-ends-its-palantir-predictive-policing-program.html" target="_blank" rel="noopener">CNBC — 뉴올리언스 종료</a> · <a href="https://archive.techdirt.com/articles/20200930/16543945418/palantir-presentations-show-how-lapd-is-able-to-turn-tons-garbage-data-into-ineffective-policing.shtml" target="_blank" rel="noopener">Techdirt — LAPD LASER</a> · <a href="https://www.computing.co.uk/news/2026/government/nhs-palantir-platform-s-business-case-under-scrutiny-as-costs-rise-and-benefits-fall" target="_blank" rel="noopener">Computing — NHS 비용</a> · <a href="https://thenextweb.com/news/palantir-nhs-data-platform-44000-objections-38-degrees" target="_blank" rel="noopener">The Next Web — NHS 이의 4만 4천</a> · <a href="https://www.techradar.com/pro/security/nhs-users-report-that-it-is-awful-to-use-palantir-could-be-forced-to-exit-nhs-after-pushback-from-staff-mps-unions-and-pressure-groups-over-federated-data-platform" target="_blank" rel="noopener">TechRadar — NHS 현장 반응</a> · <a href="https://oecd.ai/en/incidents/2026-05-11-3468" target="_blank" rel="noopener">OECD AI 사건 기록</a></p>']},
  eff:{h:'효과는 무엇인가요?',b:[
   '<ul><li><b>같은 말을 쓰게 된다</b> — 부서마다 다르게 부르던 것이 한 이름이 됩니다.</li>'+
   '<li><b>연결된 질문에 답한다</b> — "이 정체의 원인은 어디서 오나", "이 업무가 막히면 누가 기다리나".</li>'+
@@ -285,7 +353,7 @@ function N(id){
  var B=ST.B,d=D(),t,ti;
  switch(id){
  case 'start':return{say:['<b class="h">무엇부터 할까요?</b><p>온톨로지가 무엇이고 팔란티어가 어떻게 문제를 푸는지 먼저 보셔도 되고, 바로 내 문제에 써 보셔도 됩니다. 어느 쪽이든 버튼을 눌러 이어 갑니다.</p>'],
-   ui:{choices:[{l:'온톨로지가 뭔가요?',go:'L:what'},{l:'팔란티어는 어떻게 푸나요?',go:'L:how'},{l:'디지털 트윈이란?',go:'L:twin'},{l:'바로 내 문제에 써 보기',go:'b.dom'},{l:'지난 현장 복기',fn:function(){ST.B=blankB();ST.B.dom='field';ST.tmp={};},go:'b.q'},{l:'예시 먼저 보기',go:'ex'},{l:'서초 교차로 — 자료로 시작',go:'core'},{l:'지난 기록 ('+HIST.length+') · 이어서 키우기',go:'hist',sub:1}]}};
+   ui:{choices:[{l:'온톨로지가 뭔가요?',go:'L:what'},{l:'팔란티어는 어떻게 푸나요?',go:'L:how'},{l:'팔란티어 성공·실패 사례',go:'L:win'},{l:'디지털 트윈이란?',go:'L:twin'},{l:'바로 내 문제에 써 보기',go:'b.dom'},{l:'지난 현장 복기',fn:function(){ST.B=blankB();ST.B.dom='field';ST.tmp={};},go:'b.q'},{l:'예시 먼저 보기',go:'ex'},{l:'서초 교차로 — 자료로 시작',go:'core'},{l:'지난 기록 ('+HIST.length+') · 이어서 키우기',go:'hist',sub:1}]}};
  case 'b.dom':return{say:['<b class="h">어느 영역의 문제인가요?</b><p>영역마다 예시가 달라집니다. 묻는 순서는 같습니다.</p>'],
    ui:{choices:Object.keys(DOM).map(function(k){return{l:DOM[k].label+' · '+DOM[k].sub,fn:function(){ST.B=blankB();ST.B.dom=k;ST.tmp={};},go:'b.q'};}).concat([{l:'영역이 왜 따로 있나요?',go:'L:use',sub:1}])}};
  case 'b.q':return{say:[(d.note?(d.strong?'<div class="pal">🔒 '+esc(d.note)+'</div>':'<p class="small">'+esc(d.note)+'</p>'):'')+'<b class="h">무엇을 정하려고 하나요?</b><p>질문 하나만 적습니다. 예시를 눌러도 되고 직접 써도 됩니다.</p>'],
@@ -378,7 +446,7 @@ function N(id){
    ui:{choices:hs.slice(0,12).map(function(h){return{l:(h.title||'이름 없음')+' · '+h.saved+(h.snaps&&h.snaps.length?' · 빈 곳 '+h.snaps[h.snaps.length-1].g:''),fn:function(){ST.B=norm(JSON.parse(JSON.stringify(h)));},go:'grow'};}).concat(hs.length?[{l:'기록 모두 지우기',fn:function(){if(confirm('저장한 기록을 모두 지울까요?')){HIST=[];save('onto3_history',HIST);}},go:'start',sub:1}]:[]).concat([{l:'처음으로',go:'start',sub:1}])}};
  case 'histopen':return N('grow');
  }
- if(id.indexOf('L:')===0){var k=id.slice(2),x=LEARN[k]||LEARN.what;var nx={what:['why','how'],why:['how','eff'],how:['eff','twin'],eff:['lim','use'],lim:['use','how'],use:['twin','self'],twin:['self','use'],self:['use','twin']}[k]||['why','how'];
+ if(id.indexOf('L:')===0){var k=id.slice(2),x=LEARN[k]||LEARN.what;var nx={what:['why','how'],why:['how','pal'],how:['pal','win'],pal:['win','fail'],win:['fail','eff'],fail:['win','lim'],eff:['lim','use'],lim:['use','how'],use:['twin','self'],twin:['self','use'],self:['use','twin']}[k]||['why','how'];
    return{say:['<b class="h">'+x.h+'</b>'+x.b.join('')],ui:{choices:nx.map(function(n){return{l:LEARN[n].h,go:'L:'+n};}).concat([{l:ST.lastB?'하던 것 이어서':'써 보기',go:ST.lastB||'b.dom'},{l:'처음으로',go:'start',sub:1}])}};}
  return N('start');
 }
